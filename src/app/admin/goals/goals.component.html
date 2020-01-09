@@ -1,0 +1,242 @@
+<div class="main-wrap">
+	<!--===================== SETTING =====================-->
+	<section class="setting_wrap">
+		<app-setting-bar></app-setting-bar>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 marg-bo-30">
+					<app-sidebar></app-sidebar>
+				</div>
+				<div class="col-md-9">
+					<section class="goals_warp">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="title">Dashboard</div>
+							</div>
+						</div>
+
+						<div class="row" *ngIf="user.role_type==2 || user.role_type==3">
+							<div class="col-md-12">
+								<nav class=" navbar-expand-sm">
+									<!-- Links -->
+									<ul class="navbar-nav">
+										<!-- Dropdown -->
+										<li class="nav-item dropdown">
+											<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> <i class="la la-plus" aria-hidden="true"></i> KPI</a>
+											<div class="dropdown-menu" > 
+												<a class="dropdown-item" [routerLink]="['/gamification-rules']">New KPI</a>
+												<div *ngIf="kpiList">
+													<a class="dropdown-item" data-toggle="modal" data-target="#kpiModal"  *ngFor='let kpi of kpiList; let i = index' (click)="getKpiDetails($event)" id="{{ kpi.id }}">{{kpi.name}}</a>
+												</div>
+
+											</div>
+										</li>
+										<li class="nav-item dropdown">
+											<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> <i class="la la-plus" aria-hidden="true"></i> TARGET</a>
+											<div class="dropdown-menu"> <a class="dropdown-item" [routerLink]="['/target']">New Target</a>
+												<div *ngIf="allTargetList">
+												<a class="dropdown-item" *ngFor='let target of allTargetList; let i = index' (click)="getTargetDetails($event)" id="{{ target.id }}">{{target.kpi_name}}</a>
+												</div>
+												
+											</div>
+										</li>
+										<!-- <li class="nav-item dropdown">
+											<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> <i class="la la-plus" aria-hidden="true"></i> CONTEST</a>
+											<div class="dropdown-menu"> <a class="dropdown-item" href="#">Link 1</a>
+												<a class="dropdown-item" href="#">Link 2</a>
+												<a class="dropdown-item" href="#">Link 3</a>
+											</div>
+										</li> -->
+									</ul>
+								</nav>
+							</div>
+						</div>
+						<!--=============================MAIN DASHBOARD=============================-->
+						<div class="box-1" id="dashboard-page">
+							<div class="dashboard-tiles">
+
+                              <ng-container *ngIf="userskpiList">
+								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-danger" *ngFor='let kpi of userskpiList; let i = index'>
+									<div class="tile-header">
+										<div class="dropdown">
+											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+											</a>
+											<div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit KPI</a>
+												<a class="dropdown-item" href="#">Set Target for this KPI</a>
+												<a class="dropdown-item" (click)="inActiveKpi($event)" id="{{ kpi.kpi_id }}">Remove KPI</a>
+
+											</div>
+										</div>
+										<div class="tile-name">{{kpi.kpi_name}}</div>
+										<div class="tile-type">KPI</div>
+									</div>
+									<div class="tile-body">
+										<div class="kpi-points ">{{kpi.total}}</div>
+										<div class="kpi-change kpi-label-default level_up"><span>100%</span>
+                                        <Span><i class="las la-long-arrow-alt-up"></i></Span> 
+										</div>
+									</div>
+									<div class="tile-footer">
+										<a class="tile-filter configure"> <span class="tile-filter-element">{{kpi.from_date}}</span>
+											<span> &nbsp;&nbsp; To &nbsp;&nbsp;</span>  
+											<span class="tile-filter-element">{{kpi.to_date}}</span>
+										</a>
+									</div>
+								</div>
+                               </ng-container>
+
+                               <ng-container *ngIf="targetList">
+								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-primary" *ngFor='let target of targetList; let i = index'>
+									<div class="tile-header">
+										<div class="dropdown">
+											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+											</a>
+											<div class="dropdown-menu"> 
+												<a class="dropdown-item" [routerLink]="['/edit-target', target.target_id]">Edit Target</a>
+												
+												<a class="dropdown-item" (click)="inActiveTarget($event)" id="{{ target.target_id }}">Remove Target</a>
+
+											</div>
+										</div>
+										<div class="tile-name">{{target.kpi_name}}</div>
+										<div class="tile-type">Target</div>
+									</div>
+                                    
+                                    <!-- this body for target assign to perticular user  -->
+									<div class="tile-body" *ngIf="target.users_target > 0">
+				                        <div class="kpi-points ">{{target.total}}/{{target.users_target}}
+				                        </div>
+				                          <div class="progress">
+
+				                        <div *ngIf="(target.total*100)/target.users_target <=50" class="point_minus_30" [ngStyle]="{'width': (target.total*100)/target.users_target+'%'}" >	
+				                        </div>
+
+				                        <div *ngIf="(target.total*100)/target.users_target > 50 && (target.total*100)/target.users_target <= 80 " class="point_minus_10" [ngStyle]="{'width': (target.total*100)/target.users_target+'%'}" >
+				                        	
+				                        </div>
+
+				                         <div *ngIf="(target.total*100)/target.users_target > 80" class="point_plus_30" [ngStyle]="{'width': (target.total*100)/target.users_target+'%'}" >
+				                        	
+				                        </div>
+
+				                           </div>                         
+				                        <div class="kpi-change kpi-label-default">{{(target.total*100)/target.users_target}}%</div>
+				                        <span class="tile-filter-element">{{target.users_target - target.total}} Needed</span>
+				                      </div>
+
+				                     
+				                      <!-- target_period  1=>daily,2=>weekly,3=>monthly,4=>quarterly,5=>halfyearly,6=>yearly -->
+									<div class="tile-footer" >
+										<a class="tile-filter configure"> 
+											<span class="tile-filter-element" *ngIf="target.target_period == 1">Daily</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 2">Weekly</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 3">Monthly</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 4">Quarterly</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 5">Half Yearly</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 6">Yearly</span>
+											
+											
+										</a>
+									</div>
+								</div>
+                               </ng-container>
+
+							</div>
+						</div>
+
+
+						<!--     MODAL CENTER POPUP=====================   -->
+						<div class="modal" id="kpiModal">
+							<div class="modal-dialog model_private">
+								<form #form2="ngForm" ngNativeValidate (submit)="assignKpi(form2)">
+									<div class="modal-content">
+										<!-- Modal Header -->
+										<div class="modal_header">
+											<h4 class="modal-title">Configure</h4>
+											<button type="button" class="close" data-dismiss="modal"> <i class="la la-times-circle fa-lg"></i>
+											</button>
+										</div>
+										<!-- Modal body -->
+										<div class="modal_content">
+											<div class="user-edit-form">
+												<div class="">
+													<div class="row">
+														<div class="col-md-12">
+															<p>You can select multiple KPIs, People and Period here </p>
+															<div class="form-group form-inline">
+																<input type="hidden" name="assignBy" #assignBy="ngModel" [ngModel]="user.user_id">
+																<label class="form-control-label" for="First name">KPI</label>
+
+																<ng-multiselect-dropdown style="width: 74%;" #kpiDetails="ngModel" id="kpiDetails" name="kpiDetails"
+																  [placeholder]="'KPI'"
+																  [data]="kpiList"
+																  [(ngModel)]="selectedKpis"
+																  [settings]="allKpiListSettings"
+																  (onSelect)="onItemSelect($event)"
+																  (onSelectAll)="onSelectAll($event)"
+																>
+																</ng-multiselect-dropdown>
+
+															</div>
+															<div class="form-group form-inline">
+																<label class="form-control-label" for="First name">Teams</label>
+																
+																<ng-multiselect-dropdown style="width: 74%;" #teamDetails="ngModel" id="teamDetails" name="teamDetails"
+																[placeholder]="'Teams'"
+																[data]="teamInfo"
+																[(ngModel)]="selectedTeams"
+																[settings]="allTeamListSettings"
+																(onSelect)="onItemSelect($event)"
+																(onSelectAll)="onSelectAll($event)"
+																>
+															</ng-multiselect-dropdown>
+														</div>
+														<div class="form-group form-inline">
+															<label class="form-control-label" for="First name">Users</label>
+															<ng-multiselect-dropdown style="width: 74%;" #userInfo="ngModel" id="userInfo" name="userInfo"
+															[placeholder]="'Users'"
+															[data]="usersInfo"
+															[(ngModel)]="selectedUsers"
+															[settings]="allUserListSettings"
+															(onSelect)="onItemSelect($event)"
+															(onSelectAll)="onSelectAll($event)"
+															>
+														</ng-multiselect-dropdown>
+													</div>
+													<div class="form-group form-inline">
+														<label class="form-control-label" for="First name">Period</label>
+														
+														<select style="width: 74%;" class="custom-select" #period="ngModel" name="period" [(ngModel)]="selectedPeriod">
+															<option value="">Select Period</option>
+															<option *ngFor="let item of periodList | keyvalue : unsorted" value="{{item.value}}">{{item.key}}</option>
+															
+														</select>
+													</div>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<!-- Modal footer -->
+								<div class="modal_footer">
+									<div class="row">
+										<div class="col-md-12">
+											
+											<input value="Apply" class="cmn_btn pull-right" autocomplete="false" type="submit">
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			</section>
+		</div>
+	</div>
+</div>
+</section>
+</div>
+<notifier-container></notifier-container>

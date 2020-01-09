@@ -1,0 +1,86 @@
+ <div class="main-wrap">
+	<!--===================== SETTING =====================-->
+	<section class="setting_wrap">
+		<app-setting-bar></app-setting-bar>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 marg-bo-30">
+					<app-sidebar></app-sidebar>
+				</div>
+				<div class="col-md-9">
+					<div class="title">Core Values</div>
+					<div class="box-0">
+						<div class="user_teams_table_wrap points_table_wrap core_value_warp">
+							<div class="table-responsive">
+								<form #form="ngForm" ngNativeValidate (submit)="add(form)">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>Core Values Name</th>
+												<th>Core Values</th>										
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													<div class="private_points_wrap">
+														<input type="text"  name="corevaluename" [(ngModel)]="corevaluename" class="private-form__control" id="" placeholder="Name..">
+													</div> 
+												</td>                                                
+												<td>
+													<span class="file">
+														<input type="file"   (change)="handleFileSelect($event)">
+
+														<input type="hidden" #coreValueIcon="ngModel" name="coreValueIcon" [(ngModel)]="base64textString" />
+														<label for="file">Upload core values icon</label>
+													</span>
+												</td>
+
+											</tr>
+
+										</tbody>
+
+									</table>
+									<div class="add_metric_btn_warp">                                     
+										<input value="Add" class="add_metric_btn" autocomplete="false" type="submit">
+									</div>
+								</form>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="user_teams_table_wrap points_table_wrap core_value_warp">
+
+							<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-bordered">
+							  <thead>
+							    <tr>
+							      <th>ID</th>
+							      <th>Name</th>
+							      <th>Icon</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							    <!-- <tr>
+							      <td>1</td>
+							      <td>Foo</td>
+							      <td>Bar</td>
+							    </tr> -->
+							     <tr *ngFor="let corevalue of coreValuesList; index as i">
+							      <td>{{ corevalue.id }}</td>
+							      <td>{{ corevalue.name }}</td>
+							      <td><img style="height: 30px; width: 30px;" src="{{ iconUrl }}corevalue_icon/{{ corevalue.icon }}"></td>
+							    </tr>
+							  </tbody>
+							</table>
+
+						</div>
+				</div>
+			</div>
+			
+		</div>
+	</section>
+</div>
+
+
+

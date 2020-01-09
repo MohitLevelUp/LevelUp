@@ -1,0 +1,151 @@
+<div class="main-wrap">
+    <!--===================== SETTING =====================-->
+    <section class="setting_wrap Appraisal_Cycle">
+      <app-setting-bar></app-setting-bar>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 marg-bo-30">
+            <app-sidebar></app-sidebar>
+          </div>
+          <div class="col-md-9">
+            <div class="title">Set Targets</div>
+            <div class="box-1">
+
+            <form #form="ngForm" ngNativeValidate (submit)="saveTarget(form)">
+              <div class="user-edit-form set_target_warp">
+                <div class="form-warp">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group form-control-wrap">
+                        <label class="form-control-label" for="">KPI</label>
+                        <select class="form-control" name="kpiId" #kpiId="ngModel" [(ngModel)]="selectedKpi">
+                          <option value="">Select Kpi</option>
+            						 <option *ngFor='let kpi of kpiList; let i = index' value="{{kpi.id}}">{{kpi.name}}</option>
+            						
+            					  </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group form-control-wrap">
+                        <label class="form-control-label" for="">Set Target Period</label>
+                        <select name="targetPeriod" #targetPeriod="ngModel" [(ngModel)]="selectedPeriod" class="form-control">
+                          <option value="">Select Period</option>
+                          <option value="1" selected="">Daily</option>
+                          <option value="2">Weekly</option>
+                          <option value="3">Monthly</option>
+                          <option value="4">Quarterly</option>
+                          <option value="5">Half Yearly</option>
+                          <option value="6">Yearly</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="target_table">
+                  <div class="user_teams_table_wrap points_table_wrap core_value_warp target">
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Team</th>
+                            <th>Average (Last Week)</th>
+                            <th>Yesterday</th>
+                            <th>Target</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td style="width: 250px;">
+                              <ng-multiselect-dropdown  #teamDetails="ngModel" id="teamDetails" name="teamDetails"
+                                [placeholder]="'Teams'"
+                                [data]="teamInfo"
+                                [(ngModel)]="selectedTeams"
+                                [settings]="allTeamListSettings"
+                                (onSelect)="onItemSelect($event)"
+                                (onSelectAll)="onSelectAll($event)"
+                                >
+                              </ng-multiselect-dropdown>
+                            </td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>
+                            
+                                <div class="private_points_wrap">
+                                  <input type="text" class="private-form__control" name="teamsTarget" [(ngModel)]="teamsTarget">
+                                </div>
+                          
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="Notify_me">
+                        <label class="check_box">
+                          <input type="checkbox"> <span class="checkmark"></span> Notify the company of its target status at the end of each target period</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="target_table">
+                  <div class="user_teams_table_wrap points_table_wrap core_value_warp target">
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Individual</th>
+                            <th>Average (Last Week)</th>
+                            <th>Yesterday</th>
+                            <th>Target</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td style="width: 250px;">
+                                <div class="private_points_wrap">
+                                  <ng-multiselect-dropdown style="width: 74%;" #userInfo="ngModel" id="userInfo" name="userInfo"
+                                  [placeholder]="'Users'"
+                                  [data]="usersInfo"
+                                  [(ngModel)]="selectedUsers"
+                                  [settings]="allUserListSettings"
+                                  (onSelect)="onItemSelect($event)"
+                                  (onSelectAll)="onSelectAll($event)"
+                                  >
+                                </ng-multiselect-dropdown>
+                                </div>
+                         
+                            </td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>
+                              
+                                <div class="private_points_wrap">
+                                  <input type="text" class="private-form__control" name="usersTarget"  [(ngModel)]="usersTarget">
+                                </div>
+                             
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="Notify_me">
+                        <label class="check_box">
+                          <input type="checkbox"> <span class="checkmark"></span> Notify individuals of their target status at the end of each target period</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-warp">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <input value="Save" class="cmn_btn pull-right" type="submit">
+                     <!--  <button class="cmn_btn btn_for_cancel pull-right">Cancel</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>

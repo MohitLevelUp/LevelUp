@@ -1,0 +1,51 @@
+<section class="wrapper_L">
+<section class="form-type-one">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="form-warp">
+                    <div class="form-card">
+                        <div class="form"> 
+                            <form #form="ngForm" ngNativeValidate (submit)="signIn(form)">
+                                <div class="form-content">
+                                    <a [routerLink]="['/']"><img src="./assets/images/logo2.png"></a>                                    
+                                    <p>Don't have an account? <a href="#" class="">Sign Up</a></p>                                   
+                                    <div class="form-group">                                        
+                                        <label for="Email">Email:</label>
+                                        
+                                        <input type="email" #email="ngModel" name="email" [(ngModel)]="form.email" id="email" class="form-control" placeholder="Enter email">
+                                    </div>
+                                    <div class="form-group">                                       
+                                        <label for="Password">Password:</label>
+                                        <input type="password" #password="ngModel" [(ngModel)]="form.password" name="password" class="form-control" placeholder="Enter Password" id="Password">
+                                    </div>
+                                   <!--  <div class="form-group chiller_cb">
+                                        <input type="checkbox" name="rememberMe" id="myCheckbox2"  autocomplete="on" data-val="true">
+                                        <label for="myCheckbox2">Remember Me</label>
+                                        <span></span>
+                                    </div> -->
+                                    <span class="terms text-left">
+                                        <a  [routerLink]="['/forgot-password']">
+                                            <b>Forgot Password?</b>
+                                        </a>
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                   
+                                    <input type="submit" class="form-btn" id="signIn" value="Log In">
+                                </div>
+                            <input name="" type="hidden" value=""><input name="RememberMe" type="hidden" value="false">
+                        </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+           
+</section>
+<notifier-container></notifier-container>
+
+
