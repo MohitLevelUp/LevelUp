@@ -1,0 +1,300 @@
+ <div class="main-wrap">
+	<!--===================== SETTING =====================-->
+	<section class="setting_wrap">
+		<app-setting-bar></app-setting-bar> 
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 marg-bo-30">
+					<app-sidebar></app-sidebar>
+				</div>
+				<div class="col-md-9">
+					<section class="wrapper main-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+             <div class="col-md-12">
+              <section class="goals_warp">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="title"><i class="las la-hand-holding-heart"></i>  Give Recognition</div>
+                  </div>
+                </div>               
+                <!--============================= Give Recognition=============================-->
+                <div class="row">
+                  <div class="col-md-8">
+
+                  	
+                    <div class="box-1">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">                      
+                      <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#core_tab">Core Values</a> </li>
+                        <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#kudos_tab">Kudos</a> </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">   
+                                       
+                      <div id="core_tab" class="tab-pane active">
+                        <br>
+                        <form #form="ngForm" ngNativeValidate (submit)="giveCoreValue(form)">
+                          <div class="reco_wrap">
+                            <div class="reco_item_wrap d-flex">
+                              <div class="reco_imo"> <i class="las la-grin-stars"></i> </div>
+                              <div class="reco_input">
+                                <div class="private_points_wrap">
+                                   <select #givenTo="ngModel" name="givenTo" [(ngModel)]="selectedgivenTo" class="private-form__control">
+                                    <option value="">Search for a coworker(s)</option>
+                                    <option *ngFor='let user of usersInfo; let i = index' value="{{user.id}}">{{user.display_name}}</option>
+                                   </select>
+
+                                </div>
+                              </div>
+                            </div>
+                            <div class="reco_item_wrap d-flex">
+                              <div class="reco_imo"> <i class="las la-certificate"></i> </div>
+                              <div class="reco_input private_points_wrap">
+                                <select #coreValueId="ngModel" name="coreValueId" [(ngModel)]="selectedcoreValueId" class="private-form__control">
+                                  <option value="">Select Core Value</option>
+                                  <option *ngFor='let corevalue of coreValuesList; let i = index'  value="{{corevalue.id}}">{{corevalue.name}}</option>
+                                 </select>
+                              </div>
+                            </div>
+                            <div class="reco_item_wrap d-flex">
+                              <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
+                              <div class="reco_input">
+                                <div class="private_points_wrap">
+                                  <input type="text" class="private-form__control" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="form.whyGiven" placeholder="What did your coworker(s) do?">
+
+                                </div>
+                              </div>
+                            </div>
+                            <div class="reco_submit">
+                             
+                              <input value="Send" class="cmn_btn pull-right"  type="submit">
+                            </div>
+                          </div>
+                         </form>
+                      </div>  
+                     
+
+                        <div id="kudos_tab" class="tab-pane fade">
+                        <br>
+                         <form #kudosform="ngForm" ngNativeValidate (submit)="giveKudos(kudosform)">
+                        <div class="reco_wrap">
+                          <div class="reco_item_wrap d-flex">
+                            <div class="reco_imo"> <i class="las la-grin-stars"></i> </div>
+                            <div class="reco_input">
+                              <div class="private_points_wrap">
+                                <select #givenTo="ngModel" name="givenTo" [(ngModel)]="selectedgivenTo" class="private-form__control">
+                                  <option value="">Search for a coworker(s)</option>
+                                  <option *ngFor='let user of usersInfo; let i = index' value="{{user.id}}">{{user.display_name}}</option>
+                                </select> 
+                              </div>
+                            </div>
+                          </div>
+                          <div class="reco_item_wrap d-flex">
+                            <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
+                            <div class="reco_input">
+                              <div class="private_points_wrap">
+                                <input type="text" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="kudosform.whyGiven" class="private-form__control" id="" placeholder="What did your coworker(s) do?"> </div>
+                            </div>
+                          </div>
+                            
+                            <div class="kudos-wrap">
+                            <ul class="row">
+
+                              <li class="col-sm-4" *ngFor='let kudos of stickerList; let i = index'>
+                                <input type="radio" #kudosId="ngModel" name="kudosId" [(ngModel)]="kudosform.kudosId" [value]="kudos.id" id="Kudos{{kudos.id}}" />
+                                <label for="Kudos{{kudos.id}}">
+                                 
+                                  <img class="img-fluid" src="{{ iconUrl }}kudos_stickers/{{ kudos.sticker }}" />
+                                  <p>{{kudos.name}}</p>
+                                </label>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="reco_submit">
+                             <input value="Send" class="cmn_btn pull-right"  type="submit">
+                          </div>
+                        </div>
+                       </form>
+
+                      </div>
+                    </div>
+                  </div>
+                      <div class="box-1 reco_wrap">
+                      <div class="reco_content">
+                          <div class="reco_title d-flex">
+                           <div class="reco_title_img">
+                              <img class="img-fluid" src="./assets/images/icon.png">
+                              </div>
+                            <div class="reco_title_text">
+                              <h4>The Level Up Team</h4>
+                              </div>
+                              
+                              <div class="reco_badge pull-right">
+                              <img class="img-fluid" src="./assets/images/sticker/core-value/playbold.png">
+                              </div>
+                          </div>
+                          
+                          <div class="reco_post_banner">
+                          <img class="img-fluid" src="./assets/images/play-bold-1.jpg">
+                          </div>
+                          
+                          <div class="reco_pera">
+                           <p>
+                              The unemployment rate in US hit the 50 years lowest rate, 3.6%The unemployment rate in US hit the 50 years lowest rate, 3.6%
+                              </p>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                  <div class="col-md-4">
+
+                    <div class="box-1 reco_wrap_sm">
+                      <div class="badges_point_warp">                    
+                        <div class=""> 
+                         <!-- 
+                          <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                              <a class="nav-link active" data-toggle="tab" href="#home"> </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#menu1">Giving Allowance</a>
+                            </li> 
+                          </ul> -->   
+                          <h4>Earned Balance</h4>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div id="home" class="tab-pane active"><br>
+                                <div class="">   
+                                <span class="badg_count">{{earnedcvPoint}}</span>
+                                <span class="badg_count_icon"> Points</span>
+                                </div>
+                                    
+                            </div>
+                            <!-- <div id="menu1" class="tab-pane fade"><br>
+                               <div class="earn_badg_wrap">
+                                <span class="badg_count">{{givingcvPoint}}</span>
+                                <span class="badg_count_icon"><i class="las la-certificate"></i></span>
+                                </div>     
+                            </div>  -->   
+                          </div>
+                        </div>                          
+                          </div>
+                      </div>
+
+                      <div class="box-1">
+
+                      	<div class="badges_point_warp">                    
+                        <div class=""> 
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs nav-justified">
+                            <li class="nav-item active">
+                              <a class="nav-link " data-toggle="tab" href="#receiver">Top Receiver </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#sender">Top Giver</a>
+                            </li>    
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div id="receiver" class="tab-pane active"><br>
+                                <div class="earn_badg_wrap d-flex" *ngFor="let sendCoreValue of givenCoreValue; index as i">
+                                 <div class="kudos_ricv_name"> 
+                                <span>{{sendCoreValue.user_name}}</span>
+                              </div>
+                              <div class="kudos_ricv_icon"> 
+                                <img class="img-fluid" style="width: 34px;" src="{{ iconUrl }}corevalue_icon/{{ sendCoreValue.icon }}">
+                              </div>
+                               
+                                </div>
+                                    
+                            </div>
+                            <div id="sender" class="tab-pane fade"><br>
+                               <div class="earn_badg_wrap d-flex" *ngFor="let receiveCoreValue of takenCoreValue; index as i">
+                                <div class="kudos_ricv_name"> 
+                                <span>{{receiveCoreValue.user_name}}</span>
+                              </div>
+                              <div class="kudos_ricv_icon">
+                                <img  class="img-fluid" style="width: 34px;" src="{{ iconUrl }}corevalue_icon/{{ receiveCoreValue.icon }}">
+                              </div>
+                               </div>  
+
+                            </div>    
+                          </div>
+                        </div>                          
+                          </div>
+
+                      </div>
+
+                      <div class="box-1">
+
+                        <div class="badges_point_warp">                    
+                        <div class=""> 
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs  nav-justified">
+                            <li class="nav-item active">
+                              <a class="nav-link " data-toggle="tab" href="#kreceiver">Kudos Received </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#kgiven">Kudos Given</a>
+                            </li>    
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div id="kreceiver" class="tab-pane active"><br>
+                                <div class="earn_badg_wrap d-flex" *ngFor="let getKudos of receiveKudos; index as i">
+                                 <div class="kudos_ricv_name">
+                                <span>{{getKudos.user_name}}</span> </div> 
+                                <div class="kudos_ricv_icon"> 
+                                <img class="img-fluid" src="{{ iconUrl }}kudos_stickers/{{ getKudos.sticker }}">
+                               </div>
+                                </div>
+                                    
+                            </div>
+                            <div id="kgiven" class="tab-pane fade"><br>
+                               <div class="earn_badg_wrap d-flex" *ngFor="let giveKudos of givenKudos; index as i">
+                                <div class="kudos_ricv_name">
+                                <span>{{giveKudos.user_name}}</span> 
+                              </div>
+                              <div class="kudos_ricv_icon">
+                                <img class="img-fluid" src="{{ iconUrl }}kudos_stickers/{{ giveKudos.sticker }}">
+                              </div>
+                               </div>  
+
+                            </div>    
+                          </div>
+                        </div>                          
+                          </div>
+
+                      </div>
+
+                      <div class="box-1 reco_wrap_sm">
+                      <div class="badge_display_wrap">
+                          <h4>Top Badges</h4>                          
+                          <div class="badge_display">
+                            <img class="img-fluid" src="./assets/images/sorry.png">                              
+                          </div>
+                          <div class="badge_text"><p class="text-center">No top badges, yet</p></div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              </section>
+            </div>
+    
+      
+            </div>
+        </div>
+    </section>
+				</div>
+			</div>
+			
+		</div>
+	</section>
+</div>
+<notifier-container></notifier-container>
+
+

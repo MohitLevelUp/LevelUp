@@ -1,0 +1,186 @@
+/*GOALS SETTING=================================*/
+.goals_warp nav {
+    border-radius: 4px;
+    border: solid 0px;
+    padding: 0px !important;
+    height: auto;
+    margin-top: 24px;
+}
+.goals_warp .navbar-nav {
+     margin:0px; 
+}
+.goals_warp .navbar-nav{
+    display:inline-block;
+}
+.goals_warp .navbar-nav .nav-item {
+    border-radius: 4px;
+    margin-right: 4px;
+    display: inline-block;
+}
+.goals_warp .navbar-nav .nav-item .nav-link {
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Alata';
+    background: #2196f3;
+    border: 0;
+    outline: 0;
+    box-shadow: 1px 3px 8px rgba(23, 23, 23, 0.3);
+    font-weight: 400;
+    transition: all 0.2s linear;
+    border-radius: .3rem;
+    text-align: center;
+    color: #ffffff;
+    padding: 6px 15px;
+    letter-spacing: 2px;
+    font-size: 15px;
+}
+.goals_warp .modal_footer {
+    position: relative !important;
+    z-index:0 !important;
+}
+.goals_warp .warning .select {
+   width:100% !important;
+}
+.goals_warp .dropdown-select .option-list{
+    top:60px;
+}
+.goals_warp .modal_content {    
+    margin-bottom: 8px;
+}
+.goals_warp .form-inline {   
+    justify-content: space-between;
+}
+@media (min-width: 768px){
+.goals_warp .form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+    float: right;
+    min-width: 74%;
+}
+    }
+
+.goals_warp p {
+    font-family: 'Quicksand';
+    color: #515f90;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+
+/*MAIN DASHBOARD PAGE===============================*/
+
+.dashboard-item, .tile {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: 185px;
+    margin: 15px 15px 0 0;
+    color: #ccc;
+    position: relative;
+    cursor: pointer;
+        border-radius: 8px;
+    background: #24263c;
+    -webkit-animation-duration: 0.50s !important;
+    -webkit-animation-iteration-count: 1 !important;
+    -moz-animation-duration: 0.50s !important;
+    -moz-animation-iteration-count: 1 !important;
+    box-shadow: 2px 1px 4px 0px rgba(0,0,0,0.3);
+}
+.dashboard-tiles {    
+    padding-left: 15px;
+    padding-right: 15px;    
+}
+.tile-header {
+    font-size: 12px;
+    position: relative;
+    height: 45px;
+}
+.tile-header .dropdown {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+}
+.tile-name {
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    top: 25px;
+    text-align: center;
+    width: 100%;
+}
+.tile-type {
+    text-transform: uppercase;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.tile-body {
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+.tile .kpi-points {
+    margin: 10px 0 30px;
+    width: 100%;
+    font-size: 40px;
+    line-height: 40px;
+}
+
+.kpi-points {
+    text-align: center;
+    font-size: 30px;
+    margin: 0px 5px 0px;
+}
+.kpi-title, .kpi-points, .kpi-change, .dashboard-target-points {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
+}
+.tile .kpi-change {
+    margin: 0;
+    line-height: 20px;
+}
+.kpi-label-default {
+    color: #fff;
+}
+.kpi-change {
+    text-align: center;
+    margin-top: 12px;
+}
+.tile-footer {
+    text-align: center;
+    height: 20px;
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+}
+.tile-filter {
+    text-decoration: none !important;
+    color: #999 !important;
+}
+.tile-filter>span {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tile-filter-element {
+    max-width: 45%;
+}
+
+@media (min-width: 750px){
+.dashboard-item, .tile {
+    width: 225px;
+}
+    .dashboard-tiles {    
+    display: inline-table;
+}
+}

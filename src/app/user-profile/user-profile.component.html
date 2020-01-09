@@ -1,0 +1,185 @@
+<div class="main-wrap">
+		<!--===================== SETTING =====================-->
+		<section class="setting_wrap employee-leaderboard">
+			<app-setting-bar></app-setting-bar>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-3 marg-bo-30">
+						<app-sidebar></app-sidebar>
+					</div>
+					<div class="col-md-9" *ngIf="userInfo">
+						<div class="title">Profile</div>
+						<div class="box-1">
+							<div class="board_header">
+								<div class="row">
+									<div class="col-md-4">
+										<div class="emp_preferences d-inline-flex">
+											<div class="emp_avatarc_col">
+												<div *ngIf="userInfo['image_path'] == ''" class="emp_avatar">
+													<img class="img-fluid" src="./assets/images/user.png">
+												</div>
+												<div *ngIf="userInfo['image_path']" class="emp_avatar">
+													<img class="img-fluid" src="{{ userInfo['image_path'] }}">
+												</div>
+											</div>
+											<div class="emp_info">
+												<div class="emp_name">{{userInfo.display_name}}</div>
+												<div class="emp_ID emp_style">Team : <span class="id_nomber"> {{ userInfo['team_name'] }}</span> 
+												</div>
+												<!-- <div class="emp_region emp_style">{{ userInfo['email_id'] }}
+												</div> -->
+												
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6"> <span class="emp_grading_title">Grading System</span>
+										<div class="emp_grading_warp ">
+											<ul>
+												<li><span class="point_minus_30">-30</span>
+												</li>
+												<li><span class="point_minus_20">-20 to -11</span>
+												</li>
+												<li><span class="point_minus_10">-10 to 0</span>
+												</li>
+												<li><span class="point_plus_10">0 to 10</span>
+												</li>
+												<li><span class="point_plus_20">11 to 20</span>
+												</li>
+												<li><span class="point_plus_30">+30</span>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<div class="emp_short_score_wrap">
+											<div *ngIf="pointDifference < 0" class="emp_short_score">{{ pointDifference }} Points above target.
+											</div>
+											<div *ngIf="pointDifference > 0" class="emp_short_score" style="background-color: #F44336;">{{pointDifference}} Points below target.
+											</div>
+											<!-- <div class="emp_placement_no">Rank : <span>#2nd</span> 
+											</div> -->
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="table-responsive emp_tabel">
+								<table class="table table-bordered" border="1" *ngIf="targetList">
+									<thead class="thead-light">
+										<tr>
+											<!-- <th></th> -->
+											<th>KPI Name</th>
+											<th style="text-align: center;">Actual</th>
+											<th style="text-align: center;">Target</th>
+											<th style="text-align: center;">variance</th>
+											<th style="text-align: center;">Points</th>
+										</tr>
+									</thead>
+
+									<tr *ngFor='let target of assignTargetData; let i = index'>
+										<!-- <td rowspan="3">
+											<div id="emp_progress" class="center">
+												<svg class="progress blue noselect" data-progress="35" x="0px" y="0px" viewBox="0 0 80 80">
+													<path class="track" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
+													<path class="fill" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
+													<text class="value" x="50%" y="58%">0%</text>
+												</svg>
+											</div> 
+                                            <span>Averages</span>
+										</td> -->
+										<td class="text-left">{{target.kpi_name}}</td>
+										<td>{{target.total}}</td>
+										
+										<td>{{target.users_target}}</td>
+										<!-- gradding system is in percentage for target is remaining -->
+										<td *ngIf="target.targetResultPercentage <= 10" class="off_point point_minus_10"><span>-{{target.targetResultPercentage}} %</span>
+										</td>
+
+										<td *ngIf="target.targetResultPercentage > 10 && target.targetResultPercentage <= 20" class="off_point point_minus_20"><span>-{{target.targetResultPercentage}} %</span>
+										</td>
+
+										<td *ngIf="target.targetResultPercentage > 20" class="off_point point_minus_30"><span>-{{target.targetResultPercentage}} %</span>
+										</td>
+
+										<!-- gradding system is in percentage for target is greater than assign target -->
+										<td *ngIf="target.targetResultPercentage >= -10 && target.targetResultPercentage < 0" class="off_point point_plus_10"><span>+{{target.targetResultPercentage}} %</span>
+										</td>
+
+										<td *ngIf="target.targetResultPercentage < -10 && target.targetResultPercentage >= -20" class="off_point point_plus_20"><span>+{{target.targetResultPercentage}} %</span>
+										</td>
+
+										<td *ngIf="target.targetResultPercentage < -20" class="off_point point_plus_30"><span>+{{target.targetResultPercentage}} %</span>
+										</td>
+										
+										<td>{{target.total * target.point}}</td>
+										
+									</tr>
+									<!-- <tr>
+										<td class="text-left">Issues Solved Per Day</td>
+										<td>55</td>
+										<td>81</td>
+										<td class="off_point point_plus_30"><span>+30</span>
+										</td>
+									</tr>
+									<tr>
+										<td class="text-left">% of Response Time</td>
+										<td>112</td>
+										<td>68</td>
+										<td class="off_point point_plus_20"><span>+20</span>
+										</td>
+									</tr> -->
+									
+									<!-- <tr>
+										<td class="text-left">Customer Retention</td>
+										<td>22</td>
+										<td>68</td>
+										<td class="off_point point_minus_10"><span>-10</span>
+										</td>
+									</tr>
+									<tr>
+										<td class="text-left">Satisfied Customers</td>
+										<td>69</td>
+										<td>5</td>
+										<td class="off_point point_plus_20"><span>+20</span>
+										</td>
+									</tr> -->
+									<!-- <tr>
+										<td rowspan="3">
+											<div id="emp_progress" class="center">
+												<svg class="progress blue noselect" data-progress="65" x="0px" y="0px" viewBox="0 0 80 80">
+													<path class="track" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
+													<path class="fill" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
+													<text class="value" x="50%" y="58%">0%</text>
+												</svg>
+											</div> 
+                                            <span>Weekly Call Cycle</span>
+										</td>
+										<td class="text-left">First Call</td>
+										<td>86</td>
+										<td>25</td>
+										<td class="off_point point_plus_30"><span>+30</span>
+										</td>
+										<td rowspan="3">19</td>
+										<td rowspan="3">35%</td>
+									</tr> -->
+									<!-- <tr>
+										<td class="text-left">Second Call</td>
+										<td>47</td>
+										<td>4</td>
+										<td class="off_point point_minus_20"><span>-20</span>
+										</td>
+									</tr>
+									<tr>
+										<td class="text-left">Third Call</td>
+										<td>92</td>
+										<td>55</td>
+										<td class="off_point point_plus_10"><span>+10</span>
+										</td>
+									</tr> -->
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>

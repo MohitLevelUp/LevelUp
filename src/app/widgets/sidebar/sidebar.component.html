@@ -1,0 +1,33 @@
+<div id="cate" class="Categories-btn">Your preferences <span class="pull-right"><i class="la la-bars"></i></span>	
+</div>
+<aside class="aside-wrap">
+	<div id='sidebar-menu'>
+		<div class="title">Your Preferences <span class="pull-right"><i class="la la-users-cog"></i></span>	
+		</div>
+		<ul>
+			<li class=""><a [routerLink]="['/profile']">Basic info</a>
+			</li>
+			<!-- <li><a routerLinkActive='active' [routerLink]="['/notifications']">Notifications</a>
+			</li>
+			<li class=""><a routerLinkActive='active' [routerLink]="['/security']">Security</a>
+			</li> -->
+			<hr>
+			<!-- <li class="active"><a class="" href='#'>Account</a>
+			</li> -->
+			<li><a routerLinkActive='active' [routerLink]="['/goals']">Goals</a>
+			</li>
+			<!-- <li><a routerLinkActive='active' [routerLink]="['/gamification-rules']">Gamification Rules</a>
+			</li> -->
+			<!-- <li class="active"><a class="" href='#'>Badges</a>
+			</li>-->
+			<li class="active"><a routerLinkActive='active' [routerLink]="['/core-value']">Core Values</a>
+			</li> 
+			<!-- <li class="active"  *ngIf="user.role_type==3"><a routerLinkActive='active' [routerLink]="['/core-values']">Core Values</a>
+			</li> -->
+			<li *ngIf="user.role_type==3"><a routerLinkActive='active' [routerLink]="['/users-teams']">Users & Teams</a>
+			</li>
+		</ul>
+	</div>
+</aside>
+
+

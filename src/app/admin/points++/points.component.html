@@ -1,0 +1,108 @@
+<div class="main-wrap">
+		<!--===================== SETTING =====================-->
+		<section class="setting_wrap">
+			<app-setting-bar></app-setting-bar>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-3 marg-bo-30">
+						<app-sidebar></app-sidebar>
+					</div>
+					<div class="col-md-9">
+						<div class="title">Gamification Rules</div>
+						<form #form="ngForm" ngNativeValidate (submit)="addKpi(form)">
+						<div class="box-0">
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="formula_wrap">
+                                <h3>Formula to apply to your behaviors</h3>
+                                 
+                                   <div class="formula_type_radio">
+                                    <label class="check_box">
+                                    	<input type="radio"  #formula="ngModel" name="formula" [(ngModel)]="form.formula" [value]="1"  id="cb1">
+                                        <span class="checkmark"></span>
+									    <span>Sum (e.g., "records created" or "revenue generated")</span>
+                                    </label>
+                                       
+                                    <label class="check_box">
+                                    <input type="radio"  #formula="ngModel" name="formula" [(ngModel)]="form.formula" [value]="2"  id="cb2">
+								    
+                                        <span class="checkmark"></span>
+									    <span>Average (e.g., "average deal size" or "average number of employees")</span>
+                                    </label>
+                                       
+                                    <label class="check_box">
+                                    <input type="radio"  #formula="ngModel" name="formula" [(ngModel)]="form.formula" [value]="3" id="cb3">
+                                        <span class="checkmark"></span>
+									    <span>Rate/Ratio (e.g., "potentials created vs. leads created" or "win rate")</span>
+                                    </label>
+                                    </div>
+                                     
+                                   
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="box-0">
+							
+							<div class="user_teams_table_wrap points_table_wrap">
+								<div class="table-responsive">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>KPI</th>
+												<th>Points</th>
+												<th>Weightage</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+                                                    
+													<div class="private_points_wrap">
+														<input type="text" class="private-form__control" #kpiName="ngModel" name="kpiName" [(ngModel)]="form.kpiName">
+													</div>
+
+												</td>                                                
+												<td>
+													
+														<select name="points" class="custom-select" #kpiPoint="ngModel" name="kpiPoint" [(ngModel)]="form.kpiPoint">
+															<option value="2">2</option>
+															<option value="5">5</option>
+															<option value="10">10</option>
+														</select>
+													
+												</td>
+												<td>
+                                                    
+													<div class=" ">
+														<div class="dropdown-select warning"> 
+															
+															<select class="custom-select" #kpiweightage="ngModel" name="kpiweightage" [(ngModel)]="form.kpiweightage">
+															<option *ngFor='let value of weightage; let i = index' value="{{value}}">{{value}}%</option>
+															
+														</select>
+															
+														</div>
+													</div>
+                                                    
+                                                      
+												</td>
+											</tr>
+											
+										</tbody>
+                                        
+									</table>
+                                     <div class="add_metric_btn_warp">                                     
+	                               <input value="Add KPI" class="add_metric_btn" autocomplete="false" type="submit">
+                                         </div>
+								</div>
+							</div>
+						
+						</div>
+						</form>
+					</div>
+				</div>
+                
+			</div>
+		</section>
+	</div>

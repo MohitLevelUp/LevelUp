@@ -1,0 +1,3 @@
+<app-nav *ngIf="router.url !== '/login' && router.url !== '/forgot-password'"></app-nav>
+<router-outlet></router-outlet>
+<app-footer *ngIf="router.url !== '/login' && router.url !== '/forgot-password'"></app-footer>

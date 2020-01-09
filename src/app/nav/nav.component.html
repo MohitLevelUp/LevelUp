@@ -1,0 +1,43 @@
+<!--===============================================
+                      NAVBAR
+===============================================-->
+    <div class="" id="nav-wrapper">
+        <nav class="nav">
+            <div class="container-fluid">
+                <div class="page-header__menu-wrapper">
+                <div class="brand-logo">
+                    <a [routerLink]="['/home']">
+                        <img src="./assets/images/logo.png" style="">
+                    </a>
+                </div>                
+                <div class="nav-warp navi">
+                    <ul>
+                        <li><a class="hvr-line-No" routerLinkActive='active' [routerLink]="['/home']">Home</a>
+                        </li>
+                        <li><a class="hvr-line-No" routerLinkActive='active' [routerLink]="['/stats']"> Stats</a>
+                        </li>
+                        <!-- <li><a class="hvr-line-No" routerLinkActive='active' [routerLink]="['/users-teams']">Teams</a>
+                        </li> -->
+                        <!-- <li><a class="hvr-line-No" routerLinkActive='active' [routerLink]="['/videos']">Videos</a>
+                        </li>
+                        <li><a class="hvr-line-No" routerLinkActive='active' [routerLink]="['/contactus']">Contact Us</a>
+                        </li>  -->
+                         <!-- <li><a class="hvr-line-No" routerLinkActive='active' [routerLink]="['/user']">User</a>
+                        </li>  -->                       
+                    </ul>
+                </div>
+                <div class="site-search">
+                <div class="site-search__btn"><span class="search-icon"></span> </div>              
+                <div *ngIf="!userService.isLoggedIn()" class="login_wrap"><a routerLinkActive='active' [routerLink]="['/login']" class="login-btn">Login</a>
+                </div>
+                <div *ngIf="userService.isLoggedIn()" class="login_wrap"><a (click)="userService.logout()" class="login-btn" style="cursor: pointer;">LogOut</a>
+                </div>
+                </div>                
+                    <div class="menu-icon">
+                    <div id="nav-icon" class=""> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+                    </div>
+                </div>  
+                </div>
+            </div>
+        </nav>
+    </div>

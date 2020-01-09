@@ -1,0 +1,169 @@
+<!--================  MAIN SECTION =================-->
+	<div class="main-wrap">
+		<!--===================== SETTING =====================-->
+		<section class="setting_wrap">
+			<app-setting-bar></app-setting-bar>
+			<div class="container-fluid" *ngIf="userInfo; else templateName">
+				<div class="row">
+					<div class="col-md-3 marg-bo-30">
+						<app-sidebar></app-sidebar>
+					</div>
+
+					<div class="col-md-6">
+						<div class="title">User Account
+							
+						</div>
+						<div class="box-1">
+							<div class="user-edit-form">
+							  <form #form="ngForm" (submit)="updateUser(form)"> 
+								<div class="form-warp">
+									<input #user_id="ngModel" type="hidden" name="user_id" class="form-control" id="userID" [(ngModel)]="userInfo['user_id']">
+									<div class="row">
+										<div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">First Name</label>
+												 <input #first_name="ngModel" type="text" name="first_name" class="form-control" id="FirstName" [(ngModel)]="userInfo['first_name']">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="Middle name">Middle Name</label>
+												
+												<input #middle_name="ngModel" type="text" name="middle_name" class="form-control" id="middle_name" [(ngModel)]="userInfo['middle_name']">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="Last name">Last Name</label>
+												<input #last_name="ngModel" type="text" name="last_name" class="form-control" id="LastName"  [(ngModel)]="userInfo['last_name']">
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="pwd">Email</label>
+												<input #email_id="ngModel" type="email" name="email_id" class="form-control" id="email" [(ngModel)]="userInfo['email_id']" readonly>
+												
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="contact number">Contact Number</label>
+												<input #contact_number="ngModel" type="text" name="contact_number" class="form-control" id="contactNumber"  [(ngModel)]="userInfo['contact_number']">
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr class="my-hr">
+								<div class="form-warp">
+									<!--===================Address 1===================-->
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="Username">Address</label>
+
+												<input #employee_address="ngModel" type="text" name="employee_address" class="form-control" id="employeeAddress"  [(ngModel)]="userInfo['employee_address']">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="Username">Company Address</label>
+												<input #company_address="ngModel" type="text" name="company_address" class="form-control" id="companyAddress"  [(ngModel)]="userInfo['company_address']">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Extension</label>
+												<input #extension="ngModel" type="text" name="extension" class="form-control" id="extension"  [(ngModel)]="userInfo['extension']">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Office Number</label>
+												<input #office_no="ngModel" type="text" name="office_no" class="form-control" id="office_no"  [(ngModel)]="userInfo['office_no']">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Role Type</label>
+												<input #role_type="ngModel" type="text" name="role_type" class="form-control" id="role_type"  [(ngModel)]="userInfo['role_type']">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="Country Code">Website</label>
+												<input #website="ngModel" type="text" name="website" class="form-control" id="website"  [(ngModel)]="userInfo['website']">
+											</div>
+										</div>
+										<!-- <div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="Main Phone">Main Phone</label>
+												<input type="text" class="form-control" id="mainPhone" placeholder="88 666 444 55">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="Alt Phone">Alt Phone</label>
+												<input type="text" class="form-control" id="altPhone" placeholder="88 666 58">
+											</div>
+										</div> -->
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<button class="cmn_btn pull-right">Update Profile</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 leaders_wrap ">
+						<div class="leaderCard">
+							<div class="leaderBackdrop card_grd">
+								<div class="trophy_wrap">
+									<div class="leader_trophy orange"></div>
+								</div>
+								<div class="imageContainer">
+								
+									<img class="img-fluid" src="{{ userInfo['image_path'] }}">
+								</div>
+								<div class="leaderStat">
+									<div class="Profile_edit_btn"> 
+										<a class="edit_icon" href="#">	
+										<i class="la la-pencil-square-o pull-right"></i> 
+							           </a>
+							    <input type="file" class="user_profile_pic" id="{{ userInfo['user_id'] }}"  (change)="handleFileSelect($event)">
+									</div>
+									<div class="stat-content">
+									<h1>
+                                        {{ userInfo['display_name'] }}
+                                    </h1>
+										<!-- <div class="stat-container"> <span class="statLabel">{{ userInfo['website'] }}</span>
+										</div> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ng-template #templateName>
+			  <section id="main-content">
+			    <section class="">
+			      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:100px; margin-bottom: 100px;" />
+			    </section>
+			  </section>
+			</ng-template>
+		</section>
+	</div>
+<notifier-container></notifier-container>
