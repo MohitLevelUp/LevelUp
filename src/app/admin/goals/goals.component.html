@@ -1,19 +1,15 @@
-<div class="main-wrap">
-	<!--===================== SETTING =====================-->
-	<section class="setting_wrap">
-		<app-setting-bar></app-setting-bar>
+    <app-sidebar></app-sidebar>
+    <div class="das_col main-content" id="main-content">
+      <section class="wrapper main-wrapper">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-3 marg-bo-30">
-					<app-sidebar></app-sidebar>
-				</div>
-				<div class="col-md-9">
+				<div class="col-md-12">
 					<section class="goals_warp">
 						<div class="row">
-							<div class="col-md-12">
-								<div class="title">Dashboard</div>
-							</div>
-						</div>
+		                  <div class="col-md-12">
+		                    <div class="title"><i class="las la-bullseye"></i>  Goals</div>
+		                  </div>
+		                </div>
 
 						<div class="row" *ngIf="user.role_type==2 || user.role_type==3">
 							<div class="col-md-12">
@@ -52,10 +48,10 @@
 							</div>
 						</div>
 						<!--=============================MAIN DASHBOARD=============================-->
-						<div class="box-1" id="dashboard-page">
+						<div class="box-1" id="dashboard-page" *ngIf="userskpiList">
 							<div class="dashboard-tiles">
 
-                              <ng-container *ngIf="userskpiList">
+                              <ng-container >
 								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-danger" *ngFor='let kpi of userskpiList; let i = index'>
 									<div class="tile-header">
 										<div class="dropdown">

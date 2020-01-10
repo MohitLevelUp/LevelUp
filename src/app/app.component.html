@@ -1,3 +1,4 @@
-<app-nav *ngIf="router.url !== '/login' && router.url !== '/forgot-password'"></app-nav>
-<router-outlet></router-outlet>
-<app-footer *ngIf="router.url !== '/login' && router.url !== '/forgot-password'"></app-footer>
+<app-nav *ngIf="router.url == '/' || router.url == '/home'"></app-nav>
+<app-dashboard-nav *ngIf="router.url !== '/login' && router.url !== '/forgot-password' && router.url !== '/home' && router.url !== '/'"></app-dashboard-nav>
+<router-outlet></router-outlet> 
+<app-footer *ngIf="router.url == '/' || router.url == '/home'"></app-footer>

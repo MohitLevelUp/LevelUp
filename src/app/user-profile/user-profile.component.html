@@ -1,14 +1,16 @@
-<div class="main-wrap">
-		<!--===================== SETTING =====================-->
-		<section class="setting_wrap employee-leaderboard">
-			<app-setting-bar></app-setting-bar>
+<app-sidebar></app-sidebar>
+<div class="das_col main-content" id="main-content">
+		
+		<section class="wrapper main-wrapper">
+			
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-3 marg-bo-30">
-						<app-sidebar></app-sidebar>
-					</div>
-					<div class="col-md-9" *ngIf="userInfo">
-						<div class="title">Profile</div>
+					<div class="col-md-12" *ngIf="userInfo">
+						<div class="row">
+		                  <div class="col-md-12">
+		                    <div class="title"><i class="las la-info-circle"></i> Basic Info</div>
+		                  </div>
+		                </div>
 						<div class="box-1">
 							<div class="board_header">
 								<div class="row">
