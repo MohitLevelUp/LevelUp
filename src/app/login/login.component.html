@@ -13,12 +13,17 @@
                                     <div class="form-group">                                        
                                         <label for="Email">Email:</label>
                                         
-                                        <input type="email" #email="ngModel" name="email" [(ngModel)]="form.email" id="email" class="form-control" placeholder="Enter email">
+                                        <input type="email" #email="ngModel" name="email" [(ngModel)]="form.email" id="email" class="form-control" placeholder="Enter email" required email>
+                                    </div>
+                                    <div class="space" *ngIf="email.touched && email.invalid">
+                                        <div *ngIf="email.errors.required">Email ID is required</div>
+                                        <div *ngIf="email.errors.email">Email ID is not valid</div>
                                     </div>
                                     <div class="form-group">                                       
                                         <label for="Password">Password:</label>
-                                        <input type="password" #password="ngModel" [(ngModel)]="form.password" name="password" class="form-control" placeholder="Enter Password" id="Password">
+                                        <input type="password" #password="ngModel" [(ngModel)]="form.password" name="password" class="form-control" placeholder="Enter Password" id="Password" required>
                                     </div>
+                                    <div class="space" *ngIf="password.touched && password.invalid">Password is required</div>
                                    <!--  <div class="form-group chiller_cb">
                                         <input type="checkbox" name="rememberMe" id="myCheckbox2"  autocomplete="on" data-val="true">
                                         <label for="myCheckbox2">Remember Me</label>

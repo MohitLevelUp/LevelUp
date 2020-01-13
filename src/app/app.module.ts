@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation'
 import { DataTablesModule } from 'angular-datatables';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CookieService } from 'ngx-cookie-service';
@@ -68,6 +69,7 @@ import { DashboardNavComponent } from './nav/dashboard-nav.component';
     HttpModule,
     HttpClientModule,
     FormsModule,
+    CustomFormsModule,
     DataTablesModule,
     NgMultiSelectDropDownModule.forRoot(),
     NotifierModule.withConfig({
