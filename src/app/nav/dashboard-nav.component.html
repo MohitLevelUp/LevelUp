@@ -21,11 +21,11 @@
 				<div class="flex_col">
 					<ul class="pull-right info-menu user-info">
 						<li class="nav-item dropdown profile">
-							<a class="nav-link" href="#" id="navbardrop" data-toggle="dropdown">
+							<a class="nav-link" id="navbardrop" data-toggle="dropdown">
 								<img src="{{user.image_path}}"> <span>{{user.first_name}} <i class="fa fa-angle-down"></i></span>
 							</a>
 							<div class="dropdown-menu profile fadeIn">
-								<a class="dropdown-item" href=""><i class="las la-user-circle"></i> My profile</a>
+								<a class="dropdown-item" [routerLink]="['/user', user.user_id]"><i class="las la-user-circle"></i> My profile</a>
 								<div class="dropdown-divider"></div>
 								<!-- <a class="dropdown-item" href="#"><i class="las la-cog"></i> Settings</a>             
 								<a class="dropdown-item" href="#"><i class="las la-bell"></i> Notifications</a>

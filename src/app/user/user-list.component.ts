@@ -18,6 +18,9 @@ export class UserListComponent implements OnInit {
   private readonly notifier: NotifierService;
   selectedcompanyId = '';
   selectedRoleType  = '';
+  selectedTeamId    = '';
+  u_Id = '';
+  u_Name = '';
 
   showModal: boolean;
   companyInfo:any;
@@ -135,7 +138,7 @@ export class UserListComponent implements OnInit {
 
   //create
   createUser(form2: NgForm) {
-    console.log(form2.value);
+
     this.userService.createUser(form2.value).subscribe(
       (resp) => {
         if(resp['status_code'] == 200){
@@ -234,6 +237,51 @@ export class UserListComponent implements OnInit {
 
   }
 
+  // select a team to user
+  //add user to a team open popup
+  addToTeamPopup(event) {
+
+    var target = event.target || event.srcElement || event.currentTarget;
+    var idAttr = target.attributes.id;
+    this.u_Id = idAttr.nodeValue;
+
+    var relAttr  = target.attributes.rel;
+    this.u_Name = relAttr.nodeValue;
+
+    $("#addToTeam").modal('show');
+
+  }
+  
+
+  //add user to team
+  addToTeam(form3: NgForm) {
+    this.userService.addUserToTeam(form3.value).subscribe(
+      (resp) => {
+        if(resp['status_code'] == 200){
+          $("#addToTeam").modal('hide');
+
+          this.successMessage = resp.message;
+           this.notifier.show({
+              type: "success",
+              message: this.successMessage,
+           });
+        }else{
+           this.errorMessage = resp.message;
+           this.notifier.show({
+              type: "error",
+              message: this.errorMessage,
+           });
+        }
+
+      },
+      error => {
+        this.errorMessage = <any>error
+      }
+
+    );
+    form3.resetForm();
+  }
+
   //
   // resetForm(){
   // 	console.log('hii');
@@ -247,7 +295,6 @@ export class UserListComponent implements OnInit {
     this.userService.userList().subscribe(
       resp => {
         this.usersInfo = resp['data']; 
-        console.log(this.usersInfo);
         this.dtTrigger.next(); 
       },
       

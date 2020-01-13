@@ -159,8 +159,6 @@ updatePassword(data: any) {
   }
 
   //create new user
-  
-
   createUser(data: any) {
 
   return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/createUser/' , JSON.stringify(data), {
@@ -169,6 +167,19 @@ updatePassword(data: any) {
       .pipe(
       tap(data => console.log('authToken' + JSON.stringify(data))),
      // tap(),// 
+
+        catchError(this.errorHandl));
+}
+
+ //select team to user
+ addUserToTeam(data: any) {
+
+  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/addToTeam/' , JSON.stringify(data), {
+
+    })
+      .pipe(
+      // tap(data => console.log('authToken' + JSON.stringify(data))),
+      tap(),// 
 
         catchError(this.errorHandl));
 }

@@ -1074,6 +1074,7 @@ score_card_wrap li:last-child {
     z-index: 5;
     background: #fff;
     margin-bottom: 30px;
+    margin-top: 80px;
     overflow: hidden;
 /*    height: 100%;*/
     border-radius: 15px;
