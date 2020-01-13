@@ -1,7 +1,7 @@
 <app-sidebar></app-sidebar>
   <div class="das_col main-content" id="main-content">
 	<section class="wrapper main-wrapper recognition_warp">
-		<div class="container-fluid" *ngIf="usersInfo; else templateName">
+		<div class="container-fluid">
           <div class="row">
              <div class="col-md-12">
               <section class="goals_warp">
@@ -287,13 +287,6 @@
             </div>
 			
 		</div>
-    <ng-template #templateName>
-        <section id="main-content">
-          <section class="">
-            <img src="./assets/images/loader.gif" style="margin-left:30%; margin-top:20%; margin-bottom: 100px;" />
-          </section>
-        </section>
-      </ng-template>
 	</section>
 </div>
 <notifier-container></notifier-container>

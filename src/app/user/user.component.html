@@ -1,9 +1,15 @@
-<app-sidebar></app-sidebar>
- <div class="das_col main-content" id="main-content">
-	<section class="wrapper main-wrapper">
+<!--================  MAIN SECTION =================-->
+	<div class="main-wrap">
+		<!--===================== SETTING =====================-->
+		<section class="setting_wrap">
+			<app-setting-bar></app-setting-bar>
 			<div class="container-fluid" *ngIf="userInfo; else templateName">
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-md-3 marg-bo-30">
+						<app-sidebar></app-sidebar>
+					</div>
+
+					<div class="col-md-6">
 						<div class="title">User Account</div>
 						<div class="box-1">
 							<div class="user-edit-form">
@@ -119,7 +125,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 leaders_wrap ">
+					<div class="col-md-3 leaders_wrap ">
 						<div class="leaderCard">
 							<div class="leaderBackdrop card_grd">
 								<div class="trophy_wrap">
@@ -152,7 +158,7 @@
 			<ng-template #templateName>
 			  <section id="main-content">
 			    <section class="">
-			      <img src="./assets/images/loader.gif" style="margin-left:30%; margin-top:20%; margin-bottom: 100px;" />
+			      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:100px; margin-bottom: 100px;" />
 			    </section>
 			  </section>
 			</ng-template>

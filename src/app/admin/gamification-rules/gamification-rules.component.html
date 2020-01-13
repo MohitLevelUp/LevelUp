@@ -1,10 +1,14 @@
-<app-sidebar></app-sidebar>
- <div class="das_col main-content" id="main-content">
-	    <section class="wrapper main-wrapper recognition_warp">
+<div class="main-wrap">
+		<!--===================== SETTING =====================-->
+		<section class="setting_wrap">
+			<app-setting-bar></app-setting-bar>
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-12">
-						<div class="title"><i _ngcontent-jrn-c5="" class="las la-puzzle-piece"></i> Gamification Rules</div>
+					<div class="col-md-3 marg-bo-30">
+						<app-sidebar></app-sidebar>
+					</div>
+					<div class="col-md-9">
+						<div class="title">Gamification Rules</div>
 						<form #form="ngForm" ngNativeValidate (submit)="addKpi(form)">
 						<div class="box-0">
                             <div class="row">
