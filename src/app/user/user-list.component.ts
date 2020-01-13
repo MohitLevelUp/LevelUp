@@ -251,6 +251,40 @@ export class UserListComponent implements OnInit {
     $("#addToTeam").modal('show');
 
   }
+
+  //inactive User
+  inactiveUser(event) {
+
+    var target = event.target || event.srcElement || event.currentTarget;
+    var idAttr = target.attributes.id;
+    var userId = idAttr.nodeValue;
+
+    this.userService.inactiveUser(userId).subscribe(
+      (resp) => {
+        if(resp['status_code'] == 200){
+
+          this.successMessage = resp.message;
+           this.notifier.show({
+              type: "success",
+              message: this.successMessage,
+           });
+        }else{
+           this.errorMessage = resp.message;
+           this.notifier.show({
+              type: "error",
+              message: this.errorMessage,
+           });
+        }
+
+      },
+      error => {
+        this.errorMessage = <any>error
+      }
+
+    );
+
+
+  }
   
 
   //add user to team

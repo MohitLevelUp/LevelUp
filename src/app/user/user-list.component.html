@@ -53,7 +53,7 @@
 																<a class="dropdown-item"  href="#">Remove super admin</a>
 																<a class="dropdown-item" (click)="addToTeamPopup($event)" id="{{ userInfo.id }}" rel="{{userInfo.display_name}}" href="javascript:void(0);">Add to team</a>
 																<a class="dropdown-item" href="#">Reset password</a>
-																<a class="dropdown-item" href="#">Remove from account</a>	
+																<a class="dropdown-item" (click)="inactiveUser($event)" id="{{ userInfo.id }}" href="javascript:void(0);">Remove from account</a>	
 															</div>
 														</div>
 													</div>

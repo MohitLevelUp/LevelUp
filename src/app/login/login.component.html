@@ -13,11 +13,11 @@
                                     <div class="form-group">                                        
                                         <label for="Email">Email:</label>
                                         
-                                        <input type="email" #email="ngModel" name="email" [(ngModel)]="form.email" id="email" class="form-control" placeholder="Enter email" required email>
+                                        <input type="email" #email="ngModel" name="email" [(ngModel)]="form.email" id="email" class="form-control" autocomplete="off" placeholder="Enter email" required email>
                                     </div>
                                     <div class="space" *ngIf="email.touched && email.invalid">
-                                        <div *ngIf="email.errors.required">Email ID is required</div>
-                                        <div *ngIf="email.errors.email">Email ID is not valid</div>
+                                        <div *ngIf="email.errors.required">Email id is required</div>
+                                        <div *ngIf="email.errors.email">Email id is not valid</div>
                                     </div>
                                     <div class="form-group">                                       
                                         <label for="Password">Password:</label>

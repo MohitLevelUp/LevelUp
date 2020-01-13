@@ -184,6 +184,23 @@ updatePassword(data: any) {
         catchError(this.errorHandl));
 }
 
+
+
+//inactive user
+ inactiveUser(user_Id: any) {
+ var data = {
+      userId: user_Id,
+    };
+  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/inactiveUser/' , JSON.stringify(data), {
+
+    })
+      .pipe(
+       //tap(data => console.log('authToken' + JSON.stringify(data))),
+      tap(),// 
+
+        catchError(this.errorHandl));
+}
+
   
 
   isLoggedIn(){

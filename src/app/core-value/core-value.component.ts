@@ -17,6 +17,7 @@ import { NotifierService } from "angular-notifier";
 })
 export class CoreValueComponent implements OnInit {
   iconUrl        = environment.uploadUrl;
+  userProfile    = JSON.parse(localStorage.getItem('user'));
 
   private readonly notifier: NotifierService;
   selectedcoreValueId = '';
