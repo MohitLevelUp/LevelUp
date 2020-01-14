@@ -34,8 +34,8 @@
 <div class="das_col page-sidebar expandit">
     <div class="sidebar-inner" id="main-menu-wrapper">
       <div class="dash_logo_warp"> 
-         <div class="logo-area"> </div>
-          </div>        
+         <a [routerLink]="['/']"><div class="logo-area"> </div></a>
+        </div>        
       <ul class="wraplist" style="height: auto;">
         <li>
         	<!-- <a href="">
@@ -45,7 +45,7 @@
         </li>
           <li><a routerLinkActive='active' [routerLink]="['/profile']">
                 <span class="sidebar-icon"><i class="las la-info-circle"></i>
-                </span> <span class="menu-title">Basic Info</span>
+                </span> <span class="menu-title">Basic info</span>
             </a></li>
        <!--  <li><a href="" class="active">
             <span class="sidebar-icon"><i class="las la-bell"></i>

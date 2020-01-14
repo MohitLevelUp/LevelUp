@@ -52,7 +52,7 @@
 															<div class="dropdown-menu"> <a class="dropdown-item"  [routerLink]="['/user', userInfo.id]">Edit</a>
 																<a class="dropdown-item" data-toggle="modal" data-target="#myModal" href="#">Remove super admin</a>
 																<a class="dropdown-item" (click)="addToTeamPopup($event)" id="{{ userInfo.id }}" rel="{{userInfo.display_name}}" href="javascript:void(0);">Add to team</a>
-																<a class="dropdown-item" href="#">Reset password</a>
+																<!-- <a class="dropdown-item" href="#">Reset password</a> -->
 																<a class="dropdown-item" (click)="inactiveUser($event)" id="{{ userInfo.id }}" href="javascript:void(0);">Remove from account</a>	
 															</div>
 														</div>
@@ -243,7 +243,7 @@
 
 
 			<!--     MODAL RIGHT POPUP=====================   -->
-			<div class="modal" id="myModal">
+			<div class="modal" id="addToTeam">
 				<div class="modal-dialog model_private">
 					<div class="modal-content">
 						<!-- Modal Header -->
@@ -253,6 +253,7 @@
 							</button>
 						</div>
 						<!-- Modal body -->
+						<form #form3="ngForm" ngNativeValidate (submit)="addToTeam(form3)">
 						<div class="modal_content">
 							<div class="user-edit-form quick_editor">
 								<div class="form-warp">
@@ -260,15 +261,18 @@
 										<div class="col-md-12">
 											<div class="form-group form-control-wrap">
 												<label class="form-control-label" for="First name">Users</label>
-												<div class="non_editable">	<span>Ajit @ Saxon ajit.r@saxonglobal.com</span>
+												<div class="non_editable">	
+													<span>{{u_Name}}</span>
+													<input type="hidden" #userId="ngModel" name="userId" [(ngModel)]="u_Id" />
 												</div>
-												<form action="/action_page.php">
+												
 													<label class="form-control-label" for="First name">Team</label>
-													<select name="points" class="custom-select">
-														<option selected="">Select a team</option>
-														<option value="">Saxon HR team</option>
-													</select>
-												</form>
+													
+													<select #companyId="ngModel" name="companyId" [(ngModel)]="selectedTeamId" class="private-form__control">
+														<option value="">Select Team</option>
+					                                    <option *ngFor='let team of teamInfo; let i = index' value="{{team.id}}">{{team.name}}</option>
+				                                   </select>
+												
 											</div>
 										</div>
 									</div>
@@ -279,11 +283,13 @@
 						<div class="modal_footer">
 							<div class="row">
 								<div class="col-md-12">
-									<button class="cmn_btn pull-right">Save</button>
+									<!-- <button class="cmn_btn pull-right">Save</button> -->
+									<input value="Save" class="cmn_btn pull-right"type="submit">
 									<!-- <button class="cmn_btn btn_for_cancel pull-right">Cancel</button> -->
 								</div>
 							</div>
 						</div>
+					 </form>
 					</div>
 				</div>
 			</div>
