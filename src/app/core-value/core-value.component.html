@@ -35,7 +35,7 @@
                                    <select #givenTo="ngModel" name="givenTo" [(ngModel)]="selectedgivenTo" class="private-form__control">
                                     <option value="">Search for a coworker(s)</option>
                                     <ng-container *ngFor='let user of usersInfo; let i = index'>
-                                    <option value="{{user.id}}" *ngIf="user.id != userProfile.user_id">{{user.display_name}}
+                                    <option value="{{user.id}}" *ngIf="user.id != userProfile.user_id">{{user.display_name | titlecase}}
                                     </option>
                                   </ng-container>
                                    </select>
