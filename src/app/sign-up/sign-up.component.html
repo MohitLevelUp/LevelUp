@@ -1,0 +1,39 @@
+<section class="wrapper_L">
+<section class="form-type-one">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="form-warp">
+                    <div class="form-card">
+                        <div class="form">
+                            <form #form="ngForm" ngNativeValidate (submit)="signUp(form)">
+                                <div class="form-content">
+                                    <a href="#"><img src="./assets/images/logo2.png"></a>                                    
+                                    <p>Have an account? <a [routerLink]="['/login']">Log In</a></p>                                   
+                                    <div class="form-group">                                        
+                                        <label>Full Name:</label>
+                                        <input type="text" class="form-control" placeholder=" Full Name"  #fullName="ngModel" name="fullName" [(ngModel)]="form.fullName">
+                                    </div> 
+                                    <div class="form-group">                                        
+                                        <label for="Email">Email:</label>
+                                        <input type="email" #email="ngModel" name="email" [(ngModel)]="form.email" autocomplete="of" id="email" class="form-control" placeholder="Enter Email">
+                                    </div>
+                                    <div class="form-group">                                       
+                                        <label for="Password">Set a Password:</label>
+                                        <input type="password" #password="ngModel" name="password" [(ngModel)]="form.password" class="form-control" placeholder="Enter Password" id="Password">
+                                    </div>                                  
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="form-btn" id="signIn" value="Sign Up">
+                                </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+   
+</section>
+<notifier-container></notifier-container>

@@ -36,6 +36,7 @@ import { CorevaluefilterPipe } from './_pipe/corevaluefilter.pipe';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardNavComponent } from './nav/dashboard-nav.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { DashboardNavComponent } from './nav/dashboard-nav.component';
     CorevaluefilterPipe,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    DashboardNavComponent
+    DashboardNavComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
