@@ -1065,6 +1065,7 @@ score_card_wrap li:last-child {
     padding-bottom:80px;
 }
 .leaderCard {
+
     margin: 0 auto;
 /*    cursor: pointer;*/
     transform: translateY(0);
@@ -1074,6 +1075,7 @@ score_card_wrap li:last-child {
     z-index: 5;
     background: #fff;
     margin-bottom: 30px;
+    margin-top: 48px;
     overflow: hidden;
 /*    height: 100%;*/
     border-radius: 15px;

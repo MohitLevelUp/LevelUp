@@ -1,0 +1,6 @@
+diff a/src/app/user/user-list.component.html b/src/app/user/user-list.component.html	(rejected hunks)
+@@ -3,4 +2,3 @@
+-	<section class="wrapper main-wrapper recognition_warp">
+ <div class="main-wrap">
+ 		<!--===================== SETTING =====================-->
+ 		<section class="setting_wrap">

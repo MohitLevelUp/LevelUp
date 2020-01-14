@@ -63,7 +63,9 @@ export class UserComponent implements OnInit {
                   type: "success",
                   message: this.successMessage,
                });
-
+             let userId = +this.route.snapshot.paramMap.get('id');
+             //get user details
+             this.userProfile(userId);
             }else{
                this.errorMessage = res.message;
                this.notifier.show({
@@ -80,9 +82,7 @@ export class UserComponent implements OnInit {
 
     }
 
-  ngOnInit() {
-    let userId = +this.route.snapshot.paramMap.get('id');
-     //get user details
+  userProfile(userId){
     this.userService.getUser(userId).subscribe(
       resp => {
         this.user = resp;
@@ -94,14 +94,31 @@ export class UserComponent implements OnInit {
     );
   }
 
+  ngOnInit() {
+    let userId = +this.route.snapshot.paramMap.get('id');
+     //get user details
+     this.userProfile(userId);
+    
+  }
+
   updateUser(form: NgForm) {
     
     
     this.userService.updateUser(form.value).subscribe(
       res => {
         if(res['status_code'] == 200){
-         this.router.navigate(['/users-teams']);
-        }
+            this.successMessage = res['message'];
+               this.notifier.show({
+                  type: "success",
+                  message: this.successMessage,
+               });
+        }else{
+               this.errorMessage = res['message'];
+               this.notifier.show({
+                  type: "error",
+                  message: this.errorMessage,
+               });
+            }
          
       },
       error => this.errorMessage = <any>error
