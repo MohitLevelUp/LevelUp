@@ -98,7 +98,6 @@ signIn(data: any) {
 
     })
       .pipe(
-     // tap(data => console.log('authToken' + JSON.stringify(data))),
       tap(),// 
 
         catchError(this.errorHandl));
@@ -201,7 +200,38 @@ updatePassword(data: any) {
         catchError(this.errorHandl));
 }
 
+// make user to admin
+
+ makeAdmin(user_Id: any) {
+ var data = {
+      userId: user_Id,
+    };
+  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/makeAdmin/' , JSON.stringify(data), {
+
+    })
+      .pipe(
+      tap(),// 
+
+        catchError(this.errorHandl));
+}
+
+
   
+  // user remove from admin
+
+ removeAdmin(user_Id: any) {
+ var data = {
+      userId: user_Id,
+    };
+  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/removeAdmin/' , JSON.stringify(data), {
+
+    })
+      .pipe(
+      tap(),// 
+
+        catchError(this.errorHandl));
+}
+
 
   isLoggedIn(){
   	const helper = new JwtHelperService();

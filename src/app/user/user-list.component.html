@@ -44,13 +44,20 @@
 															<img style="width: 35px;height: 35px;border-radius: 50%;" src="{{ iconUrl }}profile_images/{{ userInfo['profile_image_name'] }}">
 														</div>
 														<div class="team_user_details">
-															<div class="team_user_name">{{ userInfo.display_name }}</div>
+															<div class="team_user_name">{{ userInfo.display_name | titlecase }}</div>
 															<div class="team_user_mail">{{ userInfo.email_id }}</div>
 														</div>
 														<div class="dropdown">
 															<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Actions</button>
 															<div class="dropdown-menu"> <a class="dropdown-item"  [routerLink]="['/user', userInfo.id]">Edit</a>
-																<a class="dropdown-item" data-toggle="modal" data-target="#myModal" href="#">Remove super admin</a>
+
+																<a class="dropdown-item" href="javascript:void(0);">
+																	<span *ngIf="userInfo.role_type ==3" (click)="removeAdmin($event)" id="{{ userInfo.id }}">Remove Admin
+																	</span>
+																	<span *ngIf="userInfo.role_type !=3" (click)="makeAdmin($event)" id="{{ userInfo.id }}">Make Admin
+																	</span>
+																</a>
+
 																<a class="dropdown-item" (click)="addToTeamPopup($event)" id="{{ userInfo.id }}" rel="{{userInfo.display_name}}" href="javascript:void(0);">Add to team</a>
 																<!-- <a class="dropdown-item" href="#">Reset password</a> -->
 																<a class="dropdown-item" (click)="inactiveUser($event)" id="{{ userInfo.id }}" href="javascript:void(0);">Remove from account</a>	
