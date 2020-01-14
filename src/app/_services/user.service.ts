@@ -22,7 +22,7 @@ export class UserService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-signIn(data: any) {
+  signIn(data: any) {
 
   return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/signin/' , JSON.stringify(data), {
       // headers: new HttpHeaders({
@@ -37,6 +37,18 @@ signIn(data: any) {
     })
       .pipe(
       //tap(data => console.log('authToken' + JSON.stringify(data.data.token))),
+      tap(),// 
+
+        catchError(this.errorHandl));
+  }
+
+// sign Up
+  signUp(data: any) {
+
+  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/signUp/' , JSON.stringify(data), {
+
+    })
+      .pipe(
       tap(),// 
 
         catchError(this.errorHandl));
@@ -111,8 +123,8 @@ signIn(data: any) {
 
     })
       .pipe(
-      tap(data => console.log('authToken' + JSON.stringify(data))),
-     // tap(),// 
+      //tap(data => console.log('authToken' + JSON.stringify(data))),
+      tap(),// 
 
         catchError(this.errorHandl));
 }
@@ -141,8 +153,7 @@ updatePassword(data: any) {
 
     })
       .pipe(
-      tap(data => console.log('authToken' + JSON.stringify(data))),
-     // tap(),// 
+      tap(),// 
 
         catchError(this.errorHandl));
 }
@@ -164,8 +175,7 @@ updatePassword(data: any) {
 
     })
       .pipe(
-      tap(data => console.log('authToken' + JSON.stringify(data))),
-     // tap(),// 
+      tap(),// 
 
         catchError(this.errorHandl));
 }
@@ -194,7 +204,6 @@ updatePassword(data: any) {
 
     })
       .pipe(
-       //tap(data => console.log('authToken' + JSON.stringify(data))),
       tap(),// 
 
         catchError(this.errorHandl));
