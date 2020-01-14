@@ -9,7 +9,7 @@
                             <form #form="ngForm" ngNativeValidate (submit)="signIn(form)">
                                 <div class="form-content">
                                     <a [routerLink]="['/']"><img src="./assets/images/logo2.png"></a>                                    
-                                    <p>Don't have an account? <a href="#" class="">Sign Up</a></p>                                   
+                                    <p>Don't have an account? <a [routerLink]="['/signup']">Sign Up</a></p>                                   
                                     <div class="form-group">                                        
                                         <label for="Email">Email:</label>
                                         
