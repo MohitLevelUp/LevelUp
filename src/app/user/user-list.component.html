@@ -275,7 +275,7 @@
 												
 													<label class="form-control-label" for="First name">Team</label>
 													
-													<select #companyId="ngModel" name="companyId" [(ngModel)]="selectedTeamId" class="private-form__control">
+													<select #teamId="ngModel" name="teamId" [(ngModel)]="selectedTeamId" class="private-form__control">
 														<option value="">Select Team</option>
 					                                    <option *ngFor='let team of teamInfo; let i = index' value="{{team.id}}">{{team.name}}</option>
 				                                   </select>
