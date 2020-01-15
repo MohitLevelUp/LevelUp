@@ -1039,13 +1039,14 @@ li:hover .insidebox {
 
 
 /*QUICK RESULE TOP TEAM=====================*/
+
 .quick_result_top_team {
     position: absolute;
     top: 120px;
     right: 0;
     background-color: #fff;
     border-radius: 50px 0px 0px 50px;
-    width: 70px;
+    width: 50px;
     padding: 2px;
     cursor: pointer;
     display: block;
@@ -1053,7 +1054,7 @@ li:hover .insidebox {
     background-image: linear-gradient(to left bottom, #9350cf, #b642bc, #cf35a5, #e02c8d, #ea2e75);
 }
 .quick_result_icon {
-    width: 45px;
+    width: 35px;
     background-color: #fff;
     padding: 8px;
     border-radius: 50px;
@@ -1524,7 +1525,7 @@ li:hover .insidebox {
     padding-top: 85px;
     background-size: cover;
     background-attachment: fixed;
-/*  background-image: url(../images/login-bg3.jpg);*/
+
     background-repeat: no-repeat;
     background-position: center;
 }
