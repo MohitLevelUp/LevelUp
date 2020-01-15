@@ -1,11 +1,39 @@
 <div class="main-wrap">
     <!--=====================HOME BANNER=====================-->
-    <section class="home_banner banner_bg  bg_gradient">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8"> </div>
-          <div class="col-md-4">
-            <div class="team_high_light">
+    <div id="banner_slider" class="carousel slide slider" data-ride="carousel" data-interval="3000">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#banner_slider" data-slide-to="0" class="active"></li>
+    <li data-target="#banner_slider" data-slide-to="1"></li>
+    <li data-target="#banner_slider" data-slide-to="2"></li>
+  </ol>
+
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img class="img-fluid" src="./assets/images/banner-us-office.jpg" alt="US Office">
+    </div>    
+    <div class="item">
+      <img class="img-fluid" src="./assets/images/banner-ind-office.jpg" alt="IND Office">
+    </div>
+      <div class="item">
+      <img class="img-fluid" src="./assets/images/banner-us-office2.jpg" alt="US Office">
+    </div>
+  </div>
+
+            
+        
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#banner_slider" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#banner_slider" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+        
+<!-- TEAM HIGHLIGHT CARD      -->
+        <div class="team_high_light">
               <nav class="score_card_wrap">
                 <li class="score_card">
                   <p>Desk Demons</p>
@@ -40,17 +68,16 @@
                   </div>
                 </li>
               </nav>
-            </div>
-          </div>
-        </div>
-          <div class="quick_result_top_team">
+            </div>        
+        <div class="quick_result_top_team">
           <div class="quick_result_icon ">
            <img class="img-fluid tada animated" src="./assets/images/trophy-ore.png">
           </div>
           </div>
-          
-      </div>
-    </section>
+</div>
+    
+
+
     <!--=====================LATEST NEWS=====================-->
     <section class="latest_news graybg">
       <div class="container-fluid">
@@ -434,7 +461,7 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-            <div class="number_card  padding_40">
+            <div class="number_card  padding_40 bg-gradient-d-red">
               <h3>DID YOU KNOW?</h3>
               <p>The unemployment rate in US hit the 50 years lowest rate, 3.6%</p>
             </div>
@@ -448,7 +475,7 @@
                 <li data-target="#sm_sl" data-slide-to="1"></li>
               </ol>
               <!-- Carousel items -->
-              <div class="carousel-inner">
+              <div class="carousel-inner bg-gradient-primary">
                 <div class="item active"> <a href="#"><h1>14408 </h1><p>Submissions</p></a> </div>
                 <div class="item"> <a href="#"><h1>388 </h1><p>Placements</p></a> </div>
               </div>
@@ -464,7 +491,7 @@
                 <li data-target="#md_sl" data-slide-to="2"></li>
               </ol>
               <!-- Carousel items -->
-              <div class="carousel-inner">
+              <div class="carousel-inner bg-gradient-info">
                 <div class="item active"> <a href="#"><h1>288 </h1><p>Consultants</p></a> </div>
                 <div class="item"> <a href="#"><h1>2355 </h1><p>Interviews</p></a> </div>
                 <!-- <div class="item"> <a href="#"><h1>55 </h1><p>External Submissions</p></a> </div> -->
@@ -494,7 +521,7 @@
                 <li data-target="#sm_sl" data-slide-to="1"></li>
               </ol>
               <!-- Carousel items -->
-              <div class="carousel-inner">
+              <div class="carousel-inner bg-gradient-danger">
                 <div class="item active"> <a href="#"><h1>288 </h1><p>Consultants</p></a> </div>
                 <div class="item"> <a href="#"><h1>2355 </h1><p>Interviews</p></a> </div>
                 <!-- <div class="item"> <a href="#"><h1>55 </h1><p>External Submissions</p></a> </div> -->
@@ -518,7 +545,7 @@
                 <li data-target="#lg_sl" data-slide-to="2"></li>
               </ol>
               <!-- Carousel items -->
-              <div class="carousel-inner">
+              <div class="carousel-inner bg-gradient-d-gren">
                 <div class="item active"> <a href="#"><h1>288 </h1><p>Consultants</p></a> </div>
                 <div class="item"> <a href="#"><h1>2355 </h1><p>Interviews</p></a> </div>
                 <!-- <div class="item"> <a href="#"><h1>55 </h1><p>External Submissions</p></a> </div> -->
