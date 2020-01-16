@@ -56,8 +56,8 @@
                               <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
                               <div class="reco_input">
                                 <div class="private_points_wrap">
-                                  <input type="text" class="private-form__control" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="form.whyGiven" placeholder="What did your coworker(s) do?" required>
-                                  
+                                  <input type="text" class="private-form__control" #whyGivenCV="ngModel" name="whyGivenCV" [(ngModel)]="form.whyGivenCV" id="whyGivenCV" placeholder="What did your coworker(s) do?" required>
+                                  <div class="valid" *ngIf="whyGivenCV.touched && whyGivenCV.invalid">*Please fill out this field</div>
                                 </div>
                               </div>
                             </div>
@@ -92,8 +92,8 @@
                             <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
                             <div class="reco_input">
                               <div class="private_points_wrap">
-                                <input type="text" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="kudosform.whyGiven" class="private-form__control" id="" placeholder="What did your coworker(s) do?" required> </div>
-                                <div class="valid" *ngIf="!whyGiven.valid">*Please fill out this field</div>
+                                <input type="text" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="kudosform.whyGiven" class="private-form__control" id="whyGiven" placeholder="What did your coworker(s) do?" required> </div>
+                                <div class="valid" *ngIf="whyGiven.touched && whyGiven.invalid">*Please fill out this field</div>
                               </div>
 
                             
