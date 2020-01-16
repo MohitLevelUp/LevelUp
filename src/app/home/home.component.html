@@ -1,4 +1,4 @@
-<div class="main-wrap">
+<div class="main-wrap"> 
     <!--=====================HOME BANNER=====================-->
     <div id="banner_slider" class="carousel slide slider" data-ride="carousel" data-interval="3000">
   <!-- Indicators -->
@@ -35,38 +35,17 @@
 <!-- TEAM HIGHLIGHT CARD      -->
         <div class="team_high_light">
               <nav class="score_card_wrap">
-                <li class="score_card">
-                  <p>Desk Demons</p>
+                <li class="score_card" *ngFor="let toper of topThree; index as i">
+                  <p>{{toper.name}}</p>
                   <div class="score_wrap">
                     <div class="score">Submissions</div>
                     <div class="score ">
-                      <div class="scorebox"> <span class="versus">155</span> <span class="item_versus">V</span> <span class="versus">90</span> </div>
+                      <div class="scorebox"> <span class="versus">155</span> <span class="item_versus">V</span> <span class="versus">{{toper.total_joining}}</span> </div>
                     </div>
                     <div class="score">Joinings</div>
                   </div>
                 </li>
                 <hr>
-                <li class="score_card">
-                  <p>Quest Pirates</p>
-                  <div class="score_wrap">
-                    <div class="score">Submissions</div>
-                    <div class="score">
-                      <div class="scorebox"> <span class="versus">50</span> <span class="item_versus">V</span> <span class="versus">30</span> </div>
-                    </div>
-                    <div class="score">Joinings</div>
-                  </div>
-                </li>
-                <hr>
-                <li class="score_card">
-                  <p>People Excellence</p>
-                  <div class="score_wrap">
-                    <div class="score">Submissions</div>
-                    <div class="score">
-                      <div class="scorebox"> <span class="versus">90</span> <span class="item_versus">V</span> <span class="versus">50</span> </div>
-                    </div>
-                    <div class="score">Joinings</div>
-                  </div>
-                </li>
               </nav>
             </div>        
         <div class="quick_result_top_team">
