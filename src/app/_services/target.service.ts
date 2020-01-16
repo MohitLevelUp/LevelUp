@@ -53,6 +53,26 @@ export class TargetService {
     )
   }
 
+// get last week total submission 
+  lastWeektotalSubmission(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/lastWeektotalSubmission')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+  
+
+  // get last month total joining 
+  lastMonthTotalJoining(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/lastMonthtotalJoining')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+ 
 
    // Error handling
   errorHandl(error) {

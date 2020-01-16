@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TargetService } from 'src/app/_services/target.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  
+  topThree      : any;
+  monthJoinings : any;
+  totalSubmissions : any;
+  errorMessage: any;
 
-  constructor() { }
+  constructor(private targetService: TargetService,) { }
 
   ngOnInit() {
+   //get all user's submissions
+    this.targetService.lastWeektotalSubmission().subscribe(
+      resp => {
+      
+        this.totalSubmissions = resp['data'];
+        console.log(this.totalSubmissions);
+
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+
+    //get all user's joining
+    this.targetService.lastMonthTotalJoining().subscribe(
+      resp => {
+      
+        this.monthJoinings = resp['data'];
+        this.topThree = this.monthJoinings.sort((a, b) => b.total_joining - a.total_joining).slice(0,3)
+
+        console.log(this.topThree);
+
+      },
+      
+      error => this.errorMessage = <any>error
+    );
   }
 
 }
