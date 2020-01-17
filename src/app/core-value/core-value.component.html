@@ -1,43 +1,4 @@
 <app-sidebar></app-sidebar>
-<<<<<<< HEAD
-  <div class="das_col main-content" id="main-content">
-	<section class="wrapper main-wrapper recognition_warp">
-		<div class="container-fluid">
-          <div class="row">
-             <div class="col-md-12">
-              <section class="goals_warp">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="title"><i class="las la-hand-holding-heart"></i>  Give Recognition</div>
-                  </div>
-                </div>               
-                <!--============================= Give Recognition=============================-->
-                <div class="row">
-                  <div class="col-md-8">
-
-                  	
-                    <div class="box-1">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs">                      
-                      <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#core_tab">Core Values</a> </li>
-                        <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#kudos_tab">Kudos</a> </li>
-                    </ul>
-                    <!-- Tab panes -->
-                    <div class="tab-content">   
-                                       
-                      <div id="core_tab" class="tab-pane active">
-                        <br>
-                        <form #form="ngForm" ngNativeValidate (submit)="giveCoreValue(form)">
-                          <div class="reco_wrap">
-                            <div class="reco_item_wrap d-flex">
-                              <div class="reco_imo"> <i class="las la-grin-stars"></i> </div>
-                              <div class="reco_input">
-                                <div class="private_points_wrap">
-                                   <select #givenTo="ngModel" name="givenTo" [(ngModel)]="selectedgivenTo" class="private-form__control">
-                                    <option value="">Search for a coworker(s)</option>
-                                    <ng-container *ngFor='let user of remainingCoreValueUserList; let i = index'>
-                                    <option value="{{user.id}}" *ngIf="user.id != userProfile.user_id">{{user.display_name | titlecase}}
-=======
 <div class="das_col main-content" id="main-content">
   <section class="wrapper main-wrapper recognition_warp">
     <div class="container-fluid">
@@ -74,34 +35,12 @@
                                   <option value="">Search for a coworker(s)</option>
                                   <ng-container *ngFor='let user of usersInfo; let i = index'>
                                     <option value="{{user.id}}" *ngIf="user.id != userProfile.user_id">{{user.display_name}}
->>>>>>> feature/function_in_core_value
                                     </option>
                                   </ng-container>
                                 </select>
 
                               </div>
                             </div>
-<<<<<<< HEAD
-                            <div class="reco_item_wrap d-flex">
-                              <div class="reco_imo"> <i class="las la-certificate"></i> </div>
-                              <div class="reco_input private_points_wrap">
-                                <select #coreValueId="ngModel" name="coreValueId" [(ngModel)]="selectedcoreValueId" class="private-form__control">
-                                  <option value="">Select Core Value</option>
-                                  <ng-container *ngFor='let corevalue of remainingCoreValueList; index as i'>
-                                    <option  value="{{corevalue.id}}">{{corevalue.name}}
-                                    </option>
-                                  </ng-container>
-                                 </select>
-                              </div>
-                            </div>
-                            <div class="reco_item_wrap d-flex">
-                              <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
-                              <div class="reco_input">
-                                <div class="private_points_wrap">
-                                  <input type="text" class="private-form__control" #whyGivenCV="ngModel" name="whyGivenCV" [(ngModel)]="form.whyGivenCV" id="whyGivenCV" placeholder="What did your coworker(s) do?" required>
-                                  <div class="valid" *ngIf="whyGivenCV.touched && whyGivenCV.invalid">*Please fill out this field</div>
-                                </div>
-=======
                           </div>
                           <div class="reco_item_wrap d-flex">
                             <div class="reco_imo"> <i class="las la-certificate"></i> </div>
@@ -118,7 +57,6 @@
                               <div class="private_points_wrap">
                                 <input type="text" class="private-form__control" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="form.whyGiven" placeholder="What did your coworker(s) do?">
 
->>>>>>> feature/function_in_core_value
                               </div>
                             </div>
                           </div>
@@ -152,22 +90,11 @@
                             <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
                             <div class="reco_input">
                               <div class="private_points_wrap">
-<<<<<<< HEAD
-                                <input type="text" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="kudosform.whyGiven" class="private-form__control" id="whyGiven" placeholder="What did your coworker(s) do?" required> </div>
-                                <div class="valid" *ngIf="whyGiven.touched && whyGiven.invalid">*Please fill out this field</div>
-                              </div>
-
-                            
-                          </div>
-                          
-                            <div class="kudos-wrap">
-=======
                                 <input type="text" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="kudosform.whyGiven" class="private-form__control" id="" placeholder="What did your coworker(s) do?"> </div>
                             </div>
                           </div>
 
                           <div class="kudos-wrap">
->>>>>>> feature/function_in_core_value
                             <ul class="row">
 
                               <li class="col-sm-4" *ngFor='let kudos of stickerList; let i = index'>
