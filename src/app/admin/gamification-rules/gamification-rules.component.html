@@ -6,6 +6,8 @@
 					<div class="col-md-12">
 						<div class="title"><i _ngcontent-jrn-c5="" class="las la-puzzle-piece"></i> Gamification Rules</div>
 						<form #form="ngForm" ngNativeValidate (submit)="addKpi(form)">
+							<input type="hidden" name="userID"  #userID="ngModel" [ngModel]="userProfile.user_id">
+
 						<div class="box-0">
                             <div class="row">
                             <div class="col-md-12">

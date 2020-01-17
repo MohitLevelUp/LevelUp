@@ -11,7 +11,7 @@ declare var $: any;
   templateUrl: './goals.component.html',
   styleUrls: ['./goals.component.css']
 })
-export class GoalsComponent implements OnInit {
+export class GoalsComponent implements OnInit { 
 
   user = JSON.parse(localStorage.getItem('user'));
 
@@ -86,6 +86,25 @@ export class GoalsComponent implements OnInit {
     form2.resetForm();
   }
 
+  //kpi filter
+
+  kpiFilter(formfilter: NgForm) {
+
+    var user_id = formfilter.value.userId;
+    
+    this.kpiService.getAssignedKpiList(user_id).subscribe(
+      resp => {
+        $("#filter_model").modal('hide');
+        this.userskpiList = resp['data'];
+        
+        
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+    formfilter.resetForm();
+  }
+
   //get kpi details by id
  getKpiDetails(event){
      var target = event.target || event.srcElement || event.currentTarget;
@@ -121,7 +140,7 @@ export class GoalsComponent implements OnInit {
             message: this.successMessage,
           });
            // getting all kpi's list
-           this.getkpiList();
+           this.assignedKpiList();
         }else{
              this.errorMessage = resp.message;
              this.notifier.show({
@@ -135,9 +154,10 @@ export class GoalsComponent implements OnInit {
     );
  }
 
-  usersKpiList(){
-    //get user's kpi list
-    this.kpiService.getUsersKpiList().subscribe(
+  assignedKpiList(){
+    //get assigned kpi list
+    var user_id = '';
+    this.kpiService.getAssignedKpiList(user_id).subscribe(
       resp => {
         this.userskpiList = resp['data'];
         
@@ -149,10 +169,11 @@ export class GoalsComponent implements OnInit {
   }
 
 
-  getkpiList(){
-    //get all kpi list
-    this.kpiService.getKpiList().subscribe(
+  createdkpiList(){
+    //get admin/manager created kpi list
+    this.kpiService.createdKpiList().subscribe(
       resp => {
+        console.log(resp);
         this.kpiList = resp['data'];
       },
       
@@ -168,6 +189,7 @@ export class GoalsComponent implements OnInit {
     this.targetService.getUsersTargetList().subscribe(
       resp => {
         this.targetList = resp['data']; 
+        console.log('tar',this.targetList);
         
       },
       
@@ -198,10 +220,10 @@ export class GoalsComponent implements OnInit {
   ngOnInit() {
 
     // getting all kpi's list
-    this.getkpiList();
+    this.createdkpiList();
     
     //getting user's kpi list
-    this.usersKpiList();
+    this.assignedKpiList();
 
     //getting user's target list
     this.usersTargetList();

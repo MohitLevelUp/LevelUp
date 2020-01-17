@@ -50,7 +50,7 @@ export class EditTargetComponent implements OnInit {
     };
 
 
-  	this.kpiService.getKpiList().subscribe(
+  	this.kpiService.createdKpiList().subscribe(
       resp => {
         this.kpiList = resp['data'];
        

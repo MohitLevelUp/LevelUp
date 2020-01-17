@@ -215,6 +215,7 @@ updatePassword(data: any) {
  var data = {
       userId: user_Id,
     };
+   
   return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/makeAdmin/' , JSON.stringify(data), {
 
     })

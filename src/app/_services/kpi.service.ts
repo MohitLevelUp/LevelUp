@@ -31,9 +31,10 @@ export class KpiService {
         catchError(this.errorHandl));
   }
 
-  // GET KPI List
-  getKpiList(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/')
+  // GET admin/manager created kpi List
+  createdKpiList(): Observable<any> {
+    var userID = this.userId;
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/createdKpiList/' + userID)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -41,10 +42,15 @@ export class KpiService {
   }
 
   // GET user and his/her team assign KPI List
-  getUsersKpiList(): Observable<any> {
-  	var userID = this.userId;
+  getAssignedKpiList(user_id:any): Observable<any> {
+    if(user_id == ''){
+      var userID = this.userId;
+    }else{
+      userID = user_id;
+    }
+  	
 
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/usersKpiList/' + userID)
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/assignedKpiList/' + userID)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
