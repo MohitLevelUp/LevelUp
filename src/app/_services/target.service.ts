@@ -53,9 +53,9 @@ export class TargetService {
     )
   }
 
-// get last week total submission 
-  lastWeektotalSubmission(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/lastWeektotalSubmission')
+// get last month total submission 
+  lastMonthtotalSubmission(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/lastMonthtotalSubmission')
     .pipe(
       retry(1),
      catchError(this.errorHandl)

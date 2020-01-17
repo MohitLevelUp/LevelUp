@@ -5,7 +5,7 @@
   <ol class="carousel-indicators">
     <li data-target="#banner_slider" data-slide-to="0" class="active"></li>
     <li data-target="#banner_slider" data-slide-to="1"></li>
-    <li data-target="#banner_slider" data-slide-to="2"></li>
+    <li data-target="#banner_slider" data-slide-to="2"></li> 
   </ol>
 
   <!-- The slideshow -->
@@ -35,16 +35,21 @@
 <!-- TEAM HIGHLIGHT CARD      -->
         <div class="team_high_light">
               <nav class="score_card_wrap">
-                <li class="score_card" *ngFor="let toper of topThree; index as i">
+                <ng-container *ngFor="let toper of topThree; index as i">
+                  <ng-container *ngFor="let submissions of totalSubmissions; index as j">
+                  
+                <li class="score_card" *ngIf="toper.team_id == submissions.team_id">
                   <p>{{toper.name}}</p>
                   <div class="score_wrap">
                     <div class="score">Submissions</div>
                     <div class="score ">
-                      <div class="scorebox"> <span class="versus">155</span> <span class="item_versus">V</span> <span class="versus">{{toper.total_joining}}</span> </div>
+                      <div class="scorebox"> <span class="versus">{{submissions.total_submission}}</span> <span class="item_versus">V</span> <span class="versus">{{toper.total_joining}}</span> </div>
                     </div>
                     <div class="score">Joinings</div>
                   </div>
                 </li>
+                </ng-container>
+              </ng-container>
                 <hr>
               </nav>
             </div>        

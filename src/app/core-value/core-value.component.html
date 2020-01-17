@@ -32,12 +32,12 @@
                             <div class="reco_input">
                               <div class="private_points_wrap">
                                 <select #givenTo="ngModel" name="givenTo" [(ngModel)]="selectedgivenTo" class="private-form__control">
-                                  <option value="">Search for a coworker(s)</option>
-                                  <ng-container *ngFor='let user of usersInfo; let i = index'>
-                                    <option value="{{user.id}}" *ngIf="user.id != userProfile.user_id">{{user.display_name}}
+                                    <option value="">Search for a coworker(s)</option>
+                                    <ng-container *ngFor='let user of remainingCoreValueUserList; let i = index'>
+                                    <option value="{{user.id}}" *ngIf="user.id != userProfile.user_id">{{user.display_name | titlecase}}
                                     </option>
                                   </ng-container>
-                                </select>
+                                   </select>
 
                               </div>
                             </div>
@@ -45,10 +45,13 @@
                           <div class="reco_item_wrap d-flex">
                             <div class="reco_imo"> <i class="las la-certificate"></i> </div>
                             <div class="reco_input private_points_wrap">
-                              <select #coreValueId="ngModel" name="coreValueId" [(ngModel)]="selectedcoreValueId" class="private-form__control">
-                                <option value="">Select Core Value</option>
-                                <option *ngFor='let corevalue of coreValuesList; let i = index' value="{{corevalue.id}}">{{corevalue.name}}</option>
-                              </select>
+                               <select #coreValueId="ngModel" name="coreValueId" [(ngModel)]="selectedcoreValueId" class="private-form__control">
+                                  <option value="">Select Core Value</option>
+                                  <ng-container *ngFor='let corevalue of remainingCoreValueList; index as i'>
+                                    <option  value="{{corevalue.id}}">{{corevalue.name}}
+                                    </option>
+                                  </ng-container>
+                                </select>
                             </div>
                           </div>
                           <div class="reco_item_wrap d-flex">

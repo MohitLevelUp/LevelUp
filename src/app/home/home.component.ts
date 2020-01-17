@@ -16,19 +16,19 @@ export class HomeComponent implements OnInit {
   constructor(private targetService: TargetService,) { }
 
   ngOnInit() {
-   //get all user's submissions
-    this.targetService.lastWeektotalSubmission().subscribe(
+   //get all user's last month submissions
+    this.targetService.lastMonthtotalSubmission().subscribe(
       resp => {
       
         this.totalSubmissions = resp['data'];
-        console.log(this.totalSubmissions);
+        console.log('sub',this.totalSubmissions);
 
       },
       
       error => this.errorMessage = <any>error
     );
 
-    //get all user's joining
+    //get all user's last month joining
     this.targetService.lastMonthTotalJoining().subscribe(
       resp => {
       
