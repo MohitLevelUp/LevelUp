@@ -31,7 +31,7 @@
                             <div class="reco_imo"> <i class="las la-grin-stars"></i> </div>
                             <div class="reco_input">
                               <div class="private_points_wrap">
-                                <select #givenTo="ngModel" name="givenTo" [(ngModel)]="selectedgivenTo" class="private-form__control">
+                                <select #givenTo="ngModel" name="givenTo" [(ngModel)]="selectedgivenTo" class="private-form__control"title="please select coworker" required>
                                     <option value="">Search for a coworker(s)</option>
                                     <ng-container *ngFor='let user of remainingCoreValueUserList; let i = index'>
                                     <option value="{{user.id}}" *ngIf="user.id != userProfile.user_id">{{user.display_name | titlecase}}
@@ -44,7 +44,7 @@
                           <div class="reco_item_wrap d-flex">
                             <div class="reco_imo"> <i class="las la-certificate"></i> </div>
                             <div class="reco_input private_points_wrap">
-                               <select #coreValueId="ngModel" name="coreValueId" [(ngModel)]="selectedcoreValueId" class="private-form__control">
+                               <select #coreValueId="ngModel" name="coreValueId" [(ngModel)]="selectedcoreValueId" class="private-form__control" title="please select any core value" required>
                                   <option value="">Select Core Value</option>
                                   <ng-container *ngFor='let corevalue of remainingCoreValueList; index as i'>
                                     <option  value="{{corevalue.id}}">{{corevalue.name}}
@@ -57,7 +57,7 @@
                             <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
                             <div class="reco_input">
                               <div class="private_points_wrap">
-                                <input type="text" class="private-form__control" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="form.whyGiven" placeholder="What did your coworker(s) do?">
+                                <input type="text" class="private-form__control" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="form.whyGiven" placeholder="What did your coworker(s) do?" title="please write something" required>
 
                               </div>
                             </div>
@@ -78,7 +78,7 @@
                             <div class="reco_imo"> <i class="las la-grin-stars"></i> </div>
                             <div class="reco_input">
                               <div class="private_points_wrap">
-                                <select #givenTo="ngModel" name="givenTo" [(ngModel)]="selectedgivenTo" class="private-form__control">
+                                <select #givenTo="ngModel" name="givenTo" [(ngModel)]="selectedgivenTo" class="private-form__control" title="please select coworker" required>
                                   <option value="">Search for a coworker(s)</option>
                                   <ng-container *ngFor='let user of usersInfo; let i = index'>
                                     <option value="{{user.id}}" *ngIf="user.id != userProfile.user_id">{{user.display_name}}
@@ -92,7 +92,7 @@
                             <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
                             <div class="reco_input">
                               <div class="private_points_wrap">
-                                <input type="text" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="kudosform.whyGiven" class="private-form__control" id="" placeholder="What did your coworker(s) do?"> </div>
+                                <input type="text" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="kudosform.whyGiven" class="private-form__control" id="" placeholder="What did your coworker(s) do?" title="please write something" required> </div>
                             </div>
                           </div>
 
