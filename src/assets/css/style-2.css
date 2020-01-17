@@ -3358,6 +3358,7 @@ iframe#youtube {
    width: 100%;
     margin-top:15px;
 }
+/*
 .earn_badg_wrap {
     padding-right: 15px;
     padding-left: 15px;
@@ -3366,6 +3367,7 @@ iframe#youtube {
     position: relative;
     border-bottom: solid 1px #ccc;
 }
+*/
 .badg_count{
     font-size:30px;
     font-family: 'Alata';
@@ -3491,6 +3493,7 @@ iframe#youtube {
     margin-left: 15px;
     position: absolute;
     right: 10px;
+    top:6px;
     cursor: pointer;
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
@@ -3498,17 +3501,184 @@ iframe#youtube {
     -ms-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
-.kudos_tab_warp .kudos_ricv_icon:hover{
-    max-width: 300px;
-    width:100%;
-    z-index: 9;
+
+.kudos_ricv_name span{
+    margin-top: 8px;
+    display: inline-block;
+}
+
+
+.hover-me {
+  height: 100%;
+}
+.hover-me .zoom-box {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+     padding-right: 15px; 
+     padding-left: 15px; 
+     padding-top: 7px; 
+     padding-bottom: 10px; 
+     position: relative; 
+     border-bottom: solid 1px #ccc;
+}
+.hover-me .zoom-box:active > h3 {
+  top: 10px;
+  box-shadow: 0 0 0 0;
+}
+.hover-me .zoom-box:hover > .dropdown-box {
+  top: 47px;
+  display: block;
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
     -ms-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
-.kudos_ricv_name span{
-    margin-top: 8px;
+.hover-me .zoom-box h3 {
+    margin-bottom: 8px;
+    font-size: 24px;
+    margin-top: 5px;
+}
+.hover-me .zoom-box p {
+    margin-bottom: 0px !important;
+   
+}
+.coreValueText{
+    padding:15px;
+}
+.hover-me .zoom-box .dropdown-box {
+    width: 90%;
+    height: auto;
+    top: 189px;
+    z-index: 9;
+    margin: 0 auto;
+    left: 0px;
+    right: 0px;
+    position: absolute;
+    background: #d9d9d9;   
+    display: none;
+    border-radius: 8px;
+   box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.21);
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.hover-me .zoom-box .dropdown-box:after {
+    width: 0;
+    height: 0;
+    border: solid 10px #a3000000;
+    border-bottom: solid 10px #d9d9d9;
+    content: "";
+    position: absolute;
+    z-index: -100;
+    top: -20px;
+    right: 0;
+    margin: 0 auto;
+    left: 0;
+}
+
+
+
+/*SOCIAL MEDIA BUTTON CSS========================*/
+.social_icon_wrap {
     display: inline-block;
+    margin-top: 12px;
+    text-align: center;
+}
+/* Icons */
+
+.social_icon_wrap a {
+  color:#fff;
+  background: #2196f3;
+  border-radius:4px;
+  text-align:center;
+  text-decoration:none;
+  font-family:fontawesome;
+  position: relative;
+  display: inline-block;
+  width:40px;
+  height:28px;
+  padding-top:4px;
+  margin:0 2px;
+  -o-transition:all .5s;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+   -webkit-font-smoothing: antialiased;
+}
+
+.dsocial_icon_wrap a:hover {
+  background: #ef92a3;
+}
+
+/* pop-up text */
+
+.social_icon_wrap a span {
+  color:#666;
+  position:absolute;
+  font-family:sans-serif;
+  bottom:0;
+  left:-25px;
+  right:-25px;
+  padding:5px 4px;
+  z-index:-1;
+  font-size:14px;
+  border-radius:2px;
+  background:#fff;
+  visibility:hidden;
+  /*  opacity:0;*/
+    display: none;
+  -o-transition:all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -webkit-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -moz-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 9;
+}
+
+/* pop-up text arrow */
+
+.social_icon_wrap a span:before {
+  content:'';
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #fff;
+  position:absolute;
+  bottom:-5px;
+  left:40px;
+}
+
+/* text pops up when icon is in hover state */
+
+.social_icon_wrap a:hover span {
+  bottom:40px;
+  visibility:visible;
+/*  opacity:1;*/
+    display: block;
+}
+
+/* font awesome icons */
+
+.social_icon_wrap a:nth-of-type(1):before {
+content:'\f09a';
+}
+.social_icon_wrap a:nth-of-type(2):before {
+content:'\f099';
+}
+.social_icon_wrap a:nth-of-type(3):before {
+content:'\f0e1';
+}
+.social_icon_wrap a:nth-of-type(4):before {
+content:'\f113';
+}
+.social_icon_wrap a:nth-of-type(5):before {
+content:'\f17d';
+}
+.social_icon_wrap a:nth-of-type(6):before {
+content:'\f1cb';
 }
