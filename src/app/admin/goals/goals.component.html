@@ -44,6 +44,23 @@
 											</div>
 										</li> -->
 									</ul>
+                                    
+<!-- ===========Right Side Dropdown ===========-->
+                                    <ul  class="navbar-nav float-right">
+                                    <li class="nav-item dropdown">
+											<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> <i class="la la-plus" aria-hidden="true"></i> MORE</a>
+											<div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Rename </a>
+												<a class="dropdown-item" href="#">Share</a>
+											</div>
+										</li>
+                                        <li class="nav-item dropdown">
+											<a class="nav-link" href="#" data-toggle="modal" data-target="#filter_model">
+                                                <i class="la la-filter"></i>FILTER
+                                            </a>
+											
+										</li>
+                                    </ul>
 								</nav>
 							</div>
 						</div>
@@ -228,7 +245,48 @@
 						</form>
 					</div>
 				</div>
-
+<!--     MODAL POPUP FOR KPI MENU=====================   -->
+                <div class="modal" id="filter_model">
+				<div class="modal-dialog model_private">
+					<div class="modal-content">
+						<!-- Modal Header -->
+						<div class="modal_header">
+							<h4 class="modal-title">Add users to a team</h4>
+							<button type="button" class="close" data-dismiss="modal"> <i class="la la-times-circle fa-lg"></i>
+							</button>
+						</div>
+						<!-- Modal body -->
+						<div class="modal_content">
+							<div class="user-edit-form quick_editor">
+								<div class="form-warp">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-control-wrap">
+												<form action="/action_page.php">
+													<label class="form-control-label" for="First name">Team</label>
+													<select name="points" class="custom-select">
+														<option selected="">Select a team</option>
+														<option value="">Saxon HR team</option>
+													</select>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal footer -->
+						<div class="modal_footer">
+							<div class="row">
+								<div class="col-md-12">
+									<button class="cmn_btn pull-right">Save</button>
+									<button class="cmn_btn btn_for_cancel pull-right">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			</section>
 		</div>
 	</div>
