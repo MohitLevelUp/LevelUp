@@ -215,8 +215,8 @@
                               <div class="dropdown-box">
                                 <div class="coreValueText">
                                   <img class="img-fluid" style="width: 55px;" src="{{ iconUrl }}corevalue_icon/{{ sendCoreValue.icon }}">
-                                  <h3>Have fun</h3>
-                                  <p>We love coming to work where we can constantly learn and grow. We take our jobs seriously but ensure fun is had along the way.</p>
+                                  <h3>{{sendCoreValue.name}}</h3>
+                                  <p>{{sendCoreValue.why_given}}</p>
                                   <div class="social_icon_wrap">
                                     <a href="#"><span>Facebook</span></a>
                                     <a href="#"><span>Twitter</span></a>
@@ -245,8 +245,8 @@
                               <div class="dropdown-box">
                                 <div class="coreValueText">
                                     <img class="img-fluid" style="width: 55px;" src="{{ iconUrl }}corevalue_icon/{{ receiveCoreValue.icon }}">
-                                  <h3>Teamwork</h3>
-                                  <p>We will always work together with respect, dignity and fairness. We leverage our collective strengths and talents to serve our clients to the best of our abilities.</p>
+                                  <h3>{{receiveCoreValue.name}}</h3>
+                                  <p>{{receiveCoreValue.why_given}}</p>
                                 
                                 <div class="social_icon_wrap">
                                   <a href="#"><span>Facebook</span></a>
@@ -295,7 +295,7 @@
                                 <div class="coreValueText">
                                   <h3>Team player</h3>
                                   <img class="img-fluid" src="{{ iconUrl }}kudos_stickers/{{ getKudos.sticker }}">
-
+                                  <p>{{getKudos.why_given}}</p>
                                   <div class="social_icon_wrap">
                                     <a href="#"><span>Facebook</span></a>
                                     <a href="#"><span>Twitter</span></a>
@@ -322,7 +322,7 @@
                                 <div class="coreValueText">
                                   <h3>Team player</h3>
                                   <img class="img-fluid" src="{{ iconUrl }}kudos_stickers/{{ giveKudos.sticker }}">
-
+                                  <p>{{giveKudos.why_given}}</p>
                                   <div class="social_icon_wrap">
                                     <a href="#"><span>Facebook</span></a>
                                     <a href="#"><span>Twitter</span></a>

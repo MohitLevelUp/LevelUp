@@ -150,6 +150,7 @@ export class CoreValueComponent implements OnInit {
        
         if(resp['status_code'] == 200){
            this.givenCoreValue = resp['data'];
+           console.log('given',this.givenCoreValue);
         }else{
           this.givenCoreValue = "";
         }
