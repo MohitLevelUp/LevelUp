@@ -11,11 +11,13 @@ import { JwtHelperService  }  from '@auth0/angular-jwt';
 })
 export class TargetService {
   baseUrl        = environment.apiUrl;
-  helper         = new JwtHelperService();
-  authToken      = localStorage.getItem('authToken');
-  decodedToken   = this.helper.decodeToken(this.authToken);
-  userId         = this.decodedToken['user_id'];
-  teamId         = this.decodedToken['team_id'];
+  // helper         = new JwtHelperService();
+  // authToken      = localStorage.getItem('authToken');
+  // decodedToken   = this.helper.decodeToken(this.authToken);
+  // userId         = this.decodedToken['user_id'];
+  // teamId         = this.decodedToken['team_id'];
+
+  userProfile    = JSON.parse(localStorage.getItem('user'));
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -35,7 +37,10 @@ export class TargetService {
 
   // GET user and his/her team assign target List
   getUsersTargetList(): Observable<any> {
-  	var userID = this.userId;
+   const helper         = new JwtHelperService();
+   const authToken      = localStorage.getItem('authToken');
+   const decodedToken   = helper.decodeToken(authToken);
+   var userID           = decodedToken['user_id'];
 
     return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/usersTargetList/' + userID)
     .pipe(
