@@ -258,9 +258,11 @@ updatePassword(data: any) {
   }
 
   logout() {
+    // localStorage.clear();
     localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
     this.router.navigate(['/'])
-    //localStorage.clear();
+    
   }
 
   //add team

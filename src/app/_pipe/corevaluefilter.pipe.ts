@@ -1,15 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'corevaluefilter'
+  name: 'myfilter'
 })
 export class CorevaluefilterPipe implements PipeTransform {
 
-  transform(items: any[], corevaluefilter: (item: any) => boolean): any {
-        if (!items || !corevaluefilter) {
-            return items;
+
+ transform(coreValuesList: any[], filter: any): any {
+        if (!coreValuesList || !filter) {
+            return coreValuesList;
         }
-        return items.filter(item => corevaluefilter(item));
+        // filter items array, items which match and return true will be
+        // kept, false will be filtered out
+        return coreValuesList.filter(item => item.id.indexOf(filter.id) == -1);
     }
 
 }

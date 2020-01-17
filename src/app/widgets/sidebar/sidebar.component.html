@@ -83,7 +83,7 @@
             </span> <span class="menu-title">Give Recognition</span>
             </a>
         </li>
-          <li><a routerLinkActive='active' [routerLink]="['/users-teams']">
+          <li *ngIf="user.role_type==3"><a routerLinkActive='active' [routerLink]="['/users-teams']">
             <span class="sidebar-icon"><i class="las la-users"></i>
             </span> <span class="menu-title">Users & Teams</span>
             </a>

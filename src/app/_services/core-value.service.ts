@@ -56,7 +56,7 @@ export class CoreValueService {
       given_by: this.userID,
       given_to: data.givenTo,
       core_value_id:data.coreValueId,
-      why_given:data.whyGiven
+      why_given:data.whyGivenCV
     };
 
     console.log(coreValueData);

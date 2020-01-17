@@ -7,13 +7,14 @@ import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { NotifierService } from "angular-notifier";
 
-
+import { CorevaluefilterPipe } from 'src/app/_pipe/corevaluefilter.pipe';
 
 
 @Component({
   selector: 'app-core-value',
   templateUrl: './core-value.component.html', 
-  styleUrls: ['./core-value.component.css']
+  styleUrls: ['./core-value.component.css'],
+  providers: [ CorevaluefilterPipe ]
 })
 export class CoreValueComponent implements OnInit {
   iconUrl        = environment.uploadUrl;
@@ -35,7 +36,13 @@ export class CoreValueComponent implements OnInit {
   successMessage: any;
   errorMessage: any;
 
-  constructor(private http: Http, private coreValueService: CoreValueService,
+  filterargs = {id: 10};
+  items = [{title: 'hello world'}, {title: 'kitty'}, {title: 'foo bar'}];
+
+   remainingCoreValueList: any;
+   remainingCoreValueUserList: any;
+
+  constructor(private http: Http, private corevaluefilterPipe: CorevaluefilterPipe, private coreValueService: CoreValueService,
     private userService: UserService,notifierService: NotifierService) { 
     this.notifier = notifierService;
   }
@@ -70,7 +77,6 @@ export class CoreValueComponent implements OnInit {
   }
 
   giveKudos(form: NgForm) {
-    console.log(form.value);
 
     this.coreValueService.giveKudos(form.value).subscribe(
       (resp) => {
@@ -100,28 +106,43 @@ export class CoreValueComponent implements OnInit {
   getCoreValueList(){
     this.coreValueService.corevalueList().subscribe(
       resp => {
-        this.coreValuesList = resp['data'];   
-     
+        this.coreValuesList = resp['data'];  
+
+
+         this.coreValueService.getUserGivenCoreValues().subscribe(
+          resp => {
+           
+            if(resp['status_code'] == 200){
+               this.givenCoreValue = resp['data'];
+//                var skins = [
+//     {Id: 0, Name: "oily skin"}, 
+//     {Id: 1, Name: "dry skin"}
+//     ];
+
+//     var skinName = skins.find(x=>x.Id == 0).Name;
+//     // console.log('skin',skinName);
+//             var check= ["044", "451"],
+// data = ["343", "333", "044", "123", "444", "555"];
+
+// let notPresentInData = this.coreValuesList.filter(core_value_id => !this.givenCoreValue.includes(id)); 
+
+           this.remainingCoreValueList = this.coreValuesList.filter(o => !this.givenCoreValue.find(o2 => o.id === o2.core_value_id))     
+
+            }else{
+              this.givenCoreValue = "";
+              this.remainingCoreValueList = this.coreValuesList;
+            }
+          },
+          
+          error => this.errorMessage = <any>error
+        );
       },
       
       error => this.errorMessage = <any>error
     );
   }
 
-  //start user function
-  getUserList(){
-    //get all user's details
-    this.userService.userList().subscribe(
-      resp => {
-        this.usersInfo = resp['data']; 
-       
-      },
-      
-      error => this.errorMessage = <any>error
-    );
-  }
-
-  //get user's given core value
+   //get user's given core value
   getUserGivenCoreValuesList(){
 
     this.coreValueService.getUserGivenCoreValues().subscribe(
@@ -137,6 +158,39 @@ export class CoreValueComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
   }
+
+  //start user function
+  getUserList(){
+    //get all user's details
+    this.userService.userList().subscribe(
+      resp => {
+        this.usersInfo = resp['data']; 
+
+        //call given core value list
+        this.coreValueService.getUserGivenCoreValues().subscribe(
+          resp => {
+           
+            if(resp['status_code'] == 200){
+              this.givenCoreValue = resp['data'];
+
+              this.remainingCoreValueUserList = this.usersInfo.filter(o => !this.givenCoreValue.find(o2 => o.id === o2.given_to))     
+
+            }else{
+              this.givenCoreValue = "";
+              this.remainingCoreValueUserList = this.usersInfo;
+            }
+          },
+          
+          error => this.errorMessage = <any>error
+        );
+       
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+  }
+
+ 
 
   //get user receive core value
   getUserReceiveCoreValuesList(){
@@ -161,7 +215,6 @@ export class CoreValueComponent implements OnInit {
 
     this.coreValueService.getUserGivenKudos().subscribe(
       resp => {
-       console.log('giku',resp);
         if(resp['status_code'] == 200){
            this.givenKudos = resp['data'];
         }else{
@@ -216,7 +269,6 @@ export class CoreValueComponent implements OnInit {
        
         if(resp['status_code'] == 200){
            this.stickerList = resp['data'];
-           console.log('sti',this.stickerList);
         }
       },
       
