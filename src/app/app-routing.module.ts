@@ -18,12 +18,14 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { TeamsComponent } from './teams/teams.component';
 
 const routes: Routes = [
 
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
+  { path: 'teams', component: TeamsComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password/:user_id/:hash', component: ResetPasswordComponent },
   { path: '', component: HomeComponent },

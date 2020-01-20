@@ -348,6 +348,11 @@
 													</ng-multiselect-dropdown>
 													
 												</div>
+
+												<div class="form-group form-control-wrap">
+													<label class="form-control-label" for="First name">Team Location</label>
+													<input type="text" #location="ngModel" name="location" [(ngModel)]="form.location" class="form-control" placeholder="Location">
+												</div>
 											</div>
 										</div>
 									</div>
@@ -411,6 +416,10 @@
 													>
 													</ng-multiselect-dropdown>
 													
+												</div>
+												<div class="form-group form-control-wrap">
+													<label class="form-control-label" for="First name">Team Location</label>
+													<input type="text"  *ngIf="singleteamInfo;" #location="ngModel" name="location" [(ngModel)]="singleteamInfo[0]['location']" class="form-control" placeholder="Location">
 												</div>
 											</div>
 										</div>

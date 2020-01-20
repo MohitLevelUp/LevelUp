@@ -2973,7 +2973,7 @@ color: #4CAF50;
 
 
 .bg-gradient-info {
-    background: linear-gradient(22.5deg, rgba(221, 221, 221, 0.04) 0%, rgba(221, 221, 221, 0.04) 56%,rgba(7, 7, 7, 0.04) 56%, rgba(7, 7, 7, 0.04) 100%),linear-gradient(112.5deg, rgba(227, 227, 227, 0.04) 0%, rgba(227, 227, 227, 0.04) 14%,rgba(56, 56, 56, 0.04) 14%, rgba(56, 56, 56, 0.04) 100%),linear-gradient(45deg, rgba(39, 39, 39, 0.04) 0%, rgba(39, 39, 39, 0.04) 34%,rgba(196, 196, 196, 0.04) 34%, rgba(196, 196, 196, 0.04) 100%),linear-gradient(0deg, rgba(20, 20, 20, 0.04) 0%, rgba(20, 20, 20, 0.04) 84%,rgba(75, 75, 75, 0.04) 84%, rgba(75, 75, 75, 0.04) 100%),linear-gradient(90deg, rgb(175, 31, 79),rgb(201, 35, 98)) !important;
+    background: linear-gradient(41deg, rgba(107, 107, 107, 0.04) 0%, rgba(107, 107, 107, 0.04) 8%,rgba(31, 31, 31, 0.04) 8%, rgba(31, 31, 31, 0.04) 100%),linear-gradient(9deg, rgba(228, 228, 228, 0.04) 0%, rgba(228, 228, 228, 0.04) 62%,rgba(54, 54, 54, 0.04) 62%, rgba(54, 54, 54, 0.04) 100%),linear-gradient(124deg, rgba(18, 18, 18, 0.04) 0%, rgba(18, 18, 18, 0.04) 37%,rgba(233, 233, 233, 0.04) 37%, rgba(233, 233, 233, 0.04) 100%),linear-gradient(253deg, rgba(201, 201, 201, 0.04) 0%, rgba(201, 201, 201, 0.04) 55%,rgba(47, 47, 47, 0.04) 55%, rgba(47, 47, 47, 0.04) 100%),linear-gradient(270deg, rgba(172, 172, 172, 0.04) 0%, rgba(172, 172, 172, 0.04) 33%,rgba(26, 26, 26, 0.04) 33%, rgba(26, 26, 26, 0.04) 100%),linear-gradient(64deg, rgba(11, 11, 11, 0.04) 0%, rgba(11, 11, 11, 0.04) 38%,rgba(87, 87, 87, 0.04) 38%, rgba(87, 87, 87, 0.04) 100%),linear-gradient(347deg, rgba(199, 199, 199, 0.04) 0%, rgba(199, 199, 199, 0.04) 69%,rgba(4, 4, 4, 0.04) 69%, rgba(4, 4, 4, 0.04) 100%),linear-gradient(313deg, rgba(36, 36, 36, 0.04) 0%, rgba(36, 36, 36, 0.04) 20%,rgba(91, 91, 91, 0.04) 20%, rgba(91, 91, 91, 0.04) 100%),linear-gradient(90deg, rgb(10, 17, 72),rgb(35, 148, 228));
 }
 
 .bg-gradient-danger {
@@ -3683,3 +3683,291 @@ content:'\f17d';
 .social_icon_wrap a:nth-of-type(6):before {
 content:'\f1cb';
 }
+
+
+/*TEAM ================================*/
+
+.team_header-warp{
+    padding:50px 0px;
+}
+.team_header_title h1{
+    color:#fff;
+    letter-spacing: 1px;
+    font-family: 'Alata';
+}
+
+/* AUTO GRID */
+.team_warp .auto-grid {
+    --auto-grid-min-size: 26rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+    grid-gap: 2rem 1em;
+}
+
+
+/* Presentational styles */
+.team_warp{
+    padding:50px 0px;
+}
+.team_warp ul{
+    margin:0px;
+    padding: 0px;
+}
+.team_warp li {
+    padding: 15px;
+    text-align: center;
+    list-style-type: none;
+    border-radius: 8px;    
+}
+.team_warp li a.team_card{
+    color: #fff;    
+}
+
+.card__title{
+    margin-top:20px;
+}
+.team_card_wins {
+    background: rgba(17, 17, 17, 0.35);
+    border-radius: 1000px;
+    font-size: 14px;
+    padding: 5px 11px;
+    display: inline-block;
+    color: #E2D612;
+    font-weight: 600;
+    text-align: center;
+}
+.team_card_wins span{
+    margin:5px;
+}
+.team_card_link{
+    display: inline-block;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 21px;
+    font-size: 20px;
+}
+
+
+
+.team_card_logo {    
+    background-repeat: no-repeat;
+    display: block;   
+    width: 158px;
+    height: 158px;
+    position: relative;
+    margin: -2rem auto 0;
+    z-index: 10;
+    background-size: cover;
+}
+
+/*Damdaar Hyderabad=======================*/
+.logo_dam_hy{
+    background-image: url(../images/team-logo/Damdaar-Hyderabad.png); 
+}
+
+.dumdaar_hyderabadi{      
+    color: white; background: linear-gradient(136deg, #004c93, #0358a7);
+}
+
+/*Hyper Hyderabadis=======================*/
+.logo_hyp_hy{
+    background-image: url(../images/team-logo/Hyper-Hyderabadis.png); 
+}
+
+.hyper_hyderabadi {
+    color: white;
+    background: linear-gradient(136deg, #c6ad00, #887600);
+}
+
+/*Staffing Ninjas=======================*/
+.logo_staf_nin{
+    background-image: url(../images/team-logo/Staffing-Ninjas.png); 
+}
+
+.staffing_ninjas {
+    color: white;
+    background: linear-gradient(136deg, #793db1, #301c56);
+}
+
+/*Desk Demons=======================*/
+.logo_desk_d{
+    background-image: url(../images/team-logo/Desk-Demons.png); 
+}
+
+.desk_demons {
+    color: white;
+   background: linear-gradient(136deg, #d80000, #8e0404);
+}
+
+/*Abhyudaya=======================*/
+
+.logo_abhy{
+    background-image: url(../images/team-logo/abhyudaya.png); 
+}
+
+.abhyudaya {
+    color: white;
+    background: linear-gradient(136deg, #2eb2b4, #2b964d);
+}
+
+/*Creative Hyderabadi=======================*/
+.logo_creative{
+    background-image: url(../images/team-logo/Creative-Hyderabadi.png); 
+}
+
+.creative_hyderabadi {
+    color: white;
+    background: linear-gradient(136deg, #f26522, #c0440b);
+}
+
+/*People Excellence=======================*/
+.logo_People_ex{
+    background-image: url(../images/team-logo/people-excellence.png); 
+}
+
+.people_excellence {
+    color: white;
+    background: linear-gradient(136deg, #024782, #4f75a5);
+}
+
+/*Durgam Hyderabadi=======================*/
+.logo_durgam{
+    background-image: url(../images/team-logo/Durgam-Hyderabadi.png); 
+}
+
+.durgam_hyderabadi {
+    color: white;
+    background: linear-gradient(136deg, #762020, #9d4b28);
+}
+/*Greed Pack=======================*/
+.logo_Greed{
+    background-image: url(../images/team-logo/Greed-Pack.png); 
+}
+
+.greed_pack {
+    color: white;
+    background: linear-gradient(136deg, #2a89a9, #0e566c);
+}
+
+/*Bengal Warriors=======================*/
+.logo_Bengal{
+    background-image: url(../images/team-logo/Bengals.png); 
+}
+
+.bengal_warriors {
+    color: white;
+    background: linear-gradient(136deg, #d74f03, #d46324);
+}
+
+/* Crusaders Noida=======================*/
+.logo_Crusaders{
+    background-image: url(../images/team-logo/Crusaders.png); 
+}
+
+.crusaders {
+    color: white;
+    background: linear-gradient(136deg, #b50400, #ec1b23);
+}
+
+/* Quest Pirates=======================*/
+.logo_Quest{
+    background-image: url(../images/team-logo/Quest-Pirates.png); 
+}
+
+.quest_pirates {
+    color: white;
+    background: linear-gradient(136deg, #4e9dc6, #1b4a63);
+}
+
+/* The Mavericks=======================*/
+.logo_mave{
+    background-image: url(../images/team-logo/The-Mavericks.png); 
+}
+
+.the_mavericks {
+    color: white;
+    background: linear-gradient(136deg, #2e9e7d, #82c39a);
+}
+/* LOUnicorn Finders=======================*/
+.logo_lou{
+    background-image: url(../images/team-logo/LOUnicorn-Finders-.png); 
+}
+
+.lounicorn_finders {
+    color: white;
+    background: linear-gradient(136deg, #f0c500, #9f8100);
+}
+
+.happy_resources {
+    color: white;
+    background: linear-gradient(136deg, #1b02a3, #8c0052);
+}
+
+/* Tech Knights
+=======================*/
+.logo_tech{
+    background-image: url(../images/team-logo/Tech-Knights.png); 
+}
+
+.tech_knights {
+    color: white;
+    background: linear-gradient(136deg, #989da1, #c2c2c2);
+}
+
+/* Headway Noida=======================*/
+.logo_Headway{
+    background-image: url(../images/team-logo/Headaway.png); 
+}
+
+.headway {
+    color: white;
+    background: linear-gradient(136deg, #2ca9ac, #16656a);
+}
+
+/* Hi-Tech Hyderabad=======================*/
+.logo_hi-tech{
+    background-image: url(../images/team-logo/Hi-tech-Hyderabadi.png); 
+}
+
+.hi-tech_hyderabad {
+    color: white;
+    background: linear-gradient(136deg, #2d72b8, #0d56a4);
+}
+
+/* Spartans Noida=======================*/
+.logo_Spartans{
+    background-image: url(../images/team-logo/Spartans.png); 
+}
+
+.spartans {
+    color: white;
+    background: linear-gradient(136deg, #fdc944, #ce9400);
+}
+
+/* =======================*/
+.logo_{
+    background-image: url(../images/team-logo/Bengals.png); 
+}
+
+.bg_ {
+    color: white;
+    background: linear-gradient(136deg, #d74f03, #d46324);
+}
+
+/* colors by clrs.cc*/
+flex-grid-item:nth-child(1)  {background-color: #0074D9; color: white; background: linear-gradient(136deg, #004c93, #0358a7);}
+flex-grid-item:nth-child(2)  {background-color: #001f3f; color: white;}
+flex-grid-item:nth-child(3)  {background-color: #7FDBFF;}
+flex-grid-item:nth-child(4)  {background-color: #39CCCC;}
+flex-grid-item:nth-child(5)  {background-color: #3D9970; color: white;}
+flex-grid-item:nth-child(6)  {background-color: #2ECC40;}
+flex-grid-item:nth-child(7)  {background-color: #01FF70;}
+flex-grid-item:nth-child(8)  {background-color: #FFDC00;}
+flex-grid-item:nth-child(9)  {background-color: #FF851B;}
+flex-grid-item:nth-child(10) {background-color: #FF4136; color: white;}
+flex-grid-item:nth-child(11) {background-color: #85144b; color: white;}
+flex-grid-item:nth-child(12) {background-color: #F012BE; color: white;}
+flex-grid-item:nth-child(13) {background-color: #B10DC9; color: white;}
+flex-grid-item:nth-child(14) {background-color: #111; color: white;}
+flex-grid-item:nth-child(15) {background-color: #aaa;}
+flex-grid-item:nth-child(16) {background-color: #ddd;}

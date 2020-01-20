@@ -37,6 +37,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardNavComponent } from './nav/dashboard-nav.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { TeamsComponent } from './teams/teams.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     DashboardNavComponent,
-    SignUpComponent
+    SignUpComponent,
+    TeamsComponent
   ],
   imports: [
     BrowserModule,
