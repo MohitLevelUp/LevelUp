@@ -12,7 +12,7 @@
                                     <p>Have an account? <a [routerLink]="['/login']">Log In</a></p>                                   
                                     <div class="form-group">                                        
                                         <label>Full Name:</label>
-                                        <input type="text" class="form-control" placeholder=" Full Name"  #fullName="ngModel" name="fullName" [(ngModel)]="form.fullName">
+                                        <input type="text" class="form-control" placeholder=" Full Name"  #fullName="ngModel" name="fullName" [(ngModel)]="form.fullName" title="Enter your name" required>
                                     </div> 
                                     <div class="form-group">                                        
                                         <label for="Email">Email:</label>
@@ -20,7 +20,7 @@
                                     </div>
                                     <div class="form-group">                                       
                                         <label for="Password">Set a Password:</label>
-                                        <input type="password" #password="ngModel" name="password" [(ngModel)]="form.password" class="form-control" placeholder="Enter Password" id="Password">
+                                        <input type="password" #password="ngModel" name="password" [(ngModel)]="form.password" class="form-control" placeholder="Enter Password" id="Password"  pattern="(?=.*\d)(?=.*[@|#|$|%|&|*|+])(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Create a password that must contain at least one numerical, one uppercase letter, one lowercase letter, one Special Character (@, #, $, %, &, *, +) and a length of at least 8 or more characters"> 
                                     </div>                                  
                                 </div>
                                 <div class="form-group">
