@@ -38,6 +38,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { DashboardNavComponent } from './nav/dashboard-nav.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TeamsComponent } from './teams/teams.component';
+import { EditGamificationRulesComponent } from './admin/gamification-rules/edit-gamification-rules.component';
+
+
 
 @NgModule({
   declarations: [
@@ -65,7 +68,9 @@ import { TeamsComponent } from './teams/teams.component';
     ResetPasswordComponent,
     DashboardNavComponent,
     SignUpComponent,
-    TeamsComponent
+    TeamsComponent,
+    EditGamificationRulesComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -173,7 +173,6 @@ export class GoalsComponent implements OnInit {
     //get admin/manager created kpi list
     this.kpiService.createdKpiList().subscribe(
       resp => {
-        console.log(resp);
         this.kpiList = resp['data'];
       },
       
@@ -189,7 +188,6 @@ export class GoalsComponent implements OnInit {
     this.targetService.getUsersTargetList().subscribe(
       resp => {
         this.targetList = resp['data']; 
-        console.log('tar',this.targetList);
         
       },
       

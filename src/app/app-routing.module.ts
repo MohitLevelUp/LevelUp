@@ -19,6 +19,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TeamsComponent } from './teams/teams.component';
+import { EditGamificationRulesComponent } from './admin/gamification-rules/edit-gamification-rules.component';
+
 
 const routes: Routes = [
 
@@ -43,6 +45,7 @@ const routes: Routes = [
       { path: 'security', component: SecurityComponent },
       { path: 'goals', component: GoalsComponent },
       { path: 'gamification-rules', component: GamificationRulesComponent },
+      { path: 'edit-kpi/:id', component: EditGamificationRulesComponent },
       { path: 'target', component: TargetComponent },
       { path: 'edit-target/:id', component: EditTargetComponent },
       { path: 'stats', component: StatsComponent },

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { KpiService } from 'src/app/_services/kpi.service';
 import { TargetService } from 'src/app/_services/target.service';
-import { UserService } from 'src/app/_services/user.service';
-import { Router, NavigationStart } from '@angular/router';
+import { UserService } from 'src/app/_services/user.service'; 
+import { ActivatedRoute, Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-edit-target',
@@ -23,10 +23,14 @@ export class EditTargetComponent implements OnInit {
   allTeamListSettings = {};
   allUserListSettings = {};
 
-  constructor(private targetService: TargetService, private kpiService: KpiService, private userService: UserService,
+  constructor(private targetService: TargetService,private route: ActivatedRoute,
+   private kpiService: KpiService, private userService: UserService,
     private router: Router) { }
 
   ngOnInit() {
+    let targetId = +this.route.snapshot.paramMap.get('id');
+    
+
   	//for drop down
     this.allTeamListSettings = {
       singleSelection: false,

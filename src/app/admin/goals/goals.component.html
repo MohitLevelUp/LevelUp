@@ -1,4 +1,4 @@
-    <app-sidebar></app-sidebar>
+    <app-sidebar></app-sidebar> 
     <div class="das_col main-content" id="main-content">
       <section class="wrapper main-wrapper">
 		<div class="container-fluid">
@@ -74,7 +74,7 @@
 										<div class="dropdown">
 											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 											</a>
-											<div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit KPI</a>
+											<div class="dropdown-menu"> <a class="dropdown-item" [routerLink]="['/edit-kpi', kpi.kpi_id]">Edit KPI</a>
 												<a class="dropdown-item" href="#">Set Target for this KPI</a>
 												<a class="dropdown-item" (click)="inActiveKpi($event)" id="{{ kpi.kpi_id }}">Remove KPI</a>
 

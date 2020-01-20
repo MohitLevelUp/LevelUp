@@ -19,6 +19,7 @@ export class KpiService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+// add new kpi
   addKpi(data: any){
 
   	return this.http.post<any>(this.baseUrl + 'levelup/api/v1/kpi/' , JSON.stringify(data), {
@@ -27,6 +28,18 @@ export class KpiService {
       .pipe(
       tap(data => console.log('authToken' + JSON.stringify(data))),
      // tap(),// 
+
+        catchError(this.errorHandl));
+  }
+
+// update kpi
+  updateKpi(data: any){
+
+    return this.http.post<any>(this.baseUrl + 'levelup/api/v1/kpi/updatekpi' , JSON.stringify(data), {
+
+    })
+      .pipe(
+      tap(),// 
 
         catchError(this.errorHandl));
   }

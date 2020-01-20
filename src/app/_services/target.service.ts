@@ -35,6 +35,16 @@ export class TargetService {
         catchError(this.errorHandl));
   }
 
+  // //get single target details
+  
+  //  getKpiDetails(kpiId: any): Observable<any> {
+  //   return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/' + kpiId)
+  //   .pipe(
+  //     retry(1),
+  //    catchError(this.errorHandl)
+  //   )
+  // }
+
   // GET user and his/her team assign target List
   getUsersTargetList(): Observable<any> {
    const helper         = new JwtHelperService();
