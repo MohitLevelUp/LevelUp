@@ -37,13 +37,13 @@ export class TargetService {
 
   // //get single target details
   
-  //  getKpiDetails(kpiId: any): Observable<any> {
-  //   return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/' + kpiId)
-  //   .pipe(
-  //     retry(1),
-  //    catchError(this.errorHandl)
-  //   )
-  // }
+   getTargetDetails(targetId: any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getTarget/' + targetId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
 
   // GET user and his/her team assign target List
   getUsersTargetList(): Observable<any> {

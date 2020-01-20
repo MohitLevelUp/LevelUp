@@ -1,7 +1,7 @@
     <app-sidebar></app-sidebar> 
     <div class="das_col main-content" id="main-content">
       <section class="wrapper main-wrapper">
-      <div class="container-fluid">
+      <div class="container-fluid" *ngIf='targetDetails'>
         <div class="row">
           <div class="col-md-12">
             <div class="title">Set Targets</div>
@@ -24,8 +24,8 @@
                     <div class="col-md-6">
                       <div class="form-group form-control-wrap">
                         <label class="form-control-label" for="">Set Target Period</label>
-                        <select name="targetPeriod" #targetPeriod="ngModel" [(ngModel)]="form.targetPeriod" class="form-control">
-                          <option value="1" selected="">Daily</option>
+                        <select name="targetPeriod" #targetPeriod="ngModel" [(ngModel)]="target_period" class="form-control">
+                          <option value="1">Daily</option>
                           <option value="2">Weekly</option>
                           <option value="3">Monthly</option>
                           <option value="4">Quarterly</option>
@@ -66,7 +66,7 @@
                             <td>
                             
                                 <div class="private_points_wrap">
-                                  <input type="text" class="private-form__control" name="teamsTarget" [(ngModel)]="teamsTarget">
+                                  <input type="text" class="private-form__control" name="teamsTarget" [(ngModel)]="teams_target">
                                 </div>
                           
                             </td>
@@ -113,7 +113,7 @@
                             <td>
                               
                                 <div class="private_points_wrap">
-                                  <input type="text" class="private-form__control" name="usersTarget"  [(ngModel)]="usersTarget">
+                                  <input type="text" class="private-form__control" name="usersTarget"  [(ngModel)]="users_target">
                                 </div>
                              
                             </td>
