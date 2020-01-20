@@ -8,5 +8,5 @@ export interface IUser {
   extension : number;
   employee_address: string;
   spacility: any;
-  role_type : number;
+  role_type : number; 
 }
