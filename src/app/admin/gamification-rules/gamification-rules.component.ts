@@ -9,7 +9,9 @@ import { Router, NavigationStart } from '@angular/router';
   styleUrls: ['./gamification-rules.component.css']
 })
 export class GamificationRulesComponent implements OnInit {
-  userProfile    = JSON.parse(localStorage.getItem('user'));
+  userProfile      = JSON.parse(localStorage.getItem('user'));
+  selectedBehavior = '';
+  selectedPoint    = '';
   errorMessage: any;
   weightage = [10,20,30,40,50,60,70,80,90,100];
 

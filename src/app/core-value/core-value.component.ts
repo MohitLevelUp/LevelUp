@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; 
 import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';
 import { CoreValueService } from 'src/app/_services/core-value.service';

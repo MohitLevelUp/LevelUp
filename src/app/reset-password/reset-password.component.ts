@@ -26,7 +26,6 @@ export class ResetPasswordComponent implements OnInit {
         if(resp['status_code'] == 200){
           
           this.userData = resp['data'];
-          console.log('d', this.userData);
 
         }else{
         	this.router.navigate(['/forgot-password']);
@@ -48,7 +47,7 @@ export class ResetPasswordComponent implements OnInit {
       (resp) => {
         if(resp['status_code'] == 200){
           
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
           
 
         }else{
