@@ -65,6 +65,15 @@ export class UserService {
     )
   }
 
+  // GET user by team id
+  teamsUserList(teamId:any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/user/teamsUserList/' + teamId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
 
 
   // GET user List

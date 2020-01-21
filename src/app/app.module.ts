@@ -39,6 +39,7 @@ import { DashboardNavComponent } from './nav/dashboard-nav.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TeamsComponent } from './teams/teams.component';
 import { EditGamificationRulesComponent } from './admin/gamification-rules/edit-gamification-rules.component';
+import { TeamDetailsComponent } from './teams/team-details.component';
 
 
 
@@ -70,6 +71,7 @@ import { EditGamificationRulesComponent } from './admin/gamification-rules/edit-
     SignUpComponent,
     TeamsComponent,
     EditGamificationRulesComponent,
+    TeamDetailsComponent,
 
   ],
   imports: [
