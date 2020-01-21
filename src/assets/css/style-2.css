@@ -1,6 +1,6 @@
 
 .graybg {
-    background-color: #f8f8f8;
+    background-color: #f1f1f1;
 }
 .page-header__menu-wrapper {
     position: relative;
@@ -963,9 +963,11 @@ score_card_wrap li:last-child {
   display: none;
 }
 /*================================================================*/
+/*
 .video_section{
     padding-bottom:80px;
 }
+*/
 .video_card { 
     transition: all ease-in-out 0.5s;
     position: relative;
@@ -973,7 +975,7 @@ score_card_wrap li:last-child {
     z-index: 5;
     background: #fff;
     overflow: hidden;
-    height: 100%;
+    height: auto;
     border-radius: 15px;
     box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.05), 0 2px 10px 3px rgba(0, 0, 0, 0.05);
 }
@@ -1078,9 +1080,11 @@ score_card_wrap li:last-child {
 
 
 /*TOP LEADER=============================*/
+/*
 .leaders_wrap {
     padding-bottom:80px;
 }
+*/
 .leaderCard {
 
     margin: 0 auto;
@@ -1091,8 +1095,10 @@ score_card_wrap li:last-child {
     display: block;
     z-index: 5;
     background: #fff;
+/*
     margin-bottom: 30px;
     margin-top: 48px;
+*/
     overflow: hidden;
 /*    height: 100%;*/
     border-radius: 15px;
@@ -1297,7 +1303,7 @@ score_card_wrap li:last-child {
 /*-------------------------------*/
 /*    Carousel Fade Transition   */
 /*-------------------------------*/
-.slider .carousel-inner {   
+.number_slider .carousel-inner {   
     min-height: 195px;
     border-radius: 6px;
     overflow: hidden;
@@ -2037,7 +2043,7 @@ table tr td:nth-of-type(3), table tr td:nth-of-type(4) {
 }
 .formula_type_radio .checkmark {
     position: absolute;
-   top: 3px;
+    top: 10px;
     left: 0;
     height: 16px;
     width: 16px;
@@ -2890,11 +2896,11 @@ color: #4CAF50;
     background-color: transparent;
     border: 0;
     padding: 10px 12px;
-    font-family: 'Quicksand';
+    font-family: 'Quicksand-bold';
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
     text-decoration: none;
-    color: #525f7f;
+    color: #525f7f !important;
     -webkit-transition: color .2s ease;
     -o-transition: color .2s ease;
     transition: color .2s ease;

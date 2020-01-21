@@ -9,42 +9,7 @@
     .marg-bo-30{
         margin-bottom: 30px;
     }
-    .nav-warp{
-    position: fixed;    
-    padding: 15px;
-    width: 270px;
-    margin-top: -11px;
-    right:-270px;
-    height: 100vh;
-    background: #17398a;
-    z-index: 9;
-}
-    .nav-warp li{
-        display: block;
-        float: none!important;
-    }
-
-    .nav-warp ul li a:hover{
-/*     background-color: #2196f4; */
-        color: #fff;
-    -webkit-transition: all 2s ease;
-    -moz-transition: all 2s ease;
-    -o-transition: all 2s ease;
-    transition: all 2s ease;    transition: 2s;
-    }
-    .nav-warp li a{
-        color: #ffffff !important;
-    width:100%;
-    border-radius: 50px;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    transition: all 1s ease;
-    }
-    .nav-warp ul{
-        width:100%;
-        margin-top: 60px;
-    }
+    
     .menu-icon {
     display: block;
 }
@@ -78,10 +43,16 @@
     .site-search{
         margin-right: 44px;
     }   
-    .login_wrap{
-        display:none;
+    .quick_result_top_team{
+        display: none !important;
     }
     
+    .video_card{
+        margin-bottom:30px !important;
+    }
+    [class*="col"] {
+     margin-bottom:30px;
+     }
 }
 
 
