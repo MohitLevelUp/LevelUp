@@ -103,6 +103,16 @@ export class KpiService {
         catchError(this.errorHandl));
   }
 
+  //get team kpi list
+  
+   getTeamKpiList(teamId: any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/teamKpiList/' + teamId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
   
 
   //get single kpi details

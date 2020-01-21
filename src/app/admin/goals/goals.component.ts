@@ -26,6 +26,8 @@ export class GoalsComponent implements OnInit {
   kpiList:any;
   userskpiList:any;
   singlekpiInfo:any;
+  teamskpiList:any;
+  teamsTargetList:any;
 
   successMessage: any;
   errorMessage: any;
@@ -154,6 +156,7 @@ export class GoalsComponent implements OnInit {
     );
  }
 
+  //user kpi list
   assignedKpiList(){
     //get assigned kpi list
     var user_id = '';
@@ -168,6 +171,7 @@ export class GoalsComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
   }
+
 
 
   createdkpiList(){
@@ -237,7 +241,32 @@ export class GoalsComponent implements OnInit {
       
       error => this.errorMessage = <any>error
     );
+     
+    // get team's kpi
+    var team_id = this.user['team_id'];
+    if(team_id != ''){
+      this.kpiService.getTeamKpiList(team_id).subscribe(
+      resp => {
+        this.teamskpiList = resp['data'];
+        console.log('tmkpi',this.teamskpiList);
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+    }
 
+    // get team's target list
+    
+    if(team_id != ''){
+      this.targetService.getTeamTargetList(team_id).subscribe(
+      resp => {
+        this.teamsTargetList = resp['data'];
+        console.log('tmTr',this.teamsTargetList);
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+    }
 
   	//for drop down
     this.allKpiListSettings = {

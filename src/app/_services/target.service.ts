@@ -59,6 +59,16 @@ export class TargetService {
     )
   }
 
+  //get team target list
+  
+   getTeamTargetList(teamId: any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/teamTargetList/' + teamId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
 
    getTargetList(): Observable<any> {
     return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getTarget')

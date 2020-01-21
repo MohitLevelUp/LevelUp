@@ -66,10 +66,104 @@
 						</div>
 						<!--=============================MAIN DASHBOARD=============================-->
 						<div class="box-1" id="dashboard-page" *ngIf="userskpiList">
+							<h1>My KPI</h1>
 							<div class="dashboard-tiles">
 
                               <ng-container >
 								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-danger" *ngFor='let kpi of userskpiList; let i = index'>
+									<div class="tile-header">
+										<div class="dropdown">
+											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+											</a>
+											<div class="dropdown-menu"> <a class="dropdown-item" [routerLink]="['/edit-kpi', kpi.kpi_id]">Edit KPI</a>
+												<a class="dropdown-item" href="#">Set Target for this KPI</a>
+												<a class="dropdown-item" (click)="inActiveKpi($event)" id="{{ kpi.kpi_id }}">Remove KPI</a>
+
+											</div>
+										</div>
+										<div class="tile-name">{{kpi.kpi_name}}</div>
+										<div class="tile-type">KPI</div>
+									</div>
+									<div class="tile-body">
+										<div class="kpi-points ">{{kpi.total}}</div>
+										<div class="kpi-change kpi-label-default level_up"><span>100%</span>
+                                        <Span><i class="las la-long-arrow-alt-up"></i></Span> 
+										</div>
+									</div>
+									<div class="tile-footer">
+										<a class="tile-filter configure"> <span class="tile-filter-element">{{kpi.from_date}}</span>
+											<span> &nbsp;&nbsp; To &nbsp;&nbsp;</span>  
+											<span class="tile-filter-element">{{kpi.to_date}}</span>
+										</a>
+									</div>
+								</div>
+                               </ng-container>
+
+                               <ng-container *ngIf="targetList">
+								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-primary" *ngFor='let target of targetList; let i = index'>
+									<div class="tile-header">
+										<div class="dropdown">
+											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+											</a>
+											<div class="dropdown-menu"> 
+												<a class="dropdown-item" [routerLink]="['/edit-target', target.target_id]">Edit Target</a>
+												
+												<a class="dropdown-item" (click)="inActiveTarget($event)" id="{{ target.target_id }}">Remove Target</a>
+
+											</div>
+										</div>
+										<div class="tile-name">{{target.kpi_name}}</div>
+										<div class="tile-type">Target</div>
+									</div>
+                                    
+                                    <!-- this body for target assign to perticular user  -->
+									<div class="tile-body" *ngIf="target.users_target > 0">
+				                        <div class="kpi-points ">{{target.total}}/{{target.users_target}}
+				                        </div>
+				                          <div class="progress">
+
+				                        <div *ngIf="(target.total*100)/target.users_target <=50" class="point_minus_30" [ngStyle]="{'width': (target.total*100)/target.users_target+'%'}" >	
+				                        </div>
+
+				                        <div *ngIf="(target.total*100)/target.users_target > 50 && (target.total*100)/target.users_target <= 80 " class="point_minus_10" [ngStyle]="{'width': (target.total*100)/target.users_target+'%'}" >
+				                        	
+				                        </div>
+
+				                         <div *ngIf="(target.total*100)/target.users_target > 80" class="point_plus_30" [ngStyle]="{'width': (target.total*100)/target.users_target+'%'}" >
+				                        	
+				                        </div>
+
+				                           </div>                         
+				                        <div class="kpi-change kpi-label-default">{{(target.total*100)/target.users_target}}%</div>
+				                        <span class="tile-filter-element">{{target.users_target - target.total}} Needed</span>
+				                      </div>
+
+				                     
+				                      <!-- target_period  1=>daily,2=>weekly,3=>monthly,4=>quarterly,5=>halfyearly,6=>yearly -->
+									<div class="tile-footer" >
+										<a class="tile-filter configure"> 
+											<span class="tile-filter-element" *ngIf="target.target_period == 1">Daily</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 2">Weekly</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 3">Monthly</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 4">Quarterly</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 5">Half Yearly</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 6">Yearly</span>
+											
+											
+										</a>
+									</div>
+								</div>
+                               </ng-container>
+
+							</div>
+						</div>
+
+						<div class="box-1" id="dashboard-page" *ngIf="teamskpiList">
+							<h1>Team's KPI</h1>
+							<div class="dashboard-tiles">
+
+                              <ng-container >
+								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-danger" *ngFor='let kpi of teamskpiList; let i = index'>
 									<div class="tile-header">
 										<div class="dropdown">
 											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
