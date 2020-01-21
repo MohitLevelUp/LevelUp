@@ -160,6 +160,7 @@ export class GoalsComponent implements OnInit {
     this.kpiService.getAssignedKpiList(user_id).subscribe(
       resp => {
         this.userskpiList = resp['data'];
+        console.log('kpi',this.userskpiList);
         
         
       },
