@@ -35,6 +35,20 @@ export class TargetService {
         catchError(this.errorHandl));
   }
 
+  //update target
+
+  updateTarget(data: any){
+
+    return this.http.post<any>(this.baseUrl + 'levelup/api/v1/target/updateTarget' , JSON.stringify(data), {
+
+    })
+      .pipe(
+      tap(data => console.log('authToken' + JSON.stringify(data))),
+      // tap(),// 
+
+        catchError(this.errorHandl));
+  }
+
   // //get single target details
   
    getTargetDetails(targetId: any): Observable<any> {

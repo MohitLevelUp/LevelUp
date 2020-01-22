@@ -36,7 +36,8 @@ export class UserProfileComponent implements OnInit {
     );
 
     //get user's target list
-    this.targetService.getUsersTargetList().subscribe(
+    
+    this.targetService.getUsersTargetList(userID).subscribe(
       resp => {
         this.targetList = resp['data'];
         console.log(this.targetList);

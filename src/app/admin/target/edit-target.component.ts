@@ -23,7 +23,7 @@ export class EditTargetComponent implements OnInit {
 
   targetDetails: any;
   targetId: any;
-  kpiId: any;
+  selectedKpi: any;
   teams_target: any;
   users_target: any;
   target_period: any;
@@ -31,18 +31,53 @@ export class EditTargetComponent implements OnInit {
   constructor(private targetService: TargetService,private route: ActivatedRoute,
    private kpiService: KpiService, private userService: UserService,
     private router: Router) { }
+
+
+  // update target
+  updateTarget(form: NgForm) {
+    console.log(form.value);
+
+    this.targetService.updateTarget(form.value).subscribe(
+      res => {
+       if(res['status_code'] == 200){
+         this.router.navigate(['/goals']);
+        }
+         
+      },
+      error => this.errorMessage = <any>error
+    );
+  }
+
   
   getTargetDetails(targetId){
     this.targetService.getTargetDetails(targetId).subscribe(
       res => {
         console.log(res);
         if(res.status_code == '200'){
-         this.targetDetails = res['data'];
-         this.kpiId            = this.targetDetails['kpi_id'];
+         this.targetDetails    = res['data'];
+         this.selectedKpi      = this.targetDetails['kpi_id'];
          this.targetId         = this.targetDetails['id'];
+         console.log(this.targetId);
          this.teams_target     = this.targetDetails['teams_target']; 
          this.users_target     = this.targetDetails['users_target'];
          this.target_period    = this.targetDetails['target_period'];
+
+         if(this.targetDetails['user_id'] !=null && this.targetDetails['user_id'] !=''){
+           this.selectedUsers = [
+          { id: this.targetDetails['user_id'], display_name: this.targetDetails['display_name'] },
+          ];
+         }
+         
+
+        if(this.targetDetails['team_id'] != null && this.targetDetails['team_id'] != ''){
+          this.selectedTeams = [
+          { id: this.targetDetails['team_id'], display_name: this.targetDetails['team_name'] },
+         ];
+
+        }
+
+        
+
        }
           
       },
@@ -50,6 +85,8 @@ export class EditTargetComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
   }
+
+
   
 
   ngOnInit() {
@@ -116,10 +153,10 @@ export class EditTargetComponent implements OnInit {
    
 
   onItemSelect(item: any) {
-    console.log(item);
+    
   }
   onSelectAll(items: any) {
-    console.log(items);
+    
   }
 
 }

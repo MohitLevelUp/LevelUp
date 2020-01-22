@@ -108,10 +108,10 @@ export class TargetComponent implements OnInit {
   }
 
   onItemSelect(item: any) {
-    console.log(item);
+   
   }
   onSelectAll(items: any) {
-    console.log(items);
+    
   }
 
 }

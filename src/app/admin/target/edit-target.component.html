@@ -8,17 +8,19 @@
             <div class="box-1">
 
             <form #form="ngForm" ngNativeValidate (submit)="updateTarget(form)">
+              <input type="hidden" name="targetID"  #targetID="ngModel" [(ngModel)]="targetId">
               <div class="user-edit-form set_target_warp">
                 <div class="form-warp">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group form-control-wrap">
+
                         <label class="form-control-label" for="">KPI</label>
-                        <select class="form-control" name="kpiId" #kpiId="ngModel" [(ngModel)]="form.kpiId">
-            			<option *ngFor='let kpi of kpiList; let i = index' value="{{kpi.id}}">{{kpi.name}}
-            			</option>
+                        <select class="form-control" name="kpiId" #kpiId="ngModel" [ngModel]="selectedKpi">
+                    			<option *ngFor='let kpi of kpiList; let i = index' value="{{kpi.id}}">{{kpi.name}}
+                    			</option>
             						
-            			</select>
+            			      </select>
                       </div>
                     </div>
                     <div class="col-md-6">

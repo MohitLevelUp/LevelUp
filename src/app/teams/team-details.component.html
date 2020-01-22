@@ -1,6 +1,6 @@
 <div class="main-wrap" *ngIf="teamInfo">
 	<ng-container *ngFor='let team of teamInfo; let i = index'>
-	<section class="team_info_warp team_banner_bg {{team.slug}}" >
+	<section class="team_info_warp team_banner_bg {{team.slug}} team_banner " >
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
@@ -41,9 +41,9 @@
 						<a href="javascript:void(0);" class="">
 							<div class="leaderCard">
 								<div class="leaderBackdrop card_grd {{users.slug}} card_bg_grd">
-									<div class="trophy_wrap">
+									<!-- <div class="trophy_wrap">
 										<div class="leader_trophy orange"></div>
-									</div>
+									</div> -->
 									<div class="imageContainer"> 
 										<img class="img-fluid" src="{{ iconUrl }}profile_images/{{ users['profile_image_name'] }}">
 									</div>
