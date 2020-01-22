@@ -14,7 +14,7 @@ export class TeamDetailsComponent implements OnInit {
   userList:any;
   errorMessage: any;
 
-  teamInfo: Array<{ teamName: string, teamLogo: string, managerName: string }> = [];
+  teamInfo: Array<{ teamName: string, teamLogo: string, managerName: string, slug: string }> = [];
 
   constructor(private userService: UserService,private router: Router,
   	private route: ActivatedRoute,) { }
@@ -29,11 +29,12 @@ export class TeamDetailsComponent implements OnInit {
       resp => {
       	if(resp.status_code == 200){
       		this.userList = resp['data']; 
+          console.log(this.userList);
       		
 
         for (let i = 0; i < this.userList.length; i++) {
         	if(this.userList[i].role_type == 2)
-        	this.teamInfo.push({ 'teamName': this.userList[i].team_name, 'teamLogo': this.userList[i].team_logo, 'managerName': this.userList[i].display_name, });
+        	this.teamInfo.push({ 'teamName': this.userList[i].team_name, 'teamLogo': this.userList[i].team_logo, 'managerName': this.userList[i].display_name, 'slug':this.userList[i].slug });
         }
 
 

@@ -1,9 +1,10 @@
-<div class="main-wrap">
-	<section class="team_info_warp team_banner_bg desk_demons" *ngIf="teamInfo">
+<div class="main-wrap" *ngIf="teamInfo">
+	<ng-container *ngFor='let team of teamInfo; let i = index'>
+	<section class="team_info_warp team_banner_bg {{team.slug}}" >
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
-					<div class="row" *ngFor='let team of teamInfo; let i = index'>
+					<div class="row" >
 						<div class="col-md-4">
 							<div class="team_logo">
 								<img class="img-fluid" src="{{ iconUrl }}team_icon/{{ team.teamLogo }}">
@@ -28,6 +29,7 @@
  </div>
 </div>
 </section>
+</ng-container>
 <section class="team_player_info" *ngIf="userList">
 	<div class="container-fluid">
 		<div class="row">
@@ -36,9 +38,9 @@
 
 
 					<li class="flex-grid-item" *ngFor='let users of userList; let i = index'>
-						<a href="#" class="">
+						<a href="javascript:void(0);" class="">
 							<div class="leaderCard">
-								<div class="leaderBackdrop card_grd">
+								<div class="leaderBackdrop card_grd {{users.slug}} card_bg_grd">
 									<div class="trophy_wrap">
 										<div class="leader_trophy orange"></div>
 									</div>
@@ -51,8 +53,8 @@
 											<div class="stat-container"> 
 												<span class="perform_digits">
 													<ul>
-														<li><span>50</span> <span>Submissions</span></li>
-														<li><span>33</span> <span>Joinings</span></li>
+														<li><span>{{users.total_submissions}}</span> <span>Submissions</span></li>
+														<li><span>{{users.total_joining}}</span> <span>Joinings</span></li>
 													</ul>
 												</span> 
 												<span class="statLabel">View Profile</span> 

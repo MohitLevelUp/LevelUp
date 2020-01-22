@@ -46,11 +46,16 @@ export class TargetService {
   }
 
   // GET user and his/her team assign target List
-  getUsersTargetList(): Observable<any> {
-   const helper         = new JwtHelperService();
-   const authToken      = localStorage.getItem('authToken');
-   const decodedToken   = helper.decodeToken(authToken);
-   var userID           = decodedToken['user_id'];
+  getUsersTargetList(user_id:any): Observable<any> {
+    if(user_id == ''){
+      const helper         = new JwtHelperService();
+      const authToken      = localStorage.getItem('authToken');
+      const decodedToken   = helper.decodeToken(authToken);
+      var userID           = decodedToken['user_id']; 
+    }else{
+      userID = user_id;
+    }
+   
 
     return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/usersTargetList/' + userID)
     .pipe(

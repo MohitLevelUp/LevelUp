@@ -93,17 +93,14 @@ export class GoalsComponent implements OnInit {
   kpiFilter(formfilter: NgForm) {
 
     var user_id = formfilter.value.userId;
-    
-    this.kpiService.getAssignedKpiList(user_id).subscribe(
-      resp => {
-        $("#filter_model").modal('hide');
-        this.userskpiList = resp['data'];
-        
-        
-      },
-      
-      error => this.errorMessage = <any>error
-    );
+   
+    this.assignedKpiList(user_id);
+
+    $("#filter_model").modal('hide');
+
+    this.usersTargetList(user_id);
+
+
     formfilter.resetForm();
   }
 
@@ -142,7 +139,8 @@ export class GoalsComponent implements OnInit {
             message: this.successMessage,
           });
            // getting all kpi's list
-           this.assignedKpiList();
+           var user_id ='';
+           this.assignedKpiList(user_id);
         }else{
              this.errorMessage = resp.message;
              this.notifier.show({
@@ -157,15 +155,14 @@ export class GoalsComponent implements OnInit {
  }
 
   //user kpi list
-  assignedKpiList(){
+  assignedKpiList(user_id:any){
     //get assigned kpi list
-    var user_id = '';
+
     this.kpiService.getAssignedKpiList(user_id).subscribe(
       resp => {
         this.userskpiList = resp['data'];
-        console.log('kpi',this.userskpiList);
-        
-        
+        console.log(this.userskpiList);
+ 
       },
       
       error => this.errorMessage = <any>error
@@ -188,11 +185,12 @@ export class GoalsComponent implements OnInit {
 
   // Target functions start
 
-  usersTargetList(){
+  usersTargetList(user_id:any){
     //get user's target list
-    this.targetService.getUsersTargetList().subscribe(
+
+    this.targetService.getUsersTargetList(user_id).subscribe(
       resp => {
-        this.targetList = resp['data']; 
+        this.targetList = resp['data'];
         
       },
       
@@ -221,15 +219,15 @@ export class GoalsComponent implements OnInit {
 
 
   ngOnInit() {
-
+    var user_id = '';
     // getting all kpi's list
     this.createdkpiList();
     
     //getting user's kpi list
-    this.assignedKpiList();
+    this.assignedKpiList(user_id);
 
     //getting user's target list
-    this.usersTargetList();
+    this.usersTargetList(user_id);
 
 
     //get all target list
@@ -248,7 +246,6 @@ export class GoalsComponent implements OnInit {
       this.kpiService.getTeamKpiList(team_id).subscribe(
       resp => {
         this.teamskpiList = resp['data'];
-        console.log('tmkpi',this.teamskpiList);
       },
       
       error => this.errorMessage = <any>error
@@ -261,7 +258,6 @@ export class GoalsComponent implements OnInit {
       this.targetService.getTeamTargetList(team_id).subscribe(
       resp => {
         this.teamsTargetList = resp['data'];
-        console.log('tmTr',this.teamsTargetList);
       },
       
       error => this.errorMessage = <any>error
@@ -306,7 +302,6 @@ export class GoalsComponent implements OnInit {
     this.userService.userList().subscribe(
       resp => {
         this.usersInfo = resp['data']; 
-       // console.log('user',this.usersInfo);
 
       },
       
@@ -317,7 +312,6 @@ export class GoalsComponent implements OnInit {
     this.userService.teamList().subscribe(
       resp => {
         this.teamInfo = resp['data']; 
-        //console.log(this.teamInfo);
       },
       
       error => this.errorMessage = <any>error
@@ -330,7 +324,6 @@ export class GoalsComponent implements OnInit {
   	this.kpiService.getPeriodList().subscribe(
       resp => {
         this.periodList = resp['data'];
-        //console.log('pr', this.periodList);
       },
       
       error => this.errorMessage = <any>error

@@ -1,10 +1,10 @@
     <app-sidebar></app-sidebar> 
-    <div class="das_col main-content" id="main-content">
+    <div class="das_col main-content" id="main-content"> 
       <section class="wrapper main-wrapper">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<section class="goals_warp">
+					<section class="goals_warp"> 
 						<div class="row">
 		                  <div class="col-md-12">
 		                    <div class="title"><i class="las la-bullseye"></i>  Goals</div>
@@ -65,8 +65,11 @@
 							</div>
 						</div>
 						<!--=============================MAIN DASHBOARD=============================-->
-						<div class="box-1" id="dashboard-page" *ngIf="userskpiList">
-							<h1>My KPI</h1>
+
+						<div class="title title_kpi">
+							<h3>My KPI</h3>
+						</div>
+						<div class="" id="dashboard-page" *ngIf="userskpiList">							
 							<div class="dashboard-tiles">
 
                               <ng-container >
@@ -157,9 +160,11 @@
 
 							</div>
 						</div>
+						<div class="title title_kpi">							
+							<h3>Team's KPI</h3>
+						</div>
 
-						<div class="box-1" id="dashboard-page" *ngIf="teamskpiList">
-							<h1>Team's KPI</h1>
+						<div class="" id="dashboard-page" *ngIf="teamskpiList">							
 							<div class="dashboard-tiles">
 
                               <ng-container >
@@ -192,8 +197,8 @@
 								</div>
                                </ng-container>
 
-                               <ng-container *ngIf="targetList">
-								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-primary" *ngFor='let target of targetList; let i = index'>
+                               <ng-container *ngIf="teamsTargetList">
+								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-primary" *ngFor='let target of teamsTargetList; let i = index'>
 									<div class="tile-header">
 										<div class="dropdown">
 											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
