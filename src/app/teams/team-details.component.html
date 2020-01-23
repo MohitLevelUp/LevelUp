@@ -30,7 +30,7 @@
 </div>
 </section>
 </ng-container>
-<section class="team_player_info" *ngIf="userList">
+<section class="team_player_info" *ngIf="userList; else loadingImg">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -49,7 +49,7 @@
 									</div>
 									<div class="leaderStat">
 										<div class="stat-content">
-											<h1>{{users.display_name}}</h1>
+											<h1>{{users.display_name | titlecase}}</h1> 
 											<div class="stat-container"> 
 												<span class="perform_digits">
 													<ul>
@@ -71,4 +71,12 @@
 		</div>
 	</div>
 </section>
+<ng-template #loadingImg>
+  <section id="main-content">
+    <section class="">
+      <img src="./assets/images/loader.gif" style="margin-left:30%; margin-top:20%; margin-bottom: 100px;" />
+    </section>
+  </section>
+</ng-template>
 </div>
+

@@ -97,9 +97,22 @@ export class TargetService {
     )
   }
 
-// get last month total submission 
-  lastMonthtotalSubmission(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/lastMonthtotalSubmission')
+// get users submissions 
+  currentMonthtotalSubmission(month_sd:any,month_ed:any): Observable<any> {
+    // get current Month submission
+
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/usersSubmission/' + month_sd + '/' + month_ed)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+  // get last year users submissions 
+  lastYeartotalSubmission(year_sd:any,year_ed:any): Observable<any> {
+    // get current Month submission
+
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/lastYearSubmission/' + year_sd + '/' + year_ed)
     .pipe(
       retry(1),
      catchError(this.errorHandl)

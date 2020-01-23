@@ -204,81 +204,22 @@ $(function () {
 
 //VIDEO PLAY////////////////////////////////////
 
-$(document).ready(function(){
-	// $(document).on('click', '.ameer', function() { 
-   	
- //   	var id    = $(this).closest('.video_card').find('.play-button').attr('rel');
- //   	var videoSrc    = $(this).closest('.video_card').find('.buttons').attr('link');
- //   	 $('.video_modal').attr('id',id);
- //   	 // $('.video_modal source').attr('src','./assets/video/annual-party-2018.mp4');
- //   	$('#' + id).modal('show');
- //   	$('video').trigger('play');
+$(document).on('click', '.ameer', function() { 
+	
+   	var id          = $(this).closest('.video_card').find('.play-button').attr('rel');
+   	var videoSrc    = $(this).closest('.video_card').find('.buttons').attr('link');
 
- //   });
-   $(document).on('click', '#video_stop', function() { 
-	$('video').trigger('pause');
-	});
-
-   $(document).on('click', '.quick_result_top_team', function() { 
-	$(".team_high_light").toggleClass("opacity_1");
-	});
+   	$('.video_modal').attr('id',id);
+   	$('.video_modal iframe').attr('src','https://www.youtube.com/embed/'+videoSrc + '?autoplay=1');
+   	$('#' + id).modal('show');
+   	$('.video_modal iframe').trigger('play');
 
 });
 
+$(document).on('click', '#video_stop', function() { 
+	$('.video_modal iframe').attr('src','');
+});
 
-// 	// pass the YouTube video ID into the iframe template on click/tap
-// 	$('a.video-thumb').click(function () {
-		
-// 		// Grab the video ID from the element clicked
-// 		var id = $(this).attr('data-youtube-id');
-
-	
-// 		var autoplay = '?autoplay=1';
-		
-// 		// Don't show the 'Related Videos' when the video ends
-// 		var related_no = '&rel=0';
-		
-// 		// String the ID and param variables together
-// 		var src = '//www.youtube.com/embed/'+id+autoplay+related_no;
-		
-// 		$("#youtube").attr('src', src);
-// 		return false;
-	
-// 	});
-
-
-// 	/* Modal View
-// 	-------------------------------------------------------------------------------*/
-// 	function toggle_video_modal() {
-	    
-// 	    // Open the Video Modal
-// 	    $(".js-trigger-modal").on("click", function(event){
-// 	        event.preventDefault();
-// 	        $("body").addClass("show-video-modal");
-// 	    });
-
-// 	    // Close and Reset the Video Modal
-// 	    $('body').on('click', '.close-video-modal, .video-modal .overlay', function(event) {
-// 	        event.preventDefault();
-	        
-// 	        $("body").removeClass("show-video-modal");
-			
-	
-// 			$("#youtube").attr('src', '');
-// 	    });
-// 	}
-// 	toggle_video_modal();
-
-    
-    
-// $(".close-video-modal").click(function(){
-//   $("#myVid")[0].pause();
-// });
-   
-    
-// $(".js-trigger-modal").click(function(){
-//   $("#myVid")[0].play();
-// });
    
     
 

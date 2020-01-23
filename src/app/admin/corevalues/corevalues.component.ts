@@ -8,7 +8,7 @@ import { NotifierService } from "angular-notifier";
 
 @Component({
   selector: 'app-corevalues',
-  templateUrl: './corevalues.component.html',
+  templateUrl: './corevalues.component.html', 
   styleUrls: ['./corevalues.component.css']
 })
 export class CorevaluesComponent implements OnInit {

@@ -1,5 +1,5 @@
-    <app-sidebar></app-sidebar> 
-    <div class="das_col main-content" id="main-content"> 
+<app-sidebar></app-sidebar> 
+    <div class="das_col main-content" id="main-content" *ngIf="usersInfo; else loadingData"> 
       <section class="wrapper main-wrapper">
 		<div class="container-fluid">
 			<div class="row">
@@ -67,19 +67,24 @@
 						<!--=============================MAIN DASHBOARD=============================-->
 
 						<div class="title title_kpi">
-							<h3>My KPI</h3>
+
+							<h3 *ngIf="filterUser; else loginUser">KPI : {{filterUser}}</h3>
+							<ng-template #loginUser>
+							  <h3>My KPI</h3>
+						    </ng-template>
+							
 						</div>
-						<div class="" id="dashboard-page" *ngIf="userskpiList">							
+						<div class="" id="dashboard-page" *ngIf="userskpiList; else emptyKpiList">							
 							<div class="dashboard-tiles">
 
                               <ng-container >
 								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-danger" *ngFor='let kpi of userskpiList; let i = index'>
 									<div class="tile-header">
-										<div class="dropdown">
+										<div class="dropdown" *ngIf='user.role_type == 2 || user.role_type == 3'>
 											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 											</a>
 											<div class="dropdown-menu"> <a class="dropdown-item" [routerLink]="['/edit-kpi', kpi.kpi_id]">Edit KPI</a>
-												<a class="dropdown-item" href="#">Set Target for this KPI</a>
+												<!-- <a class="dropdown-item" (click)="targetForThisKpi($event)" id="{{ kpi.kpi_id }}">Set Target for this KPI</a> -->
 												<a class="dropdown-item" (click)="inActiveKpi($event)" id="{{ kpi.kpi_id }}">Remove KPI</a>
 
 											</div>
@@ -160,6 +165,10 @@
 
 							</div>
 						</div>
+                        <ng-template #emptyKpiList>
+							  <h1>Data not available</h1>
+						</ng-template>
+
 						<div class="title title_kpi">							
 							<h3>Team's KPI</h3>
 						</div>
@@ -200,7 +209,7 @@
                                <ng-container *ngIf="teamsTargetList">
 								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-primary" *ngFor='let target of teamsTargetList; let i = index'>
 									<div class="tile-header">
-										<div class="dropdown">
+										<!-- <div class="dropdown">
 											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 											</a>
 											<div class="dropdown-menu"> 
@@ -209,7 +218,7 @@
 												<a class="dropdown-item" (click)="inActiveTarget($event)" id="{{ target.target_id }}">Remove Target</a>
 
 											</div>
-										</div>
+										</div> -->
 										<div class="tile-name">{{target.kpi_name}}</div>
 										<div class="tile-type">Target</div>
 									</div>
@@ -368,9 +377,9 @@
 														<option selected="">Select a team</option>
 														<option value="">Saxon HR team</option>
 													</select> -->
-													<select class="custom-select" #userId="ngModel" name="userId" [ngModel]="selectedUsers">
+													<select class="custom-select" #userId="ngModel" name="userId" [ngModel]="selectedUser">
 															<option value="">Select User</option>
-															<option *ngFor="let user of usersInfo" value="{{user.id}}">{{user.display_name}}</option>
+															<option *ngFor="let user of usersInfo" value="{{user.id}}">{{user.display_name | titlecase}}</option>
 															
 														</select>
 														<!-- <select class="custom-select" #period="ngModel" name="period" [(ngModel)]="selectedPeriod">
@@ -403,4 +412,11 @@
 </div>
 </section>
 </div>
+<ng-template #loadingData>
+  <section id="main-content">
+    <section class="">
+      <img src="./assets/images/loader.gif" style="margin-left:30%; margin-top:20%; margin-bottom: 100px;" />
+    </section>
+  </section>
+</ng-template>
 <notifier-container></notifier-container>
