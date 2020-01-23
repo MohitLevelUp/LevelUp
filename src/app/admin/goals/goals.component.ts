@@ -13,7 +13,9 @@ declare var $: any;
 })
 export class GoalsComponent implements OnInit { 
 
-  user = JSON.parse(localStorage.getItem('user'));
+  user   = JSON.parse(localStorage.getItem('user'));
+  teamId = this.user['team_id'] ;
+
 
   private readonly notifier: NotifierService;
 
@@ -22,6 +24,7 @@ export class GoalsComponent implements OnInit {
   }
 
   selectedPeriod='';
+  selectedUser = '';
   
   kpiList:any;
   userskpiList:any;
@@ -38,6 +41,8 @@ export class GoalsComponent implements OnInit {
 
   targetList:any;
   allTargetList:any;
+
+  filterUser:any;
 
   //for drop down
   dropdownList  = [];
@@ -93,15 +98,34 @@ export class GoalsComponent implements OnInit {
   kpiFilter(formfilter: NgForm) {
 
     var user_id = formfilter.value.userId;
+
+    
+    // call user info function
+    this.getUserDetails(user_id);
    
+   // call assigned kpi function
     this.assignedKpiList(user_id);
 
-    $("#filter_model").modal('hide');
+    // call users target list function
 
     this.usersTargetList(user_id);
 
+    // hide popup model
+    $("#filter_model").modal('hide');
 
-    formfilter.resetForm();
+    
+  }
+
+// get user profile
+  getUserDetails(user_id:any){
+    console.log(user_id);
+    this.userService.getUser(user_id).subscribe(
+      res => {
+        this.filterUser = res['data'].display_name;
+      },
+      
+      error => this.errorMessage = <any>error
+    );
   }
 
   //get kpi details by id
@@ -122,6 +146,8 @@ export class GoalsComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
  }
+
+
 
  //inactive kpi by id
  inActiveKpi(event){
@@ -160,8 +186,14 @@ export class GoalsComponent implements OnInit {
 
     this.kpiService.getAssignedKpiList(user_id).subscribe(
       resp => {
-        this.userskpiList = resp['data'];
-        console.log(this.userskpiList);
+        if(resp.status_code == 200){
+          this.userskpiList = resp['data'];
+          
+        }else{
+          this.userskpiList = '';
+        }
+
+        
  
       },
       
@@ -219,6 +251,7 @@ export class GoalsComponent implements OnInit {
 
 
   ngOnInit() {
+
     var user_id = '';
     // getting all kpi's list
     this.createdkpiList();
@@ -298,8 +331,9 @@ export class GoalsComponent implements OnInit {
     };
 
    
-  	//get all user's details
-    this.userService.userList().subscribe(
+  	//get all user's details of team
+
+    this.userService.teamsUserList(this.teamId).subscribe(
       resp => {
         this.usersInfo = resp['data']; 
 

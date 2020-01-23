@@ -27,6 +27,7 @@
     "datatables.net": "^1.10.20",
     "datatables.net-dt": "^1.10.20",
     "jquery": "^3.4.1",
+    "moment": "^2.24.0",
     "ng-angular8-datatable": "^0.9.11",
     "ng-multiselect-dropdown": "^0.2.10",
     "ng2-validation": "^4.2.0",

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { NgForm } from '@angular/forms';
 import { CoreValueService } from 'src/app/_services/core-value.service';
@@ -150,7 +150,7 @@ export class CoreValueComponent implements OnInit {
        
         if(resp['status_code'] == 200){
            this.givenCoreValue = resp['data'];
-           console.log('given',this.givenCoreValue);
+
         }else{
           this.givenCoreValue = "";
         }
@@ -179,7 +179,10 @@ export class CoreValueComponent implements OnInit {
             }else{
               this.givenCoreValue = "";
               this.remainingCoreValueUserList = this.usersInfo;
+
             }
+
+
           },
           
           error => this.errorMessage = <any>error

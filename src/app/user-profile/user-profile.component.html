@@ -5,10 +5,10 @@
 			
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-12" *ngIf="userInfo">
+					<div class="col-md-12" *ngIf="userInfo; else loadingImg">
 						<div class="row">
 		                  <div class="col-md-12">
-		                    <div class="title"><i class="las la-info-circle"></i> Basic Info</div>
+		                    <div class="title"><i class="las la-info-circle"></i> Basic Info</div> 
 		                  </div>
 		                </div>
 						<div class="box-1">
@@ -181,6 +181,14 @@
 							</div>
 						</div>
 					</div>
+
+					<ng-template #loadingImg>
+					  <section id="main-content">
+					    <section class="">
+					      <img src="./assets/images/loader.gif" style="margin-left:200px; margin-top:200px; margin-bottom: 100px;" />
+					    </section>
+					  </section>
+					</ng-template>
 				</div>
 			</div>
 		</section>
