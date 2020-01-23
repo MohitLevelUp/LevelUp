@@ -4012,41 +4012,60 @@ background: linear-gradient(55deg, #2d72b8 65%, #0d56a4 42%);
 }
 .spartans.card_bg_grd {
     background: linear-gradient(-55deg, #fdc944 65%, #ce9400 42%);
-background: linear-gradient(55deg, #fdc944 65%, #ce9400 42%);
+    background: linear-gradient(55deg, #fdc944 65%, #ce9400 42%);
 }
 .team_banner{   
     /*background-image: url(../images/team-bg/desk_demons.jpg);*/
 }
-/* =======================*/
-.logo_{
-    background-image: url(../images/team-logo/Bengals.png); 
-}
 
-.bg_ {
+/* DALLAS STARS=======================*/
+.dallas_stars{
     color: white;
-    background: linear-gradient(136deg, #d74f03, #d46324);
+    background: linear-gradient(136deg, #1a6643, #09341f);
+}
+.dallas_stars.card_bg_grd {
+    background: linear-gradient(-55deg, #1a6643 65%, #09341f 42%);
+    background: linear-gradient(55deg, #1a6643 65%, #09341f 42%);
+}
+.team_banner{   
+    /*background-image: url(../images/team-bg/desk_demons.jpg);*/
 }
 
-/* colors by clrs.cc*/
-flex-grid-item:nth-child(1)  {background-color: #0074D9; color: white; background: linear-gradient(136deg, #004c93, #0358a7);}
-flex-grid-item:nth-child(2)  {background-color: #001f3f; color: white;}
-flex-grid-item:nth-child(3)  {background-color: #7FDBFF;}
-flex-grid-item:nth-child(4)  {background-color: #39CCCC;}
-flex-grid-item:nth-child(5)  {background-color: #3D9970; color: white;}
-flex-grid-item:nth-child(6)  {background-color: #2ECC40;}
-flex-grid-item:nth-child(7)  {background-color: #01FF70;}
-flex-grid-item:nth-child(8)  {background-color: #FFDC00;}
-flex-grid-item:nth-child(9)  {background-color: #FF851B;}
-flex-grid-item:nth-child(10) {background-color: #FF4136; color: white;}
-flex-grid-item:nth-child(11) {background-color: #85144b; color: white;}
-flex-grid-item:nth-child(12) {background-color: #F012BE; color: white;}
-flex-grid-item:nth-child(13) {background-color: #B10DC9; color: white;}
-flex-grid-item:nth-child(14) {background-color: #111; color: white;}
-flex-grid-item:nth-child(15) {background-color: #aaa;}
-flex-grid-item:nth-child(16) {background-color: #ddd;}
+/* The Intangibles=======================*/
+.the_intangibles{
+    color: white;
+    background: linear-gradient(136deg, #e72427, #9e0c0e);
+}
+.the_intangibles.card_bg_grd {
+    background: linear-gradient(-55deg, #e72427 65%, #9e0c0e 42%);
+    background: linear-gradient(55deg, #e72427 65%, #9e0c0e 42%);
+}
+.team_banner{   
+    /*background-image: url(../images/team-bg/desk_demons.jpg);*/
+}
+
+/*the_cobra_kai_closers THE COBRA KAI CLOSERS=======================*/
+
+.the_cobra_kai_closers {
+    color: white;
+    background: linear-gradient(136deg, #383838, #1d1d1d);
+}
+.the_cobra_kai_closers.card_bg_grd {
+    background: linear-gradient(-55deg, #383838 65%, #1d1d1d 42%);
+    background: linear-gradient(55deg, #383838 65%, #1d1d1d 42%);
+}
+.team_banner{   
+    /*background-image: url(../images/team-bg/desk_demons.jpg);*/
+}
 
 
-/*TEAM BANNER=======================*/
+
+
+
+
+
+
+
 
 .team_banner_bg{
     background-repeat: no-repeat;
