@@ -220,6 +220,12 @@ $(document).on('click', '#video_stop', function() {
 	$('.video_modal iframe').attr('src','');
 });
 
+// for trophy click
+
+$(document).on('click', '.quick_result_top_team', function() { 
+  $(".team_high_light").toggleClass("opacity_1");
+  });
+
    
     
 
