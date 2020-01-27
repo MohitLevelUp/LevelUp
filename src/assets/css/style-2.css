@@ -3745,13 +3745,16 @@ content:'\f1cb';
 .team_card_wins span{
     margin:5px;
 }
-.team_card_link{
+.team_card_link {
     display: inline-block;
     color: #fff;
-    padding: 5px 10px;
+    padding: 6px 16px;
     border-radius: 21px;
-    font-size: 20px;
+    font-size: 17px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    font-family: 'Quicksand-bold';
 }
+
 
 
 
@@ -3828,7 +3831,7 @@ background: linear-gradient(55deg, #d80000 65%, #8e0404 42%);
 background: linear-gradient(55deg, #2eb2b4 65%, #2b964d 42%);
 }
 .team_banner{   
-    /*background-image: url(../images/team-bg/desk_demons.jpg);*/
+    background-image: url(../images/team-bg/abhyudaya.jpg);
 }
 
 /*Creative Hyderabadi=======================*/
@@ -3924,7 +3927,7 @@ background: linear-gradient(55deg, #b50400 65%, #ec1b23 42%);
 background: linear-gradient(55deg, #4e9dc6 65%, #1b4a63 42%);
 }
 .team_banner{   
-    /*background-image: url(../images/team-bg/desk_demons.jpg);*/
+    background-image: url(../images/team-bg/quest_pirates.jpg);
 }
 /* The Mavericks=======================*/
 
