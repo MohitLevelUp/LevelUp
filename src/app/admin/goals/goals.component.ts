@@ -13,7 +13,7 @@ declare var $: any;
 })
 export class GoalsComponent implements OnInit { 
 
-  user   = JSON.parse(localStorage.getItem('user'));
+  user   = JSON.parse(localStorage.getItem('user')); 
   teamId = this.user['team_id'] ;
 
 

@@ -76,9 +76,9 @@ export class CoreValueComponent implements OnInit {
     form.resetForm();
   }
 
-  giveKudos(form: NgForm) {
+  giveKudos(kudosform: NgForm) {
 
-    this.coreValueService.giveKudos(form.value).subscribe(
+    this.coreValueService.giveKudos(kudosform.value).subscribe(
       (resp) => {
         if(resp['status_code'] == 200){
           this.successMessage = resp.message;
@@ -99,7 +99,7 @@ export class CoreValueComponent implements OnInit {
       }
 
     );
-    form.resetForm();
+    kudosform.resetForm();
   }
 
   // getting all core Value's list

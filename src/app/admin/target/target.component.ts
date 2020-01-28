@@ -12,6 +12,7 @@ import { NotifierService } from "angular-notifier";
   styleUrls: ['./target.component.css']
 })
 export class TargetComponent implements OnInit {
+  user   = JSON.parse(localStorage.getItem('user'));
 
   private readonly notifier: NotifierService;
 

@@ -8,6 +8,7 @@
             <div class="box-1">
 
             <form #form="ngForm" ngNativeValidate (submit)="saveTarget(form)">
+              <input type="hidden" name="assignBy" #assignBy="ngModel" [ngModel]="user.user_id">
               <div class="user-edit-form set_target_warp">
                 <div class="form-warp">
                   <div class="row">
