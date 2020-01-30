@@ -9,14 +9,14 @@
           $('.logo-area').addClass('logo-icon');
           $('.main-content').addClass('sidebar_shift');
           $('.menu-title').css("display", "none");
-  } else {
-    $('.page-sidebar').addClass('expandit');
-    $('.page-sidebar').removeClass('collapseit');
-    $('.profile-info').removeClass('short-profile');
-      $('.logo-area').removeClass('logo-icon');
-      $('.main-content').removeClass('sidebar_shift');
-      $('.menu-title').css("display", "inline-block");
-  }
+      } else {
+        $('.page-sidebar').addClass('expandit');
+        $('.page-sidebar').removeClass('collapseit');
+        $('.profile-info').removeClass('short-profile');
+          $('.logo-area').removeClass('logo-icon');
+          $('.main-content').removeClass('sidebar_shift');
+          $('.menu-title').css("display", "inline-block");
+      }
 // });
 
 });
@@ -226,7 +226,17 @@ $(document).on('click', '.quick_result_top_team', function() {
   $(".team_high_light").toggleClass("opacity_1");
   });
 
-   
+
+// for live dashboard
+$(document).on('click', '.cog_btn', function() { 
+    $('#night_slid').toggleClass("night_slid_wrap");
+});
+
+    
+$(document).on('click', '.toggle_btn', function() {         
+    $('#livedashboards_body').toggleClass("body_bg");
+    $('.dashboarditem').toggleClass("dashboarditem-2");
+}); 
     
 
 

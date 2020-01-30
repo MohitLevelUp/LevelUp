@@ -21,6 +21,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { TeamsComponent } from './teams/teams.component';
 import { EditGamificationRulesComponent } from './admin/gamification-rules/edit-gamification-rules.component';
 import { TeamDetailsComponent } from './teams/team-details.component';
+import { LiveDashboardComponent } from './live-dashboard/live-dashboard.component';
 
 const routes: Routes = [
 
@@ -29,7 +30,7 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'teams', component: TeamsComponent },
   { path: 'team-details', component: TeamDetailsComponent },
-
+  { path: 'live-dashboard', component: LiveDashboardComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password/:user_id/:hash', component: ResetPasswordComponent },
   { path: '', component: HomeComponent },

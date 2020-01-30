@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
   lastYearTotalSubmissions : any;
   errorMessage: any;
 
+  submissionSum: any[] = [];
+
   constructor(private targetService: TargetService,) { }
 
   ngOnInit() {
@@ -35,8 +37,6 @@ export class HomeComponent implements OnInit {
       resp => {
         
          this.totalSubmissions = resp['data'];
-         console.log('sub',resp);
-        
 
       },
       
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
     var year_sd = '2019-01-01';
     var year_ed = '2019-12-31';
 
-    this.targetService.lastYeartotalSubmission(year_sd,year_ed).subscribe(
+    this.targetService.totalSubmission(year_sd,year_ed).subscribe(
       resp => {
         
          this.lastYearTotalSubmissions = resp['data'];
@@ -66,7 +66,6 @@ export class HomeComponent implements OnInit {
         this.monthJoinings = resp['data'];
         this.topThree = this.monthJoinings.sort((a, b) => b.total_joining - a.total_joining).slice(0,3)
 
-        console.log(this.topThree);
 
       },
       

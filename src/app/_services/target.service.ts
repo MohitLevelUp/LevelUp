@@ -109,10 +109,10 @@ export class TargetService {
   }
 
   // get last year users submissions 
-  lastYeartotalSubmission(year_sd:any,year_ed:any): Observable<any> {
+  totalSubmission(year_sd:any,year_ed:any): Observable<any> {
     // get current Month submission
 
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/lastYearSubmission/' + year_sd + '/' + year_ed)
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getSubmissionsList/' + year_sd + '/' + year_ed)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -123,13 +123,77 @@ export class TargetService {
 
   // get last month total joining 
   lastMonthTotalJoining(): Observable<any> {
+
     return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/lastMonthtotalJoining')
     .pipe(
       retry(1),
      catchError(this.errorHandl)
     )
   }
+
+  // get total job posting according to date
+  totalJobPosting(startDate:any,currentDate:any): Observable<any> {
+    
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/totalJobPosting/'+ startDate + '/' + currentDate)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+  // get total joining according to date
+  totalJoining(startDate:any,currentDate:any): Observable<any> {
+    
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/totalJoining/'+ startDate + '/' + currentDate)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
  
+  // get submissions total 
+
+  getSubmissionsTotal(startDate:any,currentDate:any): Observable<any> {
+    
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getSubmissionsTotal/'+ startDate + '/' + currentDate)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+  // get job posting total 
+
+  getJobPostingTotal(startDate:any,currentDate:any): Observable<any> {
+    
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getJobPostingTotal/'+ startDate + '/' + currentDate)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+  // get joining total 
+
+  getJoiningTotal(startDate:any,currentDate:any): Observable<any> {
+    
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getJoiningTotal/'+ startDate + '/' + currentDate)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+  // get interview total 
+
+  getInterviewTotal(startDate:any,currentDate:any): Observable<any> {
+    
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getInterviewTotal/'+ startDate + '/' + currentDate)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
 
    // Error handling
   errorHandl(error) {
