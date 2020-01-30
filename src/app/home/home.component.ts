@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit {
   lastYearTotalSubmissions : any;
   errorMessage: any;
 
-  submissionSum: any[] = [];
+  // arr: Array<{ teamID: number, total: any }> = [];
+  // submissionSum: any = [];
 
   constructor(private targetService: TargetService,) { }
 
@@ -32,11 +33,25 @@ export class HomeComponent implements OnInit {
     var month_sd = moment(monthStartDay).format('YYYY-MM-DD');
     var month_ed = moment(monthEndDay).format('YYYY-MM-DD');
 
-
-    this.targetService.currentMonthtotalSubmission(month_sd,month_ed).subscribe(
+    var teamsFlag = 1;
+    var usersFlag = 0;
+    this.targetService.getSubmission(month_sd,month_ed,teamsFlag).subscribe(
       resp => {
         
          this.totalSubmissions = resp['data'];
+
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+
+    //get all user's current month joining
+    this.targetService.getJoining(month_sd,month_ed,teamsFlag).subscribe(
+      resp => {
+      
+        this.monthJoinings = resp['data'];
+        this.topThree      = this.monthJoinings.sort((a, b) => b.total_joining - a.total_joining).slice(0,3)
+
 
       },
       
@@ -48,29 +63,18 @@ export class HomeComponent implements OnInit {
     var year_sd = '2019-01-01';
     var year_ed = '2019-12-31';
 
-    this.targetService.totalSubmission(year_sd,year_ed).subscribe(
+    this.targetService.getSubmission(year_sd,year_ed,usersFlag).subscribe(
       resp => {
         
          this.lastYearTotalSubmissions = resp['data'];
-         this.lastYearToper = this.lastYearTotalSubmissions.sort((a, b) => b.total_submission - a.total_submission).slice(0,4)
+         this.lastYearToper            = this.lastYearTotalSubmissions.sort((a, b) => b.total_submission - a.total_submission).slice(0,4)
 
       },
       
       error => this.errorMessage = <any>error
     );
 
-    //get all user's last month joining
-    this.targetService.lastMonthTotalJoining().subscribe(
-      resp => {
-      
-        this.monthJoinings = resp['data'];
-        this.topThree = this.monthJoinings.sort((a, b) => b.total_joining - a.total_joining).slice(0,3)
-
-
-      },
-      
-      error => this.errorMessage = <any>error
-    );
+    
   }
 
 }

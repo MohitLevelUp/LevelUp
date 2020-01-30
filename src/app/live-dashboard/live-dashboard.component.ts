@@ -18,26 +18,50 @@ export class LiveDashboardComponent implements OnInit {
    userSubmissions: any;
    userJobPosting:any;
    userJoining: any;
+
+   teamsJobPosting: any;
+   teamJobPostingtopers:any;
+
    submissionstopers:any;
-   jobPostingtopers:any;
+   usersJobPostingtopers:any;
    joiningtopers:any;
    errorMessage: any;
 
-   startDate:any;
+   yearStartDate:any;
    currentDate:any;
+
+   weekStartDate:any;
+   weekEndDate:any;
+   weeklyTotalSubmissions:any;
+   weeklyTotalJoining:any;
+   weeklyTotalJobPosting:any;
+
+   tierOneTotalJoining:any;
+   directClientTotalJoining:any;
 
   constructor(private targetService: TargetService) { }
 
   ngOnInit() { 
+    var teamsFlag = 1;
+    var usersFlag = 0;
+    
+    var withoutAnyType   = '';
+    var tierOneType      = 1;
+    var directClientType = 2;
 
   	// get total submissions
-    var date         = new Date();
-    this.currentDate = moment(date).format('YYYY-MM-DD');
+    var date             = new Date();
+    this.currentDate     = moment(date).format('YYYY-MM-DD');
+    this.yearStartDate   = moment().startOf('year').format('YYYY-MM-DD');
 
-    this.startDate   = '2020-01-01';
+    var quarterStartDate = moment().startOf('quarter').format('YYYY-MM-DD');
+    var quarterEndDate   = moment().endOf('quarter').format('YYYY-MM-DD');
 
-    // call totalsubmission 
-    this.targetService.totalSubmission(this.startDate,this.currentDate).subscribe(
+
+
+
+    // call totalsubmission according to user
+    this.targetService.getSubmission(this.yearStartDate,this.currentDate,usersFlag).subscribe(
       resp => {
         
          this.userSubmissions = resp['data'];
@@ -48,13 +72,26 @@ export class LiveDashboardComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
 
-    // call total job posting
-    this.targetService.totalJobPosting(this.startDate,this.currentDate).subscribe(
+    // call teams job posting
+    this.targetService.getJobPosting(this.yearStartDate,this.currentDate,teamsFlag).subscribe(
+      resp => {
+        
+         this.teamsJobPosting = resp['data'];
+
+         this.teamJobPostingtopers = this.teamsJobPosting.sort((a, b) => b.total_job_posting - a.total_job_posting).slice(0,3)
+
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+
+    // call users job posting
+    this.targetService.getJobPosting(this.yearStartDate,this.currentDate,usersFlag).subscribe(
       resp => {
         
          this.userJobPosting = resp['data'];
 
-         this.jobPostingtopers = this.userJobPosting.sort((a, b) => b.total_job_posting - a.total_job_posting).slice(0,3)
+         this.usersJobPostingtopers = this.userJobPosting.sort((a, b) => b.total_job_posting - a.total_job_posting).slice(0,3)
 
       },
       
@@ -63,21 +100,24 @@ export class LiveDashboardComponent implements OnInit {
 
 
     // call totaljoining
-    this.targetService.totalJoining(this.startDate,this.currentDate).subscribe(
-      resp => {
+    // this.targetService.totalJoining(this.yearStartDate,this.currentDate).subscribe(
+    //   resp => {
         
-         this.userJoining = resp['data'];
-         this.joiningtopers = this.userJoining.sort((a, b) => b.total_joining - a.total_joining).slice(0,3)
+    //      this.userJoining = resp['data'];
+    //      console.log('joi',this.userJoining);
+    //      this.joiningtopers = this.userJoining.sort((a, b) => b.total_joining - a.total_joining).slice(0,3)
 
-      },
+    //   },
       
-      error => this.errorMessage = <any>error
-    );
+    //   error => this.errorMessage = <any>error
+    // );
 
     
+   // ***** START ***** getting data this year  *****// 
 
-    // get submission total
-    this.targetService.getSubmissionsTotal(this.startDate,this.currentDate).subscribe(
+
+    // get submission total for current year
+    this.targetService.getSubmissionsTotal(this.yearStartDate,this.currentDate).subscribe(
       resp => {
          
          this.totalSubmissions = resp['data'].total_submission;
@@ -87,8 +127,8 @@ export class LiveDashboardComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
 
-    // get job posting total
-    this.targetService.getJobPostingTotal(this.startDate,this.currentDate).subscribe(
+    // get job posting total for current year
+    this.targetService.getJobPostingTotal(this.yearStartDate,this.currentDate).subscribe(
       resp => {
          
          this.totalJobPosting = resp['data'].total_job_posting;
@@ -98,19 +138,56 @@ export class LiveDashboardComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
 
-    // get joining total
-    this.targetService.getJoiningTotal(this.startDate,this.currentDate).subscribe(
+    // get tier 1 and direct client total joining from year start date to current date
+    this.targetService.getJoiningTotal(this.yearStartDate,this.currentDate, withoutAnyType).subscribe(
       resp => {
-         
          this.totalJoining = resp['data'].total_joinings;
-        
+         console.log('to',this.totalJoining);
       },
       
       error => this.errorMessage = <any>error
     );
 
-    // get interview total
-    this.targetService.getInterviewTotal(this.startDate,this.currentDate).subscribe(
+
+    // get tier 1 total joining of current quarter
+    this.targetService.getJoiningTotal(quarterStartDate,quarterEndDate, tierOneType).subscribe(
+      resp => {
+         this.tierOneTotalJoining = resp['data'].total_joinings;
+
+         console.log('tier',this.tierOneTotalJoining);
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+
+
+    // get direct Client total joining of current quarter
+    this.targetService.getJoiningTotal(quarterStartDate,quarterEndDate, directClientType).subscribe(
+      resp => {
+         this.directClientTotalJoining = resp['data'].total_joinings;
+
+         console.log('direct',this.directClientTotalJoining);
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+
+   
+
+
+    // ***** END ***** getting data this year  *****// 
+
+
+    // ***** START ***** getting data this Week  *****//
+     var currentDate     = moment();
+
+     var  w_start        = currentDate.clone().startOf('week');
+     this.weekStartDate  = moment(w_start).format('YYYY-MM-DD');
+     var w_End           = currentDate.clone().endOf('week');
+     this.weekEndDate    = moment(w_End).format('YYYY-MM-DD');
+
+     // get interview total for current week
+    this.targetService.getInterviewTotal(this.weekStartDate,this.weekEndDate).subscribe(
       resp => {
          
          this.totalInterview = resp['data'].total_interview;
@@ -120,6 +197,43 @@ export class LiveDashboardComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
 
+
+     // get submission total for current week
+    this.targetService.getSubmissionsTotal(this.weekStartDate,this.weekEndDate).subscribe(
+      resp => {
+         
+         this.weeklyTotalSubmissions = resp['data'].total_submission;
+         console.log(this.weeklyTotalSubmissions);
+        
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+
+
+    // get job posting total for current week
+    this.targetService.getJobPostingTotal(this.weekStartDate,this.weekEndDate).subscribe(
+      resp => {
+         
+         this.weeklyTotalJobPosting = resp['data'].total_job_posting;
+        
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+
+
+
+    // get joining total for current week
+    this.targetService.getJoiningTotal(this.weekStartDate,this.weekEndDate,withoutAnyType).subscribe(
+      resp => {
+         
+         this.weeklyTotalJoining = resp['data'].total_joinings;
+        
+      },
+      
+      error => this.errorMessage = <any>error
+    );
 
   }
 

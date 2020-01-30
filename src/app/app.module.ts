@@ -8,6 +8,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CookieService } from 'ngx-cookie-service';
 import { NotifierModule } from "angular-notifier";
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 
@@ -85,6 +86,19 @@ import { LiveDashboardComponent } from './live-dashboard/live-dashboard.componen
     CustomFormsModule,
     DataTablesModule,
     NgMultiSelectDropDownModule.forRoot(),
+    NgCircleProgressModule.forRoot({
+      "radius": 60,
+      "space": -6,
+      "animateTitle": false,
+      "animationDuration": 1000,
+      "showUnits": false,
+      "showBackground": false,
+      "clockwise": true,
+      "startFromZero": false,
+      "outerStrokeLinecap": "square",
+      'showSubtitle': true,
+      "subtitle": "%",
+    }),
     NotifierModule.withConfig({
        // Custom options in here
        position: {
