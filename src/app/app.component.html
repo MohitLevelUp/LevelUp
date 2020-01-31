@@ -1,4 +1,4 @@
 <app-nav *ngIf="router.url == '/' || router.url == '/home' || router.url == '/teams' || router.url == '/team-details'"></app-nav>
 <app-dashboard-nav *ngIf="router.url !== '/login' && router.url !== '/signup' && router.url !== '/forgot-password' && router.url !== '/home' && router.url !== '/' && router.url !== '/teams' && router.url !== '/team-details' && router.url !== '/live-dashboard'"></app-dashboard-nav>
 <router-outlet></router-outlet> 
-<app-footer *ngIf="router.url == '/' || router.url == '/home'"></app-footer>
+<app-footer *ngIf="router.url == '/' || router.url == '/teams' || router.url == '/team-details'"></app-footer>

@@ -240,12 +240,11 @@ $(document).on('click', '.toggle_btn', function() {
     
 
 //BREAKING NEWS SLIDER START/////////////////////////////
+$(document).on('click', '#cross', function() {
 
-	$(document).ready(function(){
-		$("#cross").on('click',function(){
 			$("#hed").hide(500);
 		});
-	});
+
 
 
 
