@@ -942,6 +942,17 @@ section.box {
     padding-bottom: 80px;
     min-height: 100vh;
 }
+.goals_warp .nav-link{
+    border: 1px solid transparent;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    white-space: nowrap;
+    font-size: 15px;
+    text-decoration: none;
+    color: #525f7f;
+    transition: color .2s ease;
+    font-family: 'Quicksand-bold';
+}
 .title {
     padding: 10px;    
     font-size: 20px;
