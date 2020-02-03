@@ -9,7 +9,7 @@ import { NotifierService } from "angular-notifier";
 
 import { CorevaluefilterPipe } from 'src/app/_pipe/corevaluefilter.pipe';
 
-
+declare var $: any;
 @Component({
   selector: 'app-core-value',
   templateUrl: './core-value.component.html', 
@@ -36,12 +36,9 @@ export class CoreValueComponent implements OnInit {
   successMessage: any;
   errorMessage: any;
 
-  filterargs = {id: 10};
-  items = [{title: 'hello world'}, {title: 'kitty'}, {title: 'foo bar'}];
-
-   remainingCoreValueList: any;
-   remainingCoreValueUserList: any;
-
+  remainingCoreValueList: any;
+  remainingCoreValueUserList: any;
+  selected_Id:any;
   constructor(private http: Http, private corevaluefilterPipe: CorevaluefilterPipe, private coreValueService: CoreValueService,
     private userService: UserService,notifierService: NotifierService) { 
     this.notifier = notifierService;
@@ -282,5 +279,57 @@ export class CoreValueComponent implements OnInit {
 
   
   }
+
+onKeydown(event) {
+  if (event.key === "@") {
+    $("#newstxt").attr("list", "userlist");
+  }else if(event.keyCode === 32){
+    $("#newstxt").removeAttr( "list" )
+  }
+
+  $('input[name=breaking_news]').on('input',function() {
+    var selectedOption  = $('option[value="'+$(this).val()+'"]');
+    var selectedUserId  = selectedOption.length ? selectedOption.attr('id') : '';
+    if(selectedUserId != ''){
+      $("#newstxt").attr("rel", selectedUserId);
+    //   $("#newsform_userId").val(function() {
+    //     return  selectedUserId;
+    // });
+    }
+  });
+
+     var target = event.target || event.srcElement || event.currentTarget;
+     var idAttr = target.attributes.rel;
+     this.selected_Id  = idAttr.nodeValue;
+  
+}
+
+ addNews(newsform: NgForm) {
+    console.log(newsform.value);
+    this.coreValueService.addNews(newsform.value).subscribe(
+      (resp) => {
+        if(resp['status_code'] == 200){
+          this.successMessage = resp.message;
+           this.notifier.show({
+              type: "success",
+              message: this.successMessage,
+           });
+        }else{
+           this.errorMessage = resp.message;
+           this.notifier.show({
+              type: "error",
+              message: this.errorMessage,
+           });
+        }
+      },
+      error => {
+         this.errorMessage = <any>error
+      }
+
+    );
+    newsform.resetForm();
+  }
+
+
 
 }

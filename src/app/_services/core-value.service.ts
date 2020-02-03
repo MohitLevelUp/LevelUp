@@ -152,6 +152,35 @@ export class CoreValueService {
     )
   }
 
+// news section start 
+
+  //add core value
+  addNews(data: any) {
+  var newsData = {
+      written_by: this.userID,
+      user_id:data.userId,
+      news:data.breaking_news
+    };
+  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/corevalue/addNews' , JSON.stringify(newsData), {
+    })
+      .pipe(
+      tap(data => console.log('authToken' + JSON.stringify(data))),
+      //tap(),// 
+
+        catchError(this.errorHandl));
+  }
+
+  //get user receive Kudos
+  
+  getNews(): Observable<any> {
+
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/getNews/')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
  // Error handling
   errorHandl(error) {
      let errorMessage = '';

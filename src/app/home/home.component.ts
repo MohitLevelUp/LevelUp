@@ -18,6 +18,9 @@ export class HomeComponent implements OnInit {
   lastYearTotalSubmissions : any;
   errorMessage: any;
 
+  yearStartDate:any;
+  currentDate:any;
+
   // arr: Array<{ teamID: number, total: any }> = [];
   // submissionSum: any = [];
 
@@ -26,16 +29,20 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     
    //get all user's current month submissions total according to team
-    var nowdate       = new Date();
-    var monthStartDay = new Date(nowdate.getFullYear(), nowdate.getMonth(), 1);
-    var monthEndDay   = new Date(nowdate.getFullYear(), nowdate.getMonth() + 1, 0);
+    // var nowdate       = new Date();
+    // var monthStartDay = new Date(nowdate.getFullYear(), nowdate.getMonth(), 1);
+    // var monthEndDay   = new Date(nowdate.getFullYear(), nowdate.getMonth() + 1, 0);
 
-    var month_sd = moment(monthStartDay).format('YYYY-MM-DD');
-    var month_ed = moment(monthEndDay).format('YYYY-MM-DD');
+    // var month_sd = moment(monthStartDay).format('YYYY-MM-DD');
+    // var month_ed = moment(monthEndDay).format('YYYY-MM-DD');
+
+    var date             = new Date();
+    this.currentDate     = moment(date).format('YYYY-MM-DD');
+    this.yearStartDate   = moment().startOf('year').format('YYYY-MM-DD');
 
     var teamsFlag = 1;
     var usersFlag = 0;
-    this.targetService.getSubmission(month_sd,month_ed,teamsFlag).subscribe(
+    this.targetService.getSubmission(this.yearStartDate,this.currentDate,teamsFlag).subscribe(
       resp => {
         
          this.totalSubmissions = resp['data'];
@@ -46,7 +53,7 @@ export class HomeComponent implements OnInit {
     );
 
     //get all user's current month joining
-    this.targetService.getJoining(month_sd,month_ed,teamsFlag).subscribe(
+    this.targetService.getJoining(this.yearStartDate,this.currentDate,teamsFlag).subscribe(
       resp => {
       
         this.monthJoinings = resp['data'];

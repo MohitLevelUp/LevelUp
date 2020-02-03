@@ -120,13 +120,25 @@
                     </div>
                     <div id="news_tab" class="tab-pane fade">
                       <br>
+                      <form #newsform="ngForm" ngNativeValidate (submit)="addNews(newsform)">
                         <div class="reco_wrap">                         
                         <div class="form-group form-control-wrap">
                             <label  class="form-control-label" for="">Breaking News Updates</label>
-                            <textarea row="20" class="private-form__control form-control"></textarea>  
+                             <input id="newstxt" type="text" class="private-form__control form-control" [(ngModel)]="newsform.breaking_news" name="breaking_news" (keydown)="onKeydown($event)" rel="" />
+                               
+                                <datalist id="userlist" >
+                                <select name="selectedUser" id="select">
+                                  <ng-container *ngFor='let users of usersInfo; let i = index'>
+                                 <option id="{{users.id}}" value="@{{users.display_name}}" ></option>
+                                 </ng-container>
+                                </select>
+                                </datalist>
+                             <input #userId="ngModel" type="hidden" name="userId" [ngModel]="selected_Id">
+
                             </div>
-                            <button class="cmn_btn pull-right">Update News</button>
+                            <input value="Update News" class="cmn_btn pull-right" type="submit">
                         </div>
+                      </form>
                     </div>
                   </div>
                 </div>

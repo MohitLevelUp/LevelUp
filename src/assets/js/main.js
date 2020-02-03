@@ -241,9 +241,8 @@ $(document).on('click', '.toggle_btn', function() {
 
 //BREAKING NEWS SLIDER START/////////////////////////////
 $(document).on('click', '#cross', function() {
-
-			$("#hed").hide(500);
-		});
+	$("#hed").hide(500);
+});
 
 
 
