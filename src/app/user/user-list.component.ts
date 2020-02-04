@@ -177,9 +177,10 @@ export class UserListComponent implements OnInit {
      this.selectedItems.length = 0;
      this.selectedUserList.length = 0;
     //get single team details
-    this.userService.getTeamDetails(teamId).subscribe(
+    this.userService.getTeamMembers(teamId).subscribe(
       resp => {
         this.singleteamInfo = resp['data']; 
+        console.log(this.singleteamInfo);
 
         if(this.singleteamInfo)
         $("#edit_team").modal('show');

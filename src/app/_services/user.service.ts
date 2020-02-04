@@ -337,6 +337,15 @@ updatePassword(data: any) {
     )
   }
 
+   //get teams all users
+   getTeamMembers(teamId: any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/team/getTeamMembers/' + teamId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
   
 
    // Error handling

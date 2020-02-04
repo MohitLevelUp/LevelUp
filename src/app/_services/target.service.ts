@@ -89,8 +89,14 @@ export class TargetService {
   }
 
 
-   getTargetList(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getTarget')
+   getManagerCreatedTarget(): Observable<any> {
+
+      const helper         = new JwtHelperService();
+      const authToken      = localStorage.getItem('authToken');
+      const decodedToken   = helper.decodeToken(authToken);
+      var userID           = decodedToken['user_id']; 
+
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getManagerCreatedTarget/' + userID)
     .pipe(
       retry(1),
      catchError(this.errorHandl)

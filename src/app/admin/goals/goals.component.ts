@@ -118,7 +118,6 @@ export class GoalsComponent implements OnInit {
 
 // get user profile
   getUserDetails(user_id:any){
-    console.log(user_id);
     this.userService.getUser(user_id).subscribe(
       res => {
         this.filterUser = res['data'].display_name;
@@ -208,6 +207,7 @@ export class GoalsComponent implements OnInit {
     this.kpiService.createdKpiList().subscribe(
       resp => {
         this.kpiList = resp['data'];
+
       },
       
       error => this.errorMessage = <any>error
@@ -264,9 +264,10 @@ export class GoalsComponent implements OnInit {
 
 
     //get all target list
-    this.targetService.getTargetList().subscribe(
+    this.targetService.getManagerCreatedTarget().subscribe(
       resp => {
         this.allTargetList = resp['data'];
+        console.log('tar',this.allTargetList);
         
       },
       
@@ -343,9 +344,9 @@ export class GoalsComponent implements OnInit {
     );
 
   	 //get all team's details
-    this.userService.teamList().subscribe(
+    this.userService.getTeamDetails(this.teamId).subscribe(
       resp => {
-        this.teamInfo = resp['data']; 
+         this.teamInfo = resp['data']; 
       },
       
       error => this.errorMessage = <any>error
