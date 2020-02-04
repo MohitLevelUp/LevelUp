@@ -12,12 +12,12 @@ import { JwtHelperService  }  from '@auth0/angular-jwt';
 export class CoreValueService {
   baseUrl        = environment.apiUrl;
 
-  helper         = new JwtHelperService();
-  authToken      = localStorage.getItem('authToken');
-  decodedToken   = this.helper.decodeToken(this.authToken);
-  userID         = this.decodedToken['user_id'];
+  
+ 
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+
+   }
   
   filterUser(corevalue: any) {
     return corevalue.id == 10
@@ -51,9 +51,13 @@ export class CoreValueService {
 
   //Give core value
   giveCoreValue(data: any) {
+  var helper         = new JwtHelperService();
+  var authToken      = localStorage.getItem('authToken');
+  var decodedToken   = helper.decodeToken(authToken);
+  var userID         = decodedToken['user_id'];
 
   var coreValueData = {
-      given_by: this.userID,
+      given_by: userID,
       given_to: data.givenTo,
       core_value_id:data.coreValueId,
       why_given:data.whyGiven
@@ -75,7 +79,12 @@ export class CoreValueService {
   //get user given Core values
 
   getUserGivenCoreValues(): Observable<any> {
-    var userId = this.userID;
+    var helper         = new JwtHelperService();
+    var authToken      = localStorage.getItem('authToken');
+    var decodedToken   = helper.decodeToken(authToken);
+    var userID         = decodedToken['user_id'];
+
+    var userId = userID;
 
     return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/getUserGivenCoreValues/' + userId)
     .pipe(
@@ -87,7 +96,12 @@ export class CoreValueService {
   //get user receive Core values
 
   getUserReceiveCoreValues(): Observable<any> {
-    var userId = this.userID;
+    var helper         = new JwtHelperService();
+    var authToken      = localStorage.getItem('authToken');
+    var decodedToken   = helper.decodeToken(authToken);
+    var userID         = decodedToken['user_id'];
+
+    var userId = userID;
 
     return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/getUserReceiveCoreValues/' + userId)
     .pipe(
@@ -111,9 +125,13 @@ export class CoreValueService {
 
    //Give Kudos
   giveKudos(data: any) {
+  var helper         = new JwtHelperService();
+  var authToken      = localStorage.getItem('authToken');
+  var decodedToken   = helper.decodeToken(authToken);
+  var userID         = decodedToken['user_id'];
 
   var kudosData = {
-      given_by: this.userID,
+      given_by: userID,
       given_to: data.givenTo,
       kudos_id:data.kudosId,
       why_given:data.whyGiven
@@ -131,7 +149,11 @@ export class CoreValueService {
   //get user given kudos
 
   getUserGivenKudos(): Observable<any> {
-    var userId = this.userID;
+    var helper         = new JwtHelperService();
+    var authToken      = localStorage.getItem('authToken');
+    var decodedToken   = helper.decodeToken(authToken);
+    var userID         = decodedToken['user_id'];
+    var userId = userID;
 
     return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/getUserGivenKudos/' + userId)
     .pipe(
@@ -143,7 +165,11 @@ export class CoreValueService {
   //get user receive Kudos
   
   getUserReceiveKudos(): Observable<any> {
-    var userId = this.userID;
+    var helper         = new JwtHelperService();
+    var authToken      = localStorage.getItem('authToken');
+    var decodedToken   = helper.decodeToken(authToken);
+    var userID         = decodedToken['user_id'];
+    var userId = userID;
 
     return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/getUserReceiveKudos/' + userId)
     .pipe(
@@ -156,8 +182,12 @@ export class CoreValueService {
 
   //add core value
   addNews(data: any) {
+  var helper         = new JwtHelperService();
+  var authToken      = localStorage.getItem('authToken');
+  var decodedToken   = helper.decodeToken(authToken);
+  var userID         = decodedToken['user_id'];
   var newsData = {
-      written_by: this.userID,
+      written_by: userID,
       user_id:data.userId,
       news:data.breaking_news
     };
