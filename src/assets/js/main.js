@@ -245,6 +245,15 @@ $(document).on('click', '#cross', function() {
 });
 
 
+// add custom behaviour
+$(document).on('change', '#kpi_behavior', function(){ 
+    var id = $(this).val();
+    if(id == -1){
+      $('#behaviorModal').modal('show');
+    }
+});
+
+
 
 
 

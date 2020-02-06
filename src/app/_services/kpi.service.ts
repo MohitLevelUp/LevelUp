@@ -26,11 +26,12 @@ export class KpiService {
 
     })
       .pipe(
-      tap(data => console.log('authToken' + JSON.stringify(data))),
-     // tap(),// 
+      // tap(data => console.log('authToken' + JSON.stringify(data))),
+     tap(),// 
 
         catchError(this.errorHandl));
   }
+
 
 // update kpi
   updateKpi(data: any){
@@ -135,6 +136,30 @@ export class KpiService {
     )
   }
 
+
+// behavior section start 
+
+  // add behavior
+  addBehavior(data: any){
+
+    return this.http.post<any>(this.baseUrl + 'levelup/api/v1/kpi/addBehavior' , JSON.stringify(data), {
+
+    })
+      .pipe(
+      // tap(data => console.log('authToken' + JSON.stringify(data))),
+      tap(),// 
+
+        catchError(this.errorHandl));
+  }
+
+  // get behavior list
+ getBehaviorsList(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/getBehaviorList')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
 
 
   
