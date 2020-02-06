@@ -17,7 +17,6 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     this.coreValueService.getNews().subscribe(
       res => {
-        console.log('li',res);
         if(res['status_code'] == 200){
            this.newsList = res['data'];
 

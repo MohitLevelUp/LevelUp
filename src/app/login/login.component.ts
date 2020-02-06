@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
         if(this.userData.status_code == '200'){
           localStorage.setItem('authToken', JSON.stringify(this.userData.token));
           localStorage.setItem('user', JSON.stringify(this.userData.data));
+
           this.router.navigate(['/goals']);
 
         }else{
