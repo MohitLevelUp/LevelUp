@@ -271,7 +271,7 @@ updatePassword(data: any) {
     // localStorage.clear();
     localStorage.removeItem('authToken');
     localStorage.removeItem('user');
-    this.router.navigate(['/'],{relativeTo:this.route})
+    this.router.navigate(['/'],{relativeTo:this.route});
     
   }
 

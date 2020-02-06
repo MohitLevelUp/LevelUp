@@ -35,6 +35,21 @@ export class TargetService {
         catchError(this.errorHandl));
   }
 
+// inactive Target
+  inActiveTarget(targetId: any){
+    var targetData = {
+      targetId: targetId
+    };
+    return this.http.post<any>(this.baseUrl + 'levelup/api/v1/target/inActiveTarget' , JSON.stringify(targetData), {
+
+    })
+      .pipe(
+      tap(data => console.log('authToken' + JSON.stringify(data))),
+     // tap(),// 
+
+        catchError(this.errorHandl));
+  }
+
   //update target
 
   updateTarget(data: any){

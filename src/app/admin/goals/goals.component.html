@@ -110,16 +110,16 @@
                                <ng-container *ngIf="targetList">
 								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-primary" *ngFor='let target of targetList; let i = index'>
 									<div class="tile-header">
-										<!-- <div class="dropdown">
+										<div class="dropdown">
 											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 											</a>
 											<div class="dropdown-menu"> 
-												<a class="dropdown-item" [routerLink]="['/edit-target', target.target_id]">Edit Target</a>
+												<!-- <a class="dropdown-item" [routerLink]="['/edit-target', target.target_id]">Edit Target</a> -->
 												
 												<a class="dropdown-item" (click)="inActiveTarget($event)" id="{{ target.target_id }}">Remove Target</a>
 
 											</div>
-										</div> -->
+										</div>
 										<div class="tile-name">{{target.kpi_name}}</div>
 										<div class="tile-type">Target</div>
 									</div>

@@ -4,6 +4,7 @@ import { KpiService } from 'src/app/_services/kpi.service';
 import { TargetService } from 'src/app/_services/target.service';
 import { UserService } from 'src/app/_services/user.service';
 import { NotifierService } from "angular-notifier";
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare var $: any;
 @Component({
@@ -56,7 +57,8 @@ export class GoalsComponent implements OnInit {
   selectedKpiList: Array<{ id: number, name: any }> = [];
 
   constructor(private targetService: TargetService, private kpiService: KpiService, 
-    private userService: UserService,notifierService: NotifierService) {
+    private userService: UserService,notifierService: NotifierService,
+    private router: Router,private route: ActivatedRoute) {
      this.notifier = notifierService;
     }
   unsorted() { }//this is for period view in order
@@ -230,23 +232,41 @@ export class GoalsComponent implements OnInit {
     );
   }
 
- //edit target by id
- // editTarget(event){
- //     var target = event.target || event.srcElement || event.currentTarget;
- //     var idAttr = target.attributes.id;
- //     var kpiId  = idAttr.nodeValue;
 
- //    this.kpiService.inActiveKpi(kpiId).subscribe(
- //      resp => {
- //         if(resp['status_code'] == 200){
- //           // getting all kpi's list
- //           this.getkpiList();
- //        }
+ //inactive target by id
 
- //      },
- //      error => this.errorMessage = <any>error
- //    );
- // }
+   inActiveTarget(event){
+     var target = event.target || event.srcElement || event.currentTarget;
+     var idAttr = target.attributes.id;
+     var targetId  = idAttr.nodeValue;
+
+     console.log(targetId);
+
+
+    this.targetService.inActiveTarget(targetId).subscribe(
+      resp => {
+         if(resp['status_code'] == 200){
+         this.successMessage = resp.message;
+          this.notifier.show({
+            type: "success",
+            message: this.successMessage,
+          });
+           // getting all target's list
+           var user_id ='';
+            this.usersTargetList(user_id);
+
+        }else{
+             this.errorMessage = resp.message;
+             this.notifier.show({
+                type: "error",
+                message: this.errorMessage,
+             });
+          }
+
+      },
+      error => this.errorMessage = <any>error
+    );
+ }
 
 
 

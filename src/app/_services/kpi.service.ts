@@ -82,8 +82,8 @@ export class KpiService {
 
     })
       .pipe(
-      tap(data => console.log('authToken' + JSON.stringify(data))),
-     // tap(),// 
+      // tap(data => console.log('authToken' + JSON.stringify(data))),
+      tap(),// 
 
         catchError(this.errorHandl));
   }
