@@ -127,18 +127,18 @@
 								</div>
 								<div class="imageContainer">
 								
-									<img class="img-fluid" src="{{ userInfo['image_path'] }}">
+									<img class="img-fluid" src="{{ userInfo.image_path }}">
 								</div>
 								<div class="leaderStat">
 									<div class="Profile_edit_btn"> 
 										<a class="edit_icon" href="#">	
 										<i class="la la-pencil-square-o pull-right"></i> 
 							           </a>
-							    <input type="file" class="user_profile_pic" id="{{ userInfo['user_id'] }}"  (change)="handleFileSelect($event)">
+							    <input type="file" class="user_profile_pic" id="{{ userInfo.user_id }}"  (change)="handleFileSelect($event)">
 									</div>
 									<div class="stat-content">
 									<h1>
-                                        {{ userInfo['display_name'] }}
+                                        {{ userInfo.first_name}}  {{ userInfo.middle_name}}  {{ userInfo.last_name}}
                                     </h1>
 										<!-- <div class="stat-container"> <span class="statLabel">{{ userInfo['website'] }}</span>
 										</div> -->

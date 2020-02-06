@@ -86,8 +86,7 @@ export class UserComponent implements OnInit {
     this.userService.getUser(userId).subscribe(
       resp => {
         this.user = resp;
-          this.userInfo = this.user['data'];
-          
+          this.userInfo = this.user['data']; 
       },
       
       error => this.errorMessage = <any>error

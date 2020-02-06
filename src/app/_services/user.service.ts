@@ -4,7 +4,7 @@ import { IUser } from 'src/app/_models/user';
 import { environment } from '../../environments/environment';
 import { Observable, throwError, pipe } from 'rxjs';
 import { retry, catchError, tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService  }  from '@auth0/angular-jwt';
 
 
@@ -19,7 +19,8 @@ export class UserService {
    // decodedToken   = this.helper.decodeToken(this.authToken);
   	
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router,
+    private route: ActivatedRoute,) { }
 
   signIn(data: any) {
 
@@ -94,8 +95,8 @@ export class UserService {
 
     })
       .pipe(
-      tap(data => console.log('authToken' + JSON.stringify(data))),
-     // tap(),// 
+      // tap(data => console.log('authToken' + JSON.stringify(data))),
+      tap(),// 
 
         catchError(this.errorHandl));
   }
@@ -270,7 +271,7 @@ updatePassword(data: any) {
     // localStorage.clear();
     localStorage.removeItem('authToken');
     localStorage.removeItem('user');
-    this.router.navigate(['/'])
+    this.router.navigate(['/'],{relativeTo:this.route})
     
   }
 
