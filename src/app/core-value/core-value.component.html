@@ -14,10 +14,10 @@
             <div class="row">
               <div class="col-md-8">
 
-                <div class="box-1">
+                <div class="box-1 badges_point_warp ">
                   <!-- Nav tabs -->
-                  <ul class="nav nav-tabs">
-                    <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#core_tab">Core Values</a> </li>
+                  <ul class="nav nav-tabs nav-justified">
+                    <li class="nav-item active"> <a class="nav-link" data-toggle="tab" href="#core_tab">Core Values</a> </li>
                     <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#kudos_tab">Kudos</a> </li>
                     <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#news_tab">News</a> </li>
                   </ul>
@@ -121,12 +121,13 @@
                     <div id="news_tab" class="tab-pane fade">
                       <br>
                       <form #newsform="ngForm" ngNativeValidate (submit)="addNews(newsform)">
-                        <div class="reco_wrap">                         
-                        <div class="form-group form-control-wrap">
-                            <label  class="form-control-label" for="">Breaking News Updates</label>
-                             <input id="newstxt" type="text" class="private-form__control form-control" [(ngModel)]="newsform.breaking_news" name="breaking_news" (keydown)="onKeydown($event)" rel="" />
-                               
-                                <datalist id="userlist" >
+                        <div class="reco_wrap private_points_wrap">  
+                            <div class="reco_item_wrap d-flex">
+                            <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
+                                <div class="reco_input">
+                            <div class="form-group form-control-wrap">                            
+                             <input id="newstxt" type="text" class="private-form__control form-control" [(ngModel)]="newsform.breaking_news" placeholder="Breaking News Updates" name="breaking_news" (keydown)="onKeydown($event)" rel="" />                               
+                             <datalist id="userlist" >
                                 <select name="selectedUser" id="select">
                                   <ng-container *ngFor='let users of usersInfo; let i = index'>
                                  <option id="{{users.id}}" value="@{{users.display_name}}" ></option>
@@ -134,9 +135,12 @@
                                 </select>
                                 </datalist>
                              <input #userId="ngModel" type="hidden" name="userId" [ngModel]="selected_Id">
-
                             </div>
-                            <input value="Update News" class="cmn_btn pull-right" type="submit">
+                            </div>
+                            </div>
+                            
+                            
+                            <input value="&#xf1d8;" class="cmn_btn2 pull-right fa-file-text-o" type="submit">
                         </div>
                       </form>
                     </div>

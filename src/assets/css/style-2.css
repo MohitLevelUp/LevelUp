@@ -296,27 +296,45 @@ score_card_wrap li:last-child {
     letter-spacing: 1.5px;
 }
 .cmn_btn {
-     cursor: pointer;
-    font-family: 'Alata';
     background: transparent;
     border: 0;
     outline: 0;
     box-shadow: 1px 1px 1px rgba(23, 23, 23, 0.3);
-    font-weight: 400;
-    position: relative;
     overflow: hidden;
     display: block;
     transition: all 0.2s linear;
     border-radius: .3rem;
     text-align: center;
     color: #ffffff;
-    padding: 6px 15px;
-    letter-spacing: 2px;
-/*    float: right;*/
-    font-size: 15px;
+    padding: 6px 10px;
+    font-size: 16px;
     background-color: #2196F3;
-    margin:5px;
+    margin: 5px;
+    font-family: 'Alata';
+    font-weight: 400;
+    letter-spacing: 1.5px;
 }
+.cmn_btn2 {
+    background: transparent;
+    border: 0;
+    outline: 0;
+    box-shadow: 1px 1px 1px rgba(23, 23, 23, 0.3);
+    overflow: hidden;
+    display: block;
+    transition: all 0.2s linear;
+    border-radius: .3rem;
+    text-align: center;
+    color: #ffffff;
+    padding: 0px 18px;
+    font-size: 25px;
+    background-color: #2196F3;
+    margin: 5px;
+    position: relative;
+    font-family: 'Line Awesome Free';
+    font-weight: 900;
+}
+
+
 .btn_for_cancel {
     background-color: #f9655a;
     
@@ -3391,7 +3409,7 @@ iframe#youtube {
     color:gold;
 }
 .badges_point_warp .nav-tabs {
-    border-bottom: 0px solid !important;
+/*    border-bottom: 0px solid !important;*/
 }
 .badges_point_warp .nav-tabs>li>a {   
     font-family: 'Quicksand-bold';
@@ -5094,72 +5112,16 @@ color:
 
 
 /*BREAKING NEWS HEADLINE START+++++++++++++++++++*/
-/* Smartphones (portrait and landscape) -- -- -- -- -- - */
- @media screen and (min-width: 320px) and (max-width: 667px) {
 
-     #hed div#scroll {
-         position:relative;
-         width:100%;
-         height:20px;
-         padding:11px;
-         line-height:2;
-         color:#fff;
-    }
-    
-     #hed .cancel-btn {
-         color: #fff;
-         margin: 15px;
-         opacity: 0.8;
-         position: relative;
-         text-decoration: none;
-         font-family: 'Open Sans', sans-serif;
-         float: right;
-         margin-top: -66px;
-    }
-
-    
-     #hed .btn-default {
-         color: #fff;
-         background-color: transparent;
-         border-color: transparent;
-         font-size: 12px;
-         font-family: 'Open Sans', sans-serif;
-         letter-spacing: 1px;
-         border-radius: 0px;
-		 font-weight:800;
-    }
-     #hed .btn.btn-default.btn-sm {
-         line-height: 1.5;
-         padding: 4px 10px;
-		 margin: 0 auto;
-		 text-align: center;
-		 display: block;
-    }
-
-     #hed .strip-in-down-cancel-btn {
-         color: #fff;
-         font-family: "Open Sans", sans-serif;
-         margin: 0px 0 0px 5px;
-         opacity: 0.8;
-         position: relative;
-         text-decoration: none;
-         vertical-align: middle;
-         padding-top: 5px;
-         margin-top:-52px;
-         float:right;
-    }
-   
- 
-    /* Animation color */
+/* Animation color */
      #hed .animation-bg {
-         display: block;
-         width: 100%;
-         margin: 0 auto;
-         bottom:0px;
-         padding: 15px 20px;
-		 position: fixed;
-         bottom:0px;
-		 z-index: 999999;
+       display: block;
+    width: 100%;
+    margin: 0 auto;
+        padding: 5px 14px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 99;
          font-family: 'Open Sans', sans-serif;
          -webkit-background: linear-gradient(90deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
          -moz-background: linear-gradient(90deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
@@ -5233,384 +5195,27 @@ color:
         }
     }
 
-     #hed .btn-secret {
-		background-color: transparent;
-		color: #fff;
-		margin-top: 10px;
-		font-weight: 800;
-		font-family: 'Open Sans', sans-serif;
-		font-size: 12px;
-		letter-spacing:1px;
-    }
-     #hed .btn-secret:hover {
-         background-color: #fff;
-         color: #333;
-         transition: all 0.5s ease;
-         text-shadow: none;
-    }
 
-
-}
-
-/* iPads (portrait and landscape) -- -- -- -- -- - */
- @media screen and (min-width: 668px) and (max-width: 1223px) {
-   
-     #hed div#scroll {
-         position:relative;
-         width:100%;
-         height:20px;
-         overflow:hidden;
-         padding:11px;
-         line-height:2;
-         color:#fff;
-    }
-     
-
-    /* First Strip Begin */
-    /* This is all Strip CSS */
-     
-     
-     #hed .cancel-btn {
-         color: #fff;
-         margin: 10px;
-         opacity: 0.8;
-         position: relative;
-         text-decoration: none;
-         font-family: 'Open Sans', sans-serif;
-    }
-     #hed a.cancel-btn:hover {
-         color: #FFFF00;
-         opacity: 0.9;
-    }
-
-     #hed span.big-title {
-         color: #fff;
-         font-size: 16px;
-         font-family: 'Open Sans', sans-serif;
-         letter-spacing: 0.6px;
-         font-weight: 400;
-         display:inline-block;
-    }
-
-     #hed .btn-default {
-         color: #fff;
-         background-color: #2D8200;
-         border-color: transparent;
-         font-size: 11px;
-         font-family: 'Open Sans', sans-serif;
-         letter-spacing: 0.6px;
-         border-radius: 0px;
-    }
-     #hed .btn.btn-default.btn-sm {
-         line-height: 1.5;
-         padding: 4px 10px;
-    }
- 
-    
-   
-    /* Animation color */
-     #hed .animation-bg {
-         display: block;
-         width: 100%;
-         margin: 0 auto;
-         padding: 15px 20px;
-		 position: fixed;
-         bottom:0px;
-		 z-index: 999999;
-         font-family: 'Open Sans', sans-serif;
-         -webkit-background: linear-gradient(90deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
-         -moz-background: linear-gradient(90deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
-         -ms-background: linear-gradient(90deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
-         -o-background: linear-gradient(90deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
-         background: linear-gradient(90deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
-         -webkit-background-size: 450% 1400%;
-         -moz-background-size: 450% 1400%;
-         -ms-background-size: 450% 1400%;
-         -o-background-size: 450% 1400%;
-         background-size: 450% 1400%;
-         -webkit-animation: gradient_bg 40s linear infinite;
-         -moz-animation: gradient_bg 40s linear infinite;
-         -ms-animation: gradient_bg 40s linear infinite;
-         -o-animation: gradient_bg 40s linear infinite;
-         animation: gradient_bg 40s linear infinite;
-    }
-     @-webkit-keyframes gradient_bg {
-         0% {
-             background-position: 0% 50% 
-        }
-         50% {
-             background-position: 100% 50% 
-        }
-         100% {
-             background-position: 0% 50% 
-        }
-    }
-     @-moz-keyframes gradient_bg {
-         0% {
-             background-position: 0% 50% 
-        }
-         50% {
-             background-position: 100% 50% 
-        }
-         100% {
-             background-position: 0% 50% 
-        }
-    }
-     @-ms-keyframes gradient_bg {
-         0% {
-             background-position: 0% 50% 
-        }
-         50% {
-             background-position: 100% 50% 
-        }
-         100% {
-             background-position: 0% 50% 
-        }
-    }
-     @-o-keyframes gradient_bg {
-         0% {
-             background-position: 0% 50% 
-        }
-         50% {
-             background-position: 100% 50% 
-        }
-         100% {
-             background-position: 0% 50% 
-        }
-    }
-     @keyframes gradient_bg {
-         0% {
-             background-position: 0% 50% 
-        }
-         50% {
-             background-position: 100% 50% 
-        }
-         100% {
-             background-position: 0% 50% 
-        }
-    }
-    
-     #hed .btn-secret {
-         background-color: #333;
-         color: #fff;
-         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-    }
-     #hed .btn-secret:hover {
-         background-color: #fff;
-         color: #333;
-         transition: all 0.5s ease;
-         text-shadow: none;
-    }
-     #hed .btn.btn-default.btn-sm {
-         line-height: 1.5;
-         padding: 4px 5px;
-    }
-
-}
-
-/* Desktops and laptops -- -- -- -- -- - */
- @media screen and (min-width: 1224px) {
-    
-     #hed div#scroll {
-         position:relative;
-         width:100%;
-         height:20px;
-         overflow:hidden;
-         padding:11px;
-         line-height:2;
-         color:#fff;
-    }
-     
-
-     #hed .cancel-btn {
-         color: #fff;
-         margin: 15px;
-         opacity: 0.8;
-         position: relative;
-         text-decoration: none;
-         font-family: 'Open Sans', sans-serif;
-    }
-     #hed .cancel-btn-one {
-         margin: 0px !important;
-         top: 4px;
-    }
-     #hed a.cancel-btn:hover {
-         color: #FFFF00;
-         opacity: 0.9;
-    }
-
-
-     #hed .btn-default {
-         color: #fff;
-         background-color: #2D8200;
-         border-color: transparent;
-         font-size: 13px;
-         font-family: 'Open Sans', sans-serif;
-         letter-spacing: 0.6px;
-         border-radius: 0px;
-    }
-     #hed .btn.btn-default.btn-sm {
-         line-height: 1.5;
-         padding: 4px 10px;
-         float: right;
-    }
-  
-     #hed .strip-in-down-cancel-btn {
-         color: #fff;
-         font-family: "Open Sans", sans-serif;
-         margin: 18px 0px 0px 0px;
-         opacity: 0.8;
-         position: relative;
-         text-decoration: none;
-         font-size: 15px;
-         float: left;
-    }
-   
-    /* Animation color */
-     #hed .animation-bg {
-         display: block;
-         width: 100%;
-         margin: 0 auto;
-         padding: 10px;
-         height: 60px;
-		 position: fixed;
-         bottom:0px;
-		 z-index: 999999;
-         font-family: 'Open Sans', sans-serif;
-         -webkit-background: linear-gradient(90deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
-         -moz-background: linear-gradient(90deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
-         -ms-background: linear-gradient(90deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
-         -o-background: linear-gradient(90deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
-         background: linear-gradient(90deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
-         -webkit-background-size: 450% 1400%;
-         -moz-background-size: 450% 1400%;
-         -ms-background-size: 450% 1400%;
-         -o-background-size: 450% 1400%;
-         background-size: 450% 1400%;
-         -webkit-animation: gradient_bg 40s linear infinite;
-         -moz-animation: gradient_bg 40s linear infinite;
-         -ms-animation: gradient_bg 40s linear infinite;
-         -o-animation: gradient_bg 40s linear infinite;
-         animation: gradient_bg 40s linear infinite;
-    }
-     @-webkit-keyframes gradient_bg {
-         0% {
-             background-position: 0% 50% 
-        }
-         50% {
-             background-position: 100% 50% 
-        }
-         100% {
-             background-position: 0% 50% 
-        }
-    }
-     @-moz-keyframes gradient_bg {
-         0% {
-             background-position: 0% 50% 
-        }
-         50% {
-             background-position: 100% 50% 
-        }
-         100% {
-             background-position: 0% 50% 
-        }
-    }
-     @-ms-keyframes gradient_bg {
-         0% {
-             background-position: 0% 50% 
-        }
-         50% {
-             background-position: 100% 50% 
-        }
-         100% {
-             background-position: 0% 50% 
-        }
-    }
-     @-o-keyframes gradient_bg {
-         0% {
-             background-position: 0% 50% 
-        }
-         50% {
-             background-position: 100% 50% 
-        }
-         100% {
-             background-position: 0% 50% 
-        }
-    }
-     @keyframes gradient_bg {
-         0% {
-             background-position: 0% 50% 
-        }
-         50% {
-             background-position: 100% 50% 
-        }
-         100% {
-             background-position: 0% 50% 
-        }
-    }
-     #hed .btn-secret {
-         background-color: #333;
-         color: #fff;
-         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-         margin-top: 6px;
-         float: right;
-    }
-        #hed .btn.btn-default.btn-sm {
-         line-height: 1.5;
-         padding: 4px 10px;
-         float: right;
-     }
-     #hed .btn-secret:hover {
-         background-color: #fff;
-         color: #333;
-         transition: all 0.5s ease;
-         text-shadow: none;
-    }
-
-}
-
-
-
-
-  @keyframes ticker {
-    0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(-100%, 0, 0); }
-  }
   .tcontainer{
     width: 100%;
     overflow: hidden;
   }
-.btn-secret{
-        font-family: 'Alata';
-}
+
 .ticker-wrap {
     width: 100%;
     padding-left: 100%;
     min-height: 60px;
     padding-top: 6px;
 }
-  .ticker-move {
+.ticker-item {
     display: inline-block;
-    white-space: nowrap;
-    padding-right: 100%;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-name: ticker;
-    animation-duration: 80s;
-  }
-  .ticker-move:hover{
-    animation-play-state: paused;
-  }
-  .ticker-item{
-    display: inline-block;
-    padding: 0 2rem;
+    padding: 5px 2rem;
     line-height: 2;
-      color:#fff;      
-      font-size: 17px;
-      letter-spacing: 2px;
-      
-      position: relative;
-  }
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 2px;
+    position: relative;
+}
 .birthday_news{
     position: relative;
 }
@@ -5621,22 +5226,120 @@ color:
     border-radius: 50px;
     display: block;
     position: absolute;
-    left: -40px;
-    top: -10px;
+    left: -45px;
+    top: -9px;
 }
 
 .ticker-item.arrow-right:after {
     content: " ";
     position: absolute;
-    left: 0px;
-    top: 8px;
+    left: 9px;
+    top: 10px;
     border-top: 8px solid transparent;
     border-right: none;
     border-left: 12px solid white;
     border-bottom: 8px solid transparent;
 }
 
-@media only screen and (max-width: 768px) {
-  .ticker-move { animation-duration: 80s; }
+
+
+/* iPads (portrait and landscape) -- -- -- -- -- - */
+ @media screen and (min-width: 668px) and (max-width: 1223px) {
+   
+
+     .news_title {
+    background-color: #333;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    line-height: 1.5;
+    padding: 4px 10px;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.6px;
+    border-radius: 0px;
+    position: absolute;
+    left: 15px;
+    z-index: 99;
+    top: 11px;
 }
+.News_cancel_btn {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 11px;
+    background-color: #000;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+     
+
+}
+
+/* Desktops and laptops -- -- -- -- -- - */
+ @media screen and (min-width: 1224px) {
+    
+
+.news_title {
+    background-color: #333;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    line-height: 1.5;
+    padding: 4px 10px;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.6px;
+    border-radius: 0px;
+    position: absolute;
+    left: 15px;
+    z-index: 99;
+    top: 11px;
+}
+.News_cancel_btn {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 11px;
+    background-color: #000;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+}
+
+
+/* Smartphones (portrait and landscape) -- -- -- -- -- - */
+ @media screen and (min-width: 120px) and (max-width: 667px) {
+
+
+   .news_title {
+    background-color: #333;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    line-height: 1.5;
+    padding: 4px 10px;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.6px;
+    border-radius: 0px;    
+    left: 15px;
+    z-index: 99;
+    top: 11px;
+}
+.News_cancel_btn {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 11px;
+    background-color: #000;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+
+}
+
+
 /*BREAKING NEWS HEADLINE END+++++++++++++++++++*/
