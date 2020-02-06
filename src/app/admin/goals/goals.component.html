@@ -110,7 +110,7 @@
                                <ng-container *ngIf="targetList">
 								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-primary" *ngFor='let target of targetList; let i = index'>
 									<div class="tile-header">
-										<div class="dropdown">
+										<div class="dropdown" *ngIf='user.role_type == 2 || user.role_type == 3'>
 											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 											</a>
 											<div class="dropdown-menu"> 
