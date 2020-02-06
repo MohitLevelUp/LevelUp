@@ -14,20 +14,20 @@
 										<div class="col-md-4">
 											<div class="form-group form-control-wrap">
 												<label class="form-control-label" for="First name">First Name</label>
-												 <input #first_name="ngModel" type="text" name="first_name" class="form-control" id="FirstName" [(ngModel)]="userInfo['first_name']">
+												 <input #first_name="ngModel" type="text" name="first_name" class="form-control" id="FirstName" [ngModel]="userInfo['first_name']">
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-group form-control-wrap">
 												<label class="form-control-label" for="Middle name">Middle Name</label>
 												
-												<input #middle_name="ngModel" type="text" name="middle_name" class="form-control" id="middle_name" [(ngModel)]="userInfo['middle_name']">
+												<input #middle_name="ngModel" type="text" name="middle_name" class="form-control" id="middle_name" [ngModel]="userInfo['middle_name']">
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-group form-control-wrap">
 												<label class="form-control-label" for="Last name">Last Name</label>
-												<input #last_name="ngModel" type="text" name="last_name" class="form-control" id="LastName"  [(ngModel)]="userInfo['last_name']">
+												<input #last_name="ngModel" type="text" name="last_name" class="form-control" id="LastName"  [ngModel]="userInfo['last_name']">
 											</div>
 										</div>
 									</div>
@@ -138,7 +138,7 @@
 									</div>
 									<div class="stat-content">
 									<h1>
-                                        {{ userInfo.first_name}}  {{ userInfo.middle_name}}  {{ userInfo.last_name}}
+                                        {{ userInfo.display_name}}
                                     </h1>
 										<!-- <div class="stat-container"> <span class="statLabel">{{ userInfo['website'] }}</span>
 										</div> -->

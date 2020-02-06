@@ -240,8 +240,6 @@ export class GoalsComponent implements OnInit {
      var idAttr = target.attributes.id;
      var targetId  = idAttr.nodeValue;
 
-     console.log(targetId);
-
 
     this.targetService.inActiveTarget(targetId).subscribe(
       resp => {

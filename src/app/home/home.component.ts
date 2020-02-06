@@ -9,7 +9,8 @@ import * as moment from 'moment';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  iconUrl   = environment.uploadUrl;
+  iconUrl        = environment.uploadUrl;
+  userProfile    = JSON.parse(localStorage.getItem('user'));
 
   topThree      : any;
   lastYearToper: any;
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
   // submissionSum: any = [];
 
   constructor(private targetService: TargetService,) { }
+
 
   ngOnInit() {
     
