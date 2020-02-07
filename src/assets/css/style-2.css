@@ -3892,11 +3892,12 @@ background: linear-gradient(55deg, #024782 65%, #4f75a5 42%);
 
 .durgam_hyderabadi {
     color: white;
-    background: linear-gradient(136deg, #762020, #9d4b28);
+    background: linear-gradient(136deg, #e92634, #de676f);
 }
 .durgam_hyderabadi.card_bg_grd {
-    background: linear-gradient(-55deg, #762020 65%, #9d4b28 42%);
-background: linear-gradient(55deg, #762020 65%, #9d4b28 42%);
+    
+    background: linear-gradient(55deg, #e92634 65%, #de676f 42%);
+    background: linear-gradient(-55deg, #de676f 65%, #e92634 42%);
 }
 .durgam_hyderabadi.team_banner{   
     /*background-image: url(../images/team-bg/desk_demons.jpg);*/
@@ -3978,7 +3979,7 @@ background: linear-gradient(55deg, #2e9e7d 65%, #82c39a 42%);
 background: linear-gradient(55deg, #f0c500 65%, #9f8100 42%);
 }
 .lounicorn_finders.team_banner{   
-    /*background-image: url(../images/team-bg/desk_demons.jpg);*/
+    background-image: url(../images/team-bg/lounicorn_finders.jpg);
 }
 
 /*HAPPY RESOURCES=========*/
@@ -4047,9 +4048,9 @@ background: linear-gradient(55deg, #2d72b8 65%, #0d56a4 42%);
 }
 
 /* DALLAS STARS=======================*/
-.dallas_stars{
+.dallas_stars {
     color: white;
-    background: linear-gradient(136deg, #1a6643, #09341f);
+    background: linear-gradient(136deg, #2b5c40, #09341f);
 }
 .dallas_stars.card_bg_grd {
     background: linear-gradient(-55deg, #1a6643 65%, #09341f 42%);
@@ -4086,10 +4087,27 @@ background: linear-gradient(55deg, #2d72b8 65%, #0d56a4 42%);
     /*background-image: url(../images/team-bg/desk_demons.jpg);*/
 }
 
+/*IT MUSKETEERS==========================*/
+.it_musketeers {
+    color: white;
+    background: linear-gradient(136deg, #24824f, #12502f);
+}
 
+.it_musketeers.card_bg_grd {
+    background: linear-gradient(-55deg, #175e38 65%, #24834e 42%);
+    background: linear-gradient(55deg, #24834e 65%, #175e38 42%);
+}
+.it_musketeers.team_banner{   
+    /*background-image: url(../images/team-bg/desk_demons.jpg);*/
+}
+/*
 
-
-
+@media screen and (max-width: 1024px) { 
+  .team_banner {
+    opacity: 0 !important;
+  }
+}
+*/
 
 
 
@@ -4099,6 +4117,10 @@ background: linear-gradient(55deg, #2d72b8 65%, #0d56a4 42%);
     background-repeat: no-repeat;
     padding:120px 0px;
     background-position: top center;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .team_name_per {
