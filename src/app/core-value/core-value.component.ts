@@ -14,11 +14,15 @@ declare var $: any;
   selector: 'app-core-value',
   templateUrl: './core-value.component.html', 
   styleUrls: ['./core-value.component.css'],
-  providers: [ CorevaluefilterPipe ]
+  providers: [ CorevaluefilterPipe ],
+
 })
+
 export class CoreValueComponent implements OnInit {
   iconUrl        = environment.uploadUrl;
   userProfile    = JSON.parse(localStorage.getItem('user'));
+
+  coreValmodel: any = {};
 
   private readonly notifier: NotifierService;
   selectedcoreValueId = '';
@@ -42,6 +46,7 @@ export class CoreValueComponent implements OnInit {
   constructor(private http: Http, private corevaluefilterPipe: CorevaluefilterPipe, private coreValueService: CoreValueService,
     private userService: UserService,notifierService: NotifierService) { 
     this.notifier = notifierService;
+
   }
 
   

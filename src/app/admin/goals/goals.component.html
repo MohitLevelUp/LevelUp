@@ -329,7 +329,9 @@
 														
 														<select style="width: 74%;" class="custom-select" #period="ngModel" name="period" [(ngModel)]="selectedPeriod">
 															<option value="">Select Period</option>
-															<option *ngFor="let item of periodList | keyvalue : unsorted" value="{{item.value}}">{{item.key}}</option>
+															<!-- <option *ngFor="let item of periodList | keyvalue : unsorted" value="{{item.value}}">{{item.key}}</option> -->
+
+															<option *ngFor="let item of periodList" value="{{item.value}}">{{item.key}}</option>
 															
 														</select>
 													</div>

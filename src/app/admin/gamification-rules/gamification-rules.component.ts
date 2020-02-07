@@ -11,6 +11,8 @@ declare var $: any;
   styleUrls: ['./gamification-rules.component.css']
 })
 export class GamificationRulesComponent implements OnInit {
+  gRulemodel: any = {};
+
   userProfile      = JSON.parse(localStorage.getItem('user'));
 
   private readonly notifier: NotifierService;
@@ -19,6 +21,7 @@ export class GamificationRulesComponent implements OnInit {
   selectedPoint    = '';
 
   behaviorsList :any;
+  pointList:any;
   errorMessage: any;
   successMessage:any;
   weightage = [10,20,30,40,50,60,70,80,90,100];
@@ -28,6 +31,7 @@ export class GamificationRulesComponent implements OnInit {
     this.notifier = notifierService;
   }
 
+// get behavior
   getBehavior(){
      this.kpiService.getBehaviorsList().subscribe(
       res => {
@@ -43,9 +47,29 @@ export class GamificationRulesComponent implements OnInit {
     );
   }
 
+ // get point list
+  getPointList(){
+     this.kpiService.getPointList().subscribe(
+      res => {
+        console.log('po',res);
+        if(res['status_code'] == 200){
+           this.pointList = res['data'];
+        }else{
+          this.pointList = "";
+        }
+
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+  }
+
+
   ngOnInit() {
 
    this.getBehavior();
+
+   this.getPointList();
  
   }
 
@@ -93,6 +117,39 @@ export class GamificationRulesComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
     form_b.resetForm();
+  }
+
+
+  // add new point
+  addNewPoint(form_P: NgForm) {
+    var customPoint = form_P.value['custom_point'];
+    this.kpiService.addNewPoint(form_P.value).subscribe(
+      res => {
+       if(res['status_code'] == 200){
+
+         this.getPointList();
+
+         this.selectedPoint = customPoint;
+
+         $("#pointModal").modal('hide');
+
+          this.successMessage = res.message;
+           this.notifier.show({
+              type: "success",
+              message: this.successMessage,
+           });
+        }else{
+           this.errorMessage = res.message;
+           this.notifier.show({
+              type: "error",
+              message: this.errorMessage,
+           });
+        }
+         
+      },
+      error => this.errorMessage = <any>error
+    );
+    form_P.resetForm();
   }
 
 }

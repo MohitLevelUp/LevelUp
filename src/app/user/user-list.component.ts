@@ -16,6 +16,9 @@ declare var $: any;
 export class UserListComponent implements OnInit {
   iconUrl        = environment.uploadUrl;
   private readonly notifier: NotifierService;
+
+  userListmodel: any = {};
+
   selectedcompanyId = '';
   selectedRoleType  = '';
   selectedTeamId    = '';
@@ -30,7 +33,7 @@ export class UserListComponent implements OnInit {
   successMessage: any;
   errorMessage: any;
   form1:any;
-  private base64textString:String="";
+  base64textString: any="";
 
 // use in data table
   dtOptions: DataTables.Settings = {};

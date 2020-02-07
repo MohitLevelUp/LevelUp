@@ -18,9 +18,9 @@ export class CorevaluesComponent implements OnInit {
   coreValuesList: any;
 
   private readonly notifier: NotifierService;
-  private corevaluename:String = ""; 
+  corevaluename: any = ""; 
 
-  private base64textString:String="";
+  base64textString: any ="";
   successMessage: any;
   errorMessage: any;
 

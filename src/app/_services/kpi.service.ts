@@ -162,6 +162,32 @@ export class KpiService {
   }
 
 
+
+  // behavior point start 
+
+  // add new point
+  addNewPoint(data: any){
+
+    return this.http.post<any>(this.baseUrl + 'levelup/api/v1/kpi/addNewPoint' , JSON.stringify(data), {
+
+    })
+      .pipe(
+      // tap(data => console.log('authToken' + JSON.stringify(data))),
+      tap(),// 
+
+        catchError(this.errorHandl));
+  }
+
+  // get point list
+ getPointList(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/getPointList')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+
   
   
 

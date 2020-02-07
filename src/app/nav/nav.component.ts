@@ -11,7 +11,7 @@ export class NavComponent implements OnInit {
 
   authToken = JSON.parse(localStorage.getItem('authToken'));
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(public userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }

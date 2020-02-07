@@ -9,7 +9,7 @@ import { UserService } from 'src/app/_services/user.service';
 export class DashboardNavComponent implements OnInit {
  user = JSON.parse(localStorage.getItem('user'));	
 
-  constructor(private userService: UserService,) { }
+  constructor(public userService: UserService,) { }
 
   ngOnInit() {
 

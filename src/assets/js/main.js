@@ -254,6 +254,15 @@ $(document).on('change', '#kpi_behavior', function(){
 });
 
 
+// add custom point
+$(document).on('change', '#kpi_point', function(){ 
+    var id = $(this).val();
+    if(id == -1){
+      $('#pointModal').modal('show');
+    }
+});
+
+
 
 
 

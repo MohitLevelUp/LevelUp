@@ -12,12 +12,14 @@ import { NotifierService } from "angular-notifier";
   styleUrls: ['./target.component.css']
 })
 export class TargetComponent implements OnInit {
+  targetmodel: any = {};
+
   user   = JSON.parse(localStorage.getItem('user'));
 
   private readonly notifier: NotifierService;
 
-  private usersTarget:string = "";
-  private teamsTarget:string = "";
+  usersTarget:string = "";
+  teamsTarget:string = "";
   selectedKpi ='';
   selectedPeriod ='';
 

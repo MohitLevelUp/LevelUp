@@ -13,6 +13,7 @@ import { NotifierService } from "angular-notifier";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+
   iconUrl   = environment.uploadUrl;
   private readonly notifier: NotifierService;
   userId    = +this.route.snapshot.paramMap.get('id');
@@ -20,7 +21,7 @@ export class UserComponent implements OnInit {
   user: any;
   successMessage: any;
   errorMessage: any;
-  userInfo: IUser[];
+  userInfo: any;
   private base64textString:String="";
 
   constructor(private http: Http, private userService: UserService, 

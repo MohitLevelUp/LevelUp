@@ -61,6 +61,7 @@ export class GoalsComponent implements OnInit {
     private router: Router,private route: ActivatedRoute) {
      this.notifier = notifierService;
     }
+    
   unsorted() { }//this is for period view in order
 
   

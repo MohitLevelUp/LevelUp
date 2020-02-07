@@ -9,6 +9,8 @@ import { NotifierService } from "angular-notifier";
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
+  forgotPassmodel: any = {};
+
   private readonly notifier: NotifierService;
 
   successMessage: any;

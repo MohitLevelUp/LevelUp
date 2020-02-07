@@ -11,7 +11,7 @@ import { JwtHelperService  }  from '@auth0/angular-jwt';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  userInfo: IUser[];
+  userInfo: any;
   errorMessage: any;
   targetList:any;
   pointDifference:any;

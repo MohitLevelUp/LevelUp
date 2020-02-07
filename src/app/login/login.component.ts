@@ -12,6 +12,8 @@ import { NotifierService } from "angular-notifier";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  logInmodel: any = {};
+
   private readonly notifier: NotifierService;
 
   rememberMe: any;

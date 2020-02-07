@@ -23,14 +23,11 @@ export class TeamDetailsComponent implements OnInit {
 
   	var teamId      = localStorage.getItem('teamDetailPageId');
 
-
   	//get team's user list
     this.userService.teamsUserList(teamId).subscribe(
       resp => {
       	if(resp.status_code == 200){
       		this.userList = resp['data']; 
-          console.log(this.userList);
-      		
 
         for (let i = 0; i < this.userList.length; i++) {
         	if(this.userList[i].role_type == 2)

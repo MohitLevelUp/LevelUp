@@ -11,7 +11,8 @@ import { NotifierService } from "angular-notifier";
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-
+  signUpmodel: any = {};
+  
   private readonly notifier: NotifierService;
   
   successMessage: any;

@@ -59,7 +59,7 @@
                             <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
                             <div class="reco_input">
                               <div class="private_points_wrap">
-                                <input type="text" class="private-form__control" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="form.whyGiven" placeholder="What did your coworker(s) do?" title="please write something" required>
+                                <input type="text" class="private-form__control" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="coreValmodel.whyGiven" placeholder="What did your coworker(s) do?" title="please write something" required>
 
                               </div>
                             </div>
@@ -67,6 +67,7 @@
                           <div class="reco_submit">
 
                             <input value="Send" class="cmn_btn pull-right" type="submit">
+
                           </div>
                         </div>
                       </form>
@@ -94,7 +95,7 @@
                             <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
                             <div class="reco_input">
                               <div class="private_points_wrap">
-                                <input type="text" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="kudosform.whyGiven" class="private-form__control" id="" placeholder="What did your coworker(s) do?" title="please write something" required> </div>
+                                <input type="text" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="coreValmodel.whyGiven" class="private-form__control" id="" placeholder="What did your coworker(s) do?" title="please write something" required> </div>
                             </div>
                           </div>
 
@@ -102,7 +103,7 @@
                             <ul class="row">
 
                               <li class="col-sm-4" *ngFor='let kudos of stickerList; let i = index'>
-                                <input type="radio" #kudosId="ngModel" name="kudosId" [(ngModel)]="kudosform.kudosId" [value]="kudos.id" id="Kudos{{kudos.id}}" />
+                                <input type="radio" #kudosId="ngModel" name="kudosId" [(ngModel)]="coreValmodel.kudosId" [value]="kudos.id" id="Kudos{{kudos.id}}" />
                                 <label for="Kudos{{kudos.id}}">
 
                                   <img class="img-fluid" src="{{ iconUrl }}kudos_stickers/{{ kudos.sticker }}" />
@@ -126,7 +127,7 @@
                             <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
                                 <div class="reco_input">
                             <div class="form-group form-control-wrap">                            
-                             <input id="newstxt" type="text" class="private-form__control form-control" [(ngModel)]="newsform.breaking_news" placeholder="Breaking News Updates" name="breaking_news" (keydown)="onKeydown($event)" rel="" />                               
+                             <input id="newstxt" type="text" class="private-form__control form-control" [(ngModel)]="coreValmodel.breaking_news" placeholder="Breaking News Updates" name="breaking_news" (keydown)="onKeydown($event)" rel="" />                               
                              <datalist id="userlist" >
                                 <select name="selectedUser" id="select">
                                   <ng-container *ngFor='let users of usersInfo; let i = index'>
@@ -218,7 +219,7 @@
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs nav-justified">
                         <li class="nav-item active">
-                          <a class="nav-link " data-toggle="tab" href="#receiver">Top Receiver </a>
+                          <a class="nav-link " data-toggle="tab" href="#receiver">Top Receiver  </a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" data-toggle="tab" href="#sender">Top Giver</a>
@@ -248,6 +249,23 @@
                                     <a href="#"><span>Facebook</span></a>
                                     <a href="#"><span>Twitter</span></a>
                                     <a href="#"><span>linkedin</span></a>
+                                    <div class="row">
+                                        
+                                       
+                                        <div class="col">
+                                            <google-plus></google-plus>
+                                        </div>
+                                        <div class="col">
+                                            <fb-like></fb-like>
+                                        </div>
+                                        <div class="col">
+                                            <tweet></tweet>
+                                        </div>
+                                        <div class="col">
+                                            <linkedin-share url="http://mylevelup.io/#/core-value"></linkedin-share>
+                                        </div>
+                                    </div>
+                                  
                                   </div>
                                 </div>
 
@@ -279,6 +297,7 @@
                                   <a href="#"><span>Facebook</span></a>
                                   <a href="#"><span>Twitter</span></a>
                                   <a href="#"><span>linkedin</span></a>
+
                                 </div>
                                 </div>
                               </div>
@@ -322,7 +341,7 @@
                                 <div class="coreValueText">
                                   <h3>Team player</h3>
                                   <img class="img-fluid" src="{{ iconUrl }}kudos_stickers/{{ getKudos.sticker }}">
-                                  <p>{{getKudos.why_given}}</p>
+                                  <!-- <p>{{getKudos.why_given}}</p> -->
                                   <div class="social_icon_wrap">
                                     <a href="#"><span>Facebook</span></a>
                                     <a href="#"><span>Twitter</span></a>
@@ -349,11 +368,12 @@
                                 <div class="coreValueText">
                                   <h3>Team player</h3>
                                   <img class="img-fluid" src="{{ iconUrl }}kudos_stickers/{{ giveKudos.sticker }}">
-                                  <p>{{giveKudos.why_given}}</p>
+                                  <!-- <p>{{giveKudos.why_given}}</p> -->
                                   <div class="social_icon_wrap">
                                     <a href="#"><span>Facebook</span></a>
                                     <a href="#"><span>Twitter</span></a>
                                     <a href="#"><span>linkedin</span></a>
+
                                   </div>
                                 </div>
                               </div>  
