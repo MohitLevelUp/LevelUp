@@ -3979,7 +3979,7 @@ background: linear-gradient(55deg, #2e9e7d 65%, #82c39a 42%);
 background: linear-gradient(55deg, #f0c500 65%, #9f8100 42%);
 }
 .lounicorn_finders.team_banner{   
-    background-image: url(../images/team-bg/lounicorn_finders.jpg);
+    /*background-image: url(../images/team-bg/lounicorn_finders.jpg);*/
 }
 
 /*HAPPY RESOURCES=========*/

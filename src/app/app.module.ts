@@ -9,7 +9,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CookieService } from 'ngx-cookie-service';
 import { NotifierModule } from "angular-notifier";
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
+// import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
 
 
@@ -87,7 +87,7 @@ import { LiveDashboardComponent } from './live-dashboard/live-dashboard.componen
     FormsModule,
     CustomFormsModule,
     DataTablesModule,
-    JwSocialButtonsModule,
+    // JwSocialButtonsModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgCircleProgressModule.forRoot({
       "radius": 60,
