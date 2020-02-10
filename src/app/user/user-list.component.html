@@ -12,6 +12,9 @@
 						</ul>
 						<!-- Tab panes -->
 						<div class="tab-content">
+							<!-- <ng-container *ngFor="let userInfo of usersInfo; index as i">
+								<img style="width: 35px;height: 35px;border-radius: 50%;" src="{{ iconUrl }}profile_images/{{ userInfo['profile_image_name'] }}"><p>{{userInfo.display_name}}</p>
+							</ng-container> -->
 							<!--      USERS TAB SECTION==================================-->
 							<div id="users" class="tab-pane active" >
 								<div class="creat_user_btn_wrap">
@@ -379,7 +382,7 @@
 					<div class="modal-content">
 
 						<div class="modal_header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <i class="la la-times-circle fa-lg"></i>
+							<button type="button" class="close" (click)="resetTeam()" data-dismiss="modal" aria-label="Close"> <i class="la la-times-circle fa-lg"></i>
 							</button>
 							<h4 class="modal-title" id="myModalLabel2">Edit Team</h4>
 						</div>

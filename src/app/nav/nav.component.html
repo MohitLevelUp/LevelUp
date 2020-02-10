@@ -27,7 +27,7 @@
                     </ul>
                 </div>
                 <div class="site-search">
-                <div class="site-search__btn"><span class="search-icon"></span> </div>              
+               <!--  <div class="site-search__btn"><span class="search-icon"></span> </div> -->              
                 <div *ngIf="!userService.isLoggedIn()" class="login_wrap"><a routerLinkActive='active' [routerLink]="['/login']" class="login-btn">Login</a>
                 </div>
                 <div *ngIf="userService.isLoggedIn()" class="login_wrap"><a  [routerLink]="['/goals']" class="login-btn" style="cursor: pointer;">My Account</a>

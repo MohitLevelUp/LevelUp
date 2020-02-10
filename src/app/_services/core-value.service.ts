@@ -12,9 +12,6 @@ import { JwtHelperService  }  from '@auth0/angular-jwt';
 export class CoreValueService {
   baseUrl        = environment.apiUrl;
 
-  
- 
-
   constructor(private http: HttpClient, private router: Router) {
 
    }
@@ -205,6 +202,18 @@ export class CoreValueService {
   getNews(): Observable<any> {
 
     return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/getNews/')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+
+  //get corevalue topers
+  
+  getCoreValueTopers(startDate:any,endDate:any,): Observable<any> {
+
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/topers/' + startDate + '/' + endDate)
     .pipe(
       retry(1),
      catchError(this.errorHandl)

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TargetService } from 'src/app/_services/target.service';
+import { CoreValueService } from 'src/app/_services/core-value.service';
 import { environment } from '../../environments/environment';
 import * as moment from 'moment';
 
@@ -38,8 +39,12 @@ export class LiveDashboardComponent implements OnInit {
 
    tierOneTotalJoining:any;
    directClientTotalJoining:any;
+   
+   coreValues:any;
+   coreValueTopers:any;
 
-  constructor(private targetService: TargetService) { }
+  constructor(private targetService: TargetService,
+    private coreValueService: CoreValueService,) { }
 
   ngOnInit() { 
     var teamsFlag = 1;
@@ -49,7 +54,7 @@ export class LiveDashboardComponent implements OnInit {
     var tierOneType      = 1;
     var directClientType = 2;
 
-  	// get total submissions
+    // get total submissions
     var date             = new Date();
     this.currentDate     = moment(date).format('YYYY-MM-DD');
     this.yearStartDate   = moment().startOf('year').format('YYYY-MM-DD');
@@ -142,7 +147,6 @@ export class LiveDashboardComponent implements OnInit {
     this.targetService.getJoiningTotal(this.yearStartDate,this.currentDate, withoutAnyType).subscribe(
       resp => {
          this.totalJoining = resp['data'].total_joinings;
-         console.log('to',this.totalJoining);
       },
       
       error => this.errorMessage = <any>error
@@ -154,7 +158,6 @@ export class LiveDashboardComponent implements OnInit {
       resp => {
          this.tierOneTotalJoining = resp['data'].total_joinings;
 
-         console.log('tier',this.tierOneTotalJoining);
       },
       
       error => this.errorMessage = <any>error
@@ -166,7 +169,6 @@ export class LiveDashboardComponent implements OnInit {
       resp => {
          this.directClientTotalJoining = resp['data'].total_joinings;
 
-         console.log('direct',this.directClientTotalJoining);
       },
       
       error => this.errorMessage = <any>error
@@ -203,7 +205,7 @@ export class LiveDashboardComponent implements OnInit {
       resp => {
          
          this.weeklyTotalSubmissions = resp['data'].total_submission;
-         console.log(this.weeklyTotalSubmissions);
+
         
       },
       
@@ -235,6 +237,24 @@ export class LiveDashboardComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
 
+
+
+      // get core value topers list of current quarter
+    this.coreValueService.getCoreValueTopers(quarterStartDate,quarterStartDate).subscribe(
+      resp => {
+        
+         this.coreValues      = resp['data'];
+         this.coreValueTopers = this.coreValues.sort((a, b) => b.total_coreValue - a.total_coreValue).slice(0,3)
+        
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+
   }
+
+
+
+
 
 }

@@ -15,6 +15,9 @@ declare var $: any;
 })
 export class UserListComponent implements OnInit {
   iconUrl        = environment.uploadUrl;
+
+  userDetails    = JSON.parse(localStorage.getItem('user'));
+
   private readonly notifier: NotifierService;
 
   userListmodel: any = {};
@@ -79,11 +82,11 @@ export class UserListComponent implements OnInit {
       (resp) => {
 
 
-      	if(resp['status_code'] == 200){
+        if(resp['status_code'] == 200){
 
-      		$("#for_team").modal('hide');
+          $("#for_team").modal('hide');
 
-      		this.getTeamList();
+          this.getTeamList();
 
           this.successMessage = resp.message;
            this.notifier.show({
@@ -91,7 +94,7 @@ export class UserListComponent implements OnInit {
               message: this.successMessage,
            });
 
-      	}else{
+        }else{
            this.errorMessage = resp.message;
            this.notifier.show({
               type: "error",
@@ -113,15 +116,15 @@ export class UserListComponent implements OnInit {
     this.userService.updateTeam(form1.value).subscribe(
       (resp) => {
         if(resp['status_code'] == 200){
-      		$("#edit_team").modal('hide');
-      		this.getTeamList();
+          $("#edit_team").modal('hide');
+          this.getTeamList();
 
           this.successMessage = resp.message;
            this.notifier.show({
               type: "success",
               message: this.successMessage,
            });
-      	}else{
+        }else{
            this.errorMessage = resp.message;
            this.notifier.show({
               type: "error",
@@ -135,7 +138,13 @@ export class UserListComponent implements OnInit {
       }
 
     );
+    this.editselectedItems = [];
     form1.resetForm();
+  }
+
+// reset edit team form
+  resetTeam(){
+    this.editselectedItems = [];
   }
   
 
@@ -173,7 +182,7 @@ export class UserListComponent implements OnInit {
 
 //get team details by id
  getTeamDetails(event){
- 	 var target = event.target || event.srcElement || event.currentTarget;
+    var target = event.target || event.srcElement || event.currentTarget;
      var idAttr = target.attributes.id;
      var teamId = idAttr.nodeValue;
      
@@ -183,7 +192,7 @@ export class UserListComponent implements OnInit {
     this.userService.getTeamMembers(teamId).subscribe(
       resp => {
         this.singleteamInfo = resp['data']; 
-        console.log(this.singleteamInfo);
+        // console.log(this.singleteamInfo);
 
         if(this.singleteamInfo)
         $("#edit_team").modal('show');
@@ -209,7 +218,7 @@ export class UserListComponent implements OnInit {
  //Delete Team
   deleteTeam(event) {
 
-  	var target = event.target || event.srcElement || event.currentTarget;
+    var target = event.target || event.srcElement || event.currentTarget;
     var idAttr = target.attributes.id;
     var teamId = idAttr.nodeValue;
 
@@ -217,14 +226,14 @@ export class UserListComponent implements OnInit {
       (resp) => {
        if(resp['status_code'] == 200){
 
-      		this.getTeamList();
+          this.getTeamList();
 
            this.successMessage = resp.message;
            this.notifier.show({
               type: "success",
               message: this.successMessage,
            });
-      	}else{
+        }else{
            this.errorMessage = resp.message;
            this.notifier.show({
               type: "error",
@@ -385,14 +394,14 @@ export class UserListComponent implements OnInit {
 
   //
   // resetForm(){
-  // 	console.log('hii');
-  // 	 this.form1.reset();
+  //   console.log('hii');
+  //    this.form1.reset();
   // }
 
 
   //start user function
   getUserList(){
-  	//get all user's details
+    //get all user's details
     this.userService.userList().subscribe(
       resp => {
         this.usersInfo = resp['data']; 
@@ -401,11 +410,12 @@ export class UserListComponent implements OnInit {
       
       error => this.errorMessage = <any>error
     );
+
   }
 
   //getting team list
   getTeamList(){
-  	 //get all team's details
+     //get all team's details
     this.userService.teamList().subscribe(
       resp => {
         this.teamInfo = resp['data']; 
@@ -417,36 +427,43 @@ export class UserListComponent implements OnInit {
 
 
   ngOnInit() {
-  	//use in data table
-  	this.dtOptions = {
-      pagingType: 'full_numbers',
-       pageLength: 100,
-    };
-    //for drop down
-    this.allUserListSettings = {
-      singleSelection: false,
-      idField: 'id',
-      textField: 'display_name',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 2,
-      allowSearchFilter: true
-    };
+    if(this.userDetails['role_type'] == '2' || this.userDetails['role_type'] == '3')
+    {
+      //use in data table
+      this.dtOptions = {
+        pagingType: 'full_numbers',
+        pageLength: 100,
+        "order": [],
+      };
+      //for drop down
+      this.allUserListSettings = {
+        singleSelection: false,
+        idField: 'id',
+        textField: 'display_name',
+        selectAllText: 'Select All',
+        unSelectAllText: 'UnSelect All',
+        itemsShowLimit: 2,
+        allowSearchFilter: true
+      };
 
-    // getting all user's list
-    this.getUserList();
+      // getting all user's list
+      this.getUserList();
 
-    // getting all team list
-    this.getTeamList();
+      // getting all team list
+      this.getTeamList();
 
-    //get all company list
-    this.userService.companyList().subscribe(
-      resp => {
-        this.companyInfo = resp['data'];
-      },
-      
-      error => this.errorMessage = <any>error
-    );
+      //get all company list
+      this.userService.companyList().subscribe(
+        resp => {
+          this.companyInfo = resp['data'];
+        },
+        
+        error => this.errorMessage = <any>error
+      );
+    }else{
+      this.router.navigate(['/']);
+    }
+    
 
 
   }
@@ -455,10 +472,10 @@ export class UserListComponent implements OnInit {
   
 
   onItemSelect(item: any) {
-    console.log(item);
+    // console.log(item);
   }
   onSelectAll(items: any) {
-    console.log(items);
+    // console.log(items);
   }
 
    ngOnDestroy(): void {

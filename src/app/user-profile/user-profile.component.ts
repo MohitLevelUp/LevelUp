@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
    const authToken      = localStorage.getItem('authToken');
    const decodedToken   = helper.decodeToken(authToken);
    var userID           = decodedToken['user_id'];
-  	 //get user details
+     //get user details
     this.userService.getUser(userID).subscribe(
       resp => {
         this.userInfo = resp['data'];
@@ -39,39 +39,44 @@ export class UserProfileComponent implements OnInit {
     
     this.targetService.getUsersTargetList(userID).subscribe(
       resp => {
-        this.targetList = resp['data'];
-        console.log(this.targetList);
-        var flag:number = 0;
-        var foo:number  = 0;
-        for (let i = 0; i < this.targetList.length; i++) {
-         var assignTarget   = this.targetList[i].users_target; 
-         var completeTarget = this.targetList[i].total; 
+        if(resp['status_code'] == 200){
+          this.targetList = resp['data'];
 
-         var targetResult   = assignTarget - completeTarget;
+          var flag:number = 0;
+          var foo:number  = 0;
+          for (let i = 0; i < this.targetList.length; i++) {
+           var assignTarget   = this.targetList[i].users_target; 
+           var completeTarget = this.targetList[i].total; 
 
-         var targetResultPercentage = Math.round((targetResult*100)/assignTarget);
+           var targetResult   = assignTarget - completeTarget;
 
-
-         //user's in all kpi assign target total
+           var targetResultPercentage = Math.round((targetResult*100)/assignTarget);
 
 
-         var allAssignTarget:any = +flag + (+assignTarget * this.targetList[i].point) ; //+ sign conver string to number
+           //user's in all kpi assign target total
 
-                        flag = allAssignTarget;
-                        
 
-          //user's completed taget
+           var allAssignTarget:any = +flag + (+assignTarget * this.targetList[i].point) ; //+ sign conver string to number
 
-          var allCompleteTarget:any = +foo + (+completeTarget * this.targetList[i].point);
+                          flag = allAssignTarget;
+                          
 
-                            foo = allCompleteTarget;
+            //user's completed taget
 
-          this.assignTargetData.push({ 'kpi_id': this.targetList[i].kpi_id, 'kpi_name': this.targetList[i].kpi_name, 
-            'formula': this.targetList[i].formula, 'point': this.targetList[i].point, 'weightage': this.targetList[i].weightage,
-             'target_period': this.targetList[i].target_period, 'total': this.targetList[i].total, 'users_target': this.targetList[i].users_target, 'targetResultPercentage': targetResultPercentage});
+            var allCompleteTarget:any = +foo + (+completeTarget * this.targetList[i].point);
+
+                              foo = allCompleteTarget;
+
+            this.assignTargetData.push({ 'kpi_id': this.targetList[i].kpi_id, 'kpi_name': this.targetList[i].kpi_name, 
+              'formula': this.targetList[i].formula, 'point': this.targetList[i].point, 'weightage': this.targetList[i].weightage,
+               'target_period': this.targetList[i].target_period, 'total': this.targetList[i].total, 'users_target': this.targetList[i].users_target, 'targetResultPercentage': targetResultPercentage});
 
         }
         this.pointDifference = (allAssignTarget - allCompleteTarget);
+      }else{
+        this.targetList = '';
+      }
+        
         
       },
       

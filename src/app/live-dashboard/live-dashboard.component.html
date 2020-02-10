@@ -28,7 +28,7 @@
         </div>
         <div class="kpi-individual-by6">
           <div class="kpiheading">Total Consultants </div>
-          <div class="kpipoint"> 280</div>
+          <div class="kpipoint"> 272</div>
           <!-- <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
           </div> -->
         </div>
@@ -66,13 +66,13 @@
         <div class="target-template2-header">Billing Consultant</div>
         <div class="target-template2-content">
           <div class="target-template2-individual">
-            <div class="target-template2-individual-points">270</div>
+            <div class="target-template2-individual-points">272</div>
             <div class="target-template2-individual-target"> / 281</div>
           </div>
           <div class="target-template2-chart">
             <div id="chart_wrapper" class="justify-content-center align-items-center" style="text-align: center;">
               <circle-progress
-            [percent]="96"
+            [percent]="97"
             [radius]="40"
             [units]=""
             [outerStrokeWidth]="6"
@@ -91,10 +91,10 @@
               <div class="target-template2-leaderboardindividual-name">Tier 1</div>
               <div class="target-template2-leaderboardindividual-chart">
                 <div class="target-template2-leaderboardindividual-chartcontainer" style="background-color: rgba(0,0,0,0.3);">
-                  <div style="width: 94%" class="target-indicator-ontrack target-chart-progress"></div>
+                  <div style="width: 96.4%" class="target-indicator-ontrack target-chart-progress"></div>
                 </div>
                 <div class="target-template2-leaderboardindividual-point"></div>
-                <div class="target-template2-leaderboardindividual-percent">94%</div>
+                <div class="target-template2-leaderboardindividual-percent">96.4%</div>
               </div>
 
             </div>
@@ -102,7 +102,8 @@
               <div class="target-template2-leaderboardindividual-name">MSP </div>
               <div class="target-template2-leaderboardindividual-chart">
                 <div class="target-template2-leaderboardindividual-chartcontainer" style="background-color: rgba(0,0,0,0.3);">
-                  <div style="width: 100%" class="target-indicator-caution target-chart-progress"></div>
+                  <!-- class="target-indicator-caution target-chart-progress" -->
+                  <div style="width: 100%" class="target-indicator-ontrack target-chart-progress"></div>
                 </div>
                 <div class="target-template2-leaderboardindividual-point"></div>
                 <div class="target-template2-leaderboardindividual-percent">100%</div>
@@ -113,11 +114,12 @@
               <div class="target-template2-leaderboardindividual-name">Non-MSP </div>
               <div class="target-template2-leaderboardindividual-chart">
                 <div class="target-template2-leaderboardindividual-chartcontainer" style="background-color: rgba(0,0,0,0.3);">
-                  <div style="width: 100%" class="target-indicator-offtrack  target-chart-progress">
+                  <!-- class="target-indicator-offtrack  target-chart-progress" -->
+                  <div style="width: 100%" class="target-indicator-ontrack target-chart-progress">
                   </div>
                 </div>
                 <div class="target-template2-leaderboardindividual-point"></div>
-                <div class="target-template2-leaderboardindividual-percent">110%</div>
+                <div class="target-template2-leaderboardindividual-percent">100%</div>
               </div>
 
             </div>
@@ -132,7 +134,7 @@
         <div class="target-template1-chart">
           <div id="chart_wrapper" class="justify-content-center align-items-center" style="text-align: center;" >
             <circle-progress
-            [percent]="8"
+            [percent]="26"
             [radius]="40"
             [outerStrokeWidth]="6"
             [innerStrokeWidth]="6"
@@ -160,35 +162,35 @@
 <!--            <div class="target-template2-leaderboardheader">COMPANY LEADERBOARD</div>-->
 
             <ng-container *ngFor="let postingtoper of usersJobPostingtopers; index as i">
-	            <div class="target-template2-leaderboardindividual for_contest">
-	              <div class="target-template2-leaderboardindividual-name">{{postingtoper.display_name | titlecase}}</div>
-	              <div class="target-template2-leaderboardindividual-chart">
-	                <div class="target-template2-leaderboardindividual-chartcontainer for_contest" style="background-color: rgba(0,0,0,0.3);">
-	                  <div *ngIf="i==0" style="width: 100%" class="target-indicator-ontrack target-chart-progress for_contest">
-	                    <div class="target-chart-img">
-	                    <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ postingtoper.profile_image_name }}">
-	                    </div>
-	                    </div>
+              <div class="target-template2-leaderboardindividual for_contest">
+                <div class="target-template2-leaderboardindividual-name">{{postingtoper.display_name | titlecase}}</div>
+                <div class="target-template2-leaderboardindividual-chart">
+                  <div class="target-template2-leaderboardindividual-chartcontainer for_contest" style="background-color: rgba(0,0,0,0.3);">
+                    <div *ngIf="i==0" style="width: 100%" class="target-indicator-ontrack target-chart-progress for_contest">
+                      <div class="target-chart-img">
+                      <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ postingtoper.profile_image_name }}">
+                      </div>
+                      </div>
 
 
-	                  	<div *ngIf="i==1" style="width: 80%" class="target-indicator-caution target-chart-progress for_contest">
-		                    <div class="target-chart-img">
-		                    <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ postingtoper.profile_image_name }}">
-		                    </div>
-	                    </div>
+                      <div *ngIf="i==1" style="width: 80%" class="target-indicator-caution target-chart-progress for_contest">
+                        <div class="target-chart-img">
+                        <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ postingtoper.profile_image_name }}">
+                        </div>
+                      </div>
 
-	                  	<div *ngIf="i==2" style="width: 60%" class="target-indicator-offtrack  target-chart-progress for_contest">
+                      <div *ngIf="i==2" style="width: 60%" class="target-indicator-offtrack  target-chart-progress for_contest">
 
-		                    <div class="target-chart-img">
-		                    <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ postingtoper.profile_image_name }}">
-		                    </div>
-	                    </div>
-	               
-	                </div>
-	                <div class="target-template2-leaderboardindividual-point">{{postingtoper.total_job_posting}}</div>
-	                <div class="target-template2-leaderboardindividual-percent"></div>
-	              </div>
-	            </div>
+                        <div class="target-chart-img">
+                        <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ postingtoper.profile_image_name }}">
+                        </div>
+                      </div>
+                 
+                  </div>
+                  <div class="target-template2-leaderboardindividual-point">{{postingtoper.total_job_posting}}</div>
+                  <div class="target-template2-leaderboardindividual-percent"></div>
+                </div>
+              </div>
             </ng-container>
           </div>
               </div>
@@ -287,18 +289,18 @@
           </div>
 -->
 
-        <div class="contest-template1-leaderboardheader">TOP RECRUITERS</div>
+        <div class="contest-template1-leaderboardheader">CORE VALUE TOPERS</div>
 
-         <ng-container *ngFor="let toper of submissionstopers; index as i">
+         <ng-container *ngFor="let cToper of coreValueTopers; index as i">
 
           <div class="contest-template1-leaderboardindividual">
             <div class="contest-template1-leaderboardindividual-photo">
-            	<img class="person-img navuserimg" src="{{ iconUrl }}profile_images/{{ toper.profile_image_name }}">
+              <img class="person-img navuserimg" src="{{ iconUrl }}profile_images/{{ cToper.profile_image_name }}">
             </div>
-            <div class="contest-template1-leaderboardindividual-name"> {{toper.display_name | titlecase}} </div>
-            <div class="contest-template1-leaderboardindividual-points"> {{toper.total_submission}}</div>
+            <div class="contest-template1-leaderboardindividual-name"> {{cToper.display_name | titlecase}} </div>
+            <div class="contest-template1-leaderboardindividual-points"> {{cToper.total_coreValue}}</div>
             <div class="contest-template1-leaderboardindividual-position"> {{i+1}} 
-            	<span *ngIf="i==0">st</span> <span *ngIf="i==1"> nd</span> <span *ngIf="i==2"> rd</span> <span *ngIf="i==3"> th</span></div>
+              <span *ngIf="i==0">st</span> <span *ngIf="i==1"> nd</span> <span *ngIf="i==2"> rd</span></div>
           </div>
 
           </ng-container>
@@ -307,17 +309,17 @@
       </div>
         
       <div class="dashboarditem target-template2A">
-      	<div class="contest-template1-leaderboardheader">TOP RECRUITERS</div>
+        <div class="contest-template1-leaderboardheader">TOP RECRUITERS</div>
         <ng-container *ngFor="let toper of submissionstopers; index as i">
 
           <div class="contest-template1-leaderboardindividual">
             <div class="contest-template1-leaderboardindividual-photo">
-            	<img class="person-img navuserimg" src="{{ iconUrl }}profile_images/{{ toper.profile_image_name }}">
+              <img class="person-img navuserimg" src="{{ iconUrl }}profile_images/{{ toper.profile_image_name }}">
             </div>
             <div class="contest-template1-leaderboardindividual-name"> {{toper.display_name | titlecase}} </div>
             <div class="contest-template1-leaderboardindividual-points"> {{toper.total_submission}}</div>
             <div class="contest-template1-leaderboardindividual-position"> {{i+1}} 
-            	<span *ngIf="i==0">st</span> <span *ngIf="i==1"> nd</span> <span *ngIf="i==2"> rd</span> <span *ngIf="i==3"> th</span></div>
+              <span *ngIf="i==0">st</span> <span *ngIf="i==1"> nd</span> <span *ngIf="i==2"> rd</span> <span *ngIf="i==3"> th</span></div>
           </div>
 
           </ng-container>

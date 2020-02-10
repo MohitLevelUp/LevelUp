@@ -14,9 +14,12 @@ import { NotifierService } from "angular-notifier";
 })
 export class UserComponent implements OnInit {
 
-  iconUrl   = environment.uploadUrl;
+  iconUrl        = environment.uploadUrl;
+  userDetails    = JSON.parse(localStorage.getItem('user'));
+  userID         = this.userDetails['user_id'];
+
   private readonly notifier: NotifierService;
-  userId    = +this.route.snapshot.paramMap.get('id');
+  getUserId    = +this.route.snapshot.paramMap.get('id');
 
   user: any;
   successMessage: any;
@@ -84,12 +87,17 @@ export class UserComponent implements OnInit {
 
     }
 
-  userProfile(userId){
+  userProfile(userId:any){
+    
     this.userService.getUser(userId).subscribe(
       resp => {
         this.user     = resp;
         this.userInfo = this.user['data']; 
-        localStorage.setItem('user', JSON.stringify(this.userInfo)); //set updated data into session
+
+        if(Number(userId) == Number(this.userID)){
+           localStorage.setItem('user', JSON.stringify(this.userInfo)); //set updated data into session
+        }
+        
       },
       
       error => this.errorMessage = <any>error
@@ -97,8 +105,9 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
+    
      //get user details
-     this.userProfile(this.userId);
+     this.userProfile(this.getUserId);
     
   }
 
@@ -106,7 +115,7 @@ export class UserComponent implements OnInit {
     this.userService.updateUser(form.value).subscribe(
       res => {
         if(res['status_code'] == 200){
-            this.userProfile(this.userId);
+            this.userProfile(this.getUserId);
             this.successMessage = res['message'];
                this.notifier.show({
                   type: "success",

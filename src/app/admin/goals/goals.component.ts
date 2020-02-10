@@ -5,6 +5,7 @@ import { TargetService } from 'src/app/_services/target.service';
 import { UserService } from 'src/app/_services/user.service';
 import { NotifierService } from "angular-notifier";
 import { ActivatedRoute, Router } from '@angular/router';
+import { KeyValue } from '@angular/common';
 
 declare var $: any;
 @Component({
@@ -62,8 +63,10 @@ export class GoalsComponent implements OnInit {
      this.notifier = notifierService;
     }
     
-  unsorted() { }//this is for period view in order
-
+  // unsorted() { }//this is for period view in order
+  originalOrder = (a: KeyValue<number,string>, b: KeyValue<number,string>): number => {
+  return 0;
+}
   
   //assign a kpi
 
@@ -93,7 +96,17 @@ export class GoalsComponent implements OnInit {
       }
 
     );
+    this.selectedKpis  = [];
+    this.selectedUsers = [];
+    this.selectedTeams = [];
     form2.resetForm();
+  }
+
+// reset assign kpi form
+  resetAssignKpi(){
+    this.selectedUsers = [];
+    this.selectedTeams = [];
+    this.selectedKpis  = [];
   }
 
   //kpi filter
@@ -135,7 +148,8 @@ export class GoalsComponent implements OnInit {
      var target = event.target || event.srcElement || event.currentTarget;
      var idAttr = target.attributes.id;
      var kpiId  = idAttr.nodeValue;
-     
+
+     this.selectedKpiList = [];
     //get single kpi details
     this.kpiService.getKpiDetails(kpiId).subscribe(
       resp => {
@@ -285,8 +299,13 @@ export class GoalsComponent implements OnInit {
     //get all target list
     this.targetService.getManagerCreatedTarget().subscribe(
       resp => {
-        this.allTargetList = resp['data'];
-        console.log('tar',this.allTargetList);
+
+        if(resp['status_code'] == 200){
+          this.allTargetList = resp['data'];
+        }else{
+          this.allTargetList = '';
+        }
+        
         
       },
       
@@ -317,7 +336,7 @@ export class GoalsComponent implements OnInit {
     );
     }
 
-  	//for drop down
+    //for drop down
     this.allKpiListSettings = {
       singleSelection: false,
       idField: 'id',
@@ -328,7 +347,7 @@ export class GoalsComponent implements OnInit {
       allowSearchFilter: true
     };
 
-  	//for drop down
+    //for drop down
     this.allTeamListSettings = {
       singleSelection: false,
       idField: 'id',
@@ -351,7 +370,7 @@ export class GoalsComponent implements OnInit {
     };
 
    
-  	//get all user's details of team
+    //get all user's details of team
 
     this.userService.teamsUserList(this.teamId).subscribe(
       resp => {
@@ -362,7 +381,7 @@ export class GoalsComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
 
-  	 //get all team's details
+     //get all team's details
     this.userService.getTeamDetails(this.teamId).subscribe(
       resp => {
          this.teamInfo = resp['data']; 
@@ -375,7 +394,7 @@ export class GoalsComponent implements OnInit {
     
 
     //get all period list
-  	this.kpiService.getPeriodList().subscribe(
+    this.kpiService.getPeriodList().subscribe(
       resp => {
         this.periodList = resp['data'];
       },
@@ -387,10 +406,10 @@ export class GoalsComponent implements OnInit {
 
 
  onItemSelect(item: any) {
-    console.log(item);
+    // console.log(item);
   }
   onSelectAll(items: any) {
-    console.log(items);
+    // console.log(items);
   }
 
 }

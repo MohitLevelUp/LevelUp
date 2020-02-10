@@ -142,7 +142,7 @@
 				                        </div>
 
 				                           </div>                         
-				                        <div class="kpi-change kpi-label-default">{{(target.total*100)/target.users_target}}%</div>
+				                        <div class="kpi-change kpi-label-default">{{(target.total*100)/target.users_target | number: '1.0-0'}}%</div>
 				                        <span class="tile-filter-element">{{target.users_target - target.total}} Needed</span>
 				                      </div>
 
@@ -241,7 +241,7 @@
 				                        </div>
 
 				                           </div>                         
-				                        <div class="kpi-change kpi-label-default">{{(target.total*100)/target.users_target}}%</div>
+				                        <div class="kpi-change kpi-label-default">{{(target.total*100)/target.users_target | number: '1.0-0'}}%</div>
 				                        <span class="tile-filter-element">{{target.users_target - target.total}} Needed</span>
 				                      </div>
 
@@ -274,7 +274,7 @@
 										<!-- Modal Header -->
 										<div class="modal_header">
 											<h4 class="modal-title">Configure</h4>
-											<button type="button" class="close" data-dismiss="modal"> <i class="la la-times-circle fa-lg"></i>
+											<button type="button" class="close" data-dismiss="modal" (click)="resetAssignKpi()"> <i class="la la-times-circle fa-lg"></i>
 											</button>
 										</div>
 										<!-- Modal body -->
@@ -329,9 +329,10 @@
 														
 														<select style="width: 74%;" class="custom-select" #period="ngModel" name="period" [(ngModel)]="selectedPeriod">
 															<option value="">Select Period</option>
-															<!-- <option *ngFor="let item of periodList | keyvalue : unsorted" value="{{item.value}}">{{item.key}}</option> -->
+															<option *ngFor="let item of periodList | keyvalue: originalOrder" value="{{item.value}}">{{item.key}}</option>
 
-															<option *ngFor="let item of periodList" value="{{item.value}}">{{item.key}}</option>
+															<!-- <option *ngFor="let item of periodList" value="{{item.value}}">{{item.key}}</option> -->
+															
 															
 														</select>
 													</div>

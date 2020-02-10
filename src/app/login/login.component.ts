@@ -14,6 +14,7 @@ import { NotifierService } from "angular-notifier";
 export class LoginComponent implements OnInit {
   logInmodel: any = {};
 
+  userDetails    = JSON.parse(localStorage.getItem('user'));
   private readonly notifier: NotifierService;
 
   rememberMe: any;
@@ -27,6 +28,9 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
+    if(this.userDetails != null){
+     this.router.navigate(['/']);
+    }
     // this.cookieValue = this.cookieservice.get('ai_session');
     // if (this.cookieValue != '') {
     //   this.rememberMe = JSON.parse(window.atob(this.cookieValue));

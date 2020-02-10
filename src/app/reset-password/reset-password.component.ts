@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ResetPasswordComponent implements OnInit {
   resetPassmodel: any = {};
 
+  userDetails    = JSON.parse(localStorage.getItem('user'));
   userData: any;
   errorMessage: any;
 
@@ -18,28 +19,34 @@ export class ResetPasswordComponent implements OnInit {
   	private router: Router,) { }
 
   ngOnInit() {
-  	this.route.params.subscribe(params => {
-     let userId = params['user_id'];
-     let hash   = params['hash'];
+    if(this.userDetails != null){
+      this.router.navigate(['/']);
+    }else{
+         this.route.params.subscribe(params => {
+         let userId = params['user_id'];
+         let hash   = params['hash'];
 
-     this.userService.resetPassword(userId,hash).subscribe(
-      (resp) => {
+         this.userService.resetPassword(userId,hash).subscribe(
+          (resp) => {
 
-        if(resp['status_code'] == 200){
-          
-          this.userData = resp['data'];
+            if(resp['status_code'] == 200){
+              
+              this.userData = resp['data'];
 
-        }else{
-        	this.router.navigate(['/forgot-password']);
-        }
-      },
-      error => {
-         this.errorMessage = <any>error
-      }
+            }else{
+              this.userData = '';
+              this.router.navigate(['/forgot-password']);
+            }
+          },
+          error => {
+             this.errorMessage = <any>error
+          }
 
-    );
-     
-   });
+        );
+         
+       });
+    }
+  	
   	
   	
   }
