@@ -290,7 +290,6 @@
         <div class="contest-template1-leaderboardheader">TOP RECRUITERS</div>
 
          <ng-container *ngFor="let toper of submissionstopers; index as i">
-
           <div class="contest-template1-leaderboardindividual">
             <div class="contest-template1-leaderboardindividual-photo">
             	<img class="person-img navuserimg" src="{{ iconUrl }}profile_images/{{ toper.profile_image_name }}">
@@ -300,14 +299,18 @@
             <div class="contest-template1-leaderboardindividual-position"> {{i+1}} 
             	<span *ngIf="i==0">st</span> <span *ngIf="i==1"> nd</span> <span *ngIf="i==2"> rd</span> <span *ngIf="i==3"> th</span></div>
           </div>
-
           </ng-container>
 
         </div>
       </div>
         
       <div class="dashboarditem target-template2A">
-      	<div class="contest-template1-leaderboardheader">TOP RECRUITERS</div>
+      <div class="contest-template1-th_title_wrap">
+      	<div class="contest-template1-th_title"></div>
+      	<div class="contest-template1-th_title">TOP RECRUITERS</div>
+        <div class="contest-template1-th_title">SUBMISSION</div>
+        <div class="contest-template1-th_title">RANK</div>
+          </div>
         <ng-container *ngFor="let toper of submissionstopers; index as i">
 
           <div class="contest-template1-leaderboardindividual">
