@@ -44,7 +44,7 @@ import { TeamsComponent } from './teams/teams.component';
 import { EditGamificationRulesComponent } from './admin/gamification-rules/edit-gamification-rules.component';
 import { TeamDetailsComponent } from './teams/team-details.component';
 import { LiveDashboardComponent } from './live-dashboard/live-dashboard.component';
-// import { NotFoundComponent } from './widgets/not-found/not-found.component';
+import { NotFoundComponent } from './widgets/not-found/not-found.component';
 
 
 
@@ -78,7 +78,7 @@ import { LiveDashboardComponent } from './live-dashboard/live-dashboard.componen
     EditGamificationRulesComponent,
     TeamDetailsComponent,
     LiveDashboardComponent,
-    // NotFoundComponent,
+    NotFoundComponent,
 
   ],
   imports: [

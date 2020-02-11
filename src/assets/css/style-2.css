@@ -4839,7 +4839,17 @@ background: linear-gradient(55deg, #2d72b8 65%, #0d56a4 42%);
     font-size: 0.9vw;
     padding: 5px 0px;
 }
-
+.contest-template1-th_title_wrap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    font-size: 0.9vw;
+    padding: 5px 0px;
+}
+.contest-template1-th_title{  
+    justify-content: left !important;
+    text-align: center;
+}
 .navuserimg {
     height: 37px;
     width: 37px;
@@ -5365,3 +5375,4 @@ color:
 
 
 /*BREAKING NEWS HEADLINE END+++++++++++++++++++*/
+
