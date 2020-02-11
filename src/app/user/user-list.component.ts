@@ -162,6 +162,7 @@ export class UserListComponent implements OnInit {
               message: this.successMessage,
            });
         }else{
+           $("#myModal2").modal('hide');
            this.errorMessage = resp.message;
            this.notifier.show({
               type: "error",
