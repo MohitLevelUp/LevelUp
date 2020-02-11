@@ -1468,13 +1468,15 @@ Profile_edit_btn{
     padding-bottom: 80px;
     background-color: #f1f1f1;
 }
-.stats_wrap .table-responsive {    
+
+.stats_wrap .table-responsive {
     border-radius: 4px 4px 0px 0px;
 }
+
 .stats_wrap table {
-	
-	border-spacing: 0;
+    border-spacing: 0;
 }
+
 .stats_wrap .widget__title {
     font-family: 'Alata';
     font-weight: 400;
@@ -1482,17 +1484,18 @@ Profile_edit_btn{
     letter-spacing: 1.5px;
     margin-bottom: 30px;
 }
+
 .stats_wrap table tr th {
-	background-color: #F1F5F8;
-	border-bottom: 2px solid #ccc;
-	font-size: 12px;
-	padding: 10px;
-	text-transform: uppercase;
-	text-align: left;
+    background-color: #F1F5F8;
+    border-bottom: 2px solid #ccc;
+    font-size: 12px;
+    padding: 10px;
+    text-transform: uppercase;
+    text-align: left;
 }
 
 .stats_wrap table tr {
-	border-bottom: 0px solid #ccc;
+    border-bottom: 0px solid #ccc;
 }
 
 .stats_wrap table tr td {
@@ -1504,6 +1507,7 @@ Profile_edit_btn{
     font-family: 'Quicksand';
     font-weight: 600;
 }
+
 .stats_wrap .table>thead>tr>th {
     vertical-align: bottom;
     border-bottom: 1px solid #ddd;
@@ -1516,44 +1520,72 @@ Profile_edit_btn{
 .stats_wrap table tr:nth-of-type(odd) td {
     background-color: #F5F5F5;
 }
+
 .stats_wrap table tr:nth-of-type(even) td {
     background-color: #ffffff;
 }
 
 .stats_wrap table tr:last-of-type td {
-	border-bottom: 0;
+    border-bottom: 0;
 }
 
 .stats_wrap table tr td img {
-	border-radius: 50%;
-	object-fit: cover;
-	height: 35px;
-	width: 35px;
+    
+}
+.team_performance_aero.high_performance{
+    background-color: #4CAF50;
+}
+.team_performance_aero.low_performance {
+    background-color: #e51b0c;
+}
+.team_performance_aero {
+    font-size: 15px;
+    color: #fff;
+    margin-top: 5px;
+    width: 23px;
+    padding: 1px;
+    margin-right: 3px;
+    display: inline-block;
+    height: auto;
+    text-align: center;
+    
+    border-radius: 3px;
 }
 
+.stats_team_logo {
+    margin-right: 15px;
+    width: 35px;
+    height: auto;
+    display: inline-block;
+}
+.team_rank{
+    width:45px;
+    display: block;
+    text-align: center;
+}
 table tr td:nth-of-type(2), table tr td:nth-of-type(3) {
-/*	font-weight: 600;*/
+/*  font-weight: 600;*/;
 }
 
 table tr td:nth-of-type(3), table tr td:nth-of-type(4) {
-/*	text-align: center;*/
+/*  text-align: center;*/;
 }
 
 @media screen and (max-width: 768px) {
-	table tr *:nth-of-type(4), table tr *:nth-of-type(5) {
-/*		display: none;*/
-	}
+    table tr *:nth-of-type(4), table tr *:nth-of-type(5) {
+/*      display: none;*/;
+    }
 }
 
 @media screen and (max-width: 550px) {
-	body {
-		margin-bottom: 50px;
-		justify-content: flex-start;
-	}
-	
-	table tr *:nth-of-type(6) {
-/*		display: none;*/
-	}
+    body {
+        margin-bottom: 50px;
+        justify-content: flex-start;
+    }
+
+    table tr *:nth-of-type(6) {
+/*      display: none;*/;
+    }
 }
 
 
