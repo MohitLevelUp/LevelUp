@@ -35,6 +35,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password/:user_id/:hash', component: ResetPasswordComponent },
   { path: '', component: HomeComponent },
+  { path: 'stats', component: StatsComponent },
   // { path: 'not-found', component: NotFoundComponent },
   // { path: '**', redirectTo: '', pathMatch: 'full' },
 
