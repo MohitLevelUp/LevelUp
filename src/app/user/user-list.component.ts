@@ -150,9 +150,10 @@ export class UserListComponent implements OnInit {
 
   //create
   createUser(form2: NgForm) {
-
+    console.log(form2.value);
     this.userService.createUser(form2.value).subscribe(
       (resp) => {
+        console.log(resp);
         if(resp['status_code'] == 200){
           $("#myModal2").modal('hide');
 

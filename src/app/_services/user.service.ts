@@ -179,12 +179,15 @@ updatePassword(data: any) {
 
   //create new user
   createUser(data: any) {
+  
+
 
   return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/createUser/' , JSON.stringify(data), {
 
     })
       .pipe(
-      tap(),// 
+      // tap(),// 
+       tap(data => console.log('authToken' + JSON.stringify(data))),
 
         catchError(this.errorHandl));
 }

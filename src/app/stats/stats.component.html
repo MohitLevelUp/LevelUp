@@ -34,7 +34,7 @@
           <div class="col-md-9 marg-bo-30">
             <div class="che_description-wrap">
               <div class="table-responsive">
-                <table class="table table-">
+                <table class="table table-" *ngIf="merged">
                   <thead>
                     <tr>
                       <th>Rank</th>
@@ -49,13 +49,18 @@
                     </tr>
                   </thead>
                   <tbody>
+
+                    <ng-container *ngFor="let teamsInfo of teamsDetails; index as i">
                     <tr>
-                      <td><span class="team_rank">1</span> </td>
-                      <td> <span class="stats_team_logo"><img class="img-fluid" src="./assets/images/team-logo/The-Mavericks.png" alt=""></span> <span class="stats_team_name"> The Mavericks</span> </td>
-                         <td>Noida</td>
-                      <td>131</td>
-                      <td>55</td>
-                      <td>55</td>
+                      <td><span class="team_rank">{{i+1}}</span> </td>
+                      <td> <span class="stats_team_logo">
+                      <img class="img-fluid" src="{{ iconUrl }}team_icon/{{ teamsInfo.team_logo }}" >
+
+                      </span> <span class="stats_team_name"> {{teamsInfo.name}}</span> </td>
+                      <td><span *ngIf="teamsInfo.location">{{teamsInfo.location}}</span></td>
+                      <td><span *ngIf="teamsInfo.total_submission">{{teamsInfo.total_submission}}</span></td>
+                      <td><span *ngIf="teamsInfo.total_interviews">{{teamsInfo.total_interviews}}</span></td>
+                      <td><span *ngIf="teamsInfo.total_joining">{{teamsInfo.total_joining}}</span></td>
                      
                         <td>18</td>
                       <td>
@@ -66,108 +71,7 @@
                           <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
                     </td>
                     </tr>
-                    <tr>
-                      <td> <span class="team_rank">2</span></td>
-                      <td> <span class="stats_team_logo"> <img class="img-fluid" src="./assets/images/team-logo/Dallas-Stars.png" alt=""></span> <span class="stats_team_name"> Dallas Stars</span> </td>
-                           <td>Dallas</td>
-                      <td>96</td>
-                      <td>63</td>
-                      <td>63</td>
-                   
-                        <td>18</td>
-                      <td>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                    </td>
-                    </tr>
-                    <tr>
-                      <td><span class="team_rank">3</span> </td>                      
-                        <td> <span class="stats_team_logo"><img class="img-fluid" src="./assets/images/team-logo/LOUnicorn-Finders-.png" alt=""> </span> <span class="stats_team_name"> LOUnicorn Finders</span> </td>
-                         <td>Louisville</td>
-                      <td>82</td>
-                      <td>88</td>
-                      <td>88</td>
-                     
-                        <td>18</td>
-                      <td>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                    </td>
-                    </tr>
-                    <tr>
-                      <td> <span class="team_rank">4</span></td>                      
-                        <td> <span class="stats_team_logo"> <img class="img-fluid" src="./assets/images/team-logo/the-intangibles.png" alt=""> </span> <span class="stats_team_name">Intangibles</span> </td>
-                         <td>Dallas</td>
-                      <td>76</td>
-                      <td>70</td>
-                      <td>70</td>
-                     
-                        <td>18</td>
-                      <td>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                    </td>
-                    </tr>
-                    <tr>
-                      <td> <span class="team_rank">5</span></td>                      
-                        <td> <span class="stats_team_logo"> <img class="img-fluid" src="./assets/images/team-logo/The-Cobra-Kai.png" alt=""> </span> <span class="stats_team_name"> The Cobra Kai</span> </td>
-                        <td>Dallas</td>
-                      <td>64</td>
-                      <td>64</td>
-                      <td>79</td>
-                      
-                        <td>18</td>
-                      <td>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                    </td>
-                    </tr>
-                    <tr>
-                      <td><span class="team_rank">6 </span></td>                      
-                        <td> <span class="stats_team_logo"> <img class="img-fluid" src="./assets/images/team-logo/Tech-Knights.png" alt=""> </span> <span class="stats_team_name">Tech Knights</span> </td>
-                        <td>Noida</td>
-                      <td>62</td>
-                      <td>82</td>
-                      <td>82</td>
-                      
-                        <td>18</td>
-                      <td>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                    </td>
-                    </tr>
-                    <tr>
-                      <td><span class="team_rank">7</span> </td>                      
-                        <td> <span class="stats_team_logo"> <img class="img-fluid" src="./assets/images/team-logo/Staffing-Ninjas.png" alt=""> </span> <span class="stats_team_name">Staffing-Ninjas</span> </td>
-                        <td>Noida</td>
-                      <td>62</td>
-                      <td>75</td>
-                      <td>75</td>
-                      
-                        <td>18</td>
-                      <td>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span> 
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                    </td>
-                    </tr>
+                    </ng-container>
                   </tbody>
                 </table>
               </div>

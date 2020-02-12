@@ -77,7 +77,7 @@ export class LiveDashboardComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
 
-    // call teams job posting
+    // call teams job posting 
     this.targetService.getJobPosting(this.yearStartDate,this.currentDate,teamsFlag).subscribe(
       resp => {
         

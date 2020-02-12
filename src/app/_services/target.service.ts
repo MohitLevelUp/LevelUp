@@ -152,6 +152,17 @@ export class TargetService {
   }
 
 
+  // get users interviews
+  getInterviews(startDate:any,endDate:any,flag:any): Observable<any> {
+   // for getting perticular user jobPosting
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getInterviews/'+ startDate + '/' + endDate + '/' + flag)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+
 
 
 
