@@ -416,10 +416,18 @@
 </section>
 </div>
 <ng-template #loadingData>
-  <section id="main-content">
-    <section class="">
-      <img src="./assets/images/loader.gif" style="margin-left:30%; margin-top:20%; margin-bottom: 100px;" />
+
+    <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
     </section>
-  </section>
+
 </ng-template>
+
+<section id="onSubmitLoading" class="looding-wrap" style="display: none;">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+</section>
 <notifier-container></notifier-container>

@@ -23,7 +23,7 @@ export class StatsComponent implements OnInit {
   teamsJoining:any;
   teamsInterviews:any;
   
-  arrayOneMerge: Array<{ teamId: number, team_name: any, team_logo: any, total_submission: number, total_joining: number }> = [];
+ 
   merged = [];
   teamsDetails = [];
   constructor(private targetService: TargetService) { }

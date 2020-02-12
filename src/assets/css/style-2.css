@@ -4416,6 +4416,7 @@ background: linear-gradient(55deg, #2d72b8 65%, #0d56a4 42%);
     grid-row: span 2;
     display: grid;
     grid-template-rows: repeat(12, 1fr);
+    padding-left: 15px;
 }
 #view_livemode {
     padding: 6px 30px!important;
@@ -4860,34 +4861,50 @@ background: linear-gradient(55deg, #2d72b8 65%, #0d56a4 42%);
     align-items: center;
     font-size: 1vw;
     padding-top: 12px;
-    padding-bottom: 12px;
+    padding-bottom: 0px;
     padding-left: 0.5vw;
 }
 
 .contest-template1-leaderboardindividual {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     align-items: center;
     font-size: 0.9vw;
     padding: 5px 0px;
 }
+
 .contest-template1-th_title_wrap {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     align-items: center;
     font-size: 0.9vw;
     padding: 5px 0px;
 }
-.contest-template1-th_title{  
+
+
+.contest-template1-leaderboardindividual-for-rec {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    font-size: 0.9vw;
+    padding: 5px 0px;
+}
+
+
+
+.contest-template1-th_title {
     justify-content: left !important;
     text-align: center;
 }
+
+
 .navuserimg {
-    height: 37px;
-    width: 37px;
+    height: 34px;
+    width: 34px;
     border-radius: 3vw;
     display: inline-block;
     background-size: 100%;
+        margin-right: 15px;
 }
 
 .contest-template1-leaderboardindividual-photo {

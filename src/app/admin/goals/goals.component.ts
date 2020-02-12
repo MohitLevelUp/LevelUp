@@ -70,19 +70,21 @@ export class GoalsComponent implements OnInit {
   
   //assign a kpi
 
-  assignKpi(form2: NgForm) {
-
+  assignKpi(form2: NgForm) { 
+    $("#onSubmitLoading").css({"display": "block"});
     this.kpiService.assignKpi(form2.value).subscribe(
       (resp) => {
 
          $("#kpiModal").modal('hide');
          if(resp.status_code == '200'){
+             $("#onSubmitLoading").css({"display": "none"});
              this.successMessage = resp.message;
              this.notifier.show({
                 type: "success",
                 message: this.successMessage,
              });
           }else{
+             $("#onSubmitLoading").css({"display": "none"});
              this.errorMessage = resp.message;
              this.notifier.show({
                 type: "error",
@@ -112,10 +114,8 @@ export class GoalsComponent implements OnInit {
   //kpi filter
 
   kpiFilter(formfilter: NgForm) {
-
     var user_id = formfilter.value.userId;
 
-    
     // call user info function
     this.getUserDetails(user_id);
    
@@ -128,6 +128,7 @@ export class GoalsComponent implements OnInit {
 
     // hide popup model
     $("#filter_model").modal('hide');
+
 
     
   }
@@ -236,10 +237,22 @@ export class GoalsComponent implements OnInit {
 
   usersTargetList(user_id:any){
     //get user's target list
+    $("#onSubmitLoading").css({"display": "block"});
 
     this.targetService.getUsersTargetList(user_id).subscribe(
       resp => {
-        this.targetList = resp['data'];
+        if(resp['status_code'] == 200){
+
+          $("#onSubmitLoading").css({"display": "none"});  
+
+          this.targetList = resp['data'];
+
+        }else{
+           $("#onSubmitLoading").css({"display": "none"}); 
+
+           this.targetList = '';
+
+          }
         
       },
       

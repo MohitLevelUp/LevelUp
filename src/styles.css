@@ -1942,3 +1942,16 @@ li:hover .insidebox {
     box-shadow: none !important;
     border:solid 0px !important;
 }
+
+
+/*loading img css start*/
+
+.looding-wrap{
+    display: block;
+    position: fixed;
+    top: 0px;
+    z-index: 999999;
+    width: 100%;
+    background-color:#00000054;
+    height: 100vh;
+}

@@ -252,55 +252,25 @@
         
       <div class="dashboarditem contest-template1">
         <div class="">
-<!--          <div class="tileType-target-template1"> CONTEST </div>-->
-<!--          <div class="target-template1-header"> ASP Leads </div>-->
-<!--
-          <div class="contest-template1-chart">
-            <div id="chart_wrapper" class="justify-content-center align-items-center">
-              <svg class="progress blue noselect" data-progress="100" x="0px" y="0px" viewBox="0 0 80 80">
-                <path class="track" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
-                <path class="fill" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
-                <text class="value" x="50%" y="55%">100%</text>
-              </svg>
-              <span class=" text-center">Target Acheived</span>
-            </div>
-          </div>
--->
-
-<!--
-          <div class="timerForContest">
-            <div class="tv-time-remaining">TIME REMAINING</div>
-            <div class="tv-timer">
-              <div class="tv-timer-value">0</div>
-              <div class="tv-timer-label">DAYS</div>
-            </div>
-            <div class="tv-timer">
-              <div class="tv-timer-value">0</div>
-              <div class="tv-timer-label">HRS</div>
-            </div>
-            <div class="tv-timer">
-              <div class="tv-timer-value">0</div>
-              <div class="tv-timer-label">MINS</div>
-            </div>
-            <div class="tv-timer">
-              <div class="tv-timer-value">0</div>
-              <div class="tv-timer-label">SECS</div>
-            </div>
-          </div>
--->
-
         <div class="contest-template1-leaderboardheader">CORE VALUE LEADERS</div>
+        <div class="contest-template1-th_title_wrap">
+             <div class="contest-template1-th_title text-center">Name</div>
+             <div class="contest-template1-th_title text-center">Points</div>          
+        </div>
 
          <ng-container *ngFor="let cToper of coreValueTopers; index as i">
 
           <div class="contest-template1-leaderboardindividual">
-            <div class="contest-template1-leaderboardindividual-photo">
-              <img class="person-img navuserimg" src="{{ iconUrl }}profile_images/{{ cToper.profile_image_name }}">
+
+            <div class="contest-template1-leaderboardindividual-name">
+               <img class="person-img navuserimg" src="{{ iconUrl }}profile_images/{{ cToper.profile_image_name }}">
+               {{cToper.display_name | titlecase}} 
             </div>
-            <div class="contest-template1-leaderboardindividual-name"> {{cToper.display_name | titlecase}} </div>
-            <div class="contest-template1-leaderboardindividual-points"> {{cToper.total_coreValue}}</div>
-            <div class="contest-template1-leaderboardindividual-position"> {{i+1}} 
-              <span *ngIf="i==0">st</span> <span *ngIf="i==1"> nd</span> <span *ngIf="i==2"> rd</span></div>
+
+            <div class="contest-template1-leaderboardindividual-points"> {{cToper.total_coreValue * 2}}
+            </div>
+            <!-- <div class="contest-template1-leaderboardindividual-position"> {{i+1}} 
+              <span *ngIf="i==0">st</span> <span *ngIf="i==1"> nd</span> <span *ngIf="i==2"> rd</span></div> -->
           </div>
 
           </ng-container>
@@ -310,16 +280,22 @@
         
       <div class="dashboarditem target-template2A">
         <div class="contest-template1-leaderboardheader">TOP RECRUITERS</div>
+        <div class="contest-template1-th_title_wrap">
+            
+             <div class="contest-template1-th_title text-center">Name</div>
+             <div class="contest-template1-th_title">Submissions</div>   
+                  
+        </div>
+    
         <ng-container *ngFor="let toper of submissionstopers; index as i">
 
-          <div class="contest-template1-leaderboardindividual">
-            <div class="contest-template1-leaderboardindividual-photo">
-              <img class="person-img navuserimg" src="{{ iconUrl }}profile_images/{{ toper.profile_image_name }}">
-            </div>
-            <div class="contest-template1-leaderboardindividual-name"> {{toper.display_name | titlecase}} </div>
-            <div class="contest-template1-leaderboardindividual-points"> {{toper.total_submission}}</div>
-            <div class="contest-template1-leaderboardindividual-position"> {{i+1}} 
-              <span *ngIf="i==0">st</span> <span *ngIf="i==1"> nd</span> <span *ngIf="i==2"> rd</span> <span *ngIf="i==3"> th</span></div>
+          <div class="contest-template1-leaderboardindividual-for-rec">
+            <div class="contest-template1-leaderboardindividual-name"> 
+            <img class="person-img navuserimg" src="{{ iconUrl }}profile_images/{{ toper.profile_image_name }}">
+          {{toper.display_name | titlecase}} </div>
+            <div class="contest-template1-leaderboardindividual-points"> {{toper.total_submission}}</div>          
+           <!--  <div class="contest-template1-leaderboardindividual-position"> {{i+1}} 
+              <span *ngIf="i==0">st</span> <span *ngIf="i==1"> nd</span> <span *ngIf="i==2"> rd</span> <span *ngIf="i==3"> th</span></div> -->
           </div>
 
           </ng-container>
