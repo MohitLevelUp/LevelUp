@@ -1,38 +1,80 @@
-<div class="main-wrap">
+<div class="">
     <!--=====================STATS=====================-->
     <!--************  SIDEBAR MENU ******************-->
-    <div class="main-wrap stats_wrap">
+    <div class="main-wrap">
+      <div class="stats_main_wrap bg-gradient-info">
+       <div class="container">
+          <div class="row">
+           <div class="col-md-12">
+              <div class="stats_title">
+               <h1>2020 Stats</h1>
+               </div>
+              </div>
+           </div>
+          </div>
+      </div>  
+        
       <div class="container-fluid padding_lft_0">
         <div class="row">
           <div class="col-md-12">
             <div class="title_wrap d-flex justify-content-center">
-              <h2 class="widget__title"> 2020 Points Table</h2> </div>
+              <h2 class="widget__title"> 2020 Points Table</h2> 
+              </div>
+            <div class="title_wrap d-flex justify-content-left">
+             <h4 class="widget__title">Leaders</h4>
+              </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-3 marg-bo-30">
-            <div id="cate" class="Categories-btn">Leaders <span class="pull-right"><i class="la la-bars"></i></span> </div>
+            <div class="col-md-3 marg-bo-30">
+            <div class="Categories-btn" id="">
+             <div class="drop-down">
+              <div id="dropDown" class="drop-down__button">
+               <span class="drop-down__name ">Account Executive (Sales) <span class="pull-right"><i class="las la-angle-down"></i></span> </span>
+              </div>         
+                <div class="drop-down__menu-box">
+                  <ul class="drop-down__menu"> 
+                  <li class="drop-down__item"><a href="">Most Job Orders </a> </li>
+                  <li class="drop-down__item"><a href="">Most Client Interviews </a> </li>
+                  <li class="drop-down__item"><a href="">Most Starts  </a> </li>
+                  <li class="drop-down__item"><a href="">Most Starts/Month  </a> </li>
+                  <li class="drop-down__item"><a href="">Starts/Client Interviews * 100  </a> </li>
+                  <li class="drop-down__item"><a href="">Starts/Job Orders </a> </li>
+                  <li class="drop-down__item"><a href="">Recruiter  </a> </li>
+                  <li class="drop-down__item"><a href="">Starts </a> </li>
+                  <li class="drop-down__item"><a href="">Submissions </a> </li>
+                  <li class="drop-down__item"><a href="">Most Client Interviews </a> </li>
+                  <li class="drop-down__item"><a href="">Starts/Client Interviews  </a> </li>
+                  <li class="drop-down__item"><a href="">Starts/Submittals  </a> </li>
+                  </ul>
+                 </div>
+               </div>
+            </div>
+              
             <aside class="aside-wrap">
-              <div id='sidebar-menu'>
-                <div class="title">Leaders <span class="pull-right"><i class="la la-users-cog"></i></span> </div>
+              <div id='sidebar-menu'>                
                 <ul>
-                  <li class=""><a href="">Most Submission</a> </li>
-                  <li class=""><a href="">Most Starts</a> </li>
-                  <li class=""><a href="">Most Valuable Player </a> </li>
-                  <li class=""><a href="">Most </a> </li>
-                  <li class=""><a href="">Most </a> </li>
-                  <li class=""><a href="">Most </a> </li>
-                  <li class=""><a href="">Most </a> </li>
-                  <li class=""><a href="">Most </a> </li>
-                  <li class=""><a href="">Most </a> </li>
-                  <li class=""><a href="">Most </a> </li>
-                  
+                  <div class="title">Account Executive (Sales)</div>                                    
+                  <li class=""><a href="">Most Job Orders </a> </li>
+                  <li class=""><a href="">Most Client Interviews </a> </li>
+                  <li class=""><a href="">Most Starts  </a> </li>
+                  <li class=""><a href="">Most Starts/Month  </a> </li>
+                  <li class=""><a href="">Starts/Client Interviews * 100  </a> </li>
+                  <li class=""><a href="">Starts/Job Orders </a> </li>                  
+                   <div class="title">Recruiter</div> 
+                  <li class=""><a href="">Starts </a> </li>
+                  <li class=""><a href="">Submissions </a> </li>
+                  <li class=""><a href="">Most Client Interviews </a> </li>
+                  <li class=""><a href="">Starts/Client Interviews  </a> </li>
+                  <li class=""><a href="">Starts/Submittals  </a> </li>
+                   
                 </ul>
               </div>
             </aside>
           </div>
+            
           <div class="col-md-9 marg-bo-30">
-            <div class="che_description-wrap">
+            <div class="che_description-wrap stats_wrap">
               <div class="table-responsive">
                 <table class="table table-" *ngIf="merged">
                   <thead>
