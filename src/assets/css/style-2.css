@@ -3154,7 +3154,7 @@ color: #4CAF50;
     color: #4CAF50 !important;
 }
 .tile .level_down {
-    color: #F44336;
+    color: #F44336 !important;
 }
 
 .goals_warp .dropdown-item {

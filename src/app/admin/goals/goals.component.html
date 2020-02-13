@@ -101,9 +101,15 @@
 										</div>
 									</ng-container>
 									<ng-template #kpiDown>
-
-									    <div class="kpi-change kpi-label-default level_down"><span>{{kpi.lastWeek_total * 100 / kpi.currentWeek_total}}%</span> <span><i class="las la-long-arrow-alt-down"></i></span> </div>
-
+									    <div class="kpi-change kpi-label-default level_down"> 
+									    	<span *ngIf="kpi.currentWeek_total >0">{{kpi.lastWeek_total * 100 / kpi.currentWeek_total}}%
+									    	</span> 
+									    	<span *ngIf="kpi.currentWeek_total ==0">100%
+									    	</span> 
+									    	<span>
+									    		<i class="las la-long-arrow-alt-down"></i>
+									    	</span>
+									    </div>
 									</ng-template>
 
 									</div>
