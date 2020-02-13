@@ -205,6 +205,7 @@ export class GoalsComponent implements OnInit {
       resp => {
         if(resp.status_code == 200){
           this.userskpiList = resp['data'];
+          console.log('kpi',this.userskpiList);
           
         }else{
           this.userskpiList = '';

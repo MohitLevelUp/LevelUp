@@ -94,9 +94,18 @@
 									</div>
 									<div class="tile-body">
 										<div class="kpi-points ">{{kpi.total}}</div>
-										<div class="kpi-change kpi-label-default level_up"><span>100%</span>
+
+                                      <ng-container *ngIf="kpi.currentWeek_total > kpi.lastWeek_total; else kpiDown">
+										<div class="kpi-change kpi-label-default level_up" ><span>{{kpi.lastWeek_total * 100 / kpi.currentWeek_total}}%</span>
                                         <Span><i class="las la-long-arrow-alt-up"></i></Span> 
 										</div>
+									</ng-container>
+									<ng-template #kpiDown>
+
+									    <div class="kpi-change kpi-label-default level_down"><span>{{kpi.lastWeek_total * 100 / kpi.currentWeek_total}}%</span> <span><i class="las la-long-arrow-alt-down"></i></span> </div>
+
+									</ng-template>
+
 									</div>
 									<div class="tile-footer">
 										<a class="tile-filter configure"> <span class="tile-filter-element">{{kpi.from_date}}</span>

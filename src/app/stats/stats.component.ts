@@ -43,8 +43,6 @@ export class StatsComponent implements OnInit {
          if(resp['status_code'] == 200){
          	this.teamsSubmissions = resp['data'];
             this.getJoining(this.teamsSubmissions);
-            console.log('me',this.merged);
-            this.getInterviews(this.merged);
          }else{
          	this.teamsSubmissions ='';
          }
@@ -61,22 +59,16 @@ export class StatsComponent implements OnInit {
   	// call teams job posting 
     this.targetService.getJoining(this.yearStartDate,this.currentDate,this.teamsFlag).subscribe(
       resp => {
-        
-         this.teamsJoining = resp['data'];
-         console.log('jobp',this.teamsJoining);
-         console.log('sub',teamsSubmissions);
 
-         // let merged = [];
+           this.teamsJoining = resp['data'];
 
-			for(let i=0; i<teamsSubmissions.length; i++) {
-			  this.merged.push({
-			   ...teamsSubmissions[i], 
-			   ...(this.teamsJoining.find((itmInner) => itmInner.team_id === teamsSubmissions[i].team_id))}
-			  );
-			}
-
-        
-
+           for(let i=0; i<teamsSubmissions.length; i++) {
+              this.merged.push({
+               ...teamsSubmissions[i], 
+               ...(this.teamsJoining.find((itmInner) => itmInner.team_id === teamsSubmissions[i].team_id))}
+              );
+            }
+           this.getInterviews(this.merged);
       },
       
       error => this.errorMessage = <any>error
@@ -91,11 +83,13 @@ export class StatsComponent implements OnInit {
            this.teamsInterviews = resp['data'];
 
            for(let i=0; i<mergeResult.length; i++) {
-			  this.teamsDetails.push({
-			   ...mergeResult[i], 
-			   ...(this.teamsInterviews.find((itmInner) => itmInner.team_id === mergeResult[i].team_id))}
-			  );
-			}
+    			  this.teamsDetails.push({
+    			   ...mergeResult[i], 
+    			   ...(this.teamsInterviews.find((itmInner) => itmInner.team_id === mergeResult[i].team_id))}
+    			  );
+    			}
+
+          console.log('teee',this.teamsDetails);
 
 
       },
