@@ -1,7 +1,7 @@
-<div class="">
+<div *ngIf="teamsSubmissions; else loadingData">
     <!--=====================STATS=====================-->
     <!--************  SIDEBAR MENU ******************-->
-    <div class="main-wrap">
+    <div class="main-wrap" >
       <div class="stats_main_wrap bg-gradient-info">
        <div class="container">
           <div class="row">
@@ -123,3 +123,12 @@
       </div>
     </div>
   </div>
+<ng-template #loadingData>
+
+    <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+    </section>
+
+</ng-template>

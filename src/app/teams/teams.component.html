@@ -1,4 +1,4 @@
-<div class="main-wrap">
+<div class="main-wrap" *ngIf="teamInfo; else loadingData">
     <section class="team_header-warp bg-gradient-info">
       <div class="container">
         <div class="row">
@@ -41,3 +41,12 @@
       </div>
     </section>
   </div>
+<ng-template #loadingData>
+
+    <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+    </section>
+
+</ng-template>

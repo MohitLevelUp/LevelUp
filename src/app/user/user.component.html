@@ -1,7 +1,7 @@
 <app-sidebar></app-sidebar> 
- <div class="das_col main-content" id="main-content"> 
+ <div class="das_col main-content" id="main-content" *ngIf="userInfo; else templateName"> 
 	<section class="wrapper main-wrapper">
-			<div class="container-fluid" *ngIf="userInfo; else templateName">
+			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-8">
 						<div class="title">User Account</div>
@@ -149,13 +149,21 @@
 					</div>
 				</div>
 			</div>
-			<ng-template #templateName>
-			  <section id="main-content">
-			    <section class="">
-			      <img src="./assets/images/loader.gif" style="margin-left:30%; margin-top:20%; margin-bottom: 100px;" />
-			    </section>
-			  </section>
-			</ng-template>
+			
 		</section>
 	</div>
+
+<ng-template #templateName>
+   <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+    </section>
+</ng-template>
+
+<section id="onSubmitLoading" class="looding-wrap" style="display: none;">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+</section>
 <notifier-container></notifier-container>

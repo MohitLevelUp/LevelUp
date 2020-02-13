@@ -22,7 +22,7 @@ export class TeamsComponent implements OnInit {
        
         if(resp['status_code'] == 200){
         	this.teamInfo = resp['data']; 
-          console.log(this.teamInfo);
+
         }else{
         	this.teamInfo ='';
         }

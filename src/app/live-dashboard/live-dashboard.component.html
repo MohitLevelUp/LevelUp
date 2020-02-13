@@ -1,4 +1,4 @@
-<section id="livedashboards_body">
+<section id="livedashboards_body" *ngIf="userJobPosting; else loadingData">
   <div class="livedashboard_preview">
       <span class="bg_changer_btn cog_btn">
           <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
@@ -346,3 +346,12 @@
     </div>
   </div>
 </section>
+<ng-template #loadingData>
+
+    <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+    </section>
+
+</ng-template>

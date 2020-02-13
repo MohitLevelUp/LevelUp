@@ -1,5 +1,5 @@
 <app-sidebar></app-sidebar>
-<div class="das_col main-content" id="main-content">
+<div class="das_col main-content" id="main-content" *ngIf="usersInfo; else loadingData">
   <section class="wrapper main-wrapper recognition_warp">
     <div class="container-fluid">
       <div class="row">
@@ -408,4 +408,14 @@
     </div>
   </section>
 </div>
+
+<ng-template #loadingData>
+
+    <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+    </section>
+
+</ng-template>
 <notifier-container></notifier-container>

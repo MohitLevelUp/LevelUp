@@ -112,9 +112,11 @@ export class UserComponent implements OnInit {
   }
 
   updateUser(form: NgForm) {
+    $("#onSubmitLoading").css({"display": "block"});
     this.userService.updateUser(form.value).subscribe(
       res => {
         if(res['status_code'] == 200){
+            $("#onSubmitLoading").css({"display": "none"});
             this.userProfile(this.getUserId);
             this.successMessage = res['message'];
                this.notifier.show({
@@ -122,6 +124,7 @@ export class UserComponent implements OnInit {
                   message: this.successMessage,
                });
         }else{
+              $("#onSubmitLoading").css({"display": "none"});
                this.errorMessage = res['message'];
                this.notifier.show({
                   type: "error",

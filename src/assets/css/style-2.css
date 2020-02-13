@@ -1105,7 +1105,7 @@ score_card_wrap li:last-child {
 */
 .leaderCard {
 
-    margin: 0 auto;
+    /*margin: 0 auto;*/
 /*    cursor: pointer;*/
     transform: translateY(0);
     transition: all ease-in-out 0.5s;
@@ -1115,8 +1115,9 @@ score_card_wrap li:last-child {
     background: #fff;
 /*
     margin-bottom: 30px;
+    */
     margin-top: 48px;
-*/
+
     overflow: hidden;
 /*    height: 100%;*/
     border-radius: 15px;
