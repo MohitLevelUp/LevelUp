@@ -881,192 +881,201 @@ section.box {
 /*============================= SIDEBAR MENU =============================*/
 
 #sidebar-menu .active {
-    background-color: #eaf0f6 !important;
-    border-radius: 4px;
+	background-color: #eaf0f6 !important;
+	border-radius: 4px;
 }
 #sidebar-menu .title {
-    padding: 13px 18px;
-    font-family: 'Alata';
-    background-color: #17398a;
+	padding: 13px 18px;
+	font-family: 'Alata';
+	background-color: #17398a;
     color:#fff;
-    border-bottom: solid 0px;
-    border-radius: 4px 4px 0px 0px;
+	border-bottom: solid 0px;	
 }
 #sidebar-menu,
 #sidebar-menu ul,
 #sidebar-menu ul li,
 #sidebar-menu ul li a {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    list-style: none;
-    line-height: 1;
-    display: block;
-    position: relative;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	list-style: none;
+	line-height: 1;
+	display: block;
+	position: relative;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 #sidebar-menu {
-    background-color: #ffffff;
-    height: 100vh;
-    /* box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12); */
-}
-#sidebar-menu hr {
-    margin-top: 10px !important;
-    margin-bottom: 10px !important;
-    border: 0;
-    border-top: 1px solid #cecece;
-}
-#sidebar-menu ul ul {
+	background-color: #ffffff;	
+	/* box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12); */
     display: none;
 }
+#sidebar-menu hr {
+	margin-top: 10px !important;
+	margin-bottom: 10px !important;
+	border: 0;
+	border-top: 1px solid #cecece;
+}
+#sidebar-menu ul ul {
+	display: none;
+}
 #sidebar-menu > ul > li.active > ul {
-    display: block;
+	display: block;
 }
 .align-right {
-    float: right;
+	float: right;
 }
 #sidebar-menu > ul > li > a {
-    padding: 13px 15px;
-    font-family: 'Quicksand-bold';
-    cursor: pointer;
-    z-index: 2;
-    font-size: 15px;
-    text-decoration: none;
-    color: #1f1f1f;
-    color: #525f7f;
-    background: #ffffff;
-    -webkit-transition: color .2s ease;
-    -o-transition: color .2s ease;
-    transition: color .2s ease;
+	padding: 13px 10px;
+	font-family: 'Quicksand-bold';
+	cursor: pointer;
+	z-index: 2;
+	font-size: 15px;
+	text-decoration: none;
+	color: #1f1f1f;
+	color: #525f7f;
+	background: #ffffff;
+	-webkit-transition: color .2s ease;
+	-o-transition: color .2s ease;
+	transition: color .2s ease;
+    border-left: solid 4px #2196f000;
 }
-#sidebar-menu > ul > li > a:hover {
+#sidebar-menu > ul > li > a:hover {    
     background-color: #eaf0f6;
+    border-left: solid 4px #2196f3;
+}
+
+.is_active:before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 28px;
+    background-color: #2196f3;
+    left: -13px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+     background-color: #eaf0f6 !important;
+    border-left: solid 4px #2196f3 !important;
 }
 #sidebar-menu ul > li.has-sub > a:after {
-    position: absolute;
-    right: 23px;
-    top: 19px;
-    z-index: 5;
-    display: block;
-    height: 10px;
-    width: 2px;
-    -webkit-transform: rotate(50deg);
-    transform: rotate(50deg);
-    background: #2196f2;
-    content: "";
-    -webkit-transition: all 0.1s ease-out;
-    -moz-transition: all 0.1s ease-out;
-    -ms-transition: all 0.1s ease-out;
-    -o-transition: all 0.1s ease-out;
-    transition: all 0.1s ease-out;
+	position: absolute;
+	right: 23px;
+	top: 19px;
+	z-index: 5;
+	display: block;
+	height: 10px;
+	width: 2px;
+	-webkit-transform: rotate(50deg);
+	transform: rotate(50deg);
+	background: #2196f2;
+	content: "";
+	-webkit-transition: all 0.1s ease-out;
+	-moz-transition: all 0.1s ease-out;
+	-ms-transition: all 0.1s ease-out;
+	-o-transition: all 0.1s ease-out;
+	transition: all 0.1s ease-out;
 }
 #sidebar-menu ul > li.has-sub > a:before {
-    position: absolute;
-    right: 26px;
-    top: 23px;
-    display: block;
-    -webkit-transform: rotate(220deg);
-    transform: rotate(220deg);
-    width: 10px;
-    height: 2px;
-    background: #2196f3;
-    content: "";
-    -webkit-transition: all 0.1s ease-out;
-    -moz-transition: all 0.1s ease-out;
-    -ms-transition: all 0.1s ease-out;
-    -o-transition: all 0.1s ease-out;
-    transition: all 0.1s ease-out;
+	position: absolute;
+	right: 26px;
+	top: 23px;
+	display: block;
+	-webkit-transform: rotate(220deg);
+	transform: rotate(220deg);
+	width: 10px;
+	height: 2px;
+	background: #2196f3;
+	content: "";
+	-webkit-transition: all 0.1s ease-out;
+	-moz-transition: all 0.1s ease-out;
+	-ms-transition: all 0.1s ease-out;
+	-o-transition: all 0.1s ease-out;
+	transition: all 0.1s ease-out;
 }
 #sidebar-menu ul > li.has-sub.open > a:after,
 #sidebar-menu ul > li.has-sub.open > a:before {
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
 }
 #sidebar-menu ul ul li a {
-    padding: 14px 22px;
-    cursor: pointer;
-    z-index: 2;
-    font-size: 14px;
-    text-decoration: none;
-    color: #000;
-    font-family: 'Alata';
-    background: #ffffff;
-    -webkit-transition: color .2s ease;
-    -o-transition: color .2s ease;
-    transition: color .2s ease;
+	padding: 14px 22px;
+	cursor: pointer;
+	z-index: 2;
+	font-size: 14px;
+	text-decoration: none;
+	color: #000;
+	font-family: 'Alata';
+	background: #ffffff;
+	-webkit-transition: color .2s ease;
+	-o-transition: color .2s ease;
+	transition: color .2s ease;
 }
 #sidebar-menu ul ul ul li a {
-    padding-left: 32px;
+	padding-left: 32px;
 }
 #sidebar-menu ul ul li a:hover {
-    background-color: #eaf0f6;
+	background-color: #eaf0f6;
 }
 #sidebar-menu ul ul > li.has-sub > a:after {
-    top: 16px;
-    right: 24px;
-    background: #2196f3;
+	top: 16px;
+	right: 24px;
+	background: #2196f3;
 }
 #sidebar-menu ul ul > li.has-sub > a:before {
-    top: 20px;
-    background: #2196f3;
+	top: 20px;
+	background: #2196f3;
 }
-
 /*SEARCH BAR*****************************/
-
 
 #mysearch:focus + .input-group-addon {
 	z-index: 10;
 }
-
 #search-btn:hover {
 	cursor: pointer;
 	/*color: gold;*/
 	background-color: #ffc107;
 }
-
 #sidebar-menu .input-group {
-    position: relative;
-    display: table;
-    border-collapse: separate;
-    width: 100%;
+	position: relative;
+	display: table;
+	border-collapse: separate;
+	width: 100%;
 }
-
-#sidebar-menu .filter-wrap{
-    padding: 10px 10px;
-    border-bottom: solid 1px #505464;
-    padding-bottom: 0px;
+#sidebar-menu .filter-wrap {
+	padding: 10px 10px;
+	border-bottom: solid 1px #505464;
+	padding-bottom: 0px;
 }
-
 #sidebar-menu .filter-wrap .form-control {
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #fff;
-    background-color: #2f324200;
-    border-bottom: solid 2px #ffffff;
-    border: solid 2px !important;
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #fff;
+	background-color: #2f324200;
+	border-bottom: solid 2px #ffffff;
+	border: solid 2px !important;
 }
 #sidebar-menu .btn-warning {
-    color: #2196f3;
-    background-color: #d0d0d000;
-    border-color: #2196f3;
-    padding: 9px 9px;
-    font-size: 13px;
-    border: solid 1.5px;
+	color: #2196f3;
+	background-color: #d0d0d000;
+	border-color: #2196f3;
+	padding: 9px 9px;
+	font-size: 13px;
+	border: solid 1.5px;
 }
 #sidebar-menu .input-group-addon {
-    padding: 0px 12px;}
-
-.sidebar-menu .title{
-   box-shadow: none !important;
+	padding: 0px 12px;
+}
+.sidebar-menu .title {
+	box-shadow: none !important;
 }
 
 .main-wrap {
@@ -1103,16 +1112,7 @@ section.box {
     margin-top: 35px;
     margin-bottom: 20px;
 }
-.Categories-btn {
-    background-color: #17398a;
-    border-radius: 4px;
-    padding: 8px 10px;
-    font-size: 20px;
-    color: #ffffff;
-    font-family: 'Alata';
-    cursor: pointer;
-    display: none;
-}
+
 /*NEWS******************************************/
 .news-wrap{       
     border-radius:4px; 

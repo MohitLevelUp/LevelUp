@@ -1462,75 +1462,98 @@ Profile_edit_btn{
 
 
 
-/*STATS SECTION==============================*/
-
-.stats_wrap {
+/*STATS MAIN SECTION START==============================*/
+.stats_main_wrap {
     padding-bottom: 80px;
+    padding-top: 100px;
     background-color: #f1f1f1;
+    margin-bottom: 80px;
+}
+.stats_main_wrap .stats_title {
+    color: #fff;
+    letter-spacing: 1px;
+    font-family: 'Alata';
 }
 
-.stats_wrap .table-responsive {
-    border-radius: 4px 4px 0px 0px;
-}
-
-.stats_wrap table {
-    border-spacing: 0;
-}
-
-.stats_wrap .widget__title {
+ .widget__title {
     font-family: 'Alata';
     font-weight: 400;
     margin-top: 0px;
     letter-spacing: 1.5px;
-    margin-bottom: 30px;
+    margin-left: 15px;
+}
+
+
+/*STATS TABLE++++++++++++++++++++++++*/
+
+.stats_wrap .table-responsive {
+	border-radius: 4px 4px 0px 0px;
+}
+
+.stats_wrap table {
+	border-spacing: 0;
+}
+
+.stats_wrap .widget__title {
+	font-family: 'Alata';
+	font-weight: 400;
+	margin-top: 0px;
+	letter-spacing: 1.5px;
+	margin-left: 15px;
 }
 
 .stats_wrap table tr th {
-    background-color: #F1F5F8;
-    border-bottom: 2px solid #ccc;
-    font-size: 12px;
-    padding: 10px;
-    text-transform: uppercase;
-    text-align: left;
+	background-color: #F1F5F8;
+	border-bottom: 2px solid #ccc;
+	font-size: 12px;
+	padding: 10px;
+	text-transform: uppercase;
+	text-align: left;
 }
 
 .stats_wrap table tr {
-    border-bottom: 0px solid #ccc;
+	border-bottom: 0px solid #ccc;
 }
 
 .stats_wrap table tr td {
-    border: 0;
-    border-bottom: 0px solid #ccc;
-    border-top: 0px !important;
-    padding: 10px;
-    font-size: 14px;
-    font-family: 'Quicksand';
-    font-weight: 600;
+	border: 0;
+	border-bottom: 0px solid #ccc;
+	border-top: 0px !important;
+	padding: 10px;
+	font-size: 14px;
+	font-family: 'Quicksand';
+	font-weight: 600;
+    text-align: center;
 }
-
+.stats_wrap table tr td:nth-of-type(2) {
+  text-align: left !important;
+}
 .stats_wrap .table>thead>tr>th {
-    vertical-align: bottom;
-    border-bottom: 1px solid #ddd;
-    background-color: #17398a;
-    color: #fff;
-    padding-top: 15px;
-    padding-bottom: 15px;
+	vertical-align: bottom;
+	border-bottom: 1px solid #ddd;
+	background-color: #17398a;
+	color: #fff;
+	padding-top: 15px;
+	padding-bottom: 15px;
+    text-align: center;
+}
+.stats_wrap .table>thead>tr>th:nth-of-type(2) {
+  text-align: left !important;
+}
+.stats_wrap table  tr:nth-of-type(odd){
+	background-color: #F5F5F5;
 }
 
-.stats_wrap table tr:nth-of-type(odd) td {
-    background-color: #F5F5F5;
-}
-
-.stats_wrap table tr:nth-of-type(even) td {
-    background-color: #ffffff;
+.stats_wrap table tr:nth-of-type(even){
+	background-color: #ffffff;
 }
 
 .stats_wrap table tr:last-of-type td {
-    border-bottom: 0;
+	border-bottom: 0;
 }
 
 .stats_wrap table tr td img {
-    
+	
 }
 .team_performance_aero.high_performance{
     background-color: #4CAF50;
@@ -1541,15 +1564,14 @@ Profile_edit_btn{
 .team_performance_aero {
     font-size: 15px;
     color: #fff;
-    margin-top: 5px;
+    margin-top: 0px;
     width: 23px;
     padding: 1px;
-    margin-right: 3px;
     display: inline-block;
     height: auto;
     text-align: center;
-    
     border-radius: 3px;
+    margin: 1.5px;
 }
 
 .stats_team_logo {
@@ -1563,6 +1585,8 @@ Profile_edit_btn{
     display: block;
     text-align: center;
 }
+/*STATS TABLE++++++++++++++++++++++++*/
+
 table tr td:nth-of-type(2), table tr td:nth-of-type(3) {
 /*  font-weight: 600;*/;
 }
@@ -1587,6 +1611,203 @@ table tr td:nth-of-type(3), table tr td:nth-of-type(4) {
 /*      display: none;*/;
     }
 }
+.Categories-btn {
+    display: none;
+}
+@media screen and (max-width: 768px){
+.Categories-btn {
+    display: block !important;
+}
+   .stats_wrap .widget__title {    
+    margin-left: 0px;
+} 
+    
+}
+/*STATS SIDEBAR+++++++++++++++++*/
+#sidebar-menu .title {
+    padding: 13px 15px;
+    font-family: 'Alata';
+    background-color: #17398a;
+    color: #fff;
+    border-bottom: solid 0px;
+    font-size: 15px;
+}
+/*STATS SIDEBAR+++++++++++++++++*/
+
+
+/*STATS DROP_DWON NAV+++++++++++++++*/
+
+
+.drop-down{
+    display:block;
+    position: relative;
+}
+
+.drop-down__button {
+    display: inline-block;
+    background-color: #ffffff;
+    line-height: 40px;
+    padding: 0 18px;
+    text-align: left;
+    border-radius: 4px;
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.2);
+    cursor: pointer;
+    width: 100%;
+    border-bottom: solid 2px #16398a;
+    transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+}
+.drop-down--active .drop-down__button{
+    border-bottom: solid 2px #ffffff;
+     border-radius: 4px 4px 0px 0px;
+}
+.drop-down__name {
+    font-size: 15px;
+    color: #525f7f;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.drop-down__icon {
+    width: 18px;
+    vertical-align: middle;
+    margin-left: 14px;
+    height: 18px;
+    border-radius: 50%;
+    transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  
+}
+#sidebar-menu .title {
+    padding: 13px 15px;
+    font-family: 'Alata';
+    background-color: #17398a;
+    color: #fff;
+    border-bottom: solid 0px;
+    font-size: 15px;
+}
+.drop-down__name span .las{
+    position:relative;
+    top:5px;
+    font-size:18px;
+}
+
+.drop-down__menu-box {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    background-color: #fff;
+border-radius: 0px 0px 4px 4px;
+  box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.2);
+     transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+ visibility: hidden;
+opacity: 0;
+  margin-top: 5px;
+    z-index:99;
+}
+
+.drop-down__menu {
+    margin: 0;
+    padding: 0px;
+    list-style: none;
+    width: 100%;
+}
+
+.drop-down__menu-box:after{
+  content:'';
+  background-color: transparent;
+}
+
+.drop-down__item a {
+    display: block;
+    padding: 10px 15px;
+    position: relative;
+    border-bottom: 1px solid #e0e2e9;
+    border-left: solid 4px #ccc0;
+}
+.drop-down__item a:hover { 
+    border-left: solid 4px #2196f3;
+    background-color: #eaf0f6 !important;
+}
+.drop-down__item a{ 
+    text-align: left;
+    font-weight: 500;
+    font-family: 'Quicksand';
+    font-size: 14px;
+    color: #525f7f;   
+}
+
+.drop-down__item-icon {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 0px;
+    fill: #8995b6;
+  
+}
+
+.drop-down__item:hover .drop-down__item-icon{
+  fill: #3d6def;
+}
+
+.drop-down__item:hover{
+  color: #3d6def;
+}
+
+.is_active a{
+    background-color: #eaf0f6 !important;
+    border-left: solid 4px #2196f3 !important;
+}
+
+.drop-down__item:last-of-type{
+  border-bottom: 0;
+}
+
+
+.drop-down--active .drop-down__menu-box{
+visibility: visible;
+opacity: 1;
+  margin-top:0px;
+}
+
+@media screen and (max-width: 768px){
+.Categories-btn {
+    display: block !important;
+}
+    }
+@media screen and (min-width: 768px){
+#sidebar-menu {
+    display: block !important;
+}
+    }
+
+/*STATS DROP_DWON NAV+++++++++++++++*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
