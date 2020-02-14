@@ -263,6 +263,21 @@ $(document).on('change', '#kpi_point', function(){
 });
 
 
+// starts page
+
+ $(document).on('click', '#filter_by_salce', function(){ 
+    $('.salce_filter').toggleClass('drop-down--active');
+  });
+ $(document).on('click', '#filter_by_player', function(){
+    $('.player_filter').toggleClass('drop-down--active');
+  });
+ $(document).on('click', '#filter_by_team', function(){ 
+    $('.team__filter').toggleClass('drop-down--active');
+  });
+        
+
+
+
 
 
 

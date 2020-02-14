@@ -880,9 +880,9 @@ section.box {
 
 /*============================= SIDEBAR MENU =============================*/
 
-#sidebar-menu .active {
-	background-color: #eaf0f6 !important;
-	border-radius: 4px;
+#sidebar-menu .active {   
+    background-color: #eaf0f6 !important;
+    border-left: solid 4px #2196f3 !important;
 }
 #sidebar-menu .title {
 	padding: 13px 18px;

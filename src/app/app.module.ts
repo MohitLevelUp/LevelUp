@@ -9,6 +9,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CookieService } from 'ngx-cookie-service';
 import { NotifierModule } from "angular-notifier";
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { OrderModule } from 'ngx-order-pipe';
 // import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
 
@@ -21,7 +22,6 @@ import { CoreValueComponent } from './core-value/core-value.component';
 import { NavComponent } from './nav/nav.component';
 import { UserComponent } from './user/user.component';
 import { SidebarComponent } from './widgets/sidebar/sidebar.component';
-import { SettingBarComponent } from './widgets/setting-bar/setting-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { NotificationsComponent } from './notifications/notifications.component';
@@ -45,6 +45,8 @@ import { EditGamificationRulesComponent } from './admin/gamification-rules/edit-
 import { TeamDetailsComponent } from './teams/team-details.component';
 import { LiveDashboardComponent } from './live-dashboard/live-dashboard.component';
 import { NotFoundComponent } from './widgets/not-found/not-found.component';
+import { StartsComponent } from './widgets/starts/starts.component';
+import { StatsSidebarComponent } from './widgets/stats-sidebar/stats-sidebar.component';
 
 
 
@@ -55,7 +57,6 @@ import { NotFoundComponent } from './widgets/not-found/not-found.component';
     NavComponent,
     UserComponent,
     SidebarComponent,
-    SettingBarComponent,
     FooterComponent,
     HomeComponent,
     NotificationsComponent,
@@ -79,10 +80,13 @@ import { NotFoundComponent } from './widgets/not-found/not-found.component';
     TeamDetailsComponent,
     LiveDashboardComponent,
     NotFoundComponent,
+    StartsComponent,
+    StatsSidebarComponent,
 
   ],
   imports: [
     BrowserModule,
+    OrderModule,
     AppRoutingModule,
     HttpModule,
     HttpClientModule,

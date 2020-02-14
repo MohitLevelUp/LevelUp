@@ -23,6 +23,7 @@ import { EditGamificationRulesComponent } from './admin/gamification-rules/edit-
 import { TeamDetailsComponent } from './teams/team-details.component';
 import { LiveDashboardComponent } from './live-dashboard/live-dashboard.component';
 import { NotFoundComponent } from './widgets/not-found/not-found.component';
+import { StartsComponent } from './widgets/starts/starts.component';
 
 const routes: Routes = [
 
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'reset-password/:user_id/:hash', component: ResetPasswordComponent },
   { path: '', component: HomeComponent },
   { path: 'stats', component: StatsComponent },
+  { path: 'stats/starts', component: StartsComponent },
   // { path: 'not-found', component: NotFoundComponent },
   // { path: '**', redirectTo: '', pathMatch: 'full' },
 
@@ -58,8 +60,7 @@ const routes: Routes = [
       { path: 'stats', component: StatsComponent },
       { path: 'core-values', component: CorevaluesComponent },
       { path: 'core-value', component: CoreValueComponent }
-      
-      
+
     ]
   },
 
