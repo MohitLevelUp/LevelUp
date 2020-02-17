@@ -24,6 +24,9 @@ import { TeamDetailsComponent } from './teams/team-details.component';
 import { LiveDashboardComponent } from './live-dashboard/live-dashboard.component';
 import { NotFoundComponent } from './widgets/not-found/not-found.component';
 import { StartsComponent } from './widgets/starts/starts.component';
+import { MostJobOrdersComponent } from './widgets/most-job-orders/most-job-orders.component';
+import { MostInterviewsComponent } from './widgets/most-interviews/most-interviews.component';
+
 
 const routes: Routes = [
 
@@ -37,7 +40,9 @@ const routes: Routes = [
   { path: 'reset-password/:user_id/:hash', component: ResetPasswordComponent },
   { path: '', component: HomeComponent },
   { path: 'stats', component: StatsComponent },
-  { path: 'stats/starts', component: StartsComponent },
+  { path: 'stats/most-starts', component: StartsComponent },
+  { path: 'stats/most-job-orders', component: MostJobOrdersComponent },
+  { path: 'stats/most-client-interviews', component: MostInterviewsComponent },
   // { path: 'not-found', component: NotFoundComponent },
   // { path: '**', redirectTo: '', pathMatch: 'full' },
 

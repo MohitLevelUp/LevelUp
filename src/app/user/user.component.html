@@ -84,16 +84,36 @@
 										</div>
 										<div class="col-md-4">
 											<div class="form-group form-control-wrap">
-												<!-- <label class="form-control-label" for="First name">Role Type</label> -->
+												<label class="form-control-label" for="First name">Speciality</label>
+												<select name="speciality" #Speciality="ngModel" [(ngModel)]="selectedSpeciality" class="form-control">
+						                          <option value="">Select Speciality</option>
+						                          <option value="1" selected="">Sales</option>
+						                          <option value="2">Recruitment</option>
+						                          <option value="3">Account Management</option>
+						                          <option value="4">IT</option>
+						                          <option value="5">HR</option>
+						                          <option value="6">Legal</option>
+						                          <option value="7">Admin</option>
+						                          <option value="8">Management</option>
+						                          <option value="9">Inside Sales</option>
+						                          <option value="10">Marketing</option>
+						                        </select>
+
 												<input #role_type="ngModel" type="hidden" name="role_type" class="form-control" id="role_type"  [(ngModel)]="userInfo['role_type']">
 											</div>
 										</div>
+
 									</div>
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-group form-control-wrap">
-												<label class="form-control-label" for="Country Code">Website</label>
-												<input #website="ngModel" type="text" name="website" class="form-control" id="website"  [(ngModel)]="userInfo['website']">
+												<label class="form-control-label" for="Country Code">Date Of Joining</label>
+												<!-- <input #website="ngModel" type="text" name="website" class="form-control" id="website"  [(ngModel)]="userInfo['website']"> -->
+											<mat-form-field>
+											 <input #joining="ngModel" matInput [matDatepicker]="picker" type="text" name="joining" [(ngModel)]="userInfo['date_of_join']">
+											  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+											  <mat-datepicker #picker></mat-datepicker>
+											</mat-form-field>
 											</div>
 										</div>
 										<!-- <div class="col-md-4">

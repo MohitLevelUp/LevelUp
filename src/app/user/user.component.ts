@@ -17,6 +17,7 @@ export class UserComponent implements OnInit {
   iconUrl        = environment.uploadUrl;
   userDetails    = JSON.parse(localStorage.getItem('user'));
   userID         = this.userDetails['user_id'];
+  selectedSpeciality = '';
 
   private readonly notifier: NotifierService;
   getUserId    = +this.route.snapshot.paramMap.get('id');
@@ -94,6 +95,8 @@ export class UserComponent implements OnInit {
         this.user     = resp;
         this.userInfo = this.user['data']; 
 
+        this.selectedSpeciality = this.userInfo['speciality'];
+
         if(Number(userId) == Number(this.userID)){
            localStorage.setItem('user', JSON.stringify(this.userInfo)); //set updated data into session
         }
@@ -115,6 +118,7 @@ export class UserComponent implements OnInit {
     $("#onSubmitLoading").css({"display": "block"});
     this.userService.updateUser(form.value).subscribe(
       res => {
+        console.log(res);
         if(res['status_code'] == 200){
             $("#onSubmitLoading").css({"display": "none"});
             this.userProfile(this.getUserId);

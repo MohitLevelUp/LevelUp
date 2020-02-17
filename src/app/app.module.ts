@@ -10,6 +10,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { NotifierModule } from "angular-notifier";
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { OrderModule } from 'ngx-order-pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
 // import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
 
 
@@ -47,8 +49,22 @@ import { LiveDashboardComponent } from './live-dashboard/live-dashboard.componen
 import { NotFoundComponent } from './widgets/not-found/not-found.component';
 import { StartsComponent } from './widgets/starts/starts.component';
 import { StatsSidebarComponent } from './widgets/stats-sidebar/stats-sidebar.component';
+import { MostJobOrdersComponent } from './widgets/most-job-orders/most-job-orders.component';
+import { MostInterviewsComponent } from './widgets/most-interviews/most-interviews.component';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
 
 
+export const DateFormats = {
+  parse: {
+                dateInput: ['YYYY-MM-DD']
+            },
+            display: {
+                dateInput: 'YYYY-MM-DD',
+                monthYearLabel: 'MMM YYYY',
+                dateA11yLabel: 'LL',
+                monthYearA11yLabel: 'MMMM YYYY',
+            },
+};
 
 @NgModule({
   declarations: [
@@ -82,6 +98,8 @@ import { StatsSidebarComponent } from './widgets/stats-sidebar/stats-sidebar.com
     NotFoundComponent,
     StartsComponent,
     StatsSidebarComponent,
+    MostJobOrdersComponent,
+    MostInterviewsComponent,
 
   ],
   imports: [
@@ -147,8 +165,15 @@ import { StatsSidebarComponent } from './widgets/stats-sidebar/stats-sidebar.com
          
         }
     }),
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  providers: [CookieService],
+
+  providers: [CookieService,
+             { provide: MAT_DATE_FORMATS, useValue: DateFormats }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
