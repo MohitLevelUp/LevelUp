@@ -94,7 +94,7 @@ export class UserComponent implements OnInit {
       resp => {
         this.user     = resp;
         this.userInfo = this.user['data']; 
-
+       
         this.selectedSpeciality = this.userInfo['speciality'];
 
         if(Number(userId) == Number(this.userID)){
