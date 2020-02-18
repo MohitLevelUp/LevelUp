@@ -26,6 +26,7 @@ import { NotFoundComponent } from './widgets/not-found/not-found.component';
 import { StartsComponent } from './widgets/starts/starts.component';
 import { MostJobOrdersComponent } from './widgets/most-job-orders/most-job-orders.component';
 import { MostInterviewsComponent } from './widgets/most-interviews/most-interviews.component';
+import { FaqsComponent } from './faqs/faqs.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'stats/most-starts', component: StartsComponent },
   { path: 'stats/most-job-orders', component: MostJobOrdersComponent },
   { path: 'stats/most-client-interviews', component: MostInterviewsComponent },
+  { path: 'faqs', component: FaqsComponent },
   // { path: 'not-found', component: NotFoundComponent },
   // { path: '**', redirectTo: '', pathMatch: 'full' },
 

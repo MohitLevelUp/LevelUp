@@ -280,4 +280,62 @@ $(document).on('change', '#kpi_point', function(){
 
 
 
+// faqs page start //
+$(document).ready(function() {
+var inputId   = 'filter-search';
+var itemsData   = 'filter-value';
+var displaySet = false;
+var displayArr = [];
+console.log(inputId);
+function getDisplayType(element) {
+  var elementStyle = element.currentStyle || window.getComputedStyle(element, "");
+  return elementStyle.display;
+}
+
+document.getElementById('filter-search').onkeyup = function() {
+  var searchVal = this.value.toLowerCase();
+  
+var filterItems = document.querySelectorAll('[' + itemsData + ']');
+
+  for(var i = 0; i < filterItems.length; i++) {
+    if (!displaySet) {
+      displayArr.push(getDisplayType(filterItems[i]));
+    }
+
+    filterItems[i].style.display = 'none';
+
+    if(filterItems[i].getAttribute('filter-value').indexOf(searchVal) >= 0) {
+      filterItems[i].style.display = displayArr[i];    
+    }
+  }
+  
+  displaySet = true;
+}
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+});
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
+
+// faqs page end //
 

@@ -52,6 +52,7 @@ import { StatsSidebarComponent } from './widgets/stats-sidebar/stats-sidebar.com
 import { MostJobOrdersComponent } from './widgets/most-job-orders/most-job-orders.component';
 import { MostInterviewsComponent } from './widgets/most-interviews/most-interviews.component';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
+import { FaqsComponent } from './faqs/faqs.component';
 
 
 export const DateFormats = {
@@ -100,6 +101,7 @@ export const DateFormats = {
     StatsSidebarComponent,
     MostJobOrdersComponent,
     MostInterviewsComponent,
+    FaqsComponent,
 
   ],
   imports: [
