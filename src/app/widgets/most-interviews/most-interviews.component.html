@@ -55,6 +55,11 @@
          </div>
        </div>
                   </div>
+                   <ul>
+      <li *ngFor="let item of array | orderBy: order2">
+        {{ item.name }}
+      </li>
+    </ul> 
               </div>
               
             <div class="che_description-wrap most_player">
@@ -80,7 +85,7 @@
                   </thead>
                   <tbody>
 
-                  <ng-container *ngFor="let clientInterview of usersDetails | orderBy: order: true; let i = index">
+                  <ng-container *ngFor="let clientInterview of usersDetails |  orderBy: order; let i = index">
 
                     <tr *ngIf="i==0" class="top__player bg_desk_dem">
                       <td><span class="team_rank">{{i+1}}</span> </td>
@@ -92,8 +97,8 @@
                       </td>
                       <td>{{clientInterview.team_name}}</td>
                       <td>4</td>
-                      <td>{{clientInterview.total_interviews}}</td>
-                      <td class="is__active">{{clientInterview.total_joining}}</td>
+                      <td class="is__active">{{clientInterview.total_interviews}}</td>
+                      <td>{{clientInterview.total_joining}}</td>
                      
                         <td>
                            <span *ngIf='clientInterview.total_job_posting'>
@@ -123,8 +128,8 @@
                       </td>
                       <td>{{clientInterview.team_name}}</td>
                       <td>4</td>
-                      <td>{{clientInterview.total_interviews}}</td>
-                      <td class="is__active">{{clientInterview.total_joining}}</td>
+                      <td class="is__active">{{clientInterview.total_interviews}}</td>
+                      <td>{{clientInterview.total_joining}}</td>
                      
                         <td>
                           <span *ngIf='clientInterview.total_job_posting'>

@@ -13,6 +13,9 @@ import * as moment from 'moment';
 export class MostInterviewsComponent implements OnInit {
  iconUrl   = environment.uploadUrl;
 
+ array: any[] = [{ name: 10} , { name: 13 }, { name: 8 }];
+  order2: any = 'name';
+
   order: string = 'total_interviews';
   selectedTeam = '';
   

@@ -1620,7 +1620,7 @@ Profile_edit_btn{
     color: white;
     background: linear-gradient(130deg, #d80000, #8e0404);
 }
-.most_player td.is__active:nth-of-type(6) {
+.most_player td.is__active {
     background-color: #00000036;
 }
 
