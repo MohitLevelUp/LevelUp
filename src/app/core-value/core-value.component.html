@@ -81,7 +81,7 @@
                             <div class="reco_imo"> <i class="las la-grin-stars"></i> </div>
                             <div class="reco_input">
                               <div class="private_points_wrap">
-                                <select #givenTo="ngModel" name="givenTo" [(ngModel)]="selectedgivenTo" class="private-form__control" title="please select coworker" required>
+                                <select #givenToKudos="ngModel" name="givenToKudos" [(ngModel)]="selectedgivenToKudos" class="private-form__control" title="please select coworker" required>
                                   <option value="">Search for a coworker(s)</option>
                                   <ng-container *ngFor='let user of usersInfo; let i = index'>
                                     <option value="{{user.id}}" *ngIf="user.id != userProfile.user_id">{{user.display_name}}
@@ -95,7 +95,7 @@
                             <div class="reco_imo"> <i class="las la-pen-fancy"></i> </div>
                             <div class="reco_input">
                               <div class="private_points_wrap">
-                                <input type="text" #whyGiven="ngModel" name="whyGiven" [(ngModel)]="coreValmodel.whyGiven" class="private-form__control" id="" placeholder="What did your coworker(s) do?" title="please write something" required> </div>
+                                <input type="text" #whyGivenKudos="ngModel" name="whyGivenKudos" [(ngModel)]="kudosModel.whyGivenKudos" class="private-form__control" id="" placeholder="What did your coworker(s) do?" title="please write something" required> </div>
                             </div>
                           </div>
 
@@ -103,7 +103,7 @@
                             <ul class="row">
 
                               <li class="col-sm-4" *ngFor='let kudos of stickerList; let i = index'>
-                                <input type="radio" #kudosId="ngModel" name="kudosId" [(ngModel)]="coreValmodel.kudosId" [value]="kudos.id" id="Kudos{{kudos.id}}" />
+                                <input type="radio" #kudosId="ngModel" name="kudosId" [(ngModel)]="kudosModel.kudosId" [value]="kudos.id" id="Kudos{{kudos.id}}" />
                                 <label for="Kudos{{kudos.id}}">
 
                                   <img class="img-fluid" src="{{ iconUrl }}kudos_stickers/{{ kudos.sticker }}" />

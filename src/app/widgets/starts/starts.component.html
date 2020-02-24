@@ -34,30 +34,14 @@
               </div>
                   </div>
               <div class="col-md-4">
-                  <div class="drop-down team__filter">
-         <div id="filter_by_team" class="drop-down__button">
-           <span class="drop-down__name ">All Teams <span class="pull-right"><i class="las la-angle-down"></i></span> </span>
-         </div>         
-         <div class="drop-down__menu-box">
-           <ul class="drop-down__menu">
-                  <li class="drop-down__item"><a href="">Desk Demons</a> </li>                  
-                  <li class="drop-down__item"><a href="">Quest Pirates</a> </li>
-                  <li class="drop-down__item"><a href="">Staffing Ninjas</a> </li>
-                  <li class="drop-down__item"><a href=""> The Mavericks  </a></li>
-                  <li class="drop-down__item"><a href="">Crusaders  </a></li>
-                  <li class="drop-down__item"><a href=""> Hi-Tech Hyderabad </a></li>
-                  <li class="drop-down__item"><a href="">  Dumdaar Hyderabadi </a></li>
-                  <li class="drop-down__item"><a href="">  Creative Hyderabadi</a></li>
-                  <li class="drop-down__item"><a href=""> Hyper Hyderabadi </a></li>
-                  <li class="drop-down__item"><a href="">  Enterprise Eagles </a></li>
-                  <li class="drop-down__item"><a href=""> Bengal Warriors  </a></li>
-                  <li class="drop-down__item"><a href="">  Greed Pack </a></li>
-                  <li class="drop-down__item"><a href="">   LOUnicorn Finders</a></li>
-                  <li class="drop-down__item"><a href="">   Dallas Stars</a></li>
-           </ul>
-         </div>
-       </div>
-                  </div>
+                <select class="stats_select" name="selectedTeam"  #teamSelect (change)='onTeamSelect(teamSelect.value)'>
+                <option value="">All Teams</option>
+                <ng-container *ngFor="let team of teamsList; let i = index">             
+                 <option class="drop-down__item" value="{{team.id}}">{{team.name}}</option>
+                </ng-container>
+               </select>
+
+              </div>
               <div class="col-md-4">
                   <div class="drop-down player_filter">
          <div id="filter_by_player" class="drop-down__button filter_nav3">
@@ -107,12 +91,19 @@
                         </span> 
                       	<span class="stats_team_name"> {{starts.display_name | titlecase}}</span> 
                       </td>
-                      <td>{{starts.name}}</td>
+                      <td>{{starts.team_name}}</td>
                       <td>4</td>
                       <td>{{starts.total_interviews}}</td>
                       <td class="is__active">{{starts.total_joining}}</td>
                      
-                        <td>{{starts.strikeRate}}</td>
+                        <td>
+                          <span *ngIf='starts.total_job_posting'>
+                           {{(starts.total_joining*100)/starts.total_job_posting | number: '1.0-0'}}
+                          </span>
+                           <span *ngIf='starts.total_submission'>
+                           {{(starts.total_joining*100)/starts.total_submission | number: '1.0-0'}}
+                          </span>
+                      </td>
                       <td>
                           <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
                           <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
@@ -131,12 +122,18 @@
                         </span> 
                       	<span class="stats_team_name"> {{starts.display_name | titlecase}}</span> 
                       </td>
-                      <td>{{starts.name}}</td>
+                      <td>{{starts.team_name}}</td>
                       <td>4</td>
                       <td>{{starts.total_interviews}}</td>
                       <td class="is__active">{{starts.total_joining}}</td>
                      
-                        <td>{{starts.strikeRate}}</td>
+                        <td><span *ngIf='starts.total_job_posting'>
+                           {{(starts.total_joining*100)/starts.total_job_posting | number: '1.0-0'}}
+                          </span>
+                          <span *ngIf='starts.total_submission'>
+                           {{(starts.total_joining*100)/starts.total_submission | number: '1.0-0'}}
+                          </span>
+                        </td>
                       <td>
                           <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
                           <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>

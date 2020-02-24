@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TargetService } from 'src/app/_services/target.service';
+import { UserService } from 'src/app/_services/user.service';
 import { environment } from '../../../environments/environment';
 import * as moment from 'moment';
 
@@ -11,7 +12,7 @@ import * as moment from 'moment';
 export class MostJobOrdersComponent implements OnInit {
   iconUrl   = environment.uploadUrl;
 
-  order: string = 'total_joining';
+  order: any = 'total_job_posting';
 
   errorMessage: any;
   teamsFlag = 1;
@@ -26,62 +27,97 @@ export class MostJobOrdersComponent implements OnInit {
 
   merged = [];
   usersDetails = [];
-  constructor(private targetService: TargetService) { }
+
+  constructor(private targetService: TargetService,private userService: UserService,) { }
+
+  onTeamSelect(value:any){
+     console.log("the selected value is " + value);
+
+     var teamId = value;
+     localStorage.setItem('teamId', JSON.stringify(teamId));
+     this.getJobPosting(teamId);
+
+   }
 
   ngOnInit() {
   	var date             = new Date();
     this.currentDate     = moment(date).format('YYYY-MM-DD');
     this.yearStartDate   = moment().startOf('year').format('YYYY-MM-DD');
-    this.getJobPosting();
+    localStorage.removeItem('teamId');
+
+     // get team list
+     this.userService.teamList().subscribe(
+      resp => {
+           if(resp['status_code'] == 200){
+             this.teamsList = resp['data'];
+             }else{
+              this.teamsList = '';
+             }
+          
+      },
+      error => this.errorMessage = <any>error
+    );
+
+
+    // set teamId variable
+    var team_id   = '';
+    var teamID    = JSON.parse(localStorage.getItem('teamId'));
+
+    if(teamID == null){
+      var teamId = team_id;
+    }else{
+      teamId = teamID;
+    }
+   
+    this.getJobPosting(teamId);
+
   }
 
-   getJobPosting(){
-  	// call teams interviews
-    this.targetService.getJobPosting(this.yearStartDate,this.currentDate,this.usersFlag).subscribe(
+   getJobPosting(teamId){
+     this.merged.length       = 0;
+     this.usersDetails.length = 0;
+  	// call teams job posting
+    this.targetService.getJobPosting(this.yearStartDate,this.currentDate,teamId).subscribe(
       resp => {
              if(resp['status_code'] == 200){
 	           	 this.usersJobPosting = resp['data'];
 	           	 console.log('post',this.usersJobPosting);
-	           	 this.getInterviews(this.usersJobPosting);
+	           	 this.getInterviews(this.usersJobPosting,teamId);
            	 
 	           	}else{
 	           	 this.usersJobPosting = '';
 	           	}
-
-       //     for(let i=0; i<mergeResult.length; i++) {
-       //     	  var strikeRate = Math.round((mergeResult[i].total_joining*100)/this.usersJobPosting[i].total_job_posting);
-
-    			//   this.usersDetails.push({
-    			//    ...mergeResult[i], 
-    			//    ...(this.usersJobPosting.find((itmInner) => itmInner.id === mergeResult[i].id)),
-       //             strikeRate
-    			// }
-    			//   );
-    			// }
-
-          // console.log('teee',this.usersDetails);
-
-
       },
       
       error => this.errorMessage = <any>error
     );
   }
 
-  getInterviews(jobPosting){
+  getInterviews(jobPosting,teamId){
   	// call users interviews
-    this.targetService.getInterviews(this.yearStartDate,this.currentDate,this.usersFlag).subscribe(
+    this.targetService.getInterviews(this.yearStartDate,this.currentDate,teamId).subscribe(
       resp => {
-           this.usersInterviews = resp['data'];
-           console.log('int',this.usersInterviews);
-           for(let i=0; i<jobPosting.length; i++) {
-    			  this.merged.push({
-    			   ...jobPosting[i], 
-    			   ...(this.usersInterviews.find((itmInner) => itmInner.id === jobPosting[i].id))}
-    			  );
-    			}
+          if(resp['status_code'] == 200){
+             this.usersInterviews = resp['data'];
+             console.log('int',this.usersInterviews);
+             for(let i=0; i<jobPosting.length; i++) {
+              this.merged.push({
+               ...jobPosting[i], 
+               ...(this.usersInterviews.find((itmInner) => itmInner.id === jobPosting[i].id))}
+              );
+          }
            console.log('mer',this.merged);
-          this.getJoining(this.merged);
+           
+          }
+          else{
+             for(let i=0; i<jobPosting.length; i++) {
+                this.merged.push({
+                 ...jobPosting[i]
+                 });
+             }
+          }
+          
+          this.getJoining(this.merged,teamId); 
 
 
       },
@@ -91,34 +127,30 @@ export class MostJobOrdersComponent implements OnInit {
   }
 
   // get joinings
-  getJoining(mergeResult){
-  	// call users job posting 
-    this.targetService.getJoining(this.yearStartDate,this.currentDate,this.usersFlag).subscribe(
+  getJoining(mergeResult,teamId){
+  	// call users joining
+    this.targetService.getJoining(this.yearStartDate,this.currentDate,teamId).subscribe(
       resp => {
+            if(resp['status_code'] == 200){
+               this.usersJoining = resp['data'];
+               console.log('st',this.usersJoining);
+                for(let i=0; i<mergeResult.length; i++) {
+                  this.usersDetails.push({
+                   ...mergeResult[i], 
+                   ...(this.usersJoining.find((itmInner) => itmInner.id === mergeResult[i].id))
+                        
+                  });
+                }
+            }else{
+                for(let i=0; i<mergeResult.length; i++) {
+                  this.usersDetails.push({
+                   ...mergeResult[i]     
+                  });
+                }
+            }
 
-           	 this.usersJoining = resp['data'];
-           	 console.log('st',this.usersJoining);
+            console.log('resul',this.usersDetails);
 
-           	 for(let i=0; i<mergeResult.length; i++) {
-           	 
-           	 	if(this.usersJoining[i].total_joining){
-           	 		console.log(this.usersJoining[i]['total_joining']);
-           	 		
-           	 	}else{
-           	 		console.log('hii');
-           	 	}
-           	 	
-       //     	  var strikeRate = Math.round((this.usersJoining[i].total_joining*100)/mergeResult[i].total_job_posting);
-
-    			//   this.usersDetails.push({
-    			//    ...mergeResult[i], 
-    			//    ...(this.usersJoining.find((itmInner) => itmInner.id === mergeResult[i].id)),
-       //             strikeRate
-    			// }
-    			//   );
-    			}
-
-          // console.log('teee',this.usersDetails);
    
       },
       

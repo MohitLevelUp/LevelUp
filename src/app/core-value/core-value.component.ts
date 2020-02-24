@@ -23,10 +23,12 @@ export class CoreValueComponent implements OnInit {
   userProfile    = JSON.parse(localStorage.getItem('user'));
 
   coreValmodel: any = {};
+  kudosModel: any = {};
 
   private readonly notifier: NotifierService;
   selectedcoreValueId = '';
   selectedgivenTo = '';
+  selectedgivenToKudos = '';
 
   earnedcvPoint:number;
   
@@ -76,6 +78,7 @@ export class CoreValueComponent implements OnInit {
 
     );
     form.resetForm();
+    this.selectedgivenTo = '';
   }
 
   giveKudos(kudosform: NgForm) {
@@ -83,6 +86,7 @@ export class CoreValueComponent implements OnInit {
     this.coreValueService.giveKudos(kudosform.value).subscribe(
       (resp) => {
         if(resp['status_code'] == 200){
+          this.getUserGivenKudosList();
           this.successMessage = resp.message;
            this.notifier.show({
               type: "success",
@@ -102,6 +106,7 @@ export class CoreValueComponent implements OnInit {
 
     );
     kudosform.resetForm();
+    this.selectedgivenToKudos = '';
   }
 
   // getting all core Value's list

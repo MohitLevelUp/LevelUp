@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'reset-password/:user_id/:hash', component: ResetPasswordComponent },
   { path: '', component: HomeComponent },
   { path: 'stats', component: StatsComponent },
-  { path: 'stats/most-starts', component: StartsComponent },
+  { path: 'stats/most-starts/:id', component: StartsComponent },
   { path: 'stats/most-job-orders', component: MostJobOrdersComponent },
   { path: 'stats/most-client-interviews', component: MostInterviewsComponent },
   { path: 'faqs', component: FaqsComponent },

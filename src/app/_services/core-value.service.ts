@@ -129,9 +129,9 @@ export class CoreValueService {
 
   var kudosData = {
       given_by: userID,
-      given_to: data.givenTo,
+      given_to: data.givenToKudos,
       kudos_id:data.kudosId,
-      why_given:data.whyGiven
+      why_given:data.whyGivenKudos
     };
 
   return this.http.post<any>(this.baseUrl + 'levelup/api/v1/corevalue/giveKudos' , JSON.stringify(kudosData), {

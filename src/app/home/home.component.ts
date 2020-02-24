@@ -44,7 +44,8 @@ export class HomeComponent implements OnInit {
 
     var teamsFlag = 1;
     var usersFlag = 0;
-    this.targetService.getSubmission(this.yearStartDate,this.currentDate,teamsFlag).subscribe(
+    var teamId    = '';
+    this.targetService.getAllTeamsSubmissionsTotal(this.yearStartDate,this.currentDate).subscribe(
       resp => {
         
          this.totalSubmissions = resp['data'];
@@ -54,8 +55,8 @@ export class HomeComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
 
-    //get all user's current month joining
-    this.targetService.getJoining(this.yearStartDate,this.currentDate,teamsFlag).subscribe(
+    //get
+    this.targetService.getAllTeamsJoiningsTotal(this.yearStartDate,this.currentDate).subscribe(
       resp => {
       
         this.monthJoinings = resp['data'];
@@ -72,7 +73,7 @@ export class HomeComponent implements OnInit {
     var year_sd = '2019-01-01';
     var year_ed = '2019-12-31';
 
-    this.targetService.getSubmission(year_sd,year_ed,usersFlag).subscribe(
+    this.targetService.getSubmission(year_sd,year_ed,teamId).subscribe(
       resp => {
         
          this.lastYearTotalSubmissions = resp['data'];

@@ -49,6 +49,7 @@ export class LiveDashboardComponent implements OnInit {
   ngOnInit() { 
     var teamsFlag = 1;
     var usersFlag = 0;
+    var teamId    = '';
     
     var withoutAnyType   = '';
     var tierOneType      = 1;
@@ -66,9 +67,8 @@ export class LiveDashboardComponent implements OnInit {
 
 
     // call totalsubmission according to user
-    this.targetService.getSubmission(this.yearStartDate,this.currentDate,usersFlag).subscribe(
+    this.targetService.getSubmission(this.yearStartDate,this.currentDate,teamId).subscribe(
       resp => {
-        
          this.userSubmissions = resp['data'];
          this.submissionstopers = this.userSubmissions.sort((a, b) => b.total_submission - a.total_submission).slice(0,3)
 
@@ -78,7 +78,7 @@ export class LiveDashboardComponent implements OnInit {
     );
 
     // call teams job posting 
-    this.targetService.getJobPosting(this.yearStartDate,this.currentDate,teamsFlag).subscribe(
+    this.targetService.getAllTeamsJobPostingTotal(this.yearStartDate,this.currentDate).subscribe(
       resp => {
         
          this.teamsJobPosting = resp['data'];
@@ -91,7 +91,7 @@ export class LiveDashboardComponent implements OnInit {
     );
 
     // call users job posting
-    this.targetService.getJobPosting(this.yearStartDate,this.currentDate,usersFlag).subscribe(
+    this.targetService.getJobPosting(this.yearStartDate,this.currentDate,teamId).subscribe(
       resp => {
         
          this.userJobPosting = resp['data'];

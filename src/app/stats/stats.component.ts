@@ -38,7 +38,7 @@ export class StatsComponent implements OnInit {
 
   getSubmissions(){
   	 // call totalsubmission according to user
-    this.targetService.getSubmission(this.yearStartDate,this.currentDate,this.teamsFlag).subscribe(
+    this.targetService.getAllTeamsSubmissionsTotal(this.yearStartDate,this.currentDate).subscribe(
       resp => {
          if(resp['status_code'] == 200){
          	this.teamsSubmissions = resp['data'];
@@ -57,7 +57,7 @@ export class StatsComponent implements OnInit {
 // get joinings
   getJoining(teamsSubmissions){
   	// call teams job posting 
-    this.targetService.getJoining(this.yearStartDate,this.currentDate,this.teamsFlag).subscribe(
+    this.targetService.getAllTeamsJoiningsTotal(this.yearStartDate,this.currentDate).subscribe(
       resp => {
 
            this.teamsJoining = resp['data'];
@@ -78,7 +78,7 @@ export class StatsComponent implements OnInit {
 // get interviews 
   getInterviews(mergeResult){
   	// call teams interviews
-    this.targetService.getInterviews(this.yearStartDate,this.currentDate,this.teamsFlag).subscribe(
+    this.targetService.getAllTeamsInterviewsTotal(this.yearStartDate,this.currentDate).subscribe(
       resp => {
            this.teamsInterviews = resp['data'];
 

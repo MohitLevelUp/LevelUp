@@ -120,10 +120,18 @@ export class TargetService {
 
 
 
-// get teams submissions
-  getSubmission(startDate:any,endDate:any,flag:any): Observable<any> {
-    // flag = 1 => submissions total according to team, flag = 0 => users submissions total
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getSubmissions/' + startDate + '/' + endDate + '/' + flag)
+// get submissions
+  getSubmission(startDate:any,endDate:any,teamId:any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getSubmissions?startDate=' + startDate + '&endDate=' + endDate + '&teamId=' + teamId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+  // get all teams submissions total
+  getAllTeamsSubmissionsTotal(startDate:any,endDate:any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getAllTeamsSubmissionsTotal?startDate=' + startDate + '&endDate=' + endDate)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -131,9 +139,18 @@ export class TargetService {
   }
 
   // get teams joining 
-  getJoining(startDate:any,endDate:any,flag:any): Observable<any> {
+  getJoining(startDate:any,endDate:any,teamId:any): Observable<any> {
      // for joining sum according to team
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getJoinings/' + startDate + '/' + endDate + '/' + flag)
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getJoinings?startDate=' + startDate + '&endDate=' + endDate + '&teamId=' + teamId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+  // get all teams joinings total
+  getAllTeamsJoiningsTotal(startDate:any,endDate:any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getAllTeamsJoiningsTotal?startDate=' + startDate + '&endDate=' + endDate)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -142,9 +159,18 @@ export class TargetService {
 
 
   // get users job posting
-  getJobPosting(startDate:any,endDate:any,flag:any): Observable<any> {
+  getJobPosting(startDate:any,endDate:any,teamId:any): Observable<any> {
    // for getting perticular user jobPosting
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getJobPosting/'+ startDate + '/' + endDate + '/' + flag)
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getJobPosting?startDate='+ startDate + '&endDate=' + endDate + '&teamId=' + teamId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+  // get all teams job posting total
+  getAllTeamsJobPostingTotal(startDate:any,endDate:any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getAllTeamsJobPostingTotal?startDate=' + startDate + '&endDate=' + endDate)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -153,9 +179,18 @@ export class TargetService {
 
 
   // get users interviews
-  getInterviews(startDate:any,endDate:any,flag:any): Observable<any> {
+  getInterviews(startDate:any,endDate:any,teamId:any): Observable<any> {
    // for getting perticular user jobPosting
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getInterviews/'+ startDate + '/' + endDate + '/' + flag)
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getInterviews?startDate='+ startDate + '&endDate=' + endDate + '&teamId=' + teamId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+  // get all teams interviews total
+  getAllTeamsInterviewsTotal(startDate:any,endDate:any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getAllTeamsInterviewsTotal?startDate=' + startDate + '&endDate=' + endDate)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
