@@ -12,8 +12,6 @@ import * as moment from 'moment';
 export class MostJobOrdersComponent implements OnInit {
   iconUrl   = environment.uploadUrl;
 
-  order: any = 'total_job_posting';
-
   teamsList:any;
   errorMessage: any;
   
@@ -148,7 +146,9 @@ export class MostJobOrdersComponent implements OnInit {
                 }
             }
 
-            console.log('resul',this.usersDetails);
+             // sorting result
+           this.usersDetails   = this.usersDetails.sort((a, b) => b.total_job_posting - a.total_job_posting);
+         
 
    
       },

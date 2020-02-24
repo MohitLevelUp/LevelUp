@@ -56,7 +56,7 @@
        </div>
                   </div>
                    <ul>
-      <li *ngFor="let item of array | orderBy: order2">
+      <li *ngFor="let item of array | orderBy: 'name': 'desc'">
         {{ item.name }}
       </li>
     </ul> 
@@ -85,7 +85,7 @@
                   </thead>
                   <tbody>
 
-                  <ng-container *ngFor="let clientInterview of usersDetails |  orderBy: order; let i = index">
+                  <ng-container *ngFor="let clientInterview of usersDetails; let i = index">
 
                     <tr *ngIf="i==0" class="top__player bg_desk_dem">
                       <td><span class="team_rank">{{i+1}}</span> </td>

@@ -13,7 +13,6 @@ import * as moment from 'moment';
 export class StartsComponent implements OnInit {
   iconUrl   = environment.uploadUrl;
 
-  order: string = 'total_joining';
   selectedTeam = '';
   
   teamsList:any;
@@ -203,7 +202,9 @@ export class StartsComponent implements OnInit {
             }
            
 
-          console.log('details',this.usersDetails);
+            // sorting result
+           this.usersDetails   = this.usersDetails.sort((a, b) => b.total_joining - a.total_joining);
+         
 
       },
       
@@ -236,7 +237,9 @@ getSubmission(mergeResult,teamId){
           }
            
 
-           console.log('usersDetails',this.usersDetails);
+           // sorting result
+           this.usersDetails   = this.usersDetails.sort((a, b) => b.total_joining - a.total_joining);
+         
 
 
       },

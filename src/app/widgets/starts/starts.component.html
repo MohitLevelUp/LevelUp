@@ -81,7 +81,7 @@
                   </thead>
                   <tbody>
 
-                  <ng-container *ngFor="let starts of usersDetails | orderBy: order: true; let i = index">
+                  <ng-container *ngFor="let starts of usersDetails; let i = index">
 
                     <tr *ngIf="i==0" class="top__player bg_desk_dem">
                       <td><span class="team_rank">{{i+1}}</span> </td>

@@ -1,6 +1,6 @@
 <app-nav *ngIf="router.url == '/' || router.url == '/home' || router.url == '/teams' || router.url == '/team-details' || router.url == '/stats' || router.isActive('/stats/most-starts', false) || router.url == '/faqs' || router.isActive('/stats/most-client-interviews', false) || router.url == '/stats/most-job-orders'"></app-nav>
 
-<app-dashboard-nav *ngIf="router.url !== '/login' && router.url !== '/signup' && router.url !== '/forgot-password' && router.url !== '/home' && router.url !== '/' && router.url !== '/teams' && router.url !== '/team-details' && router.url !== '/live-dashboard' && router.url !== '/stats' && router.isActive('/stats/most-starts', true) && router.url !== '/faqs'  && router.isActive('/stats/most-client-interviews', true) && router.url !== '/stats/most-job-orders'"></app-dashboard-nav>
+<app-dashboard-nav *ngIf="router.url !== '/login' && router.url !== '/signup' && router.url !== '/forgot-password' && router.url !== '/home' && router.url !== '/' && router.url !== '/teams' && router.url !== '/team-details' && router.url !== '/live-dashboard' && router.url !== '/stats' && router.url !== '/faqs' && router.url !== '/stats/most-job-orders'"></app-dashboard-nav>
 
 <router-outlet></router-outlet> 
 <app-footer *ngIf="router.url == '/' || router.url == '/teams' || router.url == '/team-details'|| router.url == '/stats' || router.isActive('/stats/most-starts', false) || router.url == '/faqs' || router.isActive('/stats/most-client-interviews', false) || router.url == '/stats/most-job-orders'"></app-footer>

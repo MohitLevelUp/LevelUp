@@ -13,10 +13,6 @@ import * as moment from 'moment';
 export class MostInterviewsComponent implements OnInit {
  iconUrl   = environment.uploadUrl;
 
- array: any[] = [{ name: 10} , { name: 13 }, { name: 8 }];
-  order2: any = 'name';
-
-  order: string = 'total_interviews';
   selectedTeam = '';
   
   teamsList:any;
@@ -197,10 +193,9 @@ export class MostInterviewsComponent implements OnInit {
                   });
               }
             }
-           
-
-          console.log('details',this.usersDetails);
-
+           // sorting result
+           this.usersDetails   = this.usersDetails.sort((a, b) => b.total_interviews - a.total_interviews);
+         
       },
       
       error => this.errorMessage = <any>error
@@ -232,7 +227,9 @@ getSubmission(mergeResult,teamId){
           }
            
 
-           console.log('usersDetails',this.usersDetails);
+           // sorting result
+           this.usersDetails   = this.usersDetails.sort((a, b) => b.total_interviews - a.total_interviews);
+         
 
 
       },
