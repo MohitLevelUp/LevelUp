@@ -14,9 +14,9 @@ export class MostJobOrdersComponent implements OnInit {
 
   order: any = 'total_job_posting';
 
+  teamsList:any;
   errorMessage: any;
-  teamsFlag = 1;
-  usersFlag = 0;
+  
 
   currentDate:any;
   yearStartDate:any;
