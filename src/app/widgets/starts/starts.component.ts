@@ -91,6 +91,8 @@ export class StartsComponent implements OnInit {
 
   }
 
+  
+
 
 
   // get joinings

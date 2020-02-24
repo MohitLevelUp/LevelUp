@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'stats', component: StatsComponent },
   { path: 'stats/most-starts/:id', component: StartsComponent },
   { path: 'stats/most-job-orders', component: MostJobOrdersComponent },
-  { path: 'stats/most-client-interviews', component: MostInterviewsComponent },
+  { path: 'stats/most-client-interviews/:id', component: MostInterviewsComponent },
   { path: 'faqs', component: FaqsComponent },
   // { path: 'not-found', component: NotFoundComponent },
   // { path: '**', redirectTo: '', pathMatch: 'full' },

@@ -31,7 +31,6 @@ export class MostJobOrdersComponent implements OnInit {
   constructor(private targetService: TargetService,private userService: UserService,) { }
 
   onTeamSelect(value:any){
-     console.log("the selected value is " + value);
 
      var teamId = value;
      localStorage.setItem('teamId', JSON.stringify(teamId));
