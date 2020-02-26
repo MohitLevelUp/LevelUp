@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { TargetService } from 'src/app/_services/target.service';
 import { UserService } from 'src/app/_services/user.service';
 import { environment } from '../../../environments/environment';
@@ -6,14 +6,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-starts',
-  templateUrl: './starts.component.html',
-  styleUrls: ['./starts.component.css']
+  selector: 'app-strike-rate',
+  templateUrl: './strike-rate.component.html',
+  styleUrls: ['./strike-rate.component.css']
 })
-export class StartsComponent implements OnInit {
+export class StrikeRateComponent implements OnInit {
+
   iconUrl   = environment.uploadUrl;
 
-  selectedTeam = ''; 
+  selectedTeam = '';
   
   teamsList:any;
   errorMessage: any;
@@ -33,10 +34,10 @@ export class StartsComponent implements OnInit {
   merged       = [];
   usersDetails = [];
 
-  
+
   constructor(private targetService: TargetService,private userService: UserService,
-    private route: ActivatedRoute,) { }
-  
+    private route: ActivatedRoute) { }
+
   onTeamSelect(value:any){
 
      var teamId = value;
@@ -46,9 +47,8 @@ export class StartsComponent implements OnInit {
      this.getJoining(teamId,userType);
 
    }
- 
+
   ngOnInit() {
-    $("#main-content").css({"display": "none"});
     var date             = new Date();
     this.currentDate     = moment(date).format('YYYY-MM-DD');
     this.yearStartDate   = moment().startOf('year').format('YYYY-MM-DD');
@@ -120,10 +120,10 @@ export class StartsComponent implements OnInit {
 
               if(userType == 1){
                  this.getInterviews(this.salesUsersJoining,teamId,userType);
-             
+                
               }else{
                  this.getInterviews(this.recruiterUsersJoining,teamId,userType);
-                 
+               
               }
 
            	}else{
@@ -146,12 +146,17 @@ export class StartsComponent implements OnInit {
 
                this.usersInterviews = resp['data'];
 
+               
+
                for(let i=0; i<joinings.length; i++) {
+                 
+                 // getting users total month from joining date
                  var dateOfJoin  = joinings[i].date_of_join;
                  var currentDate = this.currentDate;
                  let date1       = new Date(dateOfJoin);  let date2 = new Date(currentDate);  
                  let years       = this.yearsDiff(dateOfJoin, currentDate);  
-                 let months      = (years * 12) + (date2.getMonth() - date1.getMonth()) ;
+                 let months      = (years * 12) + (date2.getMonth() - date1.getMonth()) ; 
+
 
                   this.merged.push({
                    ...joinings[i], 
@@ -163,15 +168,8 @@ export class StartsComponent implements OnInit {
 
            }else{
                for(let i=0; i<joinings.length; i++) {
-                 var dateOfJoin  = joinings[i].date_of_join;
-                 var currentDate = this.currentDate;
-                 let date1       = new Date(dateOfJoin);  let date2 = new Date(currentDate);  
-                 let years       = this.yearsDiff(dateOfJoin, currentDate);  
-                 let months      = (years * 12) + (date2.getMonth() - date1.getMonth()) ;
-
                   this.merged.push({
-                   ...joinings[i],
-                   months
+                   ...joinings[i]
                     }
                   );
                }
@@ -179,7 +177,7 @@ export class StartsComponent implements OnInit {
            
           if(userType == 1){
             this.getJobPosting(this.merged,teamId);
-          
+         
           }else{
             this.getSubmission(this.merged,teamId);
           }
@@ -192,33 +190,39 @@ export class StartsComponent implements OnInit {
     );
   }
 
-
-
   getJobPosting(mergeResult,teamId){
   	// call teams job posting
     this.targetService.getJobPosting(this.yearStartDate,this.currentDate,teamId).subscribe(
       resp => {
             if(resp['status_code'] == 200){
                this.usersJobPosting = resp['data'];
-             
+              
+
                for(let i=0; i<mergeResult.length; i++) {
-                  this.usersDetails.push({
-                   ...mergeResult[i], 
-                   ...(this.usersJobPosting.find((itmInner) => itmInner.id === mergeResult[i].id))
-                        
-                  });
+
+                  if(this.usersJobPosting.find((itmInner) => itmInner.id === mergeResult[i].id)){
+
+                     this.usersDetails.push({
+                     ...mergeResult[i], 
+                     ...(this.usersJobPosting.find((itmInner) => itmInner.id === mergeResult[i].id))
+                          
+                    }); 
+
+                  }
+                  
               }
+
+              // sorting result
+            this.usersDetails    = this.usersDetails.sort((a, b) => b.total_joining - a.total_joining);
+         
+            this.usersDetails    = this.usersDetails.sort((a, b) => (b.total_joining * 100)/b.total_job_posting - (a.total_joining * 100)/a.total_job_posting);
+
             }else{
-              for(let i=0; i<mergeResult.length; i++) {
-                  this.usersDetails.push({
-                   ...mergeResult[i]  
-                  });
-              }
+              this.usersJobPosting = '';
             }
            
 
-            // sorting result
-           this.usersDetails   = this.usersDetails.sort((a, b) => b.total_joining - a.total_joining);
+            
          
 
       },
@@ -235,40 +239,43 @@ getSubmission(mergeResult,teamId){
       resp => {
           if(resp['status_code'] == 200){
              this.usersSubmission = resp['data'];
-          
+             
              for(let i=0; i<mergeResult.length; i++) {
-                this.usersDetails.push({
+
+               if(this.usersSubmission.find((itmInner) => itmInner.id === mergeResult[i].id)){
+
+                 this.usersDetails.push({
                  ...mergeResult[i], 
                  ...(this.usersSubmission.find((itmInner) => itmInner.id === mergeResult[i].id))
                     
-                });
+                 });
+
+               }
+                
              }
+              // sorting result
+           this.usersDetails    = this.usersDetails.sort((a, b) => b.total_joining - a.total_joining);
+           this.usersDetails    = this.usersDetails.sort((a, b) => (b.total_joining * 100)/b.total_submission - (a.total_joining * 100)/a.total_submission);
+
           }else{
-             for(let i=0; i<mergeResult.length; i++) {
-                this.usersDetails.push({
-                 ...mergeResult[i]   
-                });
-             }
+              this.usersSubmission = '';
           }
            
 
-           // sorting result
-           this.usersDetails   = this.usersDetails.sort((a, b) => b.total_joining - a.total_joining);
-         
-
-
+          
       },
       
       error => this.errorMessage = <any>error
     );
   }
 
-  // year difference
+// year difference
    yearsDiff(d1, d2) {   
     let date1     = new Date(d1);    
     let date2     = new Date(d2);    
     let yearsDiff =  date2.getFullYear() - date1.getFullYear();   
     return yearsDiff;
   }
+
 
 }

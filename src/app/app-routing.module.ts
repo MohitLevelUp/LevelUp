@@ -26,7 +26,13 @@ import { NotFoundComponent } from './widgets/not-found/not-found.component';
 import { StartsComponent } from './widgets/starts/starts.component';
 import { MostJobOrdersComponent } from './widgets/most-job-orders/most-job-orders.component';
 import { MostInterviewsComponent } from './widgets/most-interviews/most-interviews.component';
+import { StrikeRateComponent } from './widgets/strike-rate/strike-rate.component';
+import { StartsClientInterviewsComponent } from './widgets/starts-client-interviews/starts-client-interviews.component';
+import { LastMonthStartsComponent } from './widgets/last-month-starts/last-month-starts.component';
+import { MostSubmissionsComponent } from './widgets/most-submissions/most-submissions.component';
+
 import { FaqsComponent } from './faqs/faqs.component';
+
 
 
 const routes: Routes = [
@@ -43,7 +49,11 @@ const routes: Routes = [
   { path: 'stats', component: StatsComponent },
   { path: 'stats/most-starts/:id', component: StartsComponent },
   { path: 'stats/most-job-orders', component: MostJobOrdersComponent },
+  { path: 'stats/most-submissions', component: MostSubmissionsComponent },
   { path: 'stats/most-client-interviews/:id', component: MostInterviewsComponent },
+  { path: 'stats/strike-rate/:id', component: StrikeRateComponent },
+  { path: 'stats/starts/client-interviews/:id', component: StartsClientInterviewsComponent },
+  { path: 'stats/starts/month/:id', component: LastMonthStartsComponent },
   { path: 'faqs', component: FaqsComponent },
   // { path: 'not-found', component: NotFoundComponent },
   // { path: '**', redirectTo: '', pathMatch: 'full' },

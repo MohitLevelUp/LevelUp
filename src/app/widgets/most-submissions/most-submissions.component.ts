@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; 
 import { TargetService } from 'src/app/_services/target.service';
 import { UserService } from 'src/app/_services/user.service';
 import { environment } from '../../../environments/environment';
-import * as moment from 'moment';
+import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment'; 
 
 @Component({
-  selector: 'app-most-job-orders',
-  templateUrl: './most-job-orders.component.html',
-  styleUrls: ['./most-job-orders.component.css']
+  selector: 'app-most-submissions',
+  templateUrl: './most-submissions.component.html',
+  styleUrls: ['./most-submissions.component.css']
 })
-export class MostJobOrdersComponent implements OnInit {
+export class MostSubmissionsComponent implements OnInit {
+
   iconUrl   = environment.uploadUrl;
 
   teamsList:any;
@@ -21,7 +23,7 @@ export class MostJobOrdersComponent implements OnInit {
 
   usersJoining:any;
   usersInterviews:any;
-  usersJobPosting:any;
+  usersSubmission:any;
 
   merged = [];
   usersDetails = [];
@@ -32,7 +34,7 @@ export class MostJobOrdersComponent implements OnInit {
 
      var teamId = value;
      localStorage.setItem('teamId', JSON.stringify(teamId));
-     this.getJobPosting(teamId);
+     this.getSubmission(teamId);
 
    }
 
@@ -66,47 +68,53 @@ export class MostJobOrdersComponent implements OnInit {
       teamId = teamID;
     }
    
-    this.getJobPosting(teamId);
+    this.getSubmission(teamId);
 
   }
 
-   getJobPosting(teamId){
-     this.merged.length       = 0;
-     this.usersDetails.length = 0;
-  	// call teams job posting
-    this.targetService.getJobPosting(this.yearStartDate,this.currentDate,teamId).subscribe(
+
+
+  // get submissions
+getSubmission(teamId){
+	this.merged.length       = 0;
+    this.usersDetails.length = 0;
+
+    this.targetService.getSubmission(this.yearStartDate,this.currentDate,teamId).subscribe(
       resp => {
-             if(resp['status_code'] == 200){
-	           	 this.usersJobPosting = resp['data'];
-	           	 this.getInterviews(this.usersJobPosting,teamId);
-           	 
-	           	}else{
-	           	 this.usersJobPosting = '';
-	           	}
+          if(resp['status_code'] == 200){
+             this.usersSubmission = resp['data'];
+             console.log(this.usersSubmission);
+             this.getInterviews(this.usersSubmission,teamId);
+          }else{
+             this.usersSubmission = '';
+          }
+         
       },
       
       error => this.errorMessage = <any>error
     );
   }
 
-  getInterviews(jobPosting,teamId){
+
+
+  getInterviews(submissions,teamId){
   	// call users interviews
     this.targetService.getInterviews(this.yearStartDate,this.currentDate,teamId).subscribe(
       resp => {
           if(resp['status_code'] == 200){
              this.usersInterviews = resp['data'];
-             for(let i=0; i<jobPosting.length; i++) {
+             for(let i=0; i<submissions.length; i++) {
 
               // getting users total month from joining date
-               var dateOfJoin  = jobPosting[i].date_of_join;
+               var dateOfJoin  = submissions[i].date_of_join;
                var currentDate = this.currentDate;
                let date1       = new Date(dateOfJoin);  let date2 = new Date(currentDate);  
                let years       = this.yearsDiff(dateOfJoin, currentDate);  
                let months      = (years * 12) + (date2.getMonth() - date1.getMonth()) ;
 
               this.merged.push({
-               ...jobPosting[i], 
-               ...(this.usersInterviews.find((itmInner) => itmInner.id === jobPosting[i].id)),
+               ...submissions[i], 
+               ...(this.usersInterviews.find((itmInner) => itmInner.id === submissions[i].id)),
                months
               });
           }
@@ -114,17 +122,17 @@ export class MostJobOrdersComponent implements OnInit {
            
           }
           else{
-             for(let i=0; i<jobPosting.length; i++) {
+             for(let i=0; i<submissions.length; i++) {
                
                // getting users total month from joining date
-               var dateOfJoin  = jobPosting[i].date_of_join;
+               var dateOfJoin  = submissions[i].date_of_join;
                var currentDate = this.currentDate;
                let date1       = new Date(dateOfJoin);  let date2 = new Date(currentDate);  
                let years       = this.yearsDiff(dateOfJoin, currentDate);  
                let months      = (years * 12) + (date2.getMonth() - date1.getMonth()) ;
 
                 this.merged.push({
-                 ...jobPosting[i],
+                 ...submissions[i],
                  months
                  });
              }
@@ -163,7 +171,7 @@ export class MostJobOrdersComponent implements OnInit {
             }
 
              // sorting result
-           this.usersDetails   = this.usersDetails.sort((a, b) => b.total_job_posting - a.total_job_posting);
+           this.usersDetails   = this.usersDetails.sort((a, b) => b.total_submission - a.total_submission);
          
 
    
@@ -181,9 +189,5 @@ export class MostJobOrdersComponent implements OnInit {
     let yearsDiff =  date2.getFullYear() - date1.getFullYear();   
     return yearsDiff;
   }  
-
-
-
- 
 
 }

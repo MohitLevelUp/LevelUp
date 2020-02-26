@@ -1,4 +1,4 @@
-<app-sidebar></app-sidebar>
+<app-sidebar></app-sidebar> 
 <div class="das_col main-content" id="main-content" *ngIf="userInfo; else loadingImg">
 		
 		<section class="wrapper main-wrapper">
@@ -54,9 +54,9 @@
 									</div>
 									<div class="col-md-2">
 										<div class="emp_short_score_wrap">
-											<div *ngIf="pointDifference < 0" class="emp_short_score">{{ pointDifference }} Points above target.
+											<div *ngIf="pointDifference < 0" class="emp_short_score">{{ pointDifference | number: '1.0-2'}} Points above target.
 											</div>
-											<div *ngIf="pointDifference > 0" class="emp_short_score" style="background-color: #F44336;">{{pointDifference}} Points below target.
+											<div *ngIf="pointDifference > 0" class="emp_short_score" style="background-color: #F44336;">{{pointDifference | number: '1.0-2'}} Points below target.
 											</div>
 											<!-- <div class="emp_placement_no">Rank : <span>#2nd</span> 
 											</div> -->
@@ -112,7 +112,7 @@
 										<td *ngIf="target.targetResultPercentage < -20" class="off_point point_plus_30"><span>+{{target.targetResultPercentage}} %</span>
 										</td>
 										
-										<td>{{target.total * target.point}}</td>
+										<td>{{(target.total * target.point)/target.users_target | number: '1.0-2'}}</td>
 										
 									</tr>
 									<!-- <tr>

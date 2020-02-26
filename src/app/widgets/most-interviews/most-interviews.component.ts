@@ -46,6 +46,7 @@ export class MostInterviewsComponent implements OnInit {
    }
 
   ngOnInit() {
+    $("#main-content").css({"display": "none"});
   	var date             = new Date();
     this.currentDate     = moment(date).format('YYYY-MM-DD');
     this.yearStartDate   = moment().startOf('year').format('YYYY-MM-DD');
@@ -97,7 +98,7 @@ export class MostInterviewsComponent implements OnInit {
 
       	  if(resp['status_code'] == 200){
            	  this.usersInterviews = resp['data'];
-              console.log('inter',this.usersInterviews);
+            
               this.salesUsersInterviews.length     = 0; //for doing null array
               this.recruiterUsersInterviews.length = 0;
 
@@ -113,10 +114,10 @@ export class MostInterviewsComponent implements OnInit {
 
               if(userType == 1){
                   this.getJoining(this.salesUsersInterviews,teamId,userType);
-                 // console.log('sales',this.salesUsersJoining);
+                 
               }else{
                   this.getJoining(this.recruiterUsersInterviews,teamId,userType);
-                 // console.log('rec',this.recruiterUsersJoining);
+                
               }
 
            	}else{
@@ -137,26 +138,44 @@ export class MostInterviewsComponent implements OnInit {
       resp => {
            if(resp['status_code'] == 200){
            	  this.usersJoining = resp['data'];
-              console.log('joining',this.usersJoining);
+             
 
               for(let i=0; i<interviews.length; i++) {
+                 // getting users total month from joining date
+                 var dateOfJoin  = interviews[i].date_of_join;
+                 var currentDate = this.currentDate;
+                 let date1       = new Date(dateOfJoin);  let date2 = new Date(currentDate);  
+                 let years       = this.yearsDiff(dateOfJoin, currentDate);  
+                 let months      = (years * 12) + (date2.getMonth() - date1.getMonth()) ;
+
                   this.merged.push({
                    ...interviews[i], 
-                   ...(this.usersJoining.find((itmInner) => itmInner.id === interviews[i].id))}
+                   ...(this.usersJoining.find((itmInner) => itmInner.id === interviews[i].id)),
+                   months
+
+                 }
                   );
                }
 
            	}else{
            	   for(let i=0; i<interviews.length; i++) {
+                 // getting users total month from joining date
+                 var dateOfJoin  = interviews[i].date_of_join;
+                 var currentDate = this.currentDate;
+                 let date1       = new Date(dateOfJoin);  let date2 = new Date(currentDate);  
+                 let years       = this.yearsDiff(dateOfJoin, currentDate);  
+                 let months      = (years * 12) + (date2.getMonth() - date1.getMonth()) ;
+
                   this.merged.push({
-                   ...interviews[i]
+                   ...interviews[i],
+                   months
                     }
                   );
                 }
            	}
             if(userType == 1){
               this.getJobPosting(this.merged,teamId);
-              console.log('merget',this.merged);
+             
             }else{
               this.getSubmission(this.merged,teamId);
             }
@@ -178,7 +197,7 @@ export class MostInterviewsComponent implements OnInit {
       resp => {
             if(resp['status_code'] == 200){
                this.usersJobPosting = resp['data'];
-               console.log('jobpost',resp);
+           
                for(let i=0; i<mergeResult.length; i++) {
                   this.usersDetails.push({
                    ...mergeResult[i], 
@@ -210,7 +229,7 @@ getSubmission(mergeResult,teamId){
       resp => {
           if(resp['status_code'] == 200){
              this.usersSubmission = resp['data'];
-             console.log('sub',this.usersSubmission);
+            
              for(let i=0; i<mergeResult.length; i++) {
                 this.usersDetails.push({
                  ...mergeResult[i], 
@@ -236,6 +255,14 @@ getSubmission(mergeResult,teamId){
       
       error => this.errorMessage = <any>error
     );
+  }
+
+  // year difference
+   yearsDiff(d1, d2) {   
+    let date1     = new Date(d1);    
+    let date2     = new Date(d2);    
+    let yearsDiff =  date2.getFullYear() - date1.getFullYear();   
+    return yearsDiff;
   }
 
 }

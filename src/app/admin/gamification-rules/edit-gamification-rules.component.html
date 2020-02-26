@@ -1,5 +1,5 @@
 <app-sidebar></app-sidebar>
- <div class="das_col main-content" id="main-content">
+ <div class="das_col main-content" id="main-content"> 
 	    <section class="wrapper main-wrapper recognition_warp">
 			<div class="container-fluid">
 				<div class="row">
@@ -66,10 +66,13 @@
 												<td>
 													
 														<select class="custom-select" #behavior="ngModel" name="behavior" [ngModel]="selectedBehavior">
-															<option value="2">Submissions</option>
-															<option value="3">Job Posting</option>
-															<option value="4">Interviews</option>
-															<option value="5">Start</option>
+															<option value="">Select Behavior</option>
+
+															<ng-container *ngFor='let behavior of behaviorsList; let i = index'>
+																<option  value="{{behavior.id}}">{{behavior.name}}</option>
+															</ng-container>
+
+															<option value="-1">Custom</option>
 															
 														</select>
 													
@@ -77,9 +80,11 @@
 												<td>
 													
 														<select class="custom-select" #kpiPoint="ngModel" name="kpiPoint" [ngModel]="selectedPoint">
-															<option value="2">2</option>
-															<option value="5">5</option>
-															<option value="10">10</option>
+															<option value="">Select Point</option>
+															<ng-container *ngFor='let pointVal of pointList; let i = index'>
+															 <option value="{{pointVal.point}}">{{pointVal.point}}</option>
+														    </ng-container>
+															<!-- <option value="-1">Custom</option> -->
 														</select>
 													
 												</td>
@@ -115,4 +120,57 @@
 			</div>
 		</section>
 	</div>
+
+<!-- behavior modal start -->
+
+ <!-- Modal -->
+  <div class="modal fade" id="behaviorModal" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      	<div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+      	<form #form_b="ngForm" ngNativeValidate (submit)="addBehavior(form_b)">
+	        <div class="modal-body">
+	          <span>Behavior Name</span>
+	          <input type="text" class="private-form__control" #custom_behavior="ngModel" name="custom_behavior" [(ngModel)]="gRulemodel.custom_behavior">
+	        </div>
+	        <div class="modal-footer">
+	        	<input value="Add Behavior" class="add_metric_btn" autocomplete="false" type="submit">
+	          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+	        </div>
+       </form>
+      </div>
+      
+    </div>
+  </div>
+  <!-- behavior modal end -->
+
+  <!-- point modal start -->
+
+ <!-- Modal -->
+  <div class="modal fade" id="pointModal" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      	<div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+      	<form #form_p="ngForm" ngNativeValidate (submit)="addNewPoint(form_p)">
+	        <div class="modal-body">
+	          <span>Point</span>
+	          <input type="text" class="private-form__control" #custom_point="ngModel" name="custom_point" [(ngModel)]="gRulemodel.custom_point">
+	        </div>
+	        <div class="modal-footer">
+	        	<input value="Add Point" class="add_metric_btn" autocomplete="false" type="submit">
+	        </div>
+       </form>
+      </div>
+      
+    </div>
+  </div>
+  <!-- point modal end -->
 <notifier-container></notifier-container>

@@ -3,24 +3,24 @@ import { TargetService } from 'src/app/_services/target.service';
 import { UserService } from 'src/app/_services/user.service';
 import { environment } from '../../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'moment';
+import * as moment from 'moment'; 
 
 @Component({
-  selector: 'app-starts',
-  templateUrl: './starts.component.html',
-  styleUrls: ['./starts.component.css']
+  selector: 'app-last-month-starts',
+  templateUrl: './last-month-starts.component.html',
+  styleUrls: ['./last-month-starts.component.css']
 })
-export class StartsComponent implements OnInit {
+export class LastMonthStartsComponent implements OnInit {
   iconUrl   = environment.uploadUrl;
 
-  selectedTeam = ''; 
+  selectedTeam = '';
   
   teamsList:any;
   errorMessage: any;
 
-
   currentDate:any;
-  yearStartDate:any;
+  startDate:any;
+  endDate:any;
 
   usersJoining:any;
   usersInterviews:any;
@@ -48,10 +48,15 @@ export class StartsComponent implements OnInit {
    }
  
   ngOnInit() {
-    $("#main-content").css({"display": "none"});
+   $("#main-content").css({"display": "none"});
     var date             = new Date();
     this.currentDate     = moment(date).format('YYYY-MM-DD');
-    this.yearStartDate   = moment().startOf('year').format('YYYY-MM-DD');
+
+   this.startDate = moment().subtract(1, 'months').startOf('month').format('YYYY-MM-DD');
+
+   this.endDate   = moment().subtract(1, 'months').endOf('month').format('YYYY-MM-DD');
+
+
     localStorage.removeItem('teamId');
 
     // get team list
@@ -100,7 +105,7 @@ export class StartsComponent implements OnInit {
      this.merged.length       = 0;
      this.usersDetails.length = 0;
   	// call users joining
-    this.targetService.getJoining(this.yearStartDate,this.currentDate,teamId).subscribe(
+    this.targetService.getJoining(this.startDate,this.endDate,teamId).subscribe(
       resp => {
            if(resp['status_code'] == 200){
            	  this.usersJoining = resp['data'];
@@ -120,10 +125,10 @@ export class StartsComponent implements OnInit {
 
               if(userType == 1){
                  this.getInterviews(this.salesUsersJoining,teamId,userType);
-             
+
               }else{
                  this.getInterviews(this.recruiterUsersJoining,teamId,userType);
-                 
+               
               }
 
            	}else{
@@ -139,7 +144,7 @@ export class StartsComponent implements OnInit {
 
     getInterviews(joinings,teamId,userType){
   	// call users interviews
-    this.targetService.getInterviews(this.yearStartDate,this.currentDate,teamId).subscribe(
+    this.targetService.getInterviews(this.startDate,this.endDate,teamId).subscribe(
       resp => {
 
            if(resp['status_code'] == 200){
@@ -171,7 +176,7 @@ export class StartsComponent implements OnInit {
 
                   this.merged.push({
                    ...joinings[i],
-                   months
+                    months
                     }
                   );
                }
@@ -179,7 +184,7 @@ export class StartsComponent implements OnInit {
            
           if(userType == 1){
             this.getJobPosting(this.merged,teamId);
-          
+         
           }else{
             this.getSubmission(this.merged,teamId);
           }
@@ -196,11 +201,11 @@ export class StartsComponent implements OnInit {
 
   getJobPosting(mergeResult,teamId){
   	// call teams job posting
-    this.targetService.getJobPosting(this.yearStartDate,this.currentDate,teamId).subscribe(
+    this.targetService.getJobPosting(this.startDate,this.endDate,teamId).subscribe(
       resp => {
             if(resp['status_code'] == 200){
                this.usersJobPosting = resp['data'];
-             
+              
                for(let i=0; i<mergeResult.length; i++) {
                   this.usersDetails.push({
                    ...mergeResult[i], 
@@ -231,11 +236,11 @@ export class StartsComponent implements OnInit {
 // get submissions
 getSubmission(mergeResult,teamId){
     // call teams interviews
-    this.targetService.getSubmission(this.yearStartDate,this.currentDate,teamId).subscribe(
+    this.targetService.getSubmission(this.startDate,this.endDate,teamId).subscribe(
       resp => {
           if(resp['status_code'] == 200){
              this.usersSubmission = resp['data'];
-          
+           
              for(let i=0; i<mergeResult.length; i++) {
                 this.usersDetails.push({
                  ...mergeResult[i], 
@@ -262,7 +267,7 @@ getSubmission(mergeResult,teamId){
       error => this.errorMessage = <any>error
     );
   }
-
+  
   // year difference
    yearsDiff(d1, d2) {   
     let date1     = new Date(d1);    
@@ -270,5 +275,4 @@ getSubmission(mergeResult,teamId){
     let yearsDiff =  date2.getFullYear() - date1.getFullYear();   
     return yearsDiff;
   }
-
 }

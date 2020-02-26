@@ -57,6 +57,7 @@ export class CoreValueComponent implements OnInit {
 
     this.coreValueService.giveCoreValue(form.value).subscribe(
       (resp) => {
+
         if(resp['status_code'] == 200){
           this.getCoreValueList();
           this.successMessage = resp.message;
@@ -82,9 +83,10 @@ export class CoreValueComponent implements OnInit {
   }
 
   giveKudos(kudosform: NgForm) {
-
+    
     this.coreValueService.giveKudos(kudosform.value).subscribe(
       (resp) => {
+      
         if(resp['status_code'] == 200){
           this.getUserGivenKudosList();
           this.successMessage = resp.message;

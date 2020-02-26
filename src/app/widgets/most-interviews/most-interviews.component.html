@@ -1,11 +1,11 @@
-<div class="main-wrap">
+<div class="main-wrap" *ngIf="usersInterviews; else loadingImg">
     <!--=====================STATS HEADER=====================-->
        <div class="stats_main_wrap bg-gradient-info">
        <div class="container">
           <div class="row">
            <div class="col-md-12">
               <div class="stats_title">
-               <h1>Most Interviews</h1>
+               <h1 class="test">Most Interviews</h1>
                </div>
               </div>
            </div>
@@ -96,7 +96,7 @@
                       	<span class="stats_team_name"> {{clientInterview.display_name | titlecase}}</span> 
                       </td>
                       <td>{{clientInterview.team_name}}</td>
-                      <td>4</td>
+                      <td>{{clientInterview.months}}</td>
                       <td class="is__active">{{clientInterview.total_interviews}}</td>
                       <td>{{clientInterview.total_joining}}</td>
                      
@@ -127,7 +127,7 @@
                       	<span class="stats_team_name"> {{clientInterview.display_name | titlecase}}</span> 
                       </td>
                       <td>{{clientInterview.team_name}}</td>
-                      <td>4</td>
+                      <td>{{clientInterview.months}}</td>
                       <td class="is__active">{{clientInterview.total_interviews}}</td>
                       <td>{{clientInterview.total_joining}}</td>
                      
@@ -159,3 +159,10 @@
       </div>
     </div>
   </div>
+<ng-template #loadingImg>
+  <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+   </section>
+</ng-template>

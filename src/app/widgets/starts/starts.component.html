@@ -1,4 +1,4 @@
-<div class="main-wrap">
+<div class="main-wrap" *ngIf="usersJoining; else loadingImg"> 
     <!--=====================STATS HEADER=====================-->
        <div class="stats_main_wrap bg-gradient-info">
        <div class="container">
@@ -92,7 +92,7 @@
                       	<span class="stats_team_name"> {{starts.display_name | titlecase}}</span> 
                       </td>
                       <td>{{starts.team_name}}</td>
-                      <td>4</td>
+                      <td>{{starts.months}}</td>
                       <td>{{starts.total_interviews}}</td>
                       <td class="is__active">{{starts.total_joining}}</td>
                      
@@ -123,7 +123,7 @@
                       	<span class="stats_team_name"> {{starts.display_name | titlecase}}</span> 
                       </td>
                       <td>{{starts.team_name}}</td>
-                      <td>4</td>
+                      <td>{{starts.months}}</td>
                       <td>{{starts.total_interviews}}</td>
                       <td class="is__active">{{starts.total_joining}}</td>
                      
@@ -154,3 +154,10 @@
       </div>
     </div>
   </div>
+<ng-template #loadingImg>
+  <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+   </section>
+</ng-template>

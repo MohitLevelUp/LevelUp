@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; 
 import { IUser } from 'src/app/_models/user';
 import { UserService } from 'src/app/_services/user.service';
 import { KpiService } from 'src/app/_services/kpi.service';
@@ -41,10 +41,17 @@ export class UserProfileComponent implements OnInit {
       resp => {
         if(resp['status_code'] == 200){
           this.targetList = resp['data'];
+          console.log('tlist',this.targetList);
 
           var flag:number = 0;
           var foo:number  = 0;
+          var totalPoint  = 0;
+          var completedPoint = 0;
           for (let i = 0; i < this.targetList.length; i++) {
+
+           totalPoint     = (+totalPoint) + (+this.targetList[i].point);
+           completedPoint = (+completedPoint) + ((+this.targetList[i].total) * (+this.targetList[i].point))/(+this.targetList[i].users_target);
+           
            var assignTarget   = this.targetList[i].users_target; 
            var completeTarget = this.targetList[i].total; 
 
@@ -72,7 +79,11 @@ export class UserProfileComponent implements OnInit {
                'target_period': this.targetList[i].target_period, 'total': this.targetList[i].total, 'users_target': this.targetList[i].users_target, 'targetResultPercentage': targetResultPercentage});
 
         }
-        this.pointDifference = (allAssignTarget - allCompleteTarget);
+
+        console.log('tpoint',totalPoint);
+        console.log('cpoint',completedPoint);
+
+        this.pointDifference = (totalPoint - completedPoint);
       }else{
         this.targetList = '';
       }

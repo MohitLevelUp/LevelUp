@@ -1,11 +1,11 @@
-<div class="main-wrap" *ngIf="usersJobPosting; else loadingImg">
+<div class="main-wrap"  *ngIf="usersJoining; else loadingImg">
     <!--=====================STATS HEADER=====================-->
        <div class="stats_main_wrap bg-gradient-info">
        <div class="container">
           <div class="row">
            <div class="col-md-12">
               <div class="stats_title">
-               <h1>Most Job Orders</h1>
+               <h1>Strike Rate</h1>
                </div>
               </div>
            </div>
@@ -30,17 +30,18 @@
               <div class="row">
               <div class="col-md-4">
                   <div class="title_wrap d-flex justify-content-left">
-             <h4 class="table__title">Most  Job Orders</h4>
+             <h4 class="table__title">Strike Rate</h4>
               </div>
                   </div>
               <div class="col-md-4">
-                   <select class="stats_select" name="selectedTeam"  #teamSelect (change)='onTeamSelect(teamSelect.value)'>
-                    <option value="">All Teams</option>
-                    <ng-container *ngFor="let team of teamsList; let i = index">             
-                     <option class="drop-down__item" value="{{team.id}}">{{team.name}}</option>
-                    </ng-container>
-                   </select>
-               </div>
+                <select class="stats_select" name="selectedTeam"  #teamSelect (change)='onTeamSelect(teamSelect.value)'>
+                <option value="">All Teams</option>
+                <ng-container *ngFor="let team of teamsList; let i = index">             
+                 <option class="drop-down__item" value="{{team.id}}">{{team.name}}</option>
+                </ng-container>
+               </select>
+
+              </div>
               <div class="col-md-4">
                   <div class="drop-down player_filter">
          <div id="filter_by_player" class="drop-down__button filter_nav3">
@@ -66,8 +67,8 @@
                       <th>Name</th>
                       <th>Team</th>
                       <th>Month</th>
-                      <th>Client Interview</th>
-                      <th>Job Order</th>                      
+                      <th>client interview</th>
+                      <th>Starts</th>                      
                        <th>Strike Rate</th>
                       <th>                         
                         <div class="performance_wrap">
@@ -80,29 +81,29 @@
                   </thead>
                   <tbody>
 
-                  <ng-container *ngFor="let jobOrders of usersDetails; let i = index">
+                  <ng-container *ngFor="let starts of usersDetails; let i = index">
 
                     <tr *ngIf="i==0" class="top__player bg_desk_dem">
                       <td><span class="team_rank">{{i+1}}</span> </td>
                       <td> 
                       	<span class="stats_team_image">
-                      	 <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ jobOrders.profile_image_name }}">
+                      	 <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ starts.profile_image_name }}">
                         </span> 
-                      	<span class="stats_team_name"> {{jobOrders.display_name | titlecase}}</span> 
+                      	<span class="stats_team_name"> {{starts.display_name | titlecase}}</span> 
                       </td>
-                      <td>{{jobOrders.team_name}}</td>
-                      <td>{{jobOrders.months}}</td>
-                      <td>{{jobOrders.total_interviews}}</td>
-                      <td class="is__active">{{jobOrders.total_job_posting}}</td>
+                      <td>{{starts.team_name}}</td>
+                      <td>{{starts.months}}</td>
+                      <td>{{starts.total_interviews}}</td>
+                      <td>{{starts.total_joining}}</td>
                      
-                        <td>
-                           <span *ngIf='jobOrders.total_job_posting'>
-                           {{(jobOrders.total_joining*100)/jobOrders.total_job_posting | number: '1.0-0'}}
+                        <td class="is__active">
+                          <span *ngIf='starts.total_job_posting'>
+                           {{(starts.total_joining*100)/starts.total_job_posting | number: '1.0-0'}}
                           </span>
-                           <span *ngIf='jobOrders.total_submission'>
-                           {{(jobOrders.total_joining*100)/jobOrders.total_submission | number: '1.0-0'}}
+                           <span *ngIf='starts.total_submission'>
+                           {{(starts.total_joining*100)/starts.total_submission | number: '1.0-0'}}
                           </span>
-                        </td>
+                      </td>
                       <td>
                           <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
                           <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
@@ -117,21 +118,20 @@
                       <td><span class="team_rank">{{i+1}}</span> </td>
                       <td> 
                       	<span class="stats_team_image">
-                      	 <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ jobOrders.profile_image_name }}">
+                      	 <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ starts.profile_image_name }}">
                         </span> 
-                      	<span class="stats_team_name"> {{jobOrders.display_name | titlecase}}</span> 
+                      	<span class="stats_team_name"> {{starts.display_name | titlecase}}</span> 
                       </td>
-                      <td>{{jobOrders.team_name}}</td>
-                      <td>{{jobOrders.months}}</td>
-                      <td>{{jobOrders.total_interviews}}</td>
-                      <td class="is__active">{{jobOrders.total_job_posting}}</td>
+                      <td>{{starts.team_name}}</td>
+                      <td>{{starts.months}}</td>
+                      <td>{{starts.total_interviews}}</td>
+                      <td>{{starts.total_joining}}</td>
                      
-                        <td>
-                          <span *ngIf='jobOrders.total_job_posting'>
-                           {{(jobOrders.total_joining*100)/jobOrders.total_job_posting | number: '1.0-0'}}
+                        <td class="is__active"><span *ngIf='starts.total_job_posting'>
+                           {{(starts.total_joining*100)/starts.total_job_posting | number: '1.0-0'}}
                           </span>
-                           <span *ngIf='jobOrders.total_submission'>
-                           {{(jobOrders.total_joining*100)/jobOrders.total_submission | number: '1.0-0'}}
+                          <span *ngIf='starts.total_submission'>
+                           {{(starts.total_joining*100)/starts.total_submission | number: '1.0-0'}}
                           </span>
                         </td>
                       <td>

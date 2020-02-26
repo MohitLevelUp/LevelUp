@@ -53,6 +53,10 @@ import { MostJobOrdersComponent } from './widgets/most-job-orders/most-job-order
 import { MostInterviewsComponent } from './widgets/most-interviews/most-interviews.component';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
 import { FaqsComponent } from './faqs/faqs.component';
+import { StrikeRateComponent } from './widgets/strike-rate/strike-rate.component';
+import { StartsClientInterviewsComponent } from './widgets/starts-client-interviews/starts-client-interviews.component';
+import { LastMonthStartsComponent } from './widgets/last-month-starts/last-month-starts.component';
+import { MostSubmissionsComponent } from './widgets/most-submissions/most-submissions.component';
 
 
 export const DateFormats = {
@@ -102,6 +106,10 @@ export const DateFormats = {
     MostJobOrdersComponent,
     MostInterviewsComponent,
     FaqsComponent,
+    StrikeRateComponent,
+    StartsClientInterviewsComponent,
+    LastMonthStartsComponent,
+    MostSubmissionsComponent,
 
   ],
   imports: [
