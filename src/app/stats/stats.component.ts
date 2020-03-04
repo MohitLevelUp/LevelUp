@@ -17,8 +17,8 @@ export class StatsComponent implements OnInit {
   usersFlag = 0;
 
   
-  currentDate:any;
-  yearStartDate:any;
+  endDate:any;
+  startDate:any;
   
   teamInfo:any;
   teamsSubmissions:any;
@@ -35,16 +35,17 @@ export class StatsComponent implements OnInit {
 
   ngOnInit() {
   	var date             = new Date();
-    this.currentDate     = moment(date).format('YYYY-MM-DD');
-    this.yearStartDate   = moment().startOf('year').format('YYYY-MM-DD');
+    this.endDate     = moment(date).format('YYYY-MM-DD');
+    this.startDate   = moment().startOf('year').format('YYYY-MM-DD');
 
     this.getSubmissions();
+    this.getLastFiveWeekPoint();
     
   }
 
   getSubmissions(){
   	 // call totalsubmission according to user
-    this.targetService.getAllTeamsSubmissionsTotal(this.yearStartDate,this.currentDate).subscribe(
+    this.targetService.getAllTeamsSubmissionsTotal(this.startDate,this.endDate).subscribe(
       resp => {
          if(resp['status_code'] == 200){
          	this.teamsSubmissions = resp['data'];
@@ -63,7 +64,7 @@ export class StatsComponent implements OnInit {
 // get joinings
   getJoining(teamsSubmissions){
   	// call teams job posting 
-    this.targetService.getAllTeamsJoiningsTotal(this.yearStartDate,this.currentDate).subscribe(
+    this.targetService.getAllTeamsJoiningsTotal(this.startDate,this.endDate).subscribe(
       resp => {
            if(resp['status_code'] == 200){
 
@@ -94,7 +95,7 @@ export class StatsComponent implements OnInit {
 // get interviews 
   getInterviews(mergeResult){
   	// call teams interviews
-    this.targetService.getAllTeamsInterviewsTotal(this.yearStartDate,this.currentDate).subscribe(
+    this.targetService.getAllTeamsInterviewsTotal(this.startDate,this.endDate).subscribe(
       resp => {
 
           if(resp['status_code'] == 200){
@@ -131,22 +132,65 @@ export class StatsComponent implements OnInit {
     this.userService.teamList().subscribe(
       resp => {
         this.teamInfo = resp['data']; 
+
+        var submissionsPoints = 0;
+        var interviewsPoints  = 0;
+        var startsPoints      = 0;
+        var totalPoints       = 0;
+
         for(let i=0; i<teamDetails.length; i++) {
           
            if(this.teamInfo.find((itmInner) => itmInner.id === teamDetails[i].team_id)){
+              if(teamDetails[i].total_submission){
+                submissionsPoints = (+teamDetails[i].total_submission * 100)/ (+this.teamInfo[i].users);
+                console.log('sub',submissionsPoints);
+              }else{
+                submissionsPoints = 0;
+              }
+              if(teamDetails[i].total_interviews){
+                interviewsPoints = (+teamDetails[i].total_interviews * 100)/ (+this.teamInfo[i].users);
+                console.log('interview',interviewsPoints);
+              }else{
+                interviewsPoints = 0;
+              }
+              if(teamDetails[i].total_joining){
+                startsPoints = (+teamDetails[i].total_joining * 200)/ (+this.teamInfo[i].users);
+                console.log('start',startsPoints);
+              }else{
+                startsPoints = 0;
+              }
+              totalPoints = (submissionsPoints + interviewsPoints + startsPoints);
+              console.log('totl',totalPoints);
+              console.log('team_id',teamDetails[i].team_id);
               this.pointsDetails.push({
              ...teamDetails[i], 
-             ...(this.teamInfo.find((itmInner) => itmInner.id === teamDetails[i].team_id))}
+             ...(this.teamInfo.find((itmInner) => itmInner.id === teamDetails[i].team_id)),
+             totalPoints
+           }
              );
            }
            
           }
+        this.pointsDetails   = this.pointsDetails.sort((a, b) => b.totalPoints - a.totalPoints);
         console.log(this.teamInfo);
         console.log('details',this.pointsDetails);
       },
       
       error => this.errorMessage = <any>error
     );
+  }
+
+
+  getLastFiveWeekPoint(){
+
+     for(var i=6; i>=1; i--){
+        var startDate   = (moment().subtract(i, 'weeks').startOf('week').format('YYYY-MM-DD'));
+        var endDate     = (moment().subtract(i, 'weeks').endOf('week').format('YYYY-MM-DD'));
+        
+        console.log('l_sd',startDate);
+        console.log('l_ed',endDate);
+     }
+
   }
 
 }

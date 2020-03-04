@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';  
 import { IUser } from 'src/app/_models/user';
 import { UserService } from 'src/app/_services/user.service';
 import { KpiService } from 'src/app/_services/kpi.service';
@@ -43,19 +43,29 @@ export class UserProfileComponent implements OnInit {
           this.targetList = resp['data'];
           console.log('tlist',this.targetList);
 
-          var flag:number = 0;
-          var foo:number  = 0;
-          var totalPoint  = 0;
+          var flag:number    = 0;
+          var foo:number     = 0;
+          var totalPoint     = 0;
           var completedPoint = 0;
+
           for (let i = 0; i < this.targetList.length; i++) {
 
            totalPoint     = (+totalPoint) + (+this.targetList[i].point);
-           completedPoint = (+completedPoint) + ((+this.targetList[i].total) * (+this.targetList[i].point))/(+this.targetList[i].users_target);
-           
-           var assignTarget   = this.targetList[i].users_target; 
-           var completeTarget = this.targetList[i].total; 
 
-           var targetResult   = assignTarget - completeTarget;
+           var gotPoint   = ((+this.targetList[i].total) * (+this.targetList[i].point))/(+this.targetList[i].users_target);
+          
+           if(gotPoint > +this.targetList[i].point){
+            
+             gotPoint = +this.targetList[i].point;
+           }
+
+           completedPoint = (+completedPoint) + gotPoint;
+           
+
+           var assignTarget   = +this.targetList[i].users_target; 
+           var completeTarget = +this.targetList[i].total; 
+
+           var targetResult   = completeTarget - assignTarget ;
 
            var targetResultPercentage = Math.round((targetResult*100)/assignTarget);
 
@@ -79,9 +89,6 @@ export class UserProfileComponent implements OnInit {
                'target_period': this.targetList[i].target_period, 'total': this.targetList[i].total, 'users_target': this.targetList[i].users_target, 'targetResultPercentage': targetResultPercentage});
 
         }
-
-        console.log('tpoint',totalPoint);
-        console.log('cpoint',completedPoint);
 
         this.pointDifference = (totalPoint - completedPoint);
       }else{

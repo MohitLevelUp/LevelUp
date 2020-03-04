@@ -1,4 +1,4 @@
-<app-sidebar></app-sidebar> 
+<app-sidebar></app-sidebar>  
 <div class="das_col main-content" id="main-content" *ngIf="userInfo; else loadingImg">
 		
 		<section class="wrapper main-wrapper">
@@ -54,7 +54,7 @@
 									</div>
 									<div class="col-md-2">
 										<div class="emp_short_score_wrap">
-											<div *ngIf="pointDifference < 0" class="emp_short_score">{{ pointDifference | number: '1.0-2'}} Points above target.
+											<div *ngIf="pointDifference <= 0" class="emp_short_score">Achieved target
 											</div>
 											<div *ngIf="pointDifference > 0" class="emp_short_score" style="background-color: #F44336;">{{pointDifference | number: '1.0-2'}} Points below target.
 											</div>
@@ -93,26 +93,40 @@
 										
 										<td>{{target.users_target}}</td>
 										<!-- gradding system is in percentage for target is remaining -->
-										<td *ngIf="target.targetResultPercentage <= 10" class="off_point point_minus_10"><span>-{{target.targetResultPercentage}} %</span>
+										<td *ngIf="target.targetResultPercentage <= 10 && target.targetResultPercentage >=0" class="off_point point_plus_10"><span>{{target.targetResultPercentage}} %</span>
 										</td>
 
-										<td *ngIf="target.targetResultPercentage > 10 && target.targetResultPercentage <= 20" class="off_point point_minus_20"><span>-{{target.targetResultPercentage}} %</span>
+										<td *ngIf="target.targetResultPercentage > 10 && target.targetResultPercentage <= 20" class="off_point point_plus_20"><span>{{target.targetResultPercentage}} %</span>
 										</td>
 
-										<td *ngIf="target.targetResultPercentage > 20" class="off_point point_minus_30"><span>-{{target.targetResultPercentage}} %</span>
+										<td *ngIf="target.targetResultPercentage > 20" class="off_point point_plus_30"><span>{{target.targetResultPercentage}} %</span>
 										</td>
 
 										<!-- gradding system is in percentage for target is greater than assign target -->
-										<td *ngIf="target.targetResultPercentage >= -10 && target.targetResultPercentage < 0" class="off_point point_plus_10"><span>+{{target.targetResultPercentage}} %</span>
+									<!-- 	<td *ngIf="target.targetResultPercentage >= -10 && target.targetResultPercentage < 0" class="off_point point_plus_10"><span>+{{target.targetResultPercentage}} %</span>
+										</td> -->
+
+										<td *ngIf="target.targetResultPercentage < 0 && target.targetResultPercentage >= -10" class="off_point point_minus_10"><span>{{target.targetResultPercentage}} %</span>
 										</td>
 
-										<td *ngIf="target.targetResultPercentage < -10 && target.targetResultPercentage >= -20" class="off_point point_plus_20"><span>+{{target.targetResultPercentage}} %</span>
+										<td *ngIf="target.targetResultPercentage < -10 && target.targetResultPercentage >= -20" class="off_point point_minus_20"><span>{{target.targetResultPercentage}} %</span>
+										</td>
+
+										<td *ngIf="target.targetResultPercentage < -20" class="off_point point_minus_30"><span>{{target.targetResultPercentage}} %</span>
+										</td>
+
+										<!-- <td *ngIf="target.targetResultPercentage < -10 && target.targetResultPercentage >= -20" class="off_point point_plus_20"><span>+{{target.targetResultPercentage}} %</span>
 										</td>
 
 										<td *ngIf="target.targetResultPercentage < -20" class="off_point point_plus_30"><span>+{{target.targetResultPercentage}} %</span>
-										</td>
+										</td> -->
 										
-										<td>{{(target.total * target.point)/target.users_target | number: '1.0-2'}}</td>
+										<td>
+											<span *ngIf="(target.total * target.point)/target.users_target < target.point ">{{(target.total * target.point)/target.users_target | number: '1.0-2'}}
+											</span>
+											<span *ngIf="(target.total * target.point)/target.users_target >= target.point">{{target.point}}
+											</span>
+										</td>
 										
 									</tr>
 									<!-- <tr>

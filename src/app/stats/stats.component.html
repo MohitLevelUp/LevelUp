@@ -53,7 +53,7 @@
                   </thead>
                   <tbody>
 
-                    <ng-container *ngFor="let teamsInfo of teamsDetails; index as i">
+                    <ng-container *ngFor="let teamsInfo of pointsDetails; index as i">
                     <tr>
                       <td><span class="team_rank">{{i+1}}</span> </td>
                       <td> <span class="stats_team_logo">
@@ -65,7 +65,7 @@
                       <td><span *ngIf="teamsInfo.total_interviews">{{teamsInfo.total_interviews}}</span></td>
                       <td><span *ngIf="teamsInfo.total_joining">{{teamsInfo.total_joining}}</span></td>
                      
-                        <td>18</td>
+                        <td style="font-size: 16px; color: #000;">{{teamsInfo.totalPoints | number: '1.0-0'}}</td>
                       <td>
                           <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
                           <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
