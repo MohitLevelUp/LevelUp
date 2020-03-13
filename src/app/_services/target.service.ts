@@ -197,20 +197,6 @@ export class TargetService {
     )
   }
 
-
-
-
-
-  // // get total joining according to date
-  // totalJoining(startDate:any,currentDate:any): Observable<any> {
-    
-  //   return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/totalJoining/'+ startDate + '/' + currentDate)
-  //   .pipe(
-  //     retry(1),
-  //    catchError(this.errorHandl)
-  //   )
-  // }
- 
   // get submissions total 
 
   getSubmissionsTotal(startDate:any,currentDate:any): Observable<any> {
@@ -249,6 +235,47 @@ export class TargetService {
   getInterviewTotal(startDate:any,currentDate:any): Observable<any> {
     
     return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/getInterviewTotal/'+ startDate + '/' + currentDate)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+
+  // get last six weeks job order(job posting)
+   getLastSixWeeksJobOrder(): Observable<any> {
+    
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/lastSixWeeksJobPosting/')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+   // get last six weeks submissions
+   getLastSixWeeksSubmissions(): Observable<any> {
+    
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/lastSixWeeksSubmissions/')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+   // get last six weeks interviews
+   getLastSixWeeksInterviews(): Observable<any> {
+    
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/lastSixWeeksInterviews/')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+   // get last six weeks joinings(start)
+   getLastSixWeeksJoinings(): Observable<any> {
+    
+    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/target/lastSixWeeksJoinings/')
     .pipe(
       retry(1),
      catchError(this.errorHandl)

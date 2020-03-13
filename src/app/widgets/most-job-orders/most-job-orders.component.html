@@ -104,11 +104,38 @@
                           </span>
                         </td>
                       <td>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
+                         <ng-container *ngFor="let weeksposting of week6; index as j">
+
+                            <span *ngIf="jobOrders.id == weeksposting.id">
+
+                             <!-- fifth week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksposting.fifthWeekPosting) >= (+weeksposting.sixWeekPosting)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksposting.fifthWeekPosting) < (+weeksposting.sixWeekPosting)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- fourth week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksposting.fourthWeekPosting) >= (+weeksposting.fifthWeekPosting)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksposting.fourthWeekPosting) < (+weeksposting.fifthWeekPosting)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- third week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksposting.thirdWeekPosting) >= (+weeksposting.fourthWeekPosting)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksposting.thirdWeekPosting) < (+weeksposting.fourthWeekPosting)"><i class="las la-arrow-down"></i></span>
+                            
+                            <!-- second week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksposting.secondWeekPosting) >= (+weeksposting.thirdWeekPosting)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksposting.secondWeekPosting) < (+weeksposting.thirdWeekPosting)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- last week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksposting.firstWeekPosting) >= (+weeksposting.secondWeekPosting)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksposting.firstWeekPosting) < (+weeksposting.secondWeekPosting)"><i class="las la-arrow-down"></i></span>
+
+                           </span>
+
+                          </ng-container>
                     </td>
                     </tr>
 
@@ -135,11 +162,38 @@
                           </span>
                         </td>
                       <td>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
+                          <ng-container *ngFor="let weeksposting of week6; index as j">
+
+                            <span *ngIf="jobOrders.id == weeksposting.id">
+
+                             <!-- fifth week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksposting.fifthWeekPosting) >= (+weeksposting.sixWeekPosting)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksposting.fifthWeekPosting) < (+weeksposting.sixWeekPosting)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- fourth week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksposting.fourthWeekPosting) >= (+weeksposting.fifthWeekPosting)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksposting.fourthWeekPosting) < (+weeksposting.fifthWeekPosting)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- third week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksposting.thirdWeekPosting) >= (+weeksposting.fourthWeekPosting)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksposting.thirdWeekPosting) < (+weeksposting.fourthWeekPosting)"><i class="las la-arrow-down"></i></span>
+                            
+                            <!-- second week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksposting.secondWeekPosting) >= (+weeksposting.thirdWeekPosting)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksposting.secondWeekPosting) < (+weeksposting.thirdWeekPosting)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- last week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksposting.firstWeekPosting) >= (+weeksposting.secondWeekPosting)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksposting.firstWeekPosting) < (+weeksposting.secondWeekPosting)"><i class="las la-arrow-down"></i></span>
+
+                           </span>
+
+                          </ng-container>
                     </td>
                     </tr>
                     </ng-container>

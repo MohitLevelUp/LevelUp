@@ -27,6 +27,15 @@ export class MostInterviewsComponent implements OnInit {
   usersJobPosting:any;
   usersSubmission:any;
 
+  lastSixWeeksInterviews:any;
+
+  week1    = [];
+  week2    = [];
+  week3    = [];
+  week4    = [];
+  week5    = [];
+  week6    = [];
+
   salesUsersInterviews     = [];
   recruiterUsersInterviews = [];
 
@@ -92,6 +101,12 @@ export class MostInterviewsComponent implements OnInit {
    getInterviews(teamId,userType){
      this.merged.length       = 0;
      this.usersDetails.length = 0;
+     this.week1.length        = 0;
+     this.week2.length        = 0;
+     this.week3.length        = 0;
+     this.week4.length        = 0;
+     this.week5.length        = 0;
+     this.week6.length        = 0;
   	// call users interviews
     this.targetService.getInterviews(this.yearStartDate,this.currentDate,teamId).subscribe(
       resp => {
@@ -214,7 +229,8 @@ export class MostInterviewsComponent implements OnInit {
             }
            // sorting result
            this.usersDetails   = this.usersDetails.sort((a, b) => b.total_interviews - a.total_interviews);
-         
+          
+           this.getLastSixWeeksInterviews( this.usersDetails);
       },
       
       error => this.errorMessage = <any>error
@@ -249,7 +265,7 @@ getSubmission(mergeResult,teamId){
            // sorting result
            this.usersDetails   = this.usersDetails.sort((a, b) => b.total_interviews - a.total_interviews);
          
-
+           this.getLastSixWeeksInterviews( this.usersDetails);
 
       },
       
@@ -263,6 +279,136 @@ getSubmission(mergeResult,teamId){
     let date2     = new Date(d2);    
     let yearsDiff =  date2.getFullYear() - date1.getFullYear();   
     return yearsDiff;
+  }
+
+    getLastSixWeeksInterviews(userDetails){
+     this.targetService.getLastSixWeeksInterviews().subscribe(
+      resp => {
+        
+            if(resp['status_code'] == 200){
+             this.lastSixWeeksInterviews = resp['data'];
+
+             var w1 = this.lastSixWeeksInterviews['w1'];
+             var w2 = this.lastSixWeeksInterviews['w2'];
+             var w3 = this.lastSixWeeksInterviews['w3'];
+             var w4 = this.lastSixWeeksInterviews['w4'];
+             var w5 = this.lastSixWeeksInterviews['w5'];
+             var w6 = this.lastSixWeeksInterviews['w6'];
+
+             for(let i=0; i<userDetails.length; i++) {
+                if(w1.find((itmInner) => itmInner.id === userDetails[i].id)){
+                   this.week1.push({
+                   ...userDetails[i], 
+                   ...(w1.find((itmInner) => itmInner.id === userDetails[i].id))}
+                   );
+                }else{
+                  var firstWeekInterviews = '0';
+                  this.week1.push({
+                   ...userDetails[i],
+                   firstWeekInterviews 
+                   }
+                   );
+                }
+             }
+
+              for(let i=0; i<this.week1.length; i++) {
+
+                  if(w2.find((itmInner) => itmInner.id === this.week1[i].id)){
+                    this.week2.push({
+                     ...this.week1[i], 
+                     ...(w2.find((itmInner) => itmInner.id === this.week1[i].id))}
+                    );
+                  }else{
+                    var secondWeekInterviews = '0';
+                     this.week2.push({
+                     ...this.week1[i],
+                     secondWeekInterviews
+                     }
+                    );
+                  }
+                      
+              }
+
+              for(let i=0; i<this.week2.length; i++) {
+
+                  if(w3.find((itmInner) => itmInner.id === this.week2[i].id)){
+                    this.week3.push({
+                     ...this.week2[i], 
+                     ...(w3.find((itmInner) => itmInner.id === this.week2[i].id))}
+                    );
+                  }else{
+                    var thirdWeekInterviews = '0';
+                    this.week3.push({
+                     ...this.week2[i], 
+                     thirdWeekInterviews
+                     }
+                    );
+                  }
+                     
+              }
+
+              for(let i=0; i<this.week3.length; i++) {
+
+                if(w4.find((itmInner) => itmInner.id === this.week3[i].id)){
+                  this.week4.push({
+                   ...this.week3[i], 
+                   ...(w4.find((itmInner) => itmInner.id === this.week3[i].id))}
+                  );
+                }else{
+                  var fourthWeekInterviews = '0';
+                  this.week4.push({
+                   ...this.week3[i],
+                   fourthWeekInterviews
+                   }
+                  );
+                }
+                      
+              }
+
+              for(let i=0; i<this.week4.length; i++) {
+
+                if(w5.find((itmInner) => itmInner.id === this.week4[i].id)){
+                  this.week5.push({
+                   ...this.week4[i], 
+                   ...(w5.find((itmInner) => itmInner.id === this.week4[i].id))}
+                  );
+                }else{
+                  var fifthWeekInterviews = '0';
+                  this.week5.push({
+                   ...this.week4[i],
+                   fifthWeekInterviews 
+                   }
+                  );
+                }
+                
+              }
+
+              for(let i=0; i<this.week5.length; i++) {
+
+                if(w6.find((itmInner) => itmInner.id === this.week5[i].id)){
+                  this.week6.push({
+                   ...this.week5[i], 
+                   ...(w6.find((itmInner) => itmInner.id === this.week5[i].id))}
+                  );
+                }else{
+                  var sixWeekInterviews = '0';
+                   this.week6.push({
+                   ...this.week5[i],
+                    sixWeekInterviews
+                   }
+                  );
+                }
+                      
+              }
+             console.log('lastsix',this.week6);
+            }else{
+              this.lastSixWeeksInterviews = '';
+            }
+
+      },
+      
+      error => this.errorMessage = <any>error
+    );
   }
 
 }

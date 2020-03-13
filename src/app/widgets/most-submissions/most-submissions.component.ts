@@ -25,6 +25,15 @@ export class MostSubmissionsComponent implements OnInit {
   usersInterviews:any;
   usersSubmission:any;
 
+  lastSixWeeksSubmissions:any;
+
+  week1    = [];
+  week2    = [];
+  week3    = [];
+  week4    = [];
+  week5    = [];
+  week6    = [];
+
   merged = [];
   usersDetails = [];
 
@@ -76,8 +85,16 @@ export class MostSubmissionsComponent implements OnInit {
 
   // get submissions
 getSubmission(teamId){
-	this.merged.length       = 0;
+	  this.merged.length       = 0;
     this.usersDetails.length = 0;
+
+    this.week1.length        = 0;
+    this.week2.length        = 0;
+    this.week3.length        = 0;
+    this.week4.length        = 0;
+    this.week5.length        = 0;
+    this.week6.length        = 0;
+
 
     this.targetService.getSubmission(this.yearStartDate,this.currentDate,teamId).subscribe(
       resp => {
@@ -172,7 +189,8 @@ getSubmission(teamId){
 
              // sorting result
            this.usersDetails   = this.usersDetails.sort((a, b) => b.total_submission - a.total_submission);
-         
+           
+           this.getLastSixWeeksSubmissions(this.usersDetails);
 
    
       },
@@ -189,5 +207,135 @@ getSubmission(teamId){
     let yearsDiff =  date2.getFullYear() - date1.getFullYear();   
     return yearsDiff;
   }  
+  
+    getLastSixWeeksSubmissions(userDetails){
+     this.targetService.getLastSixWeeksSubmissions().subscribe(
+      resp => {
+        
+            if(resp['status_code'] == 200){
+              this.lastSixWeeksSubmissions = resp['data'];
+
+             var w1 = this.lastSixWeeksSubmissions['w1'];
+             var w2 = this.lastSixWeeksSubmissions['w2'];
+             var w3 = this.lastSixWeeksSubmissions['w3'];
+             var w4 = this.lastSixWeeksSubmissions['w4'];
+             var w5 = this.lastSixWeeksSubmissions['w5'];
+             var w6 = this.lastSixWeeksSubmissions['w6'];
+
+             for(let i=0; i<userDetails.length; i++) {
+                if(w1.find((itmInner) => itmInner.id === userDetails[i].id)){
+                   this.week1.push({
+                   ...userDetails[i], 
+                   ...(w1.find((itmInner) => itmInner.id === userDetails[i].id))}
+                   );
+                }else{
+                  var firstWeekSubmissions = '0';
+                  this.week1.push({
+                   ...userDetails[i],
+                   firstWeekSubmissions 
+                   }
+                   );
+                }
+             }
+
+              for(let i=0; i<this.week1.length; i++) {
+
+                  if(w2.find((itmInner) => itmInner.id === this.week1[i].id)){
+                    this.week2.push({
+                     ...this.week1[i], 
+                     ...(w2.find((itmInner) => itmInner.id === this.week1[i].id))}
+                    );
+                  }else{
+                    var secondWeekSubmissions = '0';
+                     this.week2.push({
+                     ...this.week1[i],
+                     secondWeekSubmissions 
+                     }
+                    );
+                  }
+                      
+              }
+
+              for(let i=0; i<this.week2.length; i++) {
+
+                  if(w3.find((itmInner) => itmInner.id === this.week2[i].id)){
+                    this.week3.push({
+                     ...this.week2[i], 
+                     ...(w3.find((itmInner) => itmInner.id === this.week2[i].id))}
+                    );
+                  }else{
+                    var thirdWeekSubmissions = '0';
+                    this.week3.push({
+                     ...this.week2[i], 
+                     thirdWeekSubmissions
+                     }
+                    );
+                  }
+                     
+              }
+
+              for(let i=0; i<this.week3.length; i++) {
+
+                if(w4.find((itmInner) => itmInner.id === this.week3[i].id)){
+                  this.week4.push({
+                   ...this.week3[i], 
+                   ...(w4.find((itmInner) => itmInner.id === this.week3[i].id))}
+                  );
+                }else{
+                  var fourthWeekSubmissions = '0';
+                  this.week4.push({
+                   ...this.week3[i],
+                   fourthWeekSubmissions
+                   }
+                  );
+                }
+                      
+              }
+
+              for(let i=0; i<this.week4.length; i++) {
+
+                if(w5.find((itmInner) => itmInner.id === this.week4[i].id)){
+                  this.week5.push({
+                   ...this.week4[i], 
+                   ...(w5.find((itmInner) => itmInner.id === this.week4[i].id))}
+                  );
+                }else{
+                  var fifthWeekSubmissions = '0';
+                  this.week5.push({
+                   ...this.week4[i],
+                   fifthWeekSubmissions 
+                   }
+                  );
+                }
+                
+              }
+
+              for(let i=0; i<this.week5.length; i++) {
+
+                if(w6.find((itmInner) => itmInner.id === this.week5[i].id)){
+                  this.week6.push({
+                   ...this.week5[i], 
+                   ...(w6.find((itmInner) => itmInner.id === this.week5[i].id))}
+                  );
+                }else{
+                  var sixWeekSubmissions = '0';
+                   this.week6.push({
+                   ...this.week5[i],
+                    sixWeekSubmissions
+                   }
+                  );
+                }
+                      
+              }
+             console.log('lastsix',this.week6);
+            }else{
+              this.lastSixWeeksSubmissions = '';
+            }
+
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+  }
 
 }

@@ -478,14 +478,6 @@ export class StatsComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
 
-   
-     // for(var i=6; i>=1; i--){
-     //    var startDate   = (moment().subtract(i, 'weeks').startOf('week').format('YYYY-MM-DD'));
-     //    var endDate     = (moment().subtract(i, 'weeks').endOf('week').format('YYYY-MM-DD'));
-        
-     //    console.log('l_sd',startDate);
-     //    console.log('l_ed',endDate);
-     // }
 
   }
 
