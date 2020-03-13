@@ -22,7 +22,9 @@ export class FaqsComponent implements OnInit {
  
 
   }
-  constructor() { }
+  constructor() {
+  this.loadScripts();
+   }
 
   ngOnInit() {
   }

@@ -53,8 +53,9 @@
                   </thead>
                   <tbody>
 
-                    <ng-container *ngFor="let teamsInfo of pointsDetails; index as i">
-                    <tr>
+                    <ng-container *ngFor="let points of finalPointsList; index as i">
+                      <ng-container *ngFor="let teamsInfo of pointsDetails; index as j">
+                    <tr *ngIf="points.team_id == teamsInfo.team_id">
                       <td><span class="team_rank">{{i+1}}</span> </td>
                       <td> <span class="stats_team_logo">
                       <img class="img-fluid" src="{{ iconUrl }}team_icon/{{ teamsInfo.team_logo }}" >
@@ -65,15 +66,59 @@
                       <td><span *ngIf="teamsInfo.total_interviews">{{teamsInfo.total_interviews}}</span></td>
                       <td><span *ngIf="teamsInfo.total_joining">{{teamsInfo.total_joining}}</span></td>
                      
-                        <td style="font-size: 16px; color: #000;">{{teamsInfo.totalPoints | number: '1.0-0'}}</td>
+                        <td style="font-size: 16px; color: #000;"> 
+                         <!--  <ng-container *ngFor="let points of finalPointsList; index as j">
+                            <span *ngIf="teamsInfo.team_id == points.team_id"> -->
+                              {{points.total_points | number: '1.0-0'}}
+                            <!-- </span>
+                          </ng-container> -->
+
+
+                        </td>
+
                       <td>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
-                          <span div class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
-                          <span div class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
+                          <ng-container *ngFor="let weekspoints of week6; index as j">
+
+                            <span *ngIf="teamsInfo.team_id == weekspoints.id">
+
+                             <!--  <span *ngIf="(+weekspoints.fifthWeekPoints) >= (+weekspoints.sixWeekPoints)"><span>{{weekspoints.fifthWeekPoints}} achive {{weekspoints.sixWeekPoints}}</span>
+                              </span> -->
+                             <!-- fifth week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weekspoints.fifthWeekPoints) >= (+weekspoints.sixWeekPoints)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weekspoints.fifthWeekPoints) < (+weekspoints.sixWeekPoints)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- fourth week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weekspoints.fourthWeekPoints) >= (+weekspoints.fifthWeekPoints)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weekspoints.fourthWeekPoints) < (+weekspoints.fifthWeekPoints)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- third week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weekspoints.thirdWeekPoints) >= (+weekspoints.fourthWeekPoints)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weekspoints.thirdWeekPoints) < (+weekspoints.fourthWeekPoints)"><i class="las la-arrow-down"></i></span>
+                            
+                            <!-- second week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weekspoints.secondWeekPoints) >= (+weekspoints.thirdWeekPoints)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weekspoints.secondWeekPoints) < (+weekspoints.thirdWeekPoints)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- last week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weekspoints.firstWeekPoints) >= (+weekspoints.secondWeekPoints)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weekspoints.firstWeekPoints) < (+weekspoints.secondWeekPoints)"><i class="las la-arrow-down"></i></span>
+
+                           </span>
+
+                          </ng-container>
+                        <!--   <span class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
+                          <span class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span>
+                          <span  class="team_performance_aero low_performance"><i class="las la-arrow-down"></i></span>
+                          <span class="team_performance_aero high_performance"><i class="las la-arrow-up"></i></span> -->
+                          
                     </td>
                     </tr>
+                     </ng-container>
                     </ng-container>
                   </tbody>
                 </table>
