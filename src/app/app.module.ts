@@ -57,6 +57,7 @@ import { StrikeRateComponent } from './widgets/strike-rate/strike-rate.component
 import { StartsClientInterviewsComponent } from './widgets/starts-client-interviews/starts-client-interviews.component';
 import { LastMonthStartsComponent } from './widgets/last-month-starts/last-month-starts.component';
 import { MostSubmissionsComponent } from './widgets/most-submissions/most-submissions.component';
+import { AppraisalCycleComponent } from './admin/appraisal-cycle/appraisal-cycle.component';
 
 
 export const DateFormats = {
@@ -110,6 +111,7 @@ export const DateFormats = {
     StartsClientInterviewsComponent,
     LastMonthStartsComponent,
     MostSubmissionsComponent,
+    AppraisalCycleComponent,
 
   ],
   imports: [

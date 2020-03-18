@@ -31,6 +31,15 @@ export class StrikeRateComponent implements OnInit {
   salesUsersJoining     = [];
   recruiterUsersJoining = [];
 
+  lastSixWeeksStarts:any;
+
+  week1    = [];
+  week2    = [];
+  week3    = [];
+  week4    = [];
+  week5    = [];
+  week6    = [];
+
   merged       = [];
   usersDetails = [];
 
@@ -99,6 +108,12 @@ export class StrikeRateComponent implements OnInit {
   getJoining(teamId,userType){
      this.merged.length       = 0;
      this.usersDetails.length = 0;
+     this.week1.length        = 0;
+     this.week2.length        = 0;
+     this.week3.length        = 0;
+     this.week4.length        = 0;
+     this.week5.length        = 0;
+     this.week6.length        = 0;
   	// call users joining
     this.targetService.getJoining(this.yearStartDate,this.currentDate,teamId).subscribe(
       resp => {
@@ -216,14 +231,12 @@ export class StrikeRateComponent implements OnInit {
             this.usersDetails    = this.usersDetails.sort((a, b) => b.total_joining - a.total_joining);
          
             this.usersDetails    = this.usersDetails.sort((a, b) => (b.total_joining * 100)/b.total_job_posting - (a.total_joining * 100)/a.total_job_posting);
-
+           
+            this.getLastSixWeeksJoinings(this.usersDetails);
+            
             }else{
               this.usersJobPosting = '';
             }
-           
-
-            
-         
 
       },
       
@@ -256,6 +269,8 @@ getSubmission(mergeResult,teamId){
               // sorting result
            this.usersDetails    = this.usersDetails.sort((a, b) => b.total_joining - a.total_joining);
            this.usersDetails    = this.usersDetails.sort((a, b) => (b.total_joining * 100)/b.total_submission - (a.total_joining * 100)/a.total_submission);
+          
+           this.getLastSixWeeksJoinings(this.usersDetails);
 
           }else{
               this.usersSubmission = '';
@@ -275,6 +290,137 @@ getSubmission(mergeResult,teamId){
     let date2     = new Date(d2);    
     let yearsDiff =  date2.getFullYear() - date1.getFullYear();   
     return yearsDiff;
+  }
+
+
+  getLastSixWeeksJoinings(userDetails){
+     this.targetService.getLastSixWeeksJoinings().subscribe(
+      resp => {
+        
+            if(resp['status_code'] == 200){
+              this.lastSixWeeksStarts = resp['data'];
+
+             var w1 = this.lastSixWeeksStarts['w1'];
+             var w2 = this.lastSixWeeksStarts['w2'];
+             var w3 = this.lastSixWeeksStarts['w3'];
+             var w4 = this.lastSixWeeksStarts['w4'];
+             var w5 = this.lastSixWeeksStarts['w5'];
+             var w6 = this.lastSixWeeksStarts['w6'];
+
+             for(let i=0; i<userDetails.length; i++) {
+                if(w1.find((itmInner) => itmInner.id === userDetails[i].id)){
+                   this.week1.push({
+                   ...userDetails[i], 
+                   ...(w1.find((itmInner) => itmInner.id === userDetails[i].id))}
+                   );
+                }else{
+                  var firstWeekJoinings = '0';
+                  this.week1.push({
+                   ...userDetails[i],
+                   firstWeekJoinings 
+                   }
+                   );
+                }
+             }
+
+              for(let i=0; i<this.week1.length; i++) {
+
+                  if(w2.find((itmInner) => itmInner.id === this.week1[i].id)){
+                    this.week2.push({
+                     ...this.week1[i], 
+                     ...(w2.find((itmInner) => itmInner.id === this.week1[i].id))}
+                    );
+                  }else{
+                    var secondWeekJoinings = '0';
+                     this.week2.push({
+                     ...this.week1[i],
+                     secondWeekJoinings 
+                     }
+                    );
+                  }
+                      
+              }
+
+              for(let i=0; i<this.week2.length; i++) {
+
+                  if(w3.find((itmInner) => itmInner.id === this.week2[i].id)){
+                    this.week3.push({
+                     ...this.week2[i], 
+                     ...(w3.find((itmInner) => itmInner.id === this.week2[i].id))}
+                    );
+                  }else{
+                    var thirdWeekJoinings = '0';
+                    this.week3.push({
+                     ...this.week2[i], 
+                     thirdWeekJoinings
+                     }
+                    );
+                  }
+                     
+              }
+
+              for(let i=0; i<this.week3.length; i++) {
+
+                if(w4.find((itmInner) => itmInner.id === this.week3[i].id)){
+                  this.week4.push({
+                   ...this.week3[i], 
+                   ...(w4.find((itmInner) => itmInner.id === this.week3[i].id))}
+                  );
+                }else{
+                  var fourthWeekJoinings = '0';
+                  this.week4.push({
+                   ...this.week3[i],
+                   fourthWeekJoinings
+                   }
+                  );
+                }
+                      
+              }
+
+              for(let i=0; i<this.week4.length; i++) {
+
+                if(w5.find((itmInner) => itmInner.id === this.week4[i].id)){
+                  this.week5.push({
+                   ...this.week4[i], 
+                   ...(w5.find((itmInner) => itmInner.id === this.week4[i].id))}
+                  );
+                }else{
+                  var fifthWeekJoinings = '0';
+                  this.week5.push({
+                   ...this.week4[i],
+                   fifthWeekJoinings 
+                   }
+                  );
+                }
+                
+              }
+
+              for(let i=0; i<this.week5.length; i++) {
+
+                if(w6.find((itmInner) => itmInner.id === this.week5[i].id)){
+                  this.week6.push({
+                   ...this.week5[i], 
+                   ...(w6.find((itmInner) => itmInner.id === this.week5[i].id))}
+                  );
+                }else{
+                  var sixWeekJoinings = '0';
+                   this.week6.push({
+                   ...this.week5[i],
+                    sixWeekJoinings
+                   }
+                  );
+                }
+                      
+              }
+             console.log('lastsix',this.week6);
+            }else{
+              this.lastSixWeeksStarts = '';
+            }
+
+      },
+      
+      error => this.errorMessage = <any>error
+    );
   }
 
 

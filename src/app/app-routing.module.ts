@@ -30,7 +30,7 @@ import { StrikeRateComponent } from './widgets/strike-rate/strike-rate.component
 import { StartsClientInterviewsComponent } from './widgets/starts-client-interviews/starts-client-interviews.component';
 import { LastMonthStartsComponent } from './widgets/last-month-starts/last-month-starts.component';
 import { MostSubmissionsComponent } from './widgets/most-submissions/most-submissions.component';
-
+import { AppraisalCycleComponent } from './admin/appraisal-cycle/appraisal-cycle.component';
 import { FaqsComponent } from './faqs/faqs.component';
 
 
@@ -76,7 +76,8 @@ const routes: Routes = [
       { path: 'edit-target/:id', component: EditTargetComponent },
       { path: 'stats', component: StatsComponent },
       { path: 'core-values', component: CorevaluesComponent },
-      { path: 'core-value', component: CoreValueComponent }
+      { path: 'core-value', component: CoreValueComponent },
+      { path: 'appraisal-cycle', component: AppraisalCycleComponent }
 
     ]
   },
