@@ -18,6 +18,7 @@ export class AppraisalCycleComponent implements OnInit {
 
   selectedreportingTo = '';
   selectedPeriod = '';
+  selectedEmployee = '';
 
   private readonly notifier: NotifierService;
   
@@ -74,6 +75,7 @@ export class AppraisalCycleComponent implements OnInit {
     form.resetForm();
     this.selectedreportingTo = '';
     this.selectedPeriod = '';
+    this.selectedEmployee = '';
   }
 
 }

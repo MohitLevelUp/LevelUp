@@ -33,7 +33,6 @@
 												
 												<select name="appraisalPeriod" #appraisalPeriod="ngModel" [(ngModel)]="selectedPeriod" class="form-control">
 						                          <option value="">Select Period</option>
-						                          <option value="Weekly">Weekly</option>
 						                          <option value="Monthly">Monthly</option>
 						                          <option value="Quarterly">Quarterly</option>
 						                          <option value="Half Yearly">Half Yearly</option>
@@ -134,7 +133,15 @@
 										<div class="col-md-4 ">
                                             <div class="form-group form-control-wrap">
 												<label class="form-control-label" for="First name">Employee Name</label>
-												<input type="text" class="form-control" #employeeName="ngModel" name="employeeName" [(ngModel)]="appraisalmodel.employeeName">
+												<!-- <input type="text" class="form-control" #employeeName="ngModel" name="employeeName" [(ngModel)]="appraisalmodel.employeeName"> -->
+
+												<select #employeeName="ngModel" name="employeeName" [(ngModel)]="selectedEmployee" class="form-control"required>
+				                                  <option value="">Employee List</option>
+				                                  <ng-container *ngFor='let users of usersInfo; index as i'>
+				                                    <option  value="{{users.id}}">{{users.display_name | titlecase}}
+				                                    </option>
+				                                  </ng-container>
+				                                </select>
 											</div>
 										</div>
 
@@ -187,7 +194,7 @@
 												<select #reportingTo="ngModel" name="reportingTo" [(ngModel)]="selectedreportingTo" class="form-control"required>
 				                                  <option value="">Reporting To</option>
 				                                  <ng-container *ngFor='let users of usersInfo; index as i'>
-				                                    <option  value="{{users.id}}">{{users.display_name | titlecase}}
+				                                    <option *ngIf="users.role_type == 2 || users.role_type == 3"  value="{{users.id}}">{{users.display_name | titlecase}}
 				                                    </option>
 				                                  </ng-container>
 				                                </select>
@@ -209,7 +216,7 @@
                                 </div>
                                 
                                 <hr class="my-hr">
-                                <div class="form-warp">
+                              <!--   <div class="form-warp">
                                     <div class="row">
 										<div class="col-md-12">
 											<h4>Publish Configuration</h4>
@@ -231,14 +238,14 @@
                                     </div>
                                     <div class="row">
                                     <div class="col-md-12">
-                                     <!-- <div class="inline_checkbox">
+                                      <div class="inline_checkbox">
 													<label class="check_box">
 														<input type="checkbox" id="checkbox1"> <span class="checkmark"></span><span>Allow Employee to share Appraisal Feedback</span>
 													</label>
-												</div> -->
+												</div>
                                     </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 
                                 
                                 

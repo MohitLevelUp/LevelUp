@@ -94,6 +94,7 @@ export class UserComponent implements OnInit {
       resp => {
         this.user     = resp;
         this.userInfo = this.user['data']; 
+        console.log('uinfo',this.userInfo);
        
         this.selectedSpeciality = this.userInfo['speciality'];
 
@@ -115,10 +116,11 @@ export class UserComponent implements OnInit {
   }
 
   updateUser(form: NgForm) {
+    console.log(form.value);
     $("#onSubmitLoading").css({"display": "block"});
     this.userService.updateUser(form.value).subscribe(
       res => {
-        console.log(res);
+        
         if(res['status_code'] == 200){
             $("#onSubmitLoading").css({"display": "none"});
             this.userProfile(this.getUserId);
