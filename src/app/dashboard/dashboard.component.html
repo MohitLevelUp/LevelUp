@@ -1,0 +1,454 @@
+<div class="main-wrap" *ngIf="lastYearTotalSubmissions; else loadingData">  
+
+    <!--=====================HOME BANNER=====================-->
+    <div id="banner_slider" class="carousel slide slider" data-ride="carousel" data-interval="7000">
+  <!-- Indicators -->
+  <ol class="carousel-indicators"> 
+    <li data-target="#banner_slider" data-slide-to="0" class="active"></li>
+    <li data-target="#banner_slider" data-slide-to="1"></li>
+    <li data-target="#banner_slider" data-slide-to="2"></li> 
+    <li data-target="#banner_slider" data-slide-to="3"></li>
+    <li data-target="#banner_slider" data-slide-to="4"></li>
+    <li data-target="#banner_slider" data-slide-to="5"></li>
+    <li data-target="#banner_slider" data-slide-to="6"></li>
+    <li data-target="#banner_slider" data-slide-to="7"></li>
+    <li data-target="#banner_slider" data-slide-to="8"></li>
+  </ol>
+ 
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img class="img-fluid" src="./assets/images/banner-us-office.jpg" alt="US Office">
+    </div>    
+    <div class="item">
+      <img class="img-fluid" src="./assets/images/noida_banner.jpg" alt="IND Office">
+    </div>
+    <div class="item">
+      <img class="img-fluid" src="./assets/images/hyderabad1.jpg" alt="HYD Office">
+    </div>
+      <div class="item">
+      <img class="img-fluid" src="./assets/images/banner-us-office2.jpg" alt="US Office">
+    </div>
+    <div class="item">
+      <img class="img-fluid" src="./assets/images/noida-banner1.jpg" alt="IND Office">
+    </div>
+    <div class="item">
+      <img class="img-fluid" src="./assets/images/hyderabad2.jpg" alt="HYD Office">
+    </div>
+    <div class="item">
+      <img class="img-fluid" src="./assets/images/noida-banner2.jpg" alt="IND Office">
+    </div>
+    <div class="item">
+      <img class="img-fluid" src="./assets/images/whole-team.jpg" alt="HYD Office">
+    </div>
+    <div class="item">
+      <img class="img-fluid" src="./assets/images/apex-team.jpg" alt="HYD Office">
+    </div>
+    
+   
+  </div>
+
+            
+        
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#banner_slider" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#banner_slider" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+        
+<!-- TEAM HIGHLIGHT CARD      -->
+        <div class="team_high_light">
+              <nav class="score_card_wrap">
+                <ng-container *ngFor="let toper of topThree; index as i">
+                  <ng-container *ngFor="let submissions of totalSubmissions; index as j">
+                  
+                <li class="score_card" *ngIf="toper.team_id == submissions.team_id">
+                  <p>{{toper.name}}</p>
+                  <div class="score_wrap">
+                    <div class="score">Submissions</div>
+                    <div class="score ">
+                      <div class="scorebox"> <span class="versus">{{submissions.total_submission}} </span> <span class="item_versus">V</span> <span class="versus"> {{toper.total_joining}}</span> </div>
+                    </div>
+                    <div class="score">Joinings</div>
+                  </div>
+                </li>
+                </ng-container>
+              </ng-container>
+                <hr>
+              </nav>
+            </div>        
+        <div class="quick_result_top_team">
+          <div class="quick_result_icon ">
+           <img class="img-fluid tada animated" src="./assets/images/trophy-ore.png">
+          </div>
+          </div>
+</div>
+    
+
+
+    <!--=====================LATEST NEWS=====================-->
+    <section class="latest_news graybg">
+      <div class="container-fluid">
+        <div class="row">
+          <header class="widget__header">
+            <div class="title_wrap ">
+              <h1 class="widget__title">Celebrate, Work & Fun</h1> </div>
+            <div class="cmn_btn_wrap "><a href="" class="cmn_btn">View More</a> </div>
+          </header>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="lt_vd_wrap">
+              <a href="#" class="widget_card">
+                <div class="lt_vd_banner hover01">
+                  <figure> <img class="img-fluid" src="./assets/images/play-bold-2.jpg"> </figure>
+                </div>
+                <div class="article-item txt-container">
+                  <h4 class="article-item">Saxon Global Holiday Party</h4>
+                  <div class="article-item__meta">
+                   <!-- <span class="article-item__tag simple-tag simple-tag--announcements">Announcement</span>
+                    <time class="article-item__date">15 Nov 19</time> -->
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="lt_vd_wrap">
+              <a href="#" class="widget_card">
+                <div class="lt_vd_banner hover01">
+                  <figure> <img class="img-fluid" src="./assets/images/play-bold-6.jpg"> </figure>
+                </div>
+                <div class="article-item txt-container">
+                  <h4 class="article-item">Saxon Global Christmas Celebration </h4>
+                  <div class="article-item__meta"> 
+                    <!-- <span class="article-item__tag simple-tag simple-tag--announcements">Announcement</span>
+                    <time class="article-item__date">15 Nov 19</time> -->
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="lt_vd_wrap">
+              <a href="#" class="widget_card">
+                <div class="lt_vd_banner hover01">
+                  <figure> <img class="img-fluid" src="./assets/images/play-bold-5.jpg"> </figure>
+                </div>
+                <div class="article-item txt-container">
+                  <h4 class="article-item">Saxon Global Cricket League </h4>
+                  <div class="article-item__meta"> 
+                    <!-- <span class="article-item__tag simple-tag simple-tag--announcements">Announcement</span>
+                    <time class="article-item__date">15 Nov 19</time> -->
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="lt_vd_wrap">
+              <a href="#" class="widget_card">
+                <div class="lt_vd_banner hover01">
+                  <figure> <img class="img-fluid" src="./assets/images/play-bold-3.jpg"> </figure>
+                </div>
+                <div class="article-item txt-container">
+                  <h4 class="article-item">Saxon Global Office Party</h4>
+                  <div class="article-item__meta"> 
+                    <!-- <span class="article-item__tag simple-tag simple-tag--announcements">Announcement</span>
+                    <time class="article-item__date">15 Nov 19</time> -->
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=====================LATEST VIDEOS =====================-->
+    <section class="video_section">
+      <div class="container-fluid">
+        <div class="row">
+          <header class="widget__header">
+            <div class="title_wrap ">
+              <h1 class="widget__title">Rewards & Recognitions</h1> </div>
+            <div class="cmn_btn_wrap "><a href="" class="cmn_btn">View More</a> </div>
+          </header>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="video_card">
+               <a   class="video_thumb play_btn_1" >
+                <div class="video_card_img"> <img class="img-fluid" src="./assets/images/work-fun-1.jpg">
+                  <div class="play-button" rel="myModal1">
+                    <div class="buttons" link="6oXJe5KwkqQ">
+                      <div class="ameer" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-play" aria-hidden="true"></i> <span></span> <span></span> <span></span> </div>
+                    </div>
+                  </div>
+                  <div class="category cat--bollywood"> Latest Videos</div>
+                </div>
+                <div class="video_meta">
+                  <div class="card_video_name" title=" Why Force 2 couldn't get its original director"> Saxon Global Annual Day Function 2020</div>
+                  <div class="meta__likes-votes">
+                    <div class="left-meta"> <span class="text">23 likes</span> </div>
+                    <div class="right-meta"> <span class="text">401 views</span> </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="video_card">
+               <a   class="video_thumb play_btn_1" >
+                <div class="video_card_img"> <img class="img-fluid" src="./assets/images/work-fun-2.jpg">
+                  <div class="play-button" rel="myModal2">
+                    <div class="buttons" link="Ww1cKGDOKSs">
+                      <div class="ameer" data-toggle="modal" data-target="#myModal2"> <i class="fa fa-play" aria-hidden="true"></i> <span></span> <span></span> <span></span> </div>
+                    </div>
+                  </div>
+                  <div class="category cat--bollywood">Latest Videos</div>
+                </div>
+                <div class="video_meta">
+                  <div class="card_video_name" title=" Why Force 2 couldn't get its original director">Saxon Global Annual Day Celebration 2020</div>
+                  <div class="meta__likes-votes">
+                    <div class="left-meta"> <span class="text">52 likes</span> </div>
+                    <div class="right-meta"> <span class="text">827 views</span> </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="video_card">
+              <a  class="video_thumb play_btn_2"  >
+                <div class="video_card_img"> <img class="img-fluid" src="./assets/images/work-fun-3.jpg">
+                  <div class="play-button" rel="myModal3">
+                    <div class="buttons" link="EBXvv-C7o1E">
+                      <div class="ameer" data-toggle="modal" data-target="#myModal3"> <i class="fa fa-play" aria-hidden="true"></i> <span></span> <span></span> <span></span> </div>
+                    </div>
+                  </div>
+                  <div class="category cat--bollywood">Latest Videos</div>
+                </div>
+                <div class="video_meta">
+                  <div class="card_video_name" title=" Why Force 2 couldn't get its original director">Rewards & Recognitions</div>
+                  <div class="meta__likes-votes">
+                    <div class="left-meta"> <span class="text">100 likes</span> </div>
+                    <div class="right-meta"> <span class="text">526 views</span> </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="video_card"  >
+              <div  class="video_thumb play_btn_1">
+                <div class="video_card_img"> <img class="img-fluid" src="./assets/images/work-fun-6.jpg">
+                  <div class="play-button" rel="myModal4">
+                    <div class="buttons"  link="Z5cRPG4QJrI">
+                      <div class="ameer" data-toggle="modal" data-target="#myModal4"> <i class="fa fa-play" aria-hidden="true" ></i> <span></span> <span></span> <span></span> </div>
+                    </div>
+                  </div>
+                  <div class="category cat--bollywood">Latest Videos</div>
+                </div>
+                <div class="video_meta">
+                  <div class="card_video_name" title=" Why Force 2 couldn't get its original director"> Saxon Global Annual Day Highlights 2020</div>
+                  <div class="meta__likes-votes">
+                    <div class="left-meta"> <span class="text">65 likes</span> </div>
+                    <div class="right-meta"> <span class="text">445 views</span> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Modal -->
+    <div class="modal fade video_modal" id="" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          
+          <div id="video-modal-content" class="video-modal-content"> 
+
+              <iframe width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <a href="#" class="close-video-modal  " id="video_stop" data-dismiss="modal">
+              <i class="lar la-times-circle"></i>
+            </a>
+          </div>
+        </div>
+       
+      </div>
+      
+    </div>
+  </div>
+
+ 
+    <!--=================LATEST YEARS LEADERS =================-->
+    <section class="leaders_wrap graybg">
+      <div class="container-fluid">
+        <div class="row">
+          <header class="widget__header">
+            <div class="title_wrap ">
+              <h1 class="widget__title">2019 Champions</h1> </div>
+            <div class="cmn_btn_wrap "><a  class="cmn_btn">View More</a> </div>
+          </header>
+        </div>
+        <div class="row">
+          <ng-container *ngFor="let yearTopers of lastYearToper; index as i">
+          <div class="col-md-3">
+            <a href="#" class="">
+              <div class="leaderCard">
+                <div class="leaderBackdrop card_grd">
+                  <div class="trophy_wrap">
+                    <div class="leader_trophy orange"></div>
+                  </div>
+                  <div class="imageContainer"> 
+                    <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ yearTopers.profile_image_name }}"> </div>
+                  <div class="leaderStat">
+                    <div class="stat-content">
+                      <h1>{{yearTopers.display_name | titlecase}}</h1>
+                      <div class="stat-container"> <span class="digits">{{yearTopers.total_submission}}</span> <span class="statLabel">Submissions</span> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </ng-container>
+        </div>
+      </div>
+    </section>
+    <!-- ====================IN NUMBER==============================-->
+    <section class="in_number_wrap">
+      <div class="container-fluid">
+        <div class="row">
+          <header class="widget__header">
+            <div class="title_wrap ">
+              <h1 class="widget__title"> 2019 in Numbers</h1> </div>
+          </header>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="number_card  padding_40 bg-gradient-d-red">
+              <h3>DID YOU KNOW?</h3>
+              <p>The unemployment rate in US hit the 50 years lowest rate, 3.6%</p>
+            </div>
+          </div>
+          <!--  SM SLIDER=========================  -->
+          <div class="col-md-2">
+            <div class="carousel slide slider sm_slide number_slider" id="sm_sl" data-ride="carousel" data-interval="3000">
+              <!-- Carousel indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#sm_sl" data-slide-to="0" class="active"></li>
+                <li data-target="#sm_sl" data-slide-to="1"></li>
+              </ol>
+              <!-- Carousel items -->
+              <div class="carousel-inner bg-gradient-primary">
+                <div class="item active"> <a href="#"><h1>14408 </h1><p>Submissions</p></a> </div>
+                <div class="item"> <a href="#"><h1>388 </h1><p>Placements</p></a> </div>
+              </div>
+            </div>
+          </div>
+          <!--  MD SLIDER=========================  -->
+          <div class="col-md-4">
+            <div class="carousel slide slider md_slide number_slider" id="md_sl" data-ride="carousel" data-interval="3000">
+              <!-- Carousel indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#md_sl" data-slide-to="0" class="active"></li>
+                <li data-target="#md_sl" data-slide-to="1"></li>
+                <li data-target="#md_sl" data-slide-to="2"></li>
+              </ol>
+              <!-- Carousel items -->
+              <div class="carousel-inner bg-gradient-info">
+                <div class="item active"> <a href="#"><h1>288 </h1><p>Consultants</p></a> </div>
+                <div class="item"> <a href="#"><h1>2355 </h1><p>Interviews</p></a> </div>
+                <!-- <div class="item"> <a href="#"><h1>55 </h1><p>External Submissions</p></a> </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="in_number_wrap_2">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-2">
+            <a href="#" class="leaderCard_2">
+              <div class="leaderBackdrop">
+                <div class="imageContainer card_blue"> <img class="img-fluid" src="./assets/images/rahul-ch.jpg"> </div>
+                <div class="leader_cap purpel_cap">  Rahul Chaudhary</div>
+              </div>
+            </a>
+          </div>
+          <!--  SM SLIDER=========================  -->
+          <div class="col-md-2">
+            <div class="carousel slide slider sm_slide number_slider" id="sm_sl" data-ride="carousel" data-interval="3000">
+              <!-- Carousel indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#sm_sl" data-slide-to="0" class="active"></li>
+                <li data-target="#sm_sl" data-slide-to="1"></li>
+              </ol>
+              <!-- Carousel items -->
+              <div class="carousel-inner bg-gradient-danger">
+                <div class="item active"> <a href="#"><h1>288 </h1><p>Consultants</p></a> </div>
+                <div class="item"> <a href="#"><h1>2355 </h1><p>Interviews</p></a> </div>
+                <!-- <div class="item"> <a href="#"><h1>55 </h1><p>External Submissions</p></a> </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <a href="#" class="leaderCard_2">
+              <div class="leaderBackdrop">
+                <div class="imageContainer card_blue"> <img class="img-fluid" src="./assets/images/ashish-gautam.jpg"> </div>
+                <div class="leader_cap orang_cap">Ashish Gautam </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <div class="carousel slide slider md_slide number_slider" id="lg_sl" data-ride="carousel" data-interval="3000">
+              <!-- Carousel indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#lg_sl" data-slide-to="0" class="active"></li>
+                <li data-target="#lg_sl" data-slide-to="1"></li>
+                <li data-target="#lg_sl" data-slide-to="2"></li>
+              </ol>
+              <!-- Carousel items -->
+              <div class="carousel-inner bg-gradient-d-gren">
+                <div class="item active"> <a href="#"><h1>288 </h1><p>Consultants</p></a> </div>
+                <div class="item"> <a href="#"><h1>2355 </h1><p>Interviews</p></a> </div>
+                <!-- <div class="item"> <a href="#"><h1>55 </h1><p>External Submissions</p></a> </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+<ng-template #loadingData>
+
+    <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+    </section>
+
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+    

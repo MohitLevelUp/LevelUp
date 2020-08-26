@@ -19,21 +19,36 @@ export class KpiService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+// add new kpi
   addKpi(data: any){
 
-  	return this.http.post<any>(this.baseUrl + 'levelup/api/v1/kpi/' , JSON.stringify(data), {
+  	return this.http.post<any>(this.baseUrl + 'api/v1/kpi/' , JSON.stringify(data), {
 
     })
       .pipe(
-      tap(data => console.log('authToken' + JSON.stringify(data))),
-     // tap(),// 
+      // tap(data => console.log('authToken' + JSON.stringify(data))),
+     tap(),// 
 
         catchError(this.errorHandl));
   }
 
-  // GET KPI List
-  getKpiList(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/')
+
+// update kpi
+  updateKpi(data: any){
+
+    return this.http.post<any>(this.baseUrl + 'api/v1/kpi/updatekpi' , JSON.stringify(data), {
+
+    })
+      .pipe(
+      tap(),// 
+
+        catchError(this.errorHandl));
+  }
+
+  // GET admin/manager created kpi List
+  createdKpiList(): Observable<any> {
+    var userID = this.userId;
+    return this.http.get<any>(this.baseUrl + 'api/v1/kpi/createdKpiList/' + userID)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -41,10 +56,15 @@ export class KpiService {
   }
 
   // GET user and his/her team assign KPI List
-  getUsersKpiList(): Observable<any> {
-  	var userID = this.userId;
+  getAssignedKpiList(user_id:any): Observable<any> {
+    if(user_id == ''){
+      var userID = this.userId;
+    }else{
+      userID = user_id;
+    }
+  	
 
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/usersKpiList/' + userID)
+    return this.http.get<any>(this.baseUrl + 'api/v1/kpi/assignedKpiList/' + userID)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -59,12 +79,12 @@ export class KpiService {
     var kpiData = {
       kpiId: kpiId
     };
-  	return this.http.post<any>(this.baseUrl + 'levelup/api/v1/kpi/inActiveKpi' , JSON.stringify(kpiData), {
+  	return this.http.post<any>(this.baseUrl + 'api/v1/kpi/inActiveKpi' , JSON.stringify(kpiData), {
 
     })
       .pipe(
-      tap(data => console.log('authToken' + JSON.stringify(data))),
-     // tap(),// 
+      // tap(data => console.log('authToken' + JSON.stringify(data))),
+      tap(),// 
 
         catchError(this.errorHandl));
   }
@@ -74,7 +94,7 @@ export class KpiService {
   //assign kpi to user or team
   assignKpi(data: any){
     
-  	return this.http.post<any>(this.baseUrl + 'levelup/api/v1/kpi/assignKpi' , JSON.stringify(data), {
+  	return this.http.post<any>(this.baseUrl + 'api/v1/kpi/assignKpi' , JSON.stringify(data), {
 
     })
       .pipe(
@@ -84,12 +104,22 @@ export class KpiService {
         catchError(this.errorHandl));
   }
 
+  //get team kpi list
+  
+   getTeamKpiList(teamId: any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'api/v1/kpi/teamKpiList/' + teamId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
   
 
   //get single kpi details
   
    getKpiDetails(kpiId: any): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/' + kpiId)
+    return this.http.get<any>(this.baseUrl + 'api/v1/kpi/' + kpiId)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -99,13 +129,63 @@ export class KpiService {
   //get period list
   
    getPeriodList(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/kpi/periodList')
+    return this.http.get<any>(this.baseUrl + 'api/v1/kpi/periodList')
     .pipe(
       retry(1),
      catchError(this.errorHandl)
     )
   }
 
+
+// behavior section start 
+
+  // add behavior
+  addBehavior(data: any){
+
+    return this.http.post<any>(this.baseUrl + 'api/v1/kpi/addBehavior' , JSON.stringify(data), {
+
+    })
+      .pipe(
+      // tap(data => console.log('authToken' + JSON.stringify(data))),
+      tap(),// 
+
+        catchError(this.errorHandl));
+  }
+
+  // get behavior list
+ getBehaviorsList(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'api/v1/kpi/getBehaviorList')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+
+
+  // behavior point start 
+
+  // add new point
+  addNewPoint(data: any){
+
+    return this.http.post<any>(this.baseUrl + 'api/v1/kpi/addNewPoint' , JSON.stringify(data), {
+
+    })
+      .pipe(
+      // tap(data => console.log('authToken' + JSON.stringify(data))),
+      tap(),// 
+
+        catchError(this.errorHandl));
+  }
+
+  // get point list
+ getPointList(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'api/v1/kpi/getPointList')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
 
 
   

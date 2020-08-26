@@ -1,0 +1,357 @@
+<section id="livedashboards_body" *ngIf="userJobPosting; else loadingData">
+  <div class="livedashboard_preview">
+      <span class="bg_changer_btn cog_btn">
+          <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+          </span> 
+              
+          
+      <div class="color_toogel_btn" id="night_slid">
+          <span class="changer_title">DASHBOARD TEMPLATES</span> 
+          <div class="slid_warp_o">  
+          <div class="night_mode_text">NIGHT MODE</div>
+          <div class="toggle_btn" id="_1st-toggle-btn">
+      <input type="checkbox">
+      <span></span>
+      </div>
+           <div class="night_mode_text">LIGHT MODE </div>
+          </div>
+         
+      </div>
+    <div class="live_board_grid" id="live_board">
+      <div class="dashboarditem kpi-template1">
+        <div class="tileTypeKpi">KPI</div>
+        <div class="kpi-individual-by6">
+          <div class="kpiheading">Accounts Won </div>
+          <div class="kpipoint"> 2</div>
+          <!-- <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
+          </div> -->
+        </div>
+        <div class="kpi-individual-by6">
+          <div class="kpiheading">Total Consultants </div>
+          <div class="kpipoint"> 272</div>
+          <!-- <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
+          </div> -->
+        </div>
+        <div class="kpi-individual-by6">
+          <div class="kpiheading">Total Starts </div>
+          <div class="kpipoint"> {{totalJoining}}</div>
+          <!-- <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
+          </div> -->
+        </div>
+        <div class="kpi-individual-by6">
+          <div class="kpiheading">Avg. Billing Rate</div>
+          <div class="kpipoint"> 53</div>
+          <!-- <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
+          </div> -->
+        </div>
+        <div class="kpi-individual-by6">
+          <div class="kpiheading">Job Orders </div>
+          <div class="kpipoint"> {{totalJobPosting}}</div>
+          <!-- <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
+          </div> -->
+        </div>
+        <div class="kpi-individual-by6">
+          <div class="kpiheading">Submissions </div>
+          <div class="kpipoint"> {{totalSubmissions}}</div>
+          <!-- <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
+          </div> -->
+        </div>
+        <div id="tileFooter">
+          <span class="tile-recipient">Company</span> &nbsp;-&nbsp;This  Year
+        </div>
+      </div>
+        
+      <div class="dashboarditem target-template2">
+        <div class="tileType-target-template1">Target</div>
+        <div class="target-template2-header">Billing Consultant</div>
+        <div class="target-template2-content">
+          <div class="target-template2-individual">
+            <div class="target-template2-individual-points">272</div>
+            <div class="target-template2-individual-target"> / 281</div>
+          </div>
+          <div class="target-template2-chart">
+            <div id="chart_wrapper" class="justify-content-center align-items-center" style="text-align: center;">
+              <circle-progress
+            [percent]="97"
+            [radius]="40"
+            [units]=""
+            [outerStrokeWidth]="6"
+            [innerStrokeWidth]="6"
+            [outerStrokeColor]="'#5eb96c'"
+            [innerStrokeColor]="'#384753'"
+            [animation]="true"
+            [animationDuration]="800"
+          ></circle-progress>
+              <span class=" text-center">Target Acheived </span>
+            </div>
+          </div>
+          <div class="target-template2-leaderboard">
+<!--            <div class="target-template2-leaderboardheader">COMPANY LEADERBOARD</div>-->
+            <div class="target-template2-leaderboardindividual">
+              <div class="target-template2-leaderboardindividual-name">Tier 1</div>
+              <div class="target-template2-leaderboardindividual-chart">
+                <div class="target-template2-leaderboardindividual-chartcontainer" style="background-color: rgba(0,0,0,0.3);">
+                  <div style="width: 96.4%" class="target-indicator-ontrack target-chart-progress"></div>
+                </div>
+                <div class="target-template2-leaderboardindividual-point"></div>
+                <div class="target-template2-leaderboardindividual-percent">96.4%</div>
+              </div>
+
+            </div>
+            <div class="target-template2-leaderboardindividual">
+              <div class="target-template2-leaderboardindividual-name">MSP </div>
+              <div class="target-template2-leaderboardindividual-chart">
+                <div class="target-template2-leaderboardindividual-chartcontainer" style="background-color: rgba(0,0,0,0.3);">
+                  <!-- class="target-indicator-caution target-chart-progress" -->
+                  <div style="width: 100%" class="target-indicator-ontrack target-chart-progress"></div>
+                </div>
+                <div class="target-template2-leaderboardindividual-point"></div>
+                <div class="target-template2-leaderboardindividual-percent">100%</div>
+              </div>
+
+            </div>
+            <div class="target-template2-leaderboardindividual">
+              <div class="target-template2-leaderboardindividual-name">Non-MSP </div>
+              <div class="target-template2-leaderboardindividual-chart">
+                <div class="target-template2-leaderboardindividual-chartcontainer" style="background-color: rgba(0,0,0,0.3);">
+                  <!-- class="target-indicator-offtrack  target-chart-progress" -->
+                  <div style="width: 100%" class="target-indicator-ontrack target-chart-progress">
+                  </div>
+                </div>
+                <div class="target-template2-leaderboardindividual-point"></div>
+                <div class="target-template2-leaderboardindividual-percent">100%</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="target-template2-footer"> <span class="tile-recipient">Company</span>&nbsp;-&nbsp;Quarterly</div>
+      </div>
+
+      <div class="dashboarditem target-template1">
+        <div class="tileType-target-template1">Target</div>
+        <div class="target-template1-header">Tier 1 Start</div>
+        <div class="target-template1-chart">
+          <div id="chart_wrapper" class="justify-content-center align-items-center" style="text-align: center;" >
+            <circle-progress
+            [percent]="26"
+            [radius]="40"
+            [outerStrokeWidth]="6"
+            [innerStrokeWidth]="6"
+            [outerStrokeColor]="'#5eb96c'"
+            [innerStrokeColor]="'#384753'"
+            [animation]="true"
+            [animationDuration]="500"
+          ></circle-progress>
+            <span class=" text-center">Target Acheived</span>
+          </div>
+        </div>
+        <div class="target-template1-footer"><span class="tile-recipient">Company</span>&nbsp;-&nbsp;Quarterly</div>
+      </div>
+        
+      <div class="dashboarditem contest-template4">
+        <div class="contest-template4-header">
+          <div class="tileType-contest-template1"></div>
+          <div class="contest-template4-header-name">New Job Orders </div>
+        </div>
+
+         <div class="contest-template4-content">
+          <div class="contest-template4-chart" style="overflow: hidden;">
+             <div class="highcharts-container">
+              <div class="target-template2-leaderboard">
+<!--            <div class="target-template2-leaderboardheader">COMPANY LEADERBOARD</div>-->
+
+            <ng-container *ngFor="let postingtoper of usersJobPostingtopers; index as i">
+              <div class="target-template2-leaderboardindividual for_contest">
+                <div class="target-template2-leaderboardindividual-name">{{postingtoper.display_name | titlecase}}</div>
+                <div class="target-template2-leaderboardindividual-chart">
+                  <div class="target-template2-leaderboardindividual-chartcontainer for_contest" style="background-color: rgba(0,0,0,0.3);">
+                    <div *ngIf="i==0" style="width: 100%" class="target-indicator-ontrack target-chart-progress for_contest">
+                      <div class="target-chart-img">
+                      <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ postingtoper.profile_image_name }}">
+                      </div>
+                      </div>
+
+
+                      <div *ngIf="i==1" style="width: 80%" class="target-indicator-caution target-chart-progress for_contest">
+                        <div class="target-chart-img">
+                        <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ postingtoper.profile_image_name }}">
+                        </div>
+                      </div>
+
+                      <div *ngIf="i==2" style="width: 60%" class="target-indicator-offtrack  target-chart-progress for_contest">
+
+                        <div class="target-chart-img">
+                        <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ postingtoper.profile_image_name }}">
+                        </div>
+                      </div>
+                 
+                  </div>
+                  <div class="target-template2-leaderboardindividual-point">{{postingtoper.total_job_posting}}</div>
+                  <div class="target-template2-leaderboardindividual-percent"></div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+              </div>
+             </div>
+
+
+          <div class="contest-template4-prizes">
+            <div class="contest-template4-prizes">
+              <div class="contest-template4-prize-content">
+               <ng-container *ngFor="let toperTeams of teamJobPostingtopers; index as i">
+                <div class="contest-template4-prize-list">
+                  <div class="prizes-for-contest-cup">
+                    <img style="width: 40px; height: 40px;" class="img-fluid" src="{{ iconUrl }}team_icon/{{ toperTeams.team_logo }}">
+                  </div>
+                  <div class="contest-template4-prize-name">{{toperTeams.name}}</div>
+                  <div class="contest-template-prize-value">{{toperTeams.total_job_posting}}</div>
+                </div>
+              </ng-container>
+
+                <!-- <div class="contest-template4-prize-list">
+                  <div class="prizes-for-contest-cup cup-position2"></div>
+                  <div class="contest-template4-prize-name">iPod</div>
+                  <div class="contest-template-prize-value">$299</div>
+                </div>
+                <div class="contest-template4-prize-list">
+                  <div class="prizes-for-contest-cup cup-position3"></div>
+                  <div class="contest-template4-prize-name">Fitbit Surge</div>
+                  <div class="contest-template-prize-value">$99</div>
+                </div> -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contest-template4-footer">{{yearStartDate}} - {{currentDate}}</div>
+      </div>
+        
+      <div class="dashboarditem target-template1">
+        <div class="tileType-target-template1">Target</div>
+        <div class="target-template1-header">Direct Client Starts</div>
+        <div class="target-template1-chart">
+          <div id="chart_wrapper" class="justify-content-center align-items-center" style="text-align: center;">
+            <circle-progress
+            [percent]="21"
+            [radius]="40"
+            [outerStrokeWidth]="6"
+            [innerStrokeWidth]="6"
+            [outerStrokeColor]="'#f44336'"
+            [innerStrokeColor]="'#384753'"
+            [animation]="true"
+            [animationDuration]="500"
+          ></circle-progress>
+            <span class=" text-center">Target Acheived</span>
+          </div>
+        </div>
+        <div class="target-template1-footer"><span class="tile-recipient">Company</span>&nbsp;-&nbsp;Quarterly</div>
+      </div>
+        
+      <div class="dashboarditem contest-template1">
+        <div class="">
+        <div class="contest-template1-leaderboardheader">CORE VALUE LEADERS</div>
+        <div class="contest-template1-th_title_wrap">
+             <div class="contest-template1-th_title text-center">Name</div>
+             <div class="contest-template1-th_title text-center">Points</div>          
+        </div>
+
+         <ng-container *ngFor="let cToper of coreValueTopers; index as i">
+
+          <div class="contest-template1-leaderboardindividual">
+
+            <div class="contest-template1-leaderboardindividual-name">
+               <img class="person-img navuserimg" src="{{ iconUrl }}profile_images/{{ cToper.profile_image_name }}">
+               {{cToper.display_name | titlecase}} 
+            </div>
+
+            <div class="contest-template1-leaderboardindividual-points"> {{cToper.total_coreValue * 2}}
+            </div>
+            <!-- <div class="contest-template1-leaderboardindividual-position"> {{i+1}} 
+              <span *ngIf="i==0">st</span> <span *ngIf="i==1"> nd</span> <span *ngIf="i==2"> rd</span></div> -->
+          </div>
+
+          </ng-container>
+
+        </div>
+      </div>
+        
+      <div class="dashboarditem target-template2A">
+        <div class="contest-template1-leaderboardheader">TOP RECRUITERS</div>
+        <div class="contest-template1-th_title_wrap">
+            
+             <div class="contest-template1-th_title text-center">Name</div>
+             <div class="contest-template1-th_title">Submissions</div>   
+                  
+        </div>
+    
+        <ng-container *ngFor="let toper of submissionstopers; index as i">
+
+          <div class="contest-template1-leaderboardindividual-for-rec">
+            <div class="contest-template1-leaderboardindividual-name"> 
+            <img class="person-img navuserimg" src="{{ iconUrl }}profile_images/{{ toper.profile_image_name }}">
+          {{toper.display_name | titlecase}} </div>
+            <div class="contest-template1-leaderboardindividual-points"> {{toper.total_submission}}</div>          
+           <!--  <div class="contest-template1-leaderboardindividual-position"> {{i+1}} 
+              <span *ngIf="i==0">st</span> <span *ngIf="i==1"> nd</span> <span *ngIf="i==2"> rd</span> <span *ngIf="i==3"> th</span></div> -->
+          </div>
+
+          </ng-container>
+      </div>
+      
+        <div class="dashboarditem kpi-template1">
+        <div class="tileTypeKpi">KPI</div>
+        <div class="kpi-individual-by6">
+          <div class="kpiheading">New Job Orders </div>
+          <div class="kpipoint"> {{weeklyTotalJobPosting}}</div>
+          <!-- <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
+          </div> -->
+        </div>
+        <div class="kpi-individual-by6">
+          <div class="kpiheading">Submissions </div>
+          <div class="kpipoint"> {{weeklyTotalSubmissions}}</div>
+          <!-- <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
+          </div> -->
+        </div>
+        <div class="kpi-individual-by6">
+          <div class="kpiheading">Starts </div>
+          <div class="kpipoint"> {{weeklyTotalJoining}}</div>
+         <!-- <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
+          </div> -->
+        </div>
+        <div class="kpi-individual-by6">
+          <div class="kpiheading">Stops </div>
+          <div class="kpipoint"> 8</div>
+         <!--  <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
+          </div> -->
+        </div>
+        <div class="kpi-individual-by6">
+          <div class="kpiheading">Client Interviews</div>
+          <div class="kpipoint"> {{totalInterview}}</div>
+          <!-- <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
+          </div> -->
+        </div>
+        <div class="kpi-individual-by6">
+          <div class="kpiheading">JSIP Ratio</div>
+          <div class="kpipoint"> 0</div>
+          <!-- <div class="kpipercentage down">100% <span class="fa fa-arrow-down"></span>
+          </div> -->
+        </div>
+        <div id="tileFooter">
+          <span class="tile-recipient">KPI</span> &nbsp;-&nbsp; This Week 
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-template #loadingData>
+
+    <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+    </section>
+
+</ng-template>

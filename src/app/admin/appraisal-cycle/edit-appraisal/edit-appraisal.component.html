@@ -1,0 +1,284 @@
+<!-- {{appraisalDetails.appraisal_name}} -->
+<app-sidebar></app-sidebar>  
+<div class="das_col main-content" id="main-content">
+		
+		<section class="wrapper main-wrapper">
+			
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12" >
+						<div class="row">
+		                  <div class="col-md-12">
+		                    <div class="title">Appraisal Cycle</div> 
+		                  </div>
+		                </div>
+						<div class="box-1" *ngIf="appraisalDetails">
+							<div class="user-edit-form">
+							<form #form="ngForm" ngNativeValidate (submit)="updateAppraisal(form)">
+								<input type="hidden" #appraisalId="ngModel" name="appraisalId" [(ngModel)]="appraisalDetails.id">
+
+							
+								<div class="form-warp">
+									<div class="row">
+										<div class="col-md-12">
+											<h4>Edit Appraisal Cycle</h4> 
+											
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="Username">Name of the Appraisal</label>
+												<input type="text" class="form-control" #appraisal_name="ngModel" name="appraisalName" [(ngModel)]="appraisalDetails.appraisal_name">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="">Appraisal Cycle Period</label>
+												
+												<select name="appraisalPeriod" #appraisalPeriod="ngModel" [(ngModel)]="selectedPeriod" class="form-control">
+						                          <option value="">Select Period</option>
+						                          <option value="Monthly">Monthly</option>
+						                          <option value="Quarterly">Quarterly</option>
+						                          <option value="Half Yearly">Half Yearly</option>
+						                          <option value="Yearly">Yearly</option>
+						                        </select>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Description</label>
+												<textarea class="form-control" rows="5"
+												#descriptions="ngModel" name="descriptions" [(ngModel)]="appraisalDetails.descriptions"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr class="my-hr">
+								<!--===================Appraisal Process Configuration Details===================-->
+								<div class="form-warp">
+									<div class="row">
+										<div class="col-md-12">
+											<h4>Appraisal Process Configuration Details</h4>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Process Period</label>
+												<input type="date" class="form-control" #process_period="ngModel" name="processPeriod" [(ngModel)]="appraisalDetails.process_period">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Review Period</label>
+												<input type="date" class="form-control" #review_period="ngModel" name="reviewPeriod" [(ngModel)]="appraisalDetails.review_period">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Normalization Period</label>
+												<input type="date" class="form-control" #normalization_period="ngModel" name="normalizationPeriod" [(ngModel)]="appraisalDetails.normalization_period">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="Salary_Hike Wrap">
+												<div class="inline_checkbox"> <span class="check_title">Salary Hike</span>
+													
+												</div>
+												<div id="optional_form" class="optional_form">
+													<!-- <div class="row">
+														<div class="col-md-4 ">
+															<div class="dropdown-select warning"> <a class="select">Hike Appraiser</a>
+																<div class="search-box"> <i class="fa fa-search"></i>
+																	<input type="text" placeholder="Search" class="seach-control" />
+																	<ul class="option-list">
+																		<li><a href="JavaScript:Void(0);">Reporting To </a>
+																		</li>
+																		<li><a href="JavaScript:Void(0);">Reporting To </a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+													</div> -->
+													<div class="row">
+														<div class="col-md-4">
+															<div class="form-group form-control-wrap">
+																<label class="form-control-label" for="">Hike Period</label>
+																<input type="date" class="form-control" #hike_period="ngModel" name="hikePeriod" [(ngModel)]="appraisalDetails.hike_period">
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="form-group form-control-wrap">
+																<label class="form-control-label" for="">Hike Push Date</label>
+																<input type="date" class="form-control" #hike_push_date="ngModel" name="hikePushDate" [(ngModel)]="appraisalDetails.hike_push_date">
+															</div>
+														</div>
+
+														
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr class="my-hr">
+								<div class="form-warp">
+									<div class="row">
+										<div class="col-md-12">
+											<h4>Applicable For</h4> 
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4">
+                                            <div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Employee Name</label>
+												<!-- <input type="text" class="form-control" #employeeName="ngModel" name="employeeName" [(ngModel)]="appraisalmodel.employeeName"> -->
+
+												<select #employeeName="ngModel" name="employeeName" [(ngModel)]="selectedEmployee" class="form-control"required>
+				                                  <option value="">Employee List</option>
+				                                  <ng-container *ngFor='let users of usersInfo; index as i'>
+				                                    <option  value="{{users.id}}">{{users.display_name | titlecase}}
+				                                    </option>
+				                                  </ng-container>
+				                                </select>
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" >Target Points </label>
+												<div class="target_points"> </div>
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label">Achieved Points </label>
+												<div class="achieved_points"></div>
+												
+											</div>
+										</div>
+										
+
+										<div class="col-md-2">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" > Percentage </label>
+												<div class="achieved_percentage"> </div>
+											</div>
+										</div>
+										
+									</div>
+									<div class="row">
+										<!-- <div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Department</label>
+												<input type="text" class="form-control" #department="ngModel" name="department" [(ngModel)]="appraisalmodel.department">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Designation</label>
+												<input type="text" class="form-control" #designation="ngModel" name="designation" [(ngModel)]="appraisalmodel.designation">
+											</div>
+										</div> -->
+										<!-- <div class="col-md-4">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Role</label>
+												<input type="text" class="form-control" #role="ngModel" name="role" [(ngModel)]="appraisalmodel.role">
+											</div>
+										</div> -->
+
+									</div>
+								</div>
+                                <hr class="my-hr">
+                                <div class="form-warp">
+                                    <div class="row">
+										<div class="col-md-12">
+											<h4>Reviewers</h4>
+										</div>
+									</div>
+                                  <div class="row">
+                                    <div class="col-md-4">                                            
+											
+												<select #reportingTo="ngModel" name="reportingTo" [(ngModel)]="selectedreportingTo" class="form-control"required>
+				                                  <option value="">Reporting To</option>
+				                                  <ng-container *ngFor='let users of usersInfo; index as i'>
+				                                    <option *ngIf="users.role_type == 2 || users.role_type == 3"  value="{{users.id}}">{{users.display_name | titlecase}}
+				                                    </option>
+				                                  </ng-container>
+				                                </select>
+												<!-- <div class="search-box"> <i class="fa fa-search"></i>
+													<input type="text" placeholder="Search" class="seach-control">
+													<ul class="option-list">
+														<li><a href="JavaScript:Void(0);">Department Head of Login User</a>
+														</li>
+														<li><a href="JavaScript:Void(0);">Employee</a>
+														</li>
+													</ul>
+												</div> -->
+											
+										</div>
+                                      <div class="col-md-6">                                            
+											
+									  </div>
+                                    </div>
+                                </div>
+                                
+                                <hr class="my-hr">
+                              <!--   <div class="form-warp">
+                                    <div class="row">
+										<div class="col-md-12">
+											<h4>Publish Configuration</h4>
+										</div>
+									</div>
+                                  <div class="row">
+                                    <div class="col-md-6">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Fields to be published</label>
+												<input type="text" class="form-control" #published="ngModel" name="published" [(ngModel)]="appraisalmodel.published">
+											</div>
+										</div>
+                                      <div class="col-md-6">
+											<div class="form-group form-control-wrap">
+												<label class="form-control-label" for="First name">Publisher</label>
+												<input type="text" class="form-control" #publisher="ngModel" name="publisher" [(ngModel)]="appraisalmodel.publisher">
+											</div>
+										</div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="inline_checkbox">
+													<label class="check_box">
+														<input type="checkbox" id="checkbox1"> <span class="checkmark"></span><span>Allow Employee to share Appraisal Feedback</span>
+													</label>
+												</div>
+                                    </div>
+                                    </div>
+                                </div> -->
+                                
+                                
+                                
+                                <div class="form-warp">
+								<div class="row">
+									<div class="col-md-12">
+										 <input value="Submit" class="cmn_btn pull-right" type="submit">
+										<!-- <button class="cmn_btn pull-right">Submit</button> -->
+										<!-- <button class="cmn_btn btn_for_cancel pull-right">Cancel</button> -->
+									</div>
+								</div>
+                                </div>
+                              </form>  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+<notifier-container></notifier-container>

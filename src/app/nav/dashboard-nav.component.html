@@ -1,4 +1,4 @@
-<div class="das_col main-content" id="main-content">
+<div class="das_col main-content" id="main-content" *ngIf="user"> 
 <div class="page-topbar">
 	<div class="container-fluid">
 		<div class="quick-area">
@@ -18,8 +18,8 @@
 						</div>
 					</form> -->
 				</div>
-				<div class="flex_col">
-					<ul class="pull-right info-menu user-info">
+				<div class="flex_col"> 
+					<ul class="pull-right info-menu user-info"> 
 						<li class="nav-item dropdown profile">
 							<a class="nav-link" id="navbardrop" data-toggle="dropdown">
 								<img src="{{user.image_path}}"> <span>{{user.first_name}} <i class="fa fa-angle-down"></i></span>
@@ -27,9 +27,9 @@
 							<div class="dropdown-menu profile fadeIn">
 								<a class="dropdown-item" [routerLink]="['/user', user.user_id]"><i class="las la-user-circle"></i> My profile</a>
 								<div class="dropdown-divider"></div>
-								<!-- <a class="dropdown-item" href="#"><i class="las la-cog"></i> Settings</a>             
-								<a class="dropdown-item" href="#"><i class="las la-bell"></i> Notifications</a>
-								<a class="dropdown-item" href="#"><i class="las la-life-ring"></i> Support</a> -->
+								<!-- <a class="dropdown-item" href="#"><i class="las la-cog"></i> Settings</a> -->             
+								<a class="dropdown-item noti_open" href="javascript:void(0);"><i class="las la-bell">{{ this.totalNotification }}</i> Notifications</a>
+								<!-- <a class="dropdown-item" href="#"><i class="las la-life-ring"></i> Support</a> -->
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" (click)="userService.logout()"> <i class="las la-running"></i> Logout</a>
 							</div>
@@ -39,5 +39,30 @@
 			</div>
 		</div>
 	</div>
+	<section class="notifications_warp">
+     <div class="noti_sidebar side_sm" >
+      <div class="noti_header">
+         <h4><i class="las la-bell"></i> Notifications</h4>
+          <span class="noti_close"><i class="las la-times-circle"></i></span>
+         </div>
+         <div class="noti_msz_warp">
+         	<ng-container *ngFor='let kudosList of receiveKudos; let i = index'>
+	            <div class="noti_msz" *ngIf="kudosList.status == 0">
+	            	<p>{{ kudosList.user_name}}</p>
+	                      {{ kudosList.why_given}}
+	            </div>
+	        </ng-container>
+
+	        <ng-container *ngFor='let coreValueList of takenCoreValue; let i = index'>
+	            <div class="noti_msz" *ngIf="coreValueList.status == 0">
+	            	<p>{{ coreValueList.user_name}}</p>
+	                      {{ coreValueList.name}}
+	            </div>
+	        </ng-container>
+            
+         </div>
+     </div>
+   </section>
 </div>
 </div>
+

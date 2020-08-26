@@ -1,0 +1,80 @@
+ 
+<!--    CONTACT====================================-->
+    
+    <section class="contact_us_warp">
+     <div class="container">
+        <div class="row">
+         <div class="col-md-6">
+            <div class="conact_header_content">
+                <h3 class=""><span class="line_bar"></span>contact us</h3>
+                <h1>Let's get in touch</h1>
+                <div class="touch_info_warp">
+                    <p><span class="touch_icon"> <i class="las la-tty"></i> </span>  972-550-9346</p>
+                    <p><span class="touch_icon"> <i class="las la-headset"></i> </span>  972-363-1009</p>
+                    <p><span class="touch_icon"> <i class="las la-fax"></i> </span>  866-405-9572</p>
+                    <p><span class="touch_icon"> <i class="las la-envelope"></i> </span>  info@saxonglobal.com</p>
+                    <p><span class="touch_icon"> <i class="las la-map-marker-alt"></i> </span>  1320 Greenway Drive Suite # 660, Irving, TX 75038</p>
+                </div>
+             </div>
+            </div>
+         <div class="col-md-6">
+            <img class="img-fluid" src="./assets/images/home-img/contact-bg.png">
+            </div>
+         </div>
+        </div>
+    </section>
+    <section class="touch_form_warp">
+     <div class="container">
+        <div class="row text-center">
+				<div class="offset-lg-3 col-lg-6">
+					<div class="header-badge m-b-20">Leave a Message</div>
+					<h2 class="m-b-10">Tell us about yourself</h2>
+					<p class="m-b-40">Fusce placerat pretium mauris, vel sollicitudin elit lacinia vitae. Quisque sit amet nisi erat.</p>
+				</div>
+			</div>
+         
+         <div class="row m-t-50"> 
+				<div class="offset-lg-2 col-lg-8">
+				  <form #form="ngForm" ngNativeValidate (submit)="contactUs(form)">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-item m-b-30">
+								<label class="lbl" for="form1">Your name</label>
+								<input class="input" type="text" id="form1" placeholder="Name, surname" #name="ngModel" name="name" [(ngModel)]="contactmodel.name">
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-item m-b-30">
+								<label class="lbl" for="form2">Your Email Address</label>
+								<input class="input" type="email" id="form2" placeholder="Email" #email="ngModel" name="email" [(ngModel)]="contactmodel.email">
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-item m-b-30">
+								<label class="lbl" for="form3">Subject</label>
+								<input class="input" type="text" id="form3" placeholder="Product Inquiry" #subject="ngModel" name="subject" [(ngModel)]="contactmodel.subject">
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-item m-b-30">
+								<label class="lbl" for="form4">Your Phone Number</label>
+								<input class="input" type="text" id="form4" placeholder="Phone" #phone_number="ngModel" name="phone_number" [(ngModel)]="contactmodel.phone_number">
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="form-item m-b-30">
+								<label class="lbl" for="form5">How can we help you?</label>
+								<textarea class="textarea" id="form5" rows="5" placeholder="Your Message" #message="ngModel" name="message" [(ngModel)]="contactmodel.message"></textarea>
+							</div>
+						</div>
+						<div class="col-lg-12 text-center">
+							<button type="submit" class="button button-primary transition-3d-hover m-b-30">Submit</button>
+						</div>						
+					</div>
+			      </form>
+				</div>
+			</div>
+        </div>
+    </section>
+
+<notifier-container></notifier-container>

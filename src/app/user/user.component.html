@@ -1,7 +1,7 @@
-<app-sidebar></app-sidebar>
- <div class="das_col main-content" id="main-content">
+<app-sidebar></app-sidebar> 
+ <div class="das_col main-content" id="main-content" *ngIf="userInfo; else templateName"> 
 	<section class="wrapper main-wrapper">
-			<div class="container-fluid" *ngIf="userInfo; else templateName">
+			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-8">
 						<div class="title">User Account</div>
@@ -14,20 +14,20 @@
 										<div class="col-md-4">
 											<div class="form-group form-control-wrap">
 												<label class="form-control-label" for="First name">First Name</label>
-												 <input #first_name="ngModel" type="text" name="first_name" class="form-control" id="FirstName" [(ngModel)]="userInfo['first_name']">
+												 <input #first_name="ngModel" type="text" name="first_name" class="form-control" id="FirstName" [ngModel]="userInfo['first_name']">
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-group form-control-wrap">
 												<label class="form-control-label" for="Middle name">Middle Name</label>
 												
-												<input #middle_name="ngModel" type="text" name="middle_name" class="form-control" id="middle_name" [(ngModel)]="userInfo['middle_name']">
+												<input #middle_name="ngModel" type="text" name="middle_name" class="form-control" id="middle_name" [ngModel]="userInfo['middle_name']">
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-group form-control-wrap">
 												<label class="form-control-label" for="Last name">Last Name</label>
-												<input #last_name="ngModel" type="text" name="last_name" class="form-control" id="LastName"  [(ngModel)]="userInfo['last_name']">
+												<input #last_name="ngModel" type="text" name="last_name" class="form-control" id="LastName"  [ngModel]="userInfo['last_name']">
 											</div>
 										</div>
 									</div>
@@ -61,14 +61,14 @@
 											</div>
 										</div>
 									</div>
-									<div class="row">
+									<!-- <div class="row">
 										<div class="col-md-12">
 											<div class="form-group form-control-wrap">
 												<label class="form-control-label" for="Username">Company Address</label>
 												<input #company_address="ngModel" type="text" name="company_address" class="form-control" id="companyAddress"  [(ngModel)]="userInfo['company_address']">
 											</div>
 										</div>
-									</div>
+									</div> -->
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-group form-control-wrap">
@@ -84,30 +84,50 @@
 										</div>
 										<div class="col-md-4">
 											<div class="form-group form-control-wrap">
-												<label class="form-control-label" for="First name">Role Type</label>
-												<input #role_type="ngModel" type="text" name="role_type" class="form-control" id="role_type"  [(ngModel)]="userInfo['role_type']">
+												<label class="form-control-label" for="First name">Speciality</label>
+												<select name="speciality" #Speciality="ngModel" [(ngModel)]="selectedSpeciality" class="form-control">
+						                          <option value="">Select Speciality</option>
+						                          <option value="1" selected="">Sales</option>
+						                          <option value="2">Recruitment</option>
+						                          <option value="3">Account Management</option>
+						                          <option value="4">IT</option>
+						                          <option value="5">HR</option>
+						                          <option value="6">Legal</option>
+						                          <option value="7">Admin</option>
+						                          <option value="8">Management</option>
+						                          <option value="9">Inside Sales</option>
+						                          <option value="10">Marketing</option>
+						                        </select>
+
+												<input #role_type="ngModel" type="hidden" name="role_type" class="form-control" id="role_type"  [(ngModel)]="userInfo['role_type']">
 											</div>
 										</div>
+
 									</div>
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-group form-control-wrap">
-												<label class="form-control-label" for="Country Code">Website</label>
-												<input #website="ngModel" type="text" name="website" class="form-control" id="website"  [(ngModel)]="userInfo['website']">
+												<label class="form-control-label" for="Country Code">Date Of Joining</label>
+												<!-- <input #website="ngModel" type="text" name="website" class="form-control" id="website"  [(ngModel)]="userInfo['website']"> -->
+											<mat-form-field>
+											 <input #joining="ngModel" matInput [matDatepicker]="picker" type="text" name="joining" [(ngModel)]="userInfo['date_of_join']">
+											  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+											  <mat-datepicker #picker></mat-datepicker>
+											</mat-form-field>
 											</div>
 										</div>
-										<!-- <div class="col-md-4">
+										 <div class="col-md-4">
 											<div class="form-group form-control-wrap">
-												<label class="form-control-label" for="Main Phone">Main Phone</label>
-												<input type="text" class="form-control" id="mainPhone" placeholder="88 666 444 55">
+												<label class="form-control-label" for="Main Phone">Location</label>
+												<input type="text" class="form-control"  #location="ngModel" name="location" class="form-control"  [(ngModel)]="userInfo['location']">
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="form-group form-control-wrap">
-												<label class="form-control-label" for="Alt Phone">Alt Phone</label>
-												<input type="text" class="form-control" id="altPhone" placeholder="88 666 58">
+												<label class="form-control-label" for="Alt Phone">Salary</label>
+												<input type="text" class="form-control" #salary="ngModel" name="salary" class="form-control"  [(ngModel)]="userInfo['salary']">
 											</div>
-										</div> -->
+										</div> 
 									</div>
 									<div class="row">
 										<div class="col-md-12">
@@ -127,18 +147,18 @@
 								</div>
 								<div class="imageContainer">
 								
-									<img class="img-fluid" src="{{ userInfo['image_path'] }}">
+									<img class="img-fluid" src="{{ userInfo.image_path }}">
 								</div>
 								<div class="leaderStat">
 									<div class="Profile_edit_btn"> 
 										<a class="edit_icon" href="#">	
 										<i class="la la-pencil-square-o pull-right"></i> 
 							           </a>
-							    <input type="file" class="user_profile_pic" id="{{ userInfo['user_id'] }}"  (change)="handleFileSelect($event)">
+							    <input type="file" class="user_profile_pic" id="{{ userInfo.user_id }}"  (change)="handleFileSelect($event)">
 									</div>
 									<div class="stat-content">
 									<h1>
-                                        {{ userInfo['display_name'] }}
+                                        {{ userInfo.display_name}}
                                     </h1>
 										<!-- <div class="stat-container"> <span class="statLabel">{{ userInfo['website'] }}</span>
 										</div> -->
@@ -149,13 +169,21 @@
 					</div>
 				</div>
 			</div>
-			<ng-template #templateName>
-			  <section id="main-content">
-			    <section class="">
-			      <img src="./assets/images/loader.gif" style="margin-left:30%; margin-top:20%; margin-bottom: 100px;" />
-			    </section>
-			  </section>
-			</ng-template>
+			
 		</section>
 	</div>
+
+<ng-template #templateName>
+   <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+    </section>
+</ng-template>
+
+<section id="onSubmitLoading" class="looding-wrap" style="display: none;">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+</section>
 <notifier-container></notifier-container>

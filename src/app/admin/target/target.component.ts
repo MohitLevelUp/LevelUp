@@ -12,11 +12,15 @@ import { NotifierService } from "angular-notifier";
   styleUrls: ['./target.component.css']
 })
 export class TargetComponent implements OnInit {
+  targetmodel: any = {};
 
+  user   = JSON.parse(localStorage.getItem('user'));
+  teamId = this.user['team_id'] ;
+  
   private readonly notifier: NotifierService;
 
-  private usersTarget:string = "";
-  private teamsTarget:string = "";
+  usersTarget:string = "";
+  teamsTarget:string = "";
   selectedKpi ='';
   selectedPeriod ='';
 
@@ -60,7 +64,7 @@ export class TargetComponent implements OnInit {
     };
 
 
-  	this.kpiService.getKpiList().subscribe(
+  	this.kpiService.createdKpiList().subscribe(
       resp => {
         this.kpiList = resp['data'];
        
@@ -71,7 +75,7 @@ export class TargetComponent implements OnInit {
 
 
     //get all user's details
-    this.userService.userList().subscribe(
+    this.userService.teamsUserList(this.teamId).subscribe(
       resp => {
         this.usersInfo = resp['data']; 
         
@@ -82,7 +86,7 @@ export class TargetComponent implements OnInit {
     );
 
      //get all team's details
-    this.userService.teamList().subscribe(
+    this.userService.getTeamDetails(this.teamId).subscribe(
       resp => {
         this.teamInfo = resp['data']; 
         
@@ -108,10 +112,10 @@ export class TargetComponent implements OnInit {
   }
 
   onItemSelect(item: any) {
-    console.log(item);
+   
   }
   onSelectAll(items: any) {
-    console.log(items);
+    
   }
 
 }

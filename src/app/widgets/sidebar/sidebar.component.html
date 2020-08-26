@@ -1,36 +1,3 @@
-<!-- <div id="cate" class="Categories-btn">Your preferences <span class="pull-right"><i class="la la-bars"></i></span>	
-</div>
-<aside class="aside-wrap">
-	<div id='sidebar-menu'>
-		<div class="title">Your Preferences <span class="pull-right"><i class="la la-users-cog"></i></span>	
-		</div>
-		<ul>
-			<li class=""><a [routerLink]="['/profile']">Basic info</a>
-			</li>
-			 <li><a routerLinkActive='active' [routerLink]="['/notifications']">Notifications</a>
-			</li>
-			<li class=""><a routerLinkActive='active' [routerLink]="['/security']">Security</a>
-			</li>
-			<hr>
-			 <li class="active"><a class="" href='#'>Account</a>
-			</li> 
-			<li><a routerLinkActive='active' [routerLink]="['/goals']">Goals</a>
-			</li>
-			<li><a routerLinkActive='active' [routerLink]="['/gamification-rules']">Gamification Rules</a>
-			</li>
-			 <li class="active"><a class="" href='#'>Badges</a>
-			</li>
-			<li class="active"><a routerLinkActive='active' [routerLink]="['/core-value']">Core Values</a>
-			</li> 
-			<li class="active"  *ngIf="user.role_type==3"><a routerLinkActive='active' [routerLink]="['/core-values']">Core Values</a>
-			</li> 
-			<li *ngIf="user.role_type==3"><a routerLinkActive='active' [routerLink]="['/users-teams']">Users & Teams</a>
-			</li>
-		</ul>
-	</div>
-</aside> -->
-
-
 <div class="das_col page-sidebar expandit">
     <div class="sidebar-inner" id="main-menu-wrapper">
       <div class="dash_logo_warp"> 
@@ -38,14 +5,14 @@
         </div>        
       <ul class="wraplist" style="height: auto;">
         <li>
-        	<!-- <a href="">
+        	<a routerLinkActive='active' [routerLink]="['/dashboard']">
                 <span class="sidebar-icon"><i class="las la-home"></i>
-                </span> <span class="menu-title">Dashboard</span>
-            </a> -->
+                </span> <span class="menu-title">Home</span>
+            </a>
         </li>
           <li><a routerLinkActive='active' [routerLink]="['/profile']">
                 <span class="sidebar-icon"><i class="las la-info-circle"></i>
-                </span> <span class="menu-title">Basic info</span>
+                </span> <span class="menu-title">Basic Info</span> 
             </a></li>
        <!--  <li><a href="" class="active">
             <span class="sidebar-icon"><i class="las la-bell"></i>
@@ -58,11 +25,11 @@
             </a>
         </li> -->
           <hr>
-         <!--  <li><a href="">
+          <li><a routerLinkActive='active' [routerLink]="['/user', user.user_id]">
             <span class="sidebar-icon"><i class="lar la-user"></i>
             </span> <span class="menu-title">Account</span>
             </a>
-        </li> -->
+        </li>
         <li><a routerLinkActive='active' [routerLink]="['/goals']">
             <span class="sidebar-icon"><i class="las la-bullseye"></i>
             </span> <span class="menu-title">Goals</span>
@@ -83,37 +50,38 @@
             </span> <span class="menu-title">Give Recognition</span>
             </a>
         </li>
-          <li><a routerLinkActive='active' [routerLink]="['/users-teams']">
+          <li *ngIf="user.role_type==3"><a routerLinkActive='active' [routerLink]="['/users-teams']">
             <span class="sidebar-icon"><i class="las la-users"></i>
             </span> <span class="menu-title">Users & Teams</span>
             </a>
         </li>
-          <li><a routerLinkActive='active' [routerLink]="['/gamification-rules']">
+          <li *ngIf="user.role_type==3"><a routerLinkActive='active' [routerLink]="['/core-value-toppers']">
             <span class="sidebar-icon"><i class="las la-puzzle-piece"></i>
-            </span> <span class="menu-title">Gamification Rules</span>
+            </span> <span class="menu-title">Core Value Toppers</span>
             </a>
         </li>
-         <!--  <li><a href="">
+           <li><a routerLinkActive='active' [routerLink]="['/appraisal-cycle']">
             <span class="sidebar-icon"><i class="las la-id-card-alt"></i>
             </span> <span class="menu-title">Appraisal Cycle</span>
             </a>
         </li>
           <hr>
-          <li><a href="">
-            <span class="sidebar-icon"><i class="las la-cog"></i>
-            </span> <span class="menu-title"> Settings</span>
+         <li><a routerLinkActive='active' [routerLink]="['/badges']">
+            <span class="sidebar-icon"><i class="fa fa-shield"></i>
+</span> <span class="menu-title">Badges</span>
             </a>
         </li>
+        <!-- 
           <li><a href="">
             <span class="sidebar-icon"><i class="las la-life-ring"></i>
             </span> <span class="menu-title"> Support</span>
             </a>
         </li> -->
-          <!-- <li><a href="">
+          <li><a >
             <span class="sidebar-icon"><i class="las la-running"></i>
-            </span> <span class="menu-title"> Logout</span>
+            </span> <span class="menu-title" (click)="userService.logout()"> Logout</span>
             </a>
-        </li> -->
+        </li>
       </ul>
     </div>
   </div>

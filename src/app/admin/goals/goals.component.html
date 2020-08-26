@@ -1,10 +1,10 @@
-    <app-sidebar></app-sidebar>
-    <div class="das_col main-content" id="main-content">
+<app-sidebar></app-sidebar> 
+    <div class="das_col main-content" id="main-content" *ngIf="user; else loadingData"> 
       <section class="wrapper main-wrapper">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<section class="goals_warp">
+					<section class="goals_warp"> 
 						<div class="row">
 		                  <div class="col-md-12">
 		                    <div class="title"><i class="las la-bullseye"></i>  Goals</div>
@@ -31,7 +31,7 @@
 											<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> <i class="la la-plus" aria-hidden="true"></i> TARGET</a>
 											<div class="dropdown-menu"> <a class="dropdown-item" [routerLink]="['/target']">New Target</a>
 												<div *ngIf="allTargetList">
-												<a class="dropdown-item" *ngFor='let target of allTargetList; let i = index' (click)="getTargetDetails($event)" id="{{ target.id }}">{{target.kpi_name}}</a>
+												<a class="dropdown-item" *ngFor='let target of allTargetList; let i = index' >{{target.kpi_name}}</a>
 												</div>
 												
 											</div>
@@ -44,21 +44,47 @@
 											</div>
 										</li> -->
 									</ul>
+                                    
+<!-- ===========Right Side Dropdown ===========-->
+                                    <ul  class="navbar-nav float-right">
+                                    <!-- <li class="nav-item dropdown">
+											<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> <i class="la la-plus" aria-hidden="true"></i> MORE</a>
+											<div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Rename </a>
+												<a class="dropdown-item" href="#">Share</a>
+											</div>
+										</li> -->
+                                        <li class="nav-item dropdown">
+											<a class="nav-link" href="#" data-toggle="modal" data-target="#filter_model">
+                                                <i class="la la-filter"></i>FILTER
+                                            </a>
+											
+										</li>
+                                    </ul>
 								</nav>
 							</div>
 						</div>
 						<!--=============================MAIN DASHBOARD=============================-->
-						<div class="box-1" id="dashboard-page" *ngIf="userskpiList">
+
+						<div class="title title_kpi">
+
+							<h3 *ngIf="filterUser; else loginUser">KPI : {{filterUser}}</h3>
+							<ng-template #loginUser>
+							  <h3>My KPI</h3>
+						    </ng-template>
+							
+						</div>
+						<div class="" id="dashboard-page" *ngIf="userskpiList; else emptyKpiList">							
 							<div class="dashboard-tiles">
 
                               <ng-container >
 								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-danger" *ngFor='let kpi of userskpiList; let i = index'>
 									<div class="tile-header">
-										<div class="dropdown">
+										<div class="dropdown" *ngIf='user.role_type == 2 || user.role_type == 3'>
 											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 											</a>
-											<div class="dropdown-menu"> <a class="dropdown-item" href="#">Edit KPI</a>
-												<a class="dropdown-item" href="#">Set Target for this KPI</a>
+											<div class="dropdown-menu"> <a class="dropdown-item" [routerLink]="['/edit-kpi', kpi.kpi_id]">Edit KPI</a>
+												<!-- <a class="dropdown-item" (click)="targetForThisKpi($event)" id="{{ kpi.kpi_id }}">Set Target for this KPI</a> -->
 												<a class="dropdown-item" (click)="inActiveKpi($event)" id="{{ kpi.kpi_id }}">Remove KPI</a>
 
 											</div>
@@ -68,14 +94,34 @@
 									</div>
 									<div class="tile-body">
 										<div class="kpi-points ">{{kpi.total}}</div>
-										<div class="kpi-change kpi-label-default level_up"><span>100%</span>
+
+                                      <ng-container *ngIf="kpi.currentWeek_total > kpi.lastWeek_total; else kpiDown">
+										<div class="kpi-change kpi-label-default level_up" ><span>{{kpi.lastWeek_total * 100 / kpi.currentWeek_total}}%</span>
                                         <Span><i class="las la-long-arrow-alt-up"></i></Span> 
 										</div>
+									</ng-container>
+									<ng-template #kpiDown>
+									    <div class="kpi-change kpi-label-default level_down"> 
+									    	<span *ngIf="kpi.currentWeek_total >0">{{kpi.lastWeek_total * 100 / kpi.currentWeek_total}}%
+									    	</span> 
+									    	<span *ngIf="kpi.currentWeek_total ==0">100%
+									    	</span> 
+									    	<span>
+									    		<i class="las la-long-arrow-alt-down"></i>
+									    	</span>
+									    </div>
+									</ng-template>
+
 									</div>
 									<div class="tile-footer">
-										<a class="tile-filter configure"> <span class="tile-filter-element">{{kpi.from_date}}</span>
-											<span> &nbsp;&nbsp; To &nbsp;&nbsp;</span>  
-											<span class="tile-filter-element">{{kpi.to_date}}</span>
+										<a class="tile-filter configure"> 
+											
+											<span class="tile-filter-element" *ngIf="kpi.kpi_period == 1">Daily</span>
+											<span class="tile-filter-element" *ngIf="kpi.kpi_period == 2">Weekly</span>
+											<span class="tile-filter-element" *ngIf="kpi.kpi_period == 3">Monthly</span>
+											<span class="tile-filter-element" *ngIf="kpi.kpi_period == 4">Quarterly</span>
+											<span class="tile-filter-element" *ngIf="kpi.kpi_period == 5">Half Yearly</span>
+											<span class="tile-filter-element" *ngIf="kpi.kpi_period == 6">Yearly</span>
 										</a>
 									</div>
 								</div>
@@ -84,11 +130,11 @@
                                <ng-container *ngIf="targetList">
 								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-primary" *ngFor='let target of targetList; let i = index'>
 									<div class="tile-header">
-										<div class="dropdown">
+										<div class="dropdown" *ngIf='user.role_type == 2 || user.role_type == 3'>
 											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 											</a>
 											<div class="dropdown-menu"> 
-												<a class="dropdown-item" [routerLink]="['/edit-target', target.target_id]">Edit Target</a>
+												<!-- <a class="dropdown-item" [routerLink]="['/edit-target', target.target_id]">Edit Target</a> -->
 												
 												<a class="dropdown-item" (click)="inActiveTarget($event)" id="{{ target.target_id }}">Remove Target</a>
 
@@ -116,7 +162,127 @@
 				                        </div>
 
 				                           </div>                         
-				                        <div class="kpi-change kpi-label-default">{{(target.total*100)/target.users_target}}%</div>
+				                        <div class="kpi-change kpi-label-default">{{(target.total*100)/target.users_target | number: '1.0-0'}}%</div>
+				                        <span class="tile-filter-element" >{{target.users_target - target.total}} Needed</span>
+				                      </div>
+
+				                     
+				                      <!-- target_period  1=>daily,2=>weekly,3=>monthly,4=>quarterly,5=>halfyearly,6=>yearly -->
+									<div class="tile-footer" >
+										<a class="tile-filter configure"> 
+											<span class="tile-filter-element" *ngIf="target.target_period == 1">Daily</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 2">Weekly</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 3">Monthly</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 4">Quarterly</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 5">Half Yearly</span>
+											<span class="tile-filter-element" *ngIf="target.target_period == 6">Yearly</span>
+											
+											
+										</a>
+									</div>
+								</div>
+                               </ng-container>
+
+							</div>
+						</div>
+                        <ng-template #emptyKpiList>
+							  <h1>KPIs are not yet assigned.</h1>
+						</ng-template>
+                       <div *ngIf='user.role_type == 2 || user.role_type == 3'>
+						<div class="title title_kpi">							
+							<h3>Team's KPI</h3>
+						</div>
+
+						<div class="" id="dashboard-page" *ngIf="teamskpiList">							
+							<div class="dashboard-tiles">
+
+                              <ng-container >
+								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-danger" *ngFor='let kpi of teamskpiList; let i = index'>
+									<div class="tile-header">
+										<!-- <div class="dropdown">
+											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+											</a>
+											<div class="dropdown-menu"> <a class="dropdown-item" [routerLink]="['/edit-kpi', kpi.kpi_id]">Edit KPI</a>
+												<a class="dropdown-item" href="#">Set Target for this KPI</a>
+												<a class="dropdown-item" (click)="inActiveKpi($event)" id="{{ kpi.kpi_id }}">Remove KPI</a>
+
+											</div>
+										</div> -->
+										<div class="tile-name">{{kpi.kpi_name}}</div>
+										<div class="tile-type">KPI</div>
+									</div>
+									<div class="tile-body">
+										<div class="kpi-points ">{{kpi.total}}</div>
+
+									<ng-container *ngIf="kpi.currentWeek_total > kpi.lastWeek_total; else teamkpiDown">
+										<div class="kpi-change kpi-label-default level_up" ><span>{{kpi.lastWeek_total * 100 / kpi.currentWeek_total}}%</span>
+                                        <Span><i class="las la-long-arrow-alt-up"></i></Span> 
+										</div>
+									</ng-container>
+									<ng-template #teamkpiDown>
+									    <div class="kpi-change kpi-label-default level_down"> 
+									    	<span *ngIf="kpi.currentWeek_total >0">{{kpi.lastWeek_total * 100 / kpi.currentWeek_total}}%
+									    	</span> 
+									    	<span *ngIf="kpi.currentWeek_total ==0">100%
+									    	</span> 
+									    	<span>
+									    		<i class="las la-long-arrow-alt-down"></i>
+									    	</span>
+									    </div>
+									</ng-template>
+
+										
+									</div>
+									<div class="tile-footer">
+										<a class="tile-filter configure"> 
+										
+											<span class="tile-filter-element" *ngIf="kpi.kpi_period == 1">Daily</span>
+											<span class="tile-filter-element" *ngIf="kpi.kpi_period == 2">Weekly</span>
+											<span class="tile-filter-element" *ngIf="kpi.kpi_period == 3">Monthly</span>
+											<span class="tile-filter-element" *ngIf="kpi.kpi_period == 4">Quarterly</span>
+											<span class="tile-filter-element" *ngIf="kpi.kpi_period == 5">Half Yearly</span>
+											<span class="tile-filter-element" *ngIf="kpi.kpi_period == 6">Yearly</span>
+										</a>
+									</div>
+								</div>
+                               </ng-container>
+
+                               <ng-container *ngIf="teamsTargetList">
+								<div class="kpi tile kpi-neutral dashboard-item bg-gradient-primary" *ngFor='let target of teamsTargetList; let i = index'>
+									<div class="tile-header">
+										<!-- <div class="dropdown">
+											<a class="btn " data-toggle="dropdown"> <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+											</a>
+											<div class="dropdown-menu"> 
+												<a class="dropdown-item" [routerLink]="['/edit-target', target.target_id]">Edit Target</a>
+												
+												<a class="dropdown-item" (click)="inActiveTarget($event)" id="{{ target.target_id }}">Remove Target</a>
+
+											</div>
+										</div> -->
+										<div class="tile-name">{{target.kpi_name}}</div>
+										<div class="tile-type">Target</div>
+									</div>
+                                    
+                                    <!-- this body for target assign to perticular user  -->
+									<div class="tile-body" *ngIf="target.users_target > 0">
+				                        <div class="kpi-points ">{{target.total}}/{{target.users_target}}
+				                        </div>
+				                          <div class="progress">
+
+				                        <div *ngIf="(target.total*100)/target.users_target <=50" class="point_minus_30" [ngStyle]="{'width': (target.total*100)/target.users_target+'%'}" >	
+				                        </div>
+
+				                        <div *ngIf="(target.total*100)/target.users_target > 50 && (target.total*100)/target.users_target <= 80 " class="point_minus_10" [ngStyle]="{'width': (target.total*100)/target.users_target+'%'}" >
+				                        	
+				                        </div>
+
+				                         <div *ngIf="(target.total*100)/target.users_target > 80" class="point_plus_30" [ngStyle]="{'width': (target.total*100)/target.users_target+'%'}" >
+				                        	
+				                        </div>
+
+				                           </div>                         
+				                        <div class="kpi-change kpi-label-default">{{(target.total*100)/target.users_target | number: '1.0-0'}}%</div>
 				                        <span class="tile-filter-element">{{target.users_target - target.total}} Needed</span>
 				                      </div>
 
@@ -139,17 +305,17 @@
 
 							</div>
 						</div>
-
+                       </div>
 
 						<!--     MODAL CENTER POPUP=====================   -->
-						<div class="modal" id="kpiModal">
+						<div class="modal" id="kpiModal" data-backdrop="static">
 							<div class="modal-dialog model_private">
 								<form #form2="ngForm" ngNativeValidate (submit)="assignKpi(form2)">
 									<div class="modal-content">
 										<!-- Modal Header -->
 										<div class="modal_header">
 											<h4 class="modal-title">Configure</h4>
-											<button type="button" class="close" data-dismiss="modal"> <i class="la la-times-circle fa-lg"></i>
+											<button type="button" class="close" data-dismiss="modal" (click)="resetAssignKpi()"> <i class="la la-times-circle fa-lg"></i>
 											</button>
 										</div>
 										<!-- Modal body -->
@@ -202,11 +368,20 @@
 													<div class="form-group form-inline">
 														<label class="form-control-label" for="First name">Period</label>
 														
-														<select style="width: 74%;" class="custom-select" #period="ngModel" name="period" [(ngModel)]="selectedPeriod">
+														<!-- <select style="width: 74%;" class="custom-select" #period="ngModel" name="period" [(ngModel)]="selectedPeriod">
 															<option value="">Select Period</option>
-															<option *ngFor="let item of periodList | keyvalue : unsorted" value="{{item.value}}">{{item.key}}</option>
-															
-														</select>
+															<option *ngFor="let item of periodList | keyvalue: originalOrder" value="{{item.value}}">{{item.key}}</option>
+														</select> -->
+
+														<select style="width: 74%;" name="period" #period="ngModel" [(ngModel)]="selectedPeriod" class="custom-select">
+								                          <option value="">Select Period</option>
+								                          <option value="1">Daily</option>
+								                          <option value="2">Weekly</option>
+								                          <option value="3">Monthly</option>
+								                          <option value="4">Quarterly</option>
+								                          <option value="5">Half Yearly</option>
+								                          <option value="6">Yearly</option>
+								                        </select>
 													</div>
 												</div>
 											</div>
@@ -228,11 +403,78 @@
 						</form>
 					</div>
 				</div>
-
+<!--     MODAL POPUP FOR KPI MENU=====================   -->
+                <div class="modal" id="filter_model" data-backdrop="static">
+				<div class="modal-dialog model_private">
+					<div class="modal-content">
+						<!-- Modal Header -->
+						<div class="modal_header">
+							<h4 class="modal-title">KPI Filter</h4>
+							<button type="button" class="close" data-dismiss="modal"> <i class="la la-times-circle fa-lg"></i>
+							</button>
+						</div>
+						<!-- Modal body -->
+						<form #formfilter="ngForm" ngNativeValidate (submit)="kpiFilter(formfilter)">
+						<div class="modal_content">
+							<div class="user-edit-form quick_editor">
+								<div class="form-warp">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group form-control-wrap">
+												
+													<label class="form-control-label" for="First name">Users</label>
+													<!-- <select name="points" class="custom-select">
+														<option selected="">Select a team</option>
+														<option value="">Saxon HR team</option>
+													</select> -->
+													<select class="custom-select" #userId="ngModel" name="userId" [ngModel]="selectedUser">
+															<option value="">Select User</option>
+															<option *ngFor="let user of usersInfo" value="{{user.id}}">{{user.display_name | titlecase}}</option>
+															
+														</select>
+														<!-- <select class="custom-select" #period="ngModel" name="period" [(ngModel)]="selectedPeriod">
+															<option value="">Select Period</option>
+															<option *ngFor="let item of periodList | keyvalue : unsorted" value="{{item.value}}">{{item.key}}</option>
+															
+														</select> -->
+												
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal footer -->
+						<div class="modal_footer">
+							<div class="row">
+								<div class="col-md-12">
+									<input value="Apply" class="cmn_btn pull-right" type="submit">
+								</div>
+							</div>
+						</div>
+                       </form>
+					</div>
+				</div>
+			</div>
 			</section>
 		</div>
 	</div>
 </div>
 </section>
 </div>
+<ng-template #loadingData>
+
+    <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+    </section>
+
+</ng-template>
+
+<section id="onSubmitLoading" class="looding-wrap" style="display: none;">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+</section>
 <notifier-container></notifier-container>

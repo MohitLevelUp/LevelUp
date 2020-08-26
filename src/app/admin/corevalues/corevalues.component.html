@@ -1,13 +1,9 @@
- <div class="main-wrap">
-	<!--===================== SETTING =====================-->
-	<section class="setting_wrap">
-		<app-setting-bar></app-setting-bar>
+<app-sidebar></app-sidebar>
+<div class="das_col main-content" id="main-content">
+  <section class="wrapper main-wrapper"> 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-3 marg-bo-30">
-					<app-sidebar></app-sidebar>
-				</div>
-				<div class="col-md-9">
+				<div class="col-md-12">
 					<div class="title">Core Values</div>
 					<div class="box-0">
 						<div class="user_teams_table_wrap points_table_wrap core_value_warp">
@@ -29,9 +25,9 @@
 												</td>                                                
 												<td>
 													<span class="file">
-														<input type="file"   (change)="handleFileSelect($event)">
+														<input type="file" id="file"   (change)="handleFileSelect($event)">
 
-														<input type="hidden" #coreValueIcon="ngModel" name="coreValueIcon" [(ngModel)]="base64textString" />
+														<input type="hidden" #coreValueIcon="ngModel" name="coreValueIcon" [(ngModel)]="base64textString"  />
 														<label for="file">Upload core values icon</label>
 													</span>
 												</td>
@@ -81,6 +77,6 @@
 		</div>
 	</section>
 </div>
-
+<notifier-container></notifier-container>
 
 

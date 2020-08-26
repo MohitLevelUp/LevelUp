@@ -12,8 +12,11 @@
 						</ul>
 						<!-- Tab panes -->
 						<div class="tab-content">
+							<!-- <ng-container *ngFor="let userInfo of usersInfo; index as i">
+								<img style="width: 35px;height: 35px;border-radius: 50%;" src="{{ iconUrl }}profile_images/{{ userInfo['profile_image_name'] }}"><p>{{userInfo.display_name}}</p>
+							</ng-container> -->
 							<!--      USERS TAB SECTION==================================-->
-							<div id="users" class="tab-pane active" >
+							<div id="users" class="tab-pane active">
 								<div class="creat_user_btn_wrap">
 									<button type="button" class="creat_user_btn" data-toggle="modal" data-target="#myModal2">Create User</button>
 								</div>
@@ -91,7 +94,7 @@
 								<div class="teams_tab">
 									<div class="team_search_wrap">
 										<div class="creat_user_btn_wrap">
-											<button type="button" class="creat_user_btn" data-toggle="modal" data-target="#for_team">Create team</button>
+											<button type="button" class="creat_user_btn" data-toggle="modal" data-target="#for_team">Create Team</button>
 										</div>
 									</div>
 									<div class="box-0">
@@ -143,7 +146,7 @@
 		<!--     MODAL RIGHT SIDEBAR FOR USERS=====================   -->
 		<div class="Right_Sidebar_Modal">
 			<!-- Modal -->
-			<div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+			<div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal_header">
@@ -155,7 +158,7 @@
 						<div id="modal_info">
 							<div class="modal_content">
 								<h3>Create new users.</h3>
-								<p>Add a new user to your Level Up account with an email address.</p>
+								<p>Add a new user to your LevelUp account with an email address.</p>
 								<div class="user-edit-form">
 									<div class="form-warp">
 										<div class="row">
@@ -164,25 +167,25 @@
 												<div class="col-md-4">
 													<div class="form-group form-control-wrap">
 														<label class="form-control-label" for="First name">First Name</label>
-														<input type="text" #firstName="ngModel" name="firstName" [(ngModel)]="form2.firstName" class="form-control">
+														<input type="text" #firstName="ngModel" name="firstName" [ngModel]="userListmodel.firstName" class="form-control">
 													</div>
 											    </div>
 											    <div class="col-md-4">
 													<div class="form-group form-control-wrap">
 														<label class="form-control-label" for="First name">Middle Name</label>
-														<input type="text" class="form-control" #middleName="ngModel" name="middleName" [(ngModel)]="form2.middleName">
+														<input type="text" class="form-control" #middleName="ngModel" name="middleName" [ngModel]="userListmodel.middleName" ng-init="userListmodel.middleName=' '">
 													</div>
 											    </div>
 											    <div class="col-md-4">
 													<div class="form-group form-control-wrap">
 														<label class="form-control-label" for="First name">Last Name</label>
-														<input type="text" class="form-control" #lastName="ngModel" name="lastName" [(ngModel)]="form2.lastName">
+														<input type="text" class="form-control" #lastName="ngModel" name="lastName" [ngModel]="userListmodel.lastName">
 													</div>
 											    </div>
 											</div>
 												<div class="form-group form-control-wrap">
 													<label class="form-control-label" for="pwd">Email</label>
-													<input type="email" class="form-control" id="email" #email="ngModel" name="email" [(ngModel)]="form2.email">
+													<input type="email" class="form-control" id="email" #email="ngModel" name="email" [(ngModel)]="userListmodel.email">
 												</div>
 												<div class="form-group form-control-wrap">
 													<label class="form-control-label" for="First name">Company</label>
@@ -204,7 +207,7 @@
 												</div>
 												<div class="form-group form-control-wrap">
 														<label class="form-control-label" for="First name">Extension</label>
-														<input type="text" class="form-control" #extension="ngModel" name="extension" [(ngModel)]="form2.extension">
+														<input type="text" class="form-control" #extension="ngModel" name="extension" [(ngModel)]="userListmodel.extension">
 													</div>
 											</div>
 										</div>
@@ -250,7 +253,7 @@
 
 
 			<!--     MODAL RIGHT POPUP=====================   -->
-			<div class="modal" id="addToTeam">
+			<div class="modal" id="addToTeam" data-backdrop="static">
 				<div class="modal-dialog model_private">
 					<div class="modal-content">
 						<!-- Modal Header -->
@@ -307,7 +310,7 @@
 		<!--     MODAL RIGHT SIDEBAR  FOR TEAM=====================   -->
 		<div class="Right_Sidebar_Modal">
 			<!-- Modal -->
-			<div class="modal right fade" id="for_team" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+			<div class="modal right fade" id="for_team" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						
@@ -333,7 +336,7 @@
 												</div>
 												<div class="form-group form-control-wrap">
 													<label class="form-control-label" for="First name">Team Name</label>
-													<input type="text" #teamName="ngModel" name="teamName" [(ngModel)]="form.teamName" class="form-control" id="" placeholder="Name..">
+													<input type="text" #teamName="ngModel" name="teamName" [(ngModel)]="userListmodel.teamName" class="form-control" id="" placeholder="Name..">
 												</div>
 												<div class="form-group form-control-wrap">
 													<label class="form-control-label" for="First name">Assign team members</label>
@@ -347,6 +350,11 @@
 													>
 													</ng-multiselect-dropdown>
 													
+												</div>
+
+												<div class="form-group form-control-wrap">
+													<label class="form-control-label" for="First name">Team Location</label>
+													<input type="text" #location="ngModel" name="location" [(ngModel)]="userListmodel.location" class="form-control" placeholder="Location">
 												</div>
 											</div>
 										</div>
@@ -369,12 +377,12 @@
 			</div>
 
 			<!--     MODAL RIGHT POPUP=====================   -->
-			<div class="modal right fade" id="edit_team" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+			<div class="modal right fade" id="edit_team" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 
 						<div class="modal_header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <i class="la la-times-circle fa-lg"></i>
+							<button type="button" class="close" (click)="resetTeam()" data-dismiss="modal" aria-label="Close"> <i class="la la-times-circle fa-lg"></i>
 							</button>
 							<h4 class="modal-title" id="myModalLabel2">Edit Team</h4>
 						</div>
@@ -411,6 +419,10 @@
 													>
 													</ng-multiselect-dropdown>
 													
+												</div>
+												<div class="form-group form-control-wrap">
+													<label class="form-control-label" for="First name">Team Location</label>
+													<input type="text"  *ngIf="singleteamInfo;" #location="ngModel" name="location" [(ngModel)]="singleteamInfo[0]['location']" class="form-control" placeholder="Location">
 												</div>
 											</div>
 										</div>

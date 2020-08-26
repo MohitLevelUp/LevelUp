@@ -1,0 +1,82 @@
+<div class="main-wrap" *ngIf="teamInfo">
+	<ng-container *ngFor='let team of teamInfo; let i = index'>
+	<section class="team_info_warp team_banner_bg {{team.slug}} team_banner " >
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="row" >
+						<div class="col-md-4">
+							<div class="team_logo">
+								<img class="img-fluid" src="{{ iconUrl }}team_icon/{{ team.teamLogo }}">
+							</div> 
+						</div>
+						<div class="col-md-8">
+							<div class="team_name_per">
+								<h1>{{team.teamName}}</h1>                      
+							</div>
+<!--
+                   <div class="team_winner_Year">
+                     <span class="team_trophy"> <img class="img-fluid" src="images/trophy-ore.png"> </span> <span class="team_trophy_year">2018</span>
+                     </div>   
+                 -->
+                 <div class="team_caption caption_name">
+                 	<div><span>Captain</span> : <span>{{team.managerName}}</span></div>
+                 </div>
+             </div>
+         </div>
+
+     </div>
+ </div>
+</div>
+</section>
+</ng-container>
+<section class="team_player_info" *ngIf="userList; else loadingImg">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="auto-grid">
+
+
+					<li class="flex-grid-item" *ngFor='let users of userList; let i = index'>
+						<a href="javascript:void(0);" class="">
+							<div class="leaderCard">
+								<div class="leaderBackdrop card_grd {{users.slug}} card_bg_grd">
+									<!-- <div class="trophy_wrap">
+										<div class="leader_trophy orange"></div>
+									</div> -->
+									<div class="imageContainer"> 
+										<img class="img-fluid" src="{{ iconUrl }}profile_images/{{ users['profile_image_name'] }}">
+									</div>
+									<div class="leaderStat">
+										<div class="stat-content">
+											<h1>{{users.display_name | titlecase}}</h1> 
+											<div class="stat-container"> 
+												<span class="perform_digits">
+													<ul>
+														<li><span>{{users.total_submissions}}</span> <span>Submissions</span></li>
+														<li><span>{{users.total_joining}}</span> <span>Joinings</span></li>
+													</ul>
+												</span> 
+												<span class="statLabel">View Profile</span> 
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</li> 
+
+				</ul>
+			</div> 
+		</div>
+	</div>
+</section>
+<ng-template #loadingImg>
+  <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+   </section>
+</ng-template>
+</div>
+

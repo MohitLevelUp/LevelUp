@@ -1,11 +1,10 @@
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { IUser } from 'src/app/_models/user';
 import { environment } from '../../environments/environment';
 import { Observable, throwError, pipe } from 'rxjs';
 import { retry, catchError, tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService  }  from '@auth0/angular-jwt';
 
 
@@ -20,11 +19,12 @@ export class UserService {
    // decodedToken   = this.helper.decodeToken(this.authToken);
   	
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router,
+    private route: ActivatedRoute,) { }
 
   signIn(data: any) {
 
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/signin/' , JSON.stringify(data), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/user/signin/' , JSON.stringify(data), {
       // headers: new HttpHeaders({
       //   'Content-Type': 'application/json',
       //   'Access-Control-Allow-Origin': '*',
@@ -45,7 +45,7 @@ export class UserService {
 // sign Up
   signUp(data: any) {
 
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/signUp/' , JSON.stringify(data), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/user/signUp/' , JSON.stringify(data), {
 
     })
       .pipe(
@@ -58,7 +58,16 @@ export class UserService {
 
   // GET user through id
   getUser(userID:any): Observable<IUser> {
-    return this.http.get<IUser>(this.baseUrl + 'levelup/api/v1/user/' + userID)
+    return this.http.get<IUser>(this.baseUrl + 'api/v1/user/' + userID)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+  // GET user by team id
+  teamsUserList(teamId:any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'api/v1/user/teamsUserList/' + teamId)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -69,7 +78,7 @@ export class UserService {
 
   // GET user List
   userList(): Observable<IUser> {
-    return this.http.get<IUser>(this.baseUrl + 'levelup/api/v1/user/')
+    return this.http.get<IUser>(this.baseUrl + 'api/v1/user/')
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -82,12 +91,12 @@ export class UserService {
   // update user detials
   updateUser(data:any): Observable<IUser> {
 
-      return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/updateProfile/', JSON.stringify(data), {
+      return this.http.post<any>(this.baseUrl + 'api/v1/user/updateProfile/', JSON.stringify(data), {
 
     })
       .pipe(
-      tap(data => console.log('authToken' + JSON.stringify(data))),
-     // tap(),// 
+      // tap(data => console.log('authToken' + JSON.stringify(data))),
+      tap(),// 
 
         catchError(this.errorHandl));
   }
@@ -106,7 +115,7 @@ export class UserService {
     };
 
 
-      return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/updateUserImage/', JSON.stringify(userImageData), {
+      return this.http.post<any>(this.baseUrl + 'api/v1/user/updateUserImage/', JSON.stringify(userImageData), {
 
     })
       .pipe(
@@ -119,7 +128,7 @@ export class UserService {
   
   forgotPassword(data: any) {
 
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/forgotPassword/' , JSON.stringify(data), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/user/forgotPassword/' , JSON.stringify(data), {
 
     })
       .pipe(
@@ -136,7 +145,7 @@ resetPassword(userId: any, hash:any) {
       hash: hash,
     };
 
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/resetPassword/' , JSON.stringify(data), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/user/resetPassword/' , JSON.stringify(data), {
 
     })
       .pipe(
@@ -149,7 +158,7 @@ resetPassword(userId: any, hash:any) {
 // update password
 updatePassword(data: any) {
 
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/saveUpdatePassword/' , JSON.stringify(data), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/user/saveUpdatePassword/' , JSON.stringify(data), {
 
     })
       .pipe(
@@ -161,7 +170,7 @@ updatePassword(data: any) {
 // get all comapny list
   
   companyList(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/user/getCompanyList')
+    return this.http.get<any>(this.baseUrl + 'api/v1/user/getCompanyList')
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -170,12 +179,15 @@ updatePassword(data: any) {
 
   //create new user
   createUser(data: any) {
+  
 
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/createUser/' , JSON.stringify(data), {
+
+  return this.http.post<any>(this.baseUrl + 'api/v1/user/createUser/' , JSON.stringify(data), {
 
     })
       .pipe(
-      tap(),// 
+      // tap(),// 
+       tap(data => console.log('authToken' + JSON.stringify(data))),
 
         catchError(this.errorHandl));
 }
@@ -183,7 +195,7 @@ updatePassword(data: any) {
  //select team to user
  addUserToTeam(data: any) {
   
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/addToTeam/' , JSON.stringify(data), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/user/addToTeam/' , JSON.stringify(data), {
 
     })
       .pipe(
@@ -200,7 +212,7 @@ updatePassword(data: any) {
  var data = {
       userId: user_Id,
     };
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/inactiveUser/' , JSON.stringify(data), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/user/inactiveUser/' , JSON.stringify(data), {
 
     })
       .pipe(
@@ -215,7 +227,8 @@ updatePassword(data: any) {
  var data = {
       userId: user_Id,
     };
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/makeAdmin/' , JSON.stringify(data), {
+   
+  return this.http.post<any>(this.baseUrl + 'api/v1/user/makeAdmin/' , JSON.stringify(data), {
 
     })
       .pipe(
@@ -232,7 +245,7 @@ updatePassword(data: any) {
  var data = {
       userId: user_Id,
     };
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/user/removeAdmin/' , JSON.stringify(data), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/user/removeAdmin/' , JSON.stringify(data), {
 
     })
       .pipe(
@@ -258,15 +271,17 @@ updatePassword(data: any) {
   }
 
   logout() {
+    // localStorage.clear();
     localStorage.removeItem('authToken');
-    this.router.navigate(['/'])
-    //localStorage.clear();
+    localStorage.removeItem('user');
+    this.router.navigate(['/'],{relativeTo:this.route});
+    
   }
 
   //add team
 
   addTeam(data: any) {
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/team/' , JSON.stringify(data), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/team/' , JSON.stringify(data), {
 
     })
       .pipe(
@@ -279,7 +294,7 @@ updatePassword(data: any) {
 
  //update Team detials
   updateTeam(data: any) {
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/team/updateTeam' , JSON.stringify(data), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/team/updateTeam' , JSON.stringify(data), {
 
     })
       .pipe(
@@ -295,7 +310,7 @@ updatePassword(data: any) {
         team_id: data,
         
       };
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/team/deleteTeam' , JSON.stringify(team_id), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/team/deleteTeam' , JSON.stringify(team_id), {
 
     })
       .pipe(
@@ -309,7 +324,7 @@ updatePassword(data: any) {
 
   // GET team List
   teamList(): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/team/')
+    return this.http.get<any>(this.baseUrl + 'api/v1/team/')
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -319,11 +334,32 @@ updatePassword(data: any) {
   //get single team details
   
    getTeamDetails(teamId: any): Observable<any> {
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/team/' + teamId)
+    return this.http.get<any>(this.baseUrl + 'api/v1/team/' + teamId)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
     )
+  }
+
+   //get teams all users
+   getTeamMembers(teamId: any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'api/v1/team/getTeamMembers/' + teamId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+
+// contact us
+ contactUs(data: any) {
+  return this.http.post<any>(this.baseUrl + 'api/v1/user/contactUs/' , JSON.stringify(data), { 
+    })
+      .pipe(
+      tap(data => console.log('authToken' + JSON.stringify(data.data.token))),
+     // tap(),// 
+
+        catchError(this.errorHandl));
   }
 
   

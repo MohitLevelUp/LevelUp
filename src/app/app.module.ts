@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser'; 
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,6 +8,12 @@ import { DataTablesModule } from 'angular-datatables';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CookieService } from 'ngx-cookie-service';
 import { NotifierModule } from "angular-notifier";
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { OrderModule } from 'ngx-order-pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
+// import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
+
 
 
 
@@ -18,7 +24,6 @@ import { CoreValueComponent } from './core-value/core-value.component';
 import { NavComponent } from './nav/nav.component';
 import { UserComponent } from './user/user.component';
 import { SidebarComponent } from './widgets/sidebar/sidebar.component';
-import { SettingBarComponent } from './widgets/setting-bar/setting-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { NotificationsComponent } from './notifications/notifications.component';
@@ -37,6 +42,43 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardNavComponent } from './nav/dashboard-nav.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { TeamsComponent } from './teams/teams.component';
+import { EditGamificationRulesComponent } from './admin/gamification-rules/edit-gamification-rules.component';
+import { TeamDetailsComponent } from './teams/team-details.component';
+import { LiveDashboardComponent } from './live-dashboard/live-dashboard.component';
+import { NotFoundComponent } from './widgets/not-found/not-found.component';
+import { StartsComponent } from './widgets/starts/starts.component';
+import { StatsSidebarComponent } from './widgets/stats-sidebar/stats-sidebar.component';
+import { MostJobOrdersComponent } from './widgets/most-job-orders/most-job-orders.component';
+import { MostInterviewsComponent } from './widgets/most-interviews/most-interviews.component';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
+import { FaqsComponent } from './faqs/faqs.component';
+import { StrikeRateComponent } from './widgets/strike-rate/strike-rate.component';
+import { StartsClientInterviewsComponent } from './widgets/starts-client-interviews/starts-client-interviews.component';
+import { LastMonthStartsComponent } from './widgets/last-month-starts/last-month-starts.component';
+import { MostSubmissionsComponent } from './widgets/most-submissions/most-submissions.component';
+import { AppraisalCycleComponent } from './admin/appraisal-cycle/appraisal-cycle.component';
+import { AppraisalListComponent } from './admin/appraisal-cycle/appraisal-list/appraisal-list.component';
+import { EditAppraisalComponent } from './admin/appraisal-cycle/edit-appraisal/edit-appraisal.component';
+import { ToppersComponent } from './core-value/toppers/toppers.component';
+import { BadgesComponent } from './badges/badges.component';
+import { AddBadgesComponent } from './badges/add-badges.component';
+import { HighFiveComponent } from './high-five/high-five.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+
+
+export const DateFormats = {
+  parse: {
+                dateInput: ['YYYY-MM-DD']
+            },
+            display: {
+                dateInput: 'YYYY-MM-DD',
+                monthYearLabel: 'MMM YYYY',
+                dateA11yLabel: 'LL',
+                monthYearA11yLabel: 'MMMM YYYY',
+            },
+};
 
 @NgModule({
   declarations: [
@@ -45,7 +87,6 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     NavComponent,
     UserComponent,
     SidebarComponent,
-    SettingBarComponent,
     FooterComponent,
     HomeComponent,
     NotificationsComponent,
@@ -63,17 +104,57 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     DashboardNavComponent,
-    SignUpComponent
+    SignUpComponent,
+    TeamsComponent,
+    EditGamificationRulesComponent,
+    TeamDetailsComponent,
+    LiveDashboardComponent,
+    NotFoundComponent,
+    StartsComponent,
+    StatsSidebarComponent,
+    MostJobOrdersComponent,
+    MostInterviewsComponent,
+    FaqsComponent,
+    StrikeRateComponent,
+    StartsClientInterviewsComponent,
+    LastMonthStartsComponent,
+    MostSubmissionsComponent,
+    AppraisalCycleComponent,
+    AppraisalListComponent,
+    EditAppraisalComponent,
+    ToppersComponent,
+    BadgesComponent,
+    AddBadgesComponent,
+    HighFiveComponent,
+    DashboardComponent,
+    ContactUsComponent,
+
   ],
   imports: [
     BrowserModule,
+    OrderModule,
     AppRoutingModule,
     HttpModule,
     HttpClientModule,
     FormsModule,
     CustomFormsModule,
     DataTablesModule,
+
+    // JwSocialButtonsModule,
     NgMultiSelectDropDownModule.forRoot(),
+    NgCircleProgressModule.forRoot({
+      "radius": 60,
+      "space": -6,
+      "animateTitle": false,
+      "animationDuration": 1000,
+      "showUnits": false,
+      "showBackground": false,
+      "clockwise": true,
+      "startFromZero": false,
+      "outerStrokeLinecap": "square",
+      'showSubtitle': true,
+      "subtitle": "%",
+    }),
     NotifierModule.withConfig({
        // Custom options in here
        position: {
@@ -112,8 +193,15 @@ import { SignUpComponent } from './sign-up/sign-up.component';
          
         }
     }),
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  providers: [CookieService],
+
+  providers: [CookieService,
+             { provide: MAT_DATE_FORMATS, useValue: DateFormats }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

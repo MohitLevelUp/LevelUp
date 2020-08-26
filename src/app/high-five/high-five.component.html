@@ -1,0 +1,123 @@
+    <section class="high_five_warp">
+
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-md-6">
+
+					<h1 *ngIf="this.userName; else titleLine">{{ this.userName }}, yeah you did it!</h1>
+					<ng-template #titleLine>
+                      <h1>Yeah you did it!</h1>
+                    </ng-template>
+
+					<h3>'your charm is working.</h3>
+
+					<p>Maybe you had a new start, made a great submission, knocked off your daily goals, or managed to put on pants today. Whatever it was, you deserve this high five.</p>  
+					<p><strong>Important! </strong>This is a virtual high five. Don't use all your force at the screen.</p>     
+
+					<div class="high_five_form">
+
+						<h4>Spread the joy, send a virtual high five!</h4>
+
+						<p>Add their name to customize the greeting. Click to copy the URL, then send it!</p>
+
+						
+
+						<div class="form-inline">
+
+							<input type="hidden" class="unique" size="9" value="http://mylevelup.io/#/high-five?name=" readonly/>
+							<input type="text" placeholder="Recipient's name" class="form-control unique" size="18" value="">
+							<button id="copybtn" class="high_fiv_btn copy_url"> Copy URL </button>
+                            
+						</div>
+
+						<div class="high_five_icon" *ngIf="userProfile">
+							<form class="form-inline" #form="ngForm" ngNativeValidate (submit)="sendHighFive(form)"> 
+								<div class="form-group high_select d-flex">
+									<select #sendTo="ngModel" name="sendTo" [(ngModel)]="selectedsendTo" class="form-control" title="please select user" required>
+										<option value="">Send To</option>
+										<option value="10000001">Saxon Crew</option>
+										<ng-container *ngFor='let user of usersInfo; let i = index'>
+											<option value="{{user.id}}" *ngIf="user.id != userProfile.user_id">{{user.display_name | titlecase}}
+											</option>
+										</ng-container>
+									</select>
+									<button type="submit" name="send" class="high_fiv_btn">Send</button>
+								</div>	
+							</form>
+
+							<!-- <ul>
+
+								<li class="facebook"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+
+								<li class="twitter"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+
+								<li class="linkedin"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+
+								<li class="envelope-o"><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>   
+
+							</ul>
+
+							<p>Send via:</p> -->
+
+						</div>
+
+						
+
+					</div>
+
+				</div>
+
+				<div class="col-md-6">
+
+					
+
+					<div id="animation-container">
+
+						<div class="animation">
+
+							<img class="bg" src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/765087/animation-1-bg.svg'>
+
+							<img class="confetti" src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/765087/animation-1-confetti.svg'>
+
+							<img class="high-five" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/765087/animation-1-high-five.svg">
+
+							<img class="knee-left" src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/765087/animation-1-knee-left.svg'>
+
+							<img class="knee-right" src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/765087/animation-1-knee-right.svg'>
+
+							<div class="count_number" *ngIf="this.highFiveTotal">
+					          <span>{{ this.highFiveTotal }}</span>          
+					          <p>high fives</p>
+					        </div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+<!--
+
+    <div class="col-md-6">
+
+    <div class="high_five_img_warp">
+
+    <img class="img-fluid rounded-circle" src="images/high-five/high-five.gif">
+
+    <img class="img-fluid rounded-circle" src="images/high-five/highfive.gif">
+
+    </div>
+
+    </div>
+
+-->
+
+</div> 
+
+</div> 
+
+</section>
+
+<notifier-container></notifier-container>

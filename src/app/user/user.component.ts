@@ -13,13 +13,19 @@ import { NotifierService } from "angular-notifier";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  iconUrl   = environment.uploadUrl;
+
+  iconUrl        = environment.uploadUrl;
+  userDetails    = JSON.parse(localStorage.getItem('user'));
+  userID         = this.userDetails['user_id'];
+  selectedSpeciality = '';
+
   private readonly notifier: NotifierService;
+  getUserId    = +this.route.snapshot.paramMap.get('id');
 
   user: any;
   successMessage: any;
   errorMessage: any;
-  userInfo: IUser[];
+  userInfo: any;
   private base64textString:String="";
 
   constructor(private http: Http, private userService: UserService, 
@@ -82,12 +88,19 @@ export class UserComponent implements OnInit {
 
     }
 
-  userProfile(userId){
+  userProfile(userId:any){
+    
     this.userService.getUser(userId).subscribe(
       resp => {
-        this.user = resp;
-          this.userInfo = this.user['data'];
-          
+        this.user     = resp;
+        this.userInfo = this.user['data']; 
+       
+        this.selectedSpeciality = this.userInfo['speciality'];
+
+        if(Number(userId) == Number(this.userID)){
+           localStorage.setItem('user', JSON.stringify(this.userInfo)); //set updated data into session
+        }
+        
       },
       
       error => this.errorMessage = <any>error
@@ -95,24 +108,27 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    let userId = +this.route.snapshot.paramMap.get('id');
+    
      //get user details
-     this.userProfile(userId);
+     this.userProfile(this.getUserId);
     
   }
 
   updateUser(form: NgForm) {
-    
-    
+    $("#onSubmitLoading").css({"display": "block"});
     this.userService.updateUser(form.value).subscribe(
       res => {
+        
         if(res['status_code'] == 200){
+            $("#onSubmitLoading").css({"display": "none"});
+            this.userProfile(this.getUserId);
             this.successMessage = res['message'];
                this.notifier.show({
                   type: "success",
                   message: this.successMessage,
                });
         }else{
+              $("#onSubmitLoading").css({"display": "none"});
                this.errorMessage = res['message'];
                this.notifier.show({
                   type: "error",

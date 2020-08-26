@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://saxonlabs.com/levelup/",
+    "target": "https://saxonlabs.com/levelup_v2/",
     "secure": false,
     "pathRewrite": {
       "^/api": ""

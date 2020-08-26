@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/_services/user.service';
 import { NotifierService } from "angular-notifier";
+import { Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -9,18 +10,25 @@ import { NotifierService } from "angular-notifier";
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
+  forgotPassmodel: any = {};
+  
+  userDetails    = JSON.parse(localStorage.getItem('user'));
   private readonly notifier: NotifierService;
 
   successMessage: any;
 
   errorMessage: any;
 
-  constructor(private userService: UserService,notifierService: NotifierService) {
+  constructor(private userService: UserService,private router: Router,
+    notifierService: NotifierService) {
     this.notifier = notifierService;
    }
 
 
   ngOnInit() {
+    if(this.userDetails != null){
+     this.router.navigate(['/']);
+    }
   }
 
   forgotPassword(form: NgForm) {

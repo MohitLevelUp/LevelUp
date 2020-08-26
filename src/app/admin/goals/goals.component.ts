@@ -4,16 +4,20 @@ import { KpiService } from 'src/app/_services/kpi.service';
 import { TargetService } from 'src/app/_services/target.service';
 import { UserService } from 'src/app/_services/user.service';
 import { NotifierService } from "angular-notifier";
+import { ActivatedRoute, Router } from '@angular/router';
+import { KeyValue } from '@angular/common';
 
-declare var $: any;
+declare var $: any; 
 @Component({
   selector: 'app-goals',
   templateUrl: './goals.component.html',
   styleUrls: ['./goals.component.css']
 })
-export class GoalsComponent implements OnInit {
+export class GoalsComponent implements OnInit { 
 
-  user = JSON.parse(localStorage.getItem('user'));
+  user   = JSON.parse(localStorage.getItem('user')); 
+  teamId = this.user['team_id'] ;
+
 
   private readonly notifier: NotifierService;
 
@@ -22,10 +26,13 @@ export class GoalsComponent implements OnInit {
   }
 
   selectedPeriod='';
+  selectedUser = '';
   
   kpiList:any;
   userskpiList:any;
   singlekpiInfo:any;
+  teamskpiList:any;
+  teamsTargetList:any;
 
   successMessage: any;
   errorMessage: any;
@@ -36,6 +43,8 @@ export class GoalsComponent implements OnInit {
 
   targetList:any;
   allTargetList:any;
+
+  filterUser:any;
 
   //for drop down
   dropdownList  = [];
@@ -49,27 +58,33 @@ export class GoalsComponent implements OnInit {
   selectedKpiList: Array<{ id: number, name: any }> = [];
 
   constructor(private targetService: TargetService, private kpiService: KpiService, 
-    private userService: UserService,notifierService: NotifierService) {
+    private userService: UserService,notifierService: NotifierService,
+    private router: Router,private route: ActivatedRoute) {
      this.notifier = notifierService;
     }
-  unsorted() { }//this is for period view in order
-
+    
+  // unsorted() { }//this is for period view in order
+  originalOrder = (a: KeyValue<number,string>, b: KeyValue<number,string>): number => {
+  return 0;
+}
   
   //assign a kpi
 
-  assignKpi(form2: NgForm) {
-
+  assignKpi(form2: NgForm) { 
+    $("#onSubmitLoading").css({"display": "block"});
     this.kpiService.assignKpi(form2.value).subscribe(
       (resp) => {
 
          $("#kpiModal").modal('hide');
          if(resp.status_code == '200'){
+             $("#onSubmitLoading").css({"display": "none"});
              this.successMessage = resp.message;
              this.notifier.show({
                 type: "success",
                 message: this.successMessage,
              });
           }else{
+             $("#onSubmitLoading").css({"display": "none"});
              this.errorMessage = resp.message;
              this.notifier.show({
                 type: "error",
@@ -83,7 +98,50 @@ export class GoalsComponent implements OnInit {
       }
 
     );
+    this.selectedKpis  = [];
+    this.selectedUsers = [];
+    this.selectedTeams = [];
     form2.resetForm();
+  }
+
+// reset assign kpi form
+  resetAssignKpi(){
+    this.selectedUsers = [];
+    this.selectedTeams = [];
+    this.selectedKpis  = [];
+  }
+
+  //kpi filter
+
+  kpiFilter(formfilter: NgForm) {
+    var user_id = formfilter.value.userId;
+
+    // call user info function
+    this.getUserDetails(user_id);
+   
+   // call assigned kpi function
+    this.assignedKpiList(user_id);
+
+    // call users target list function
+
+    this.usersTargetList(user_id);
+
+    // hide popup model
+    $("#filter_model").modal('hide');
+
+
+    
+  }
+
+// get user profile
+  getUserDetails(user_id:any){
+    this.userService.getUser(user_id).subscribe(
+      res => {
+        this.filterUser = res['data'].display_name;
+      },
+      
+      error => this.errorMessage = <any>error
+    );
   }
 
   //get kpi details by id
@@ -91,7 +149,8 @@ export class GoalsComponent implements OnInit {
      var target = event.target || event.srcElement || event.currentTarget;
      var idAttr = target.attributes.id;
      var kpiId  = idAttr.nodeValue;
-     
+
+     this.selectedKpiList = [];
     //get single kpi details
     this.kpiService.getKpiDetails(kpiId).subscribe(
       resp => {
@@ -104,6 +163,8 @@ export class GoalsComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
  }
+
+
 
  //inactive kpi by id
  inActiveKpi(event){
@@ -121,7 +182,8 @@ export class GoalsComponent implements OnInit {
             message: this.successMessage,
           });
            // getting all kpi's list
-           this.getkpiList();
+           var user_id ='';
+           this.assignedKpiList(user_id);
         }else{
              this.errorMessage = resp.message;
              this.notifier.show({
@@ -135,13 +197,22 @@ export class GoalsComponent implements OnInit {
     );
  }
 
-  usersKpiList(){
-    //get user's kpi list
-    this.kpiService.getUsersKpiList().subscribe(
+  //user kpi list
+  assignedKpiList(user_id:any){
+    //get assigned kpi list
+
+    this.kpiService.getAssignedKpiList(user_id).subscribe(
       resp => {
-        this.userskpiList = resp['data'];
+        if(resp.status_code == 200){
+          this.userskpiList = resp['data'];
+          console.log('kpi',this.userskpiList);
+          
+        }else{
+          this.userskpiList = '';
+        }
+
         
-        
+ 
       },
       
       error => this.errorMessage = <any>error
@@ -149,11 +220,13 @@ export class GoalsComponent implements OnInit {
   }
 
 
-  getkpiList(){
-    //get all kpi list
-    this.kpiService.getKpiList().subscribe(
+
+  createdkpiList(){
+    //get admin/manager created kpi list
+    this.kpiService.createdKpiList().subscribe(
       resp => {
         this.kpiList = resp['data'];
+
       },
       
       error => this.errorMessage = <any>error
@@ -163,11 +236,24 @@ export class GoalsComponent implements OnInit {
 
   // Target functions start
 
-  usersTargetList(){
+  usersTargetList(user_id:any){
     //get user's target list
-    this.targetService.getUsersTargetList().subscribe(
+    $("#onSubmitLoading").css({"display": "block"});
+
+    this.targetService.getUsersTargetList(user_id).subscribe(
       resp => {
-        this.targetList = resp['data']; 
+        if(resp['status_code'] == 200){
+
+          $("#onSubmitLoading").css({"display": "none"});  
+
+          this.targetList = resp['data'];
+
+        }else{
+           $("#onSubmitLoading").css({"display": "none"}); 
+
+           this.targetList = '';
+
+          }
         
       },
       
@@ -175,50 +261,96 @@ export class GoalsComponent implements OnInit {
     );
   }
 
- //edit target by id
- // editTarget(event){
- //     var target = event.target || event.srcElement || event.currentTarget;
- //     var idAttr = target.attributes.id;
- //     var kpiId  = idAttr.nodeValue;
 
- //    this.kpiService.inActiveKpi(kpiId).subscribe(
- //      resp => {
- //         if(resp['status_code'] == 200){
- //           // getting all kpi's list
- //           this.getkpiList();
- //        }
+ //inactive target by id
 
- //      },
- //      error => this.errorMessage = <any>error
- //    );
- // }
+   inActiveTarget(event){
+     var target = event.target || event.srcElement || event.currentTarget;
+     var idAttr = target.attributes.id;
+     var targetId  = idAttr.nodeValue;
+
+
+    this.targetService.inActiveTarget(targetId).subscribe(
+      resp => {
+         if(resp['status_code'] == 200){
+         this.successMessage = resp.message;
+          this.notifier.show({
+            type: "success",
+            message: this.successMessage,
+          });
+           // getting all target's list
+           var user_id ='';
+            this.usersTargetList(user_id);
+
+        }else{
+             this.errorMessage = resp.message;
+             this.notifier.show({
+                type: "error",
+                message: this.errorMessage,
+             });
+          }
+
+      },
+      error => this.errorMessage = <any>error
+    );
+ }
 
 
 
   ngOnInit() {
 
+    var user_id = '';
     // getting all kpi's list
-    this.getkpiList();
+    this.createdkpiList();
     
     //getting user's kpi list
-    this.usersKpiList();
+    this.assignedKpiList(user_id);
 
     //getting user's target list
-    this.usersTargetList();
+    this.usersTargetList(user_id);
 
 
     //get all target list
-    this.targetService.getTargetList().subscribe(
+    this.targetService.getManagerCreatedTarget().subscribe(
       resp => {
-        this.allTargetList = resp['data'];
+
+        if(resp['status_code'] == 200){
+          this.allTargetList = resp['data'];
+        }else{
+          this.allTargetList = '';
+        }
+        
         
       },
       
       error => this.errorMessage = <any>error
     );
+     
+    // get team's kpi
+    var team_id = this.user['team_id'];
+    if(team_id != ''){
+      this.kpiService.getTeamKpiList(team_id).subscribe(
+      resp => {
+        this.teamskpiList = resp['data'];
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+    }
 
+    // get team's target list
+    
+    if(team_id != ''){
+      this.targetService.getTeamTargetList(team_id).subscribe(
+      resp => {
+        this.teamsTargetList = resp['data'];
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+    }
 
-  	//for drop down
+    //for drop down
     this.allKpiListSettings = {
       singleSelection: false,
       idField: 'id',
@@ -229,7 +361,7 @@ export class GoalsComponent implements OnInit {
       allowSearchFilter: true
     };
 
-  	//for drop down
+    //for drop down
     this.allTeamListSettings = {
       singleSelection: false,
       idField: 'id',
@@ -252,22 +384,21 @@ export class GoalsComponent implements OnInit {
     };
 
    
-  	//get all user's details
-    this.userService.userList().subscribe(
+    //get all user's details of team
+
+    this.userService.teamsUserList(this.teamId).subscribe(
       resp => {
         this.usersInfo = resp['data']; 
-       // console.log('user',this.usersInfo);
 
       },
       
       error => this.errorMessage = <any>error
     );
 
-  	 //get all team's details
-    this.userService.teamList().subscribe(
+     //get all team's details
+    this.userService.getTeamDetails(this.teamId).subscribe(
       resp => {
-        this.teamInfo = resp['data']; 
-        //console.log(this.teamInfo);
+         this.teamInfo = resp['data']; 
       },
       
       error => this.errorMessage = <any>error
@@ -277,10 +408,9 @@ export class GoalsComponent implements OnInit {
     
 
     //get all period list
-  	this.kpiService.getPeriodList().subscribe(
+    this.kpiService.getPeriodList().subscribe(
       resp => {
         this.periodList = resp['data'];
-        //console.log('pr', this.periodList);
       },
       
       error => this.errorMessage = <any>error
@@ -290,10 +420,10 @@ export class GoalsComponent implements OnInit {
 
 
  onItemSelect(item: any) {
-    console.log(item);
+    // console.log(item);
   }
   onSelectAll(items: any) {
-    console.log(items);
+    // console.log(items);
   }
 
 }

@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiUrl: 'https://saxonlabs.com/',
+  production: false, 
+  apiUrl: 'https://saxonlabs.com/levelup/',
   uploadUrl: 'https://saxonlabs.com/levelup/uploads/'
 };
 

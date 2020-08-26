@@ -1,11 +1,13 @@
 <app-sidebar></app-sidebar>
  <div class="das_col main-content" id="main-content">
-	    <section class="wrapper main-wrapper recognition_warp">
+	    <section class="wrapper main-wrapper recognition_warp"> 
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="title"><i _ngcontent-jrn-c5="" class="las la-puzzle-piece"></i> Gamification Rules</div>
 						<form #form="ngForm" ngNativeValidate (submit)="addKpi(form)">
+							<input type="hidden" name="userID"  #userID="ngModel" [ngModel]="userProfile.user_id"> 
+
 						<div class="box-0">
                             <div class="row">
                             <div class="col-md-12">
@@ -14,20 +16,20 @@
                                  
                                    <div class="formula_type_radio">
                                     <label class="check_box">
-                                    	<input type="radio"  #formula="ngModel" name="formula" [(ngModel)]="form.formula" [value]="1"  id="cb1">
+                                    	<input type="radio"  #formula="ngModel" name="formula" [(ngModel)]="gRulemodel.formula" [value]="1"  id="cb1">
                                         <span class="checkmark"></span>
 									    <span>Sum (e.g., "records created" or "revenue generated")</span>
                                     </label>
                                        
                                     <label class="check_box">
-                                    <input type="radio"  #formula="ngModel" name="formula" [(ngModel)]="form.formula" [value]="2"  id="cb2">
+                                    <input type="radio"  #formula="ngModel" name="formula" [(ngModel)]="gRulemodel.formula" [value]="2"  id="cb2">
 								    
                                         <span class="checkmark"></span>
 									    <span>Average (e.g., "average deal size" or "average number of employees")</span>
                                     </label>
                                        
                                     <label class="check_box">
-                                    <input type="radio"  #formula="ngModel" name="formula" [(ngModel)]="form.formula" [value]="3" id="cb3">
+                                    <input type="radio"  #formula="ngModel" name="formula" [(ngModel)]="gRulemodel.formula" [value]="3" id="cb3">
                                         <span class="checkmark"></span>
 									    <span>Rate/Ratio (e.g., "potentials created vs. leads created" or "win rate")</span>
                                     </label>
@@ -56,29 +58,33 @@
 												<td style="width: 300px;">
                                                     
 													<div class="private_points_wrap">
-														<input type="text" class="private-form__control" #kpiName="ngModel" name="kpiName" [(ngModel)]="form.kpiName">
+														<input type="text" class="private-form__control" #kpiName="ngModel" name="kpiName" [(ngModel)]="gRulemodel.kpiName">
 													</div>
 
 												</td> 
 
 												<td>
 													
-														<select class="custom-select" #behavior="ngModel" name="behavior" [(ngModel)]="form.behavior">
-															<!-- <option value="1">Calls</option> -->
-															<option value="2">Submissions</option>
-															<option value="3">Job Posting</option>
-															<option value="4">Interviews</option>
-															<option value="5">Start</option>
+														<select class="custom-select" #behavior="ngModel" name="behavior" [ngModel]="selectedBehavior" id="kpi_behavior">
+															<option value="">Select Behavior</option>
+
+															<ng-container *ngFor='let behavior of behaviorsList; let i = index'>
+																<option  value="{{behavior.id}}">{{behavior.name}}</option>
+															</ng-container>
+
+															<option value="-1">Custom</option>
 															
 														</select>
 													
 												</td>                                               
 												<td>
 													
-														<select class="custom-select" #kpiPoint="ngModel" name="kpiPoint" [(ngModel)]="form.kpiPoint">
-															<option value="2">2</option>
-															<option value="5">5</option>
-															<option value="10">10</option>
+														<select class="custom-select" #kpiPoint="ngModel" name="kpiPoint" [ngModel]="selectedPoint" id="kpi_point">
+															<option value="">Select Point</option>
+															<ng-container *ngFor='let pointVal of pointList; let i = index'>
+															 <option value="{{pointVal.point}}">{{pointVal.point}}</option>
+														    </ng-container>
+															<!-- <option value="-1">Custom</option> -->
 														</select>
 													
 												</td>
@@ -114,3 +120,60 @@
 			</div>
 		</section>
 	</div>
+
+
+<!-- behavior modal start -->
+
+ <!-- Modal -->
+  <div class="modal fade" id="behaviorModal" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      	<div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+      	<form #form_b="ngForm" ngNativeValidate (submit)="addBehavior(form_b)">
+	        <div class="modal-body">
+	          <span>Behavior Name</span>
+	          <input type="text" class="private-form__control" #custom_behavior="ngModel" name="custom_behavior" [(ngModel)]="gRulemodel.custom_behavior">
+	        </div>
+	        <div class="modal-footer">
+	        	<input value="Add Behavior" class="add_metric_btn" autocomplete="false" type="submit">
+	          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+	        </div>
+       </form>
+      </div>
+      
+    </div>
+  </div>
+  <!-- behavior modal end -->
+
+  <!-- point modal start -->
+
+ <!-- Modal -->
+  <div class="modal fade" id="pointModal" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      	<div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+      	<form #form_p="ngForm" ngNativeValidate (submit)="addNewPoint(form_p)">
+	        <div class="modal-body">
+	          <span>Point</span>
+	          <input type="text" class="private-form__control" #custom_point="ngModel" name="custom_point" [(ngModel)]="gRulemodel.custom_point">
+	        </div>
+	        <div class="modal-footer">
+	        	<input value="Add Point" class="add_metric_btn" autocomplete="false" type="submit">
+	        </div>
+       </form>
+      </div>
+      
+    </div>
+  </div>
+  <!-- point modal end -->
+
+
+  <notifier-container></notifier-container>

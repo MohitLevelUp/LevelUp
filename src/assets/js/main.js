@@ -9,14 +9,14 @@
           $('.logo-area').addClass('logo-icon');
           $('.main-content').addClass('sidebar_shift');
           $('.menu-title').css("display", "none");
-  } else {
-    $('.page-sidebar').addClass('expandit');
-    $('.page-sidebar').removeClass('collapseit');
-    $('.profile-info').removeClass('short-profile');
-      $('.logo-area').removeClass('logo-icon');
-      $('.main-content').removeClass('sidebar_shift');
-      $('.menu-title').css("display", "inline-block");
-  }
+      } else {
+        $('.page-sidebar').addClass('expandit');
+        $('.page-sidebar').removeClass('collapseit');
+        $('.profile-info').removeClass('short-profile');
+          $('.logo-area').removeClass('logo-icon');
+          $('.main-content').removeClass('sidebar_shift');
+          $('.menu-title').css("display", "inline-block");
+      }
 // });
 
 });
@@ -204,85 +204,326 @@ $(function () {
 
 //VIDEO PLAY////////////////////////////////////
 
-$(document).ready(function(){
-	// $(document).on('click', '.ameer', function() { 
-   	
- //   	var id    = $(this).closest('.video_card').find('.play-button').attr('rel');
- //   	var videoSrc    = $(this).closest('.video_card').find('.buttons').attr('link');
- //   	 $('.video_modal').attr('id',id);
- //   	 // $('.video_modal source').attr('src','./assets/video/annual-party-2018.mp4');
- //   	$('#' + id).modal('show');
- //   	$('video').trigger('play');
+$(document).on('click', '.ameer', function() { 
+	
+   	var id          = $(this).closest('.video_card').find('.play-button').attr('rel');
+   	var videoSrc    = $(this).closest('.video_card').find('.buttons').attr('link');
 
- //   });
-   $(document).on('click', '#video_stop', function() { 
-	$('video').trigger('pause');
-	});
-
-   $(document).on('click', '.quick_result_top_team', function() { 
-	$(".team_high_light").toggleClass("opacity_1");
-	});
+   	$('.video_modal').attr('id',id);
+   	$('.video_modal iframe').attr('src','https://www.youtube.com/embed/'+videoSrc + '?autoplay=1');
+   	$('#' + id).modal('show');
+   	$('.video_modal iframe').trigger('play');
 
 });
 
+$(document).on('click', '#video_stop', function() { 
+	$('.video_modal iframe').attr('src','');
+});
 
-// 	// pass the YouTube video ID into the iframe template on click/tap
-// 	$('a.video-thumb').click(function () {
-		
-// 		// Grab the video ID from the element clicked
-// 		var id = $(this).attr('data-youtube-id');
+// for trophy click
 
-	
-// 		var autoplay = '?autoplay=1';
-		
-// 		// Don't show the 'Related Videos' when the video ends
-// 		var related_no = '&rel=0';
-		
-// 		// String the ID and param variables together
-// 		var src = '//www.youtube.com/embed/'+id+autoplay+related_no;
-		
-// 		$("#youtube").attr('src', src);
-// 		return false;
-	
-// 	});
+$(document).on('click', '.quick_result_top_team', function() { 
+  $(".team_high_light").toggleClass("opacity_1");
+  });
 
 
-// 	/* Modal View
-// 	-------------------------------------------------------------------------------*/
-// 	function toggle_video_modal() {
-	    
-// 	    // Open the Video Modal
-// 	    $(".js-trigger-modal").on("click", function(event){
-// 	        event.preventDefault();
-// 	        $("body").addClass("show-video-modal");
-// 	    });
-
-// 	    // Close and Reset the Video Modal
-// 	    $('body').on('click', '.close-video-modal, .video-modal .overlay', function(event) {
-// 	        event.preventDefault();
-	        
-// 	        $("body").removeClass("show-video-modal");
-			
-	
-// 			$("#youtube").attr('src', '');
-// 	    });
-// 	}
-// 	toggle_video_modal();
+// for live dashboard
+$(document).on('click', '.cog_btn', function() { 
+    $('#night_slid').toggleClass("night_slid_wrap");
+});
 
     
-    
-// $(".close-video-modal").click(function(){
-//   $("#myVid")[0].pause();
-// });
-   
-    
-// $(".js-trigger-modal").click(function(){
-//   $("#myVid")[0].play();
-// });
-   
+$(document).on('click', '.toggle_btn', function() {         
+    $('#livedashboards_body').toggleClass("body_bg");
+    $('.dashboarditem').toggleClass("dashboarditem-2");
+}); 
     
 
+//BREAKING NEWS SLIDER START/////////////////////////////
+$(document).on('click', '#cross', function() {
+	$("#hed").hide(500);
+});
+
+
+// add custom behaviour
+$(document).on('change', '#kpi_behavior', function(){ 
+    var id = $(this).val();
+    if(id == -1){
+      $('#behaviorModal').modal('show');
+    }
+});
+
+
+// add custom point
+$(document).on('change', '#kpi_point', function(){ 
+    var id = $(this).val();
+    if(id == -1){
+      $('#pointModal').modal('show');
+    }
+});
+
+
+// starts page
+
+ $(document).on('click', '#filter_by_salce', function(){ 
+    $('.salce_filter').toggleClass('drop-down--active');
+  });
+ $(document).on('click', '#filter_by_player', function(){
+    $('.player_filter').toggleClass('drop-down--active');
+  });
+ $(document).on('click', '#filter_by_team', function(){ 
+    $('.team__filter').toggleClass('drop-down--active');
+  });
+        
 
 
 
 
+
+// faqs page start //
+$(document).ready(function() {
+var inputId   = 'filter-search';
+var itemsData   = 'filter-value';
+var displaySet = false;
+var displayArr = [];
+
+function getDisplayType(element) {
+  var elementStyle = element.currentStyle || window.getComputedStyle(element, "");
+  return elementStyle.display;
+}
+
+document.getElementById('filter-search').onkeyup = function() {
+  var searchVal = this.value.toLowerCase();
+  
+var filterItems = document.querySelectorAll('[' + itemsData + ']');
+
+  for(var i = 0; i < filterItems.length; i++) {
+    if (!displaySet) {
+      displayArr.push(getDisplayType(filterItems[i]));
+    }
+
+    filterItems[i].style.display = 'none';
+
+    if(filterItems[i].getAttribute('filter-value').indexOf(searchVal) >= 0) {
+      filterItems[i].style.display = displayArr[i];    
+    }
+  }
+  
+  displaySet = true;
+}
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+});
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
+
+// faqs page end //
+
+
+// appraisal cycle
+
+$(document).on('click', function(event) {
+    if (!$(event.target).closest('.dropdown-select').length) {
+     $('.option-list, .search-box').hide();
+    }
+});
+
+$(document).on('click', '.select', function(event) {
+  
+    //$('.option-list, .search-box').hide();
+    $(this).closest('.dropdown-select').find('.option-list, .search-box').toggle(); 
+    $('.option-list a').click(function(){
+      var select = $(this).text();
+      $(this).closest('.dropdown-select').children('.select').text(select);
+      $('.option-list, .search-box').hide();
+    });
+  });
+  //Search
+  $('.seach-control').keyup(function(){
+   var val = $(this).val().toLowerCase();
+   var list =  $(this).closest('.dropdown-select').find('li')
+    list.each(function()
+     {
+       var text = $(this).text().toLowerCase();
+       if(text.indexOf(val)==-1)
+         {
+           $(this).hide();
+         }
+       else
+         {
+             $(this).show();
+         }
+         
+     })
+  });
+
+
+// password confirmation validation
+
+$(document).on('click', '.reset_password', function(e) {
+   var validation = true;
+
+   //name validation
+   var password  = $('#Password').val();
+   var cpassword = $('#cPassword').val();
+
+   if(password != cpassword){
+    validation = false;
+    $('.cpassword_error').empty().append('Password does not match.');
+
+    }else{
+      $('.cpassword_error').empty();
+    }
+
+
+    if(validation == false){
+      e.preventDefault();
+    }
+        
+});
+
+
+$(document).on('click', '.copy_url', function() { 
+            var unique = document.querySelectorAll('.unique');
+            var msg ="";
+
+            unique.forEach(function (unique) {
+                msg+=unique.value;
+            });
+
+            var temp =document.createElement("textarea");
+            var tempMsg = document.createTextNode(msg);
+            temp.appendChild(tempMsg);
+
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            document.body.removeChild(temp);
+            
+});
+
+
+//Right Side Bar=================================================
+
+$(document).on('click', '.noti_open', function() { 
+        $('.noti_sidebar').removeClass("side_sm");                       
+        $('.noti_sidebar').addClass("sidebar_open"); 
+});
+
+$(document).on('click', '.noti_close', function() {
+        $('.noti_sidebar').removeClass("sidebar_open");                       
+        $('.noti_sidebar').addClass("side_sm");
+});
+
+
+
+//MESSAGE VIEW============= for notification page
+
+
+
+
+    // $(document).on('click', '.message__list', function(){                             
+    //     $('body').addClass("show-message");                      
+    //     $('body').addClass("show-main-overlay");                      
+                               
+    // });
+    // $(document).on('click', '.checkmark', function(){                             
+    //     $('body').removeClass("show-message");                      
+    //     $('body').removeClass("show-main-overlay");                      
+                               
+    // });
+    
+    //  $(document).on('click','.cta', function(){                             
+    //     $('body').toggleClass("for-nano-left"); 
+    // });
+
+
+
+
+//For Active Class=========================
+
+$(document).on('click', 'ul.message__list li', function(){
+    $('li').removeClass("active");
+    $(this).addClass("active");
+});
+
+
+$(document).on('click', 'ul.wraplist li a', function(){
+    $('li a').removeClass("active");
+    $(this).addClass("active");
+});
+
+
+
+
+
+$(document).ready(function(){
+
+  var cols = {},
+
+    messageIsOpen = false;
+
+  cols.showOverlay = function() {
+    $('body').addClass('show-main-overlay');
+  };
+  cols.hideOverlay = function() {
+    $('body').removeClass('show-main-overlay');
+  };
+
+
+  cols.showMessage = function() {
+    $('body').addClass('show-message');
+    messageIsOpen = true;
+  };
+  cols.hideMessage = function() {
+    $('body').removeClass('show-message');
+    $('#main .message__list li').removeClass('active');
+    messageIsOpen = false;
+  };
+
+
+
+
+  // Show sidebar when trigger is clicked
+
+  $('.trigger-toggle-sidebar').on('click', function() {
+    cols.showSidebar();
+    cols.showOverlay();
+  });
+
+
+  $('.trigger-message-close').on('click', function() {
+    cols.hideMessage();
+    cols.hideOverlay();
+  });
+
+
+  // When you click the overlay, close everything
+
+  $('#main-nano-wrapper > .overlay').on('click', function() {
+    cols.hideOverlay();
+    cols.hideMessage();
+    cols.hideSidebar();
+  });
+
+  });

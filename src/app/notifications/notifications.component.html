@@ -1,60 +1,134 @@
-<div class="main-wrap">
-	<!--===================== SETTING =====================-->
-	<section class="setting_wrap">
-		<app-setting-bar></app-setting-bar>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-3 marg-bo-30">
-					<app-sidebar></app-sidebar>
-				</div>
-				<div class="col-md-6">
-					<div class="title">Notifications</div>
-					<div class="box-1">
-						<div class="user-edit-form">
-							<div class="form-warp">
-								<div class="row">
-									<div class="col-md-12">
-										<h3>Global notifications</h3>
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="notifi_toggle_wrap">
-											<form class="form-inline" action="/action_page.php">
-												<label class="inline_label" for="email">Email:</label>
-												<div class="toggle-button-cover">
-													<div class="button-cover">
-														<div class="button b2" id="button-10">
-															<input type="checkbox" class="checkbox">
-															<div class="knobs"> <span>YES</span>
-															</div>
-															<div class="layer"></div>
-														</div>
-													</div>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group form-control-wrap">
-											<label class="form-control-label" for="Username">Update notifications email</label>
-											<input type="text" class="form-control" id="user-name" placeholder="Email">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<button class="cmn_btn pull-right">Update</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</div>
+<app-sidebar></app-sidebar>
+  <div class="das_col" id="main-content">
+    <main id="main-nano-wrapper" class="nano has-scrollbar">
+      <div class="overlay"></div>
+     <!--  <div class="page-topbar">
+        <div class="container-fluid">
+          <div class="quick-area">
+            <div class="d-flex justify-content-between">
+              <div class="flex_col">
+                <div id="menu_icon" class="block">
+                  <div class="cta">
+                    <div class="toggle-btn type14"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex_col">
+                <ul class="pull-right info-menu user-info">
+                  <li class="nav-item dropdown profile">
+                    <a class="nav-link" href="#" id="navbardrop" data-toggle="dropdown"> <img src="images/rahul-ch.jpg"> <span>Rahul <i class="fa fa-angle-down"></i></span> </a>
+                    <div class="dropdown-menu profile fadeIn"> <a class="dropdown-item" href=""><i class="las la-user-circle"></i> My profile</a>
+                      <div class="dropdown-divider"></div> <a class="dropdown-item" href="#"><i class="las la-cog"></i> Settings</a> <a class="dropdown-item noti_open" href="#"><i class="las la-bell"></i> Notifications</a> <a class="dropdown-item" href="#"><i class="las la-life-ring"></i> Support</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#"> <i class="las la-running"></i> Logout</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="top_header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="header_title"><i class="las la-inbox"></i> Inbox</div>
+              <div class="search_box">
+                <input type="text" class="searchTerm" placeholder="Search">
+                <button type="submit" class="search_Button"> <i class="la la-search"></i></button>
+              </div>
+            </div>
+          </div>        
+        </div>
+      </div>
+        <div class="action-bar">
+            <div class="container-fluid">
+        <div class="row">
+            <div class='col-md-12'>
+            
+    <ul>
+      <li class="" tooltip="Select" flow="down">
+        <div class="inline_checkbox">
+        <label class="check_box">
+        <input type="checkbox" id="checkbox1"> <span class="checkmark"></span>
+        </label>
+        </div>
+        </li>
+       <li class="" tooltip="Refresh" flow="down"><a class="circle-icon"><i class="las la-sync"></i></a></li>
+       <li class="" tooltip="Delete" flow="down"><a class="circle-icon "><i class="las la-trash-alt"></i></a></li>
+       <li class="" tooltip="Mark as read" flow="down"><a class="circle-icon"><i class="las la-envelope"></i></a></li>
+       <li class="" tooltip="Labels" flow="down"><a class="circle-icon "><i class="las la-layer-group"></i></a></li>       
+    </ul>
+  </div>
+            </div>
+            </div>
+            </div>
+      <div class="nano_content">
+        <div class="container-fluid">
+          <div class="row">
+            <ul class="message__list">
+              <ng-container *ngFor='let data of sortNotification; let i = index'>	
+              <li class="unread">
+                <div class="sell-col sell-col-1" (click)="getNotificationDetails($event)" id="{{ data.id }}"> <span class="dot"></span>
+                  <div class="inline_checkbox">
+                    <label class="check_box">
+                      <input type="checkbox" id="checkbox1"> <span class="checkmark"></span> </label>
+                  </div>
+                  <p class="title-">{{data.notification}} (via {{data.send_by}})</p>
+                </div>
+                <div class="sell-col sell-col-2">
+                  <div class="subject">{{data.description}}</div>
+                  <div class="date">{{data.date}}</div>
+                </div>
+              </li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="msz_warp" id="message">
+      <div class="msz_header">
+        <h3 class="page-title">
+        <a class="icon circle-icon trigger-message-close">
+        <i class="las la-angle-double-left"></i>
+        </a>
+        Process<span class="grey">(6)</span>
+    </h3>
+        <p>From <a href="#">You</a> to <a href="#">Hari Mylaraiah</a>, started on <a href="#">June 2, 2020</a> at 2:14 pm.</p>
+      </div>
+      <div class="" id="message-nano-wrapper">
+        <div class="nano-content">
+          <ul class="message-container">
+            <li class="sent">
+              <div class="details">
+                <div class="left">You
+                  <div class="arrow"></div>Hari </div>
+                <div class="right">June 6, 2020, 20:08 pm</div>
+              </div>
+              <div class="message">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+              </div>
+              <div class="tool-box"> <a href="#" class="circle-icon"><i class="las la-share-alt-square"></i></a> <a href="#" class="circle-icon"><i class="las la-times"></i></a> <a href="#" class="circle-icon"><i class="las la-flag"></i></a> </div>
+            </li>
+            <li class="sent">
+              <div class="details">
+                <div class="left">You
+                  <div class="arrow"></div>Hari </div>
+                <div class="right">June 6, 2020, 20:08 pm</div>
+              </div>
+              <div class="message">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+              </div>
+              <div class="tool-box"> <a href="#" class="circle-icon"><i class="las la-share-alt-square"></i></a> <a href="#" class="circle-icon"><i class="las la-times"></i></a> <a href="#" class="circle-icon"><i class="las la-flag"></i></a> </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

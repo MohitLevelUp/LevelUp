@@ -12,6 +12,9 @@ import { NotifierService } from "angular-notifier";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  logInmodel: any = {};
+
+  userDetails    = JSON.parse(localStorage.getItem('user'));
   private readonly notifier: NotifierService;
 
   rememberMe: any;
@@ -25,6 +28,9 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
+    if(this.userDetails != null){
+     this.router.navigate(['/']);
+    }
     // this.cookieValue = this.cookieservice.get('ai_session');
     // if (this.cookieValue != '') {
     //   this.rememberMe = JSON.parse(window.atob(this.cookieValue));
@@ -43,7 +49,8 @@ export class LoginComponent implements OnInit {
         if(this.userData.status_code == '200'){
           localStorage.setItem('authToken', JSON.stringify(this.userData.token));
           localStorage.setItem('user', JSON.stringify(this.userData.data));
-          this.router.navigate(['/goals']);
+
+          this.router.navigate(['/dashboard']);
 
         }else{
 

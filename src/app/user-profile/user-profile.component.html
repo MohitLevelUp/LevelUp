@@ -1,14 +1,14 @@
-<app-sidebar></app-sidebar>
-<div class="das_col main-content" id="main-content">
+<app-sidebar></app-sidebar>  
+<div class="das_col main-content" id="main-content" *ngIf="userInfo; else loadingImg">
 		
-		<section class="wrapper main-wrapper test">
+		<section class="wrapper main-wrapper">
 			
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-12" *ngIf="userInfo">
+					<div class="col-md-12" >
 						<div class="row">
 		                  <div class="col-md-12">
-		                    <div class="title"><i class="las la-info-circle"></i> Basic Info</div>
+		                    <div class="title"><i class="las la-info-circle"></i> Basic Info</div> 
 		                  </div>
 		                </div>
 						<div class="box-1">
@@ -54,9 +54,9 @@
 									</div>
 									<div class="col-md-2">
 										<div class="emp_short_score_wrap">
-											<div *ngIf="pointDifference < 0" class="emp_short_score">{{ pointDifference }} Points above target.
+											<div *ngIf="pointDifference <= 0" class="emp_short_score">Achieved target
 											</div>
-											<div *ngIf="pointDifference > 0" class="emp_short_score" style="background-color: #F44336;">{{pointDifference}} Points below target.
+											<div *ngIf="pointDifference > 0" class="emp_short_score" style="background-color: #F44336;">{{pointDifference | number: '1.0-2'}} Points below target.
 											</div>
 											<!-- <div class="emp_placement_no">Rank : <span>#2nd</span> 
 											</div> -->
@@ -93,26 +93,40 @@
 										
 										<td>{{target.users_target}}</td>
 										<!-- gradding system is in percentage for target is remaining -->
-										<td *ngIf="target.targetResultPercentage <= 10" class="off_point point_minus_10"><span>-{{target.targetResultPercentage}} %</span>
+										<td *ngIf="target.targetResultPercentage <= 10 && target.targetResultPercentage >=0" class="off_point point_plus_10"><span>{{target.targetResultPercentage}} %</span>
 										</td>
 
-										<td *ngIf="target.targetResultPercentage > 10 && target.targetResultPercentage <= 20" class="off_point point_minus_20"><span>-{{target.targetResultPercentage}} %</span>
+										<td *ngIf="target.targetResultPercentage > 10 && target.targetResultPercentage <= 20" class="off_point point_plus_20"><span>{{target.targetResultPercentage}} %</span>
 										</td>
 
-										<td *ngIf="target.targetResultPercentage > 20" class="off_point point_minus_30"><span>-{{target.targetResultPercentage}} %</span>
+										<td *ngIf="target.targetResultPercentage > 20" class="off_point point_plus_30"><span>{{target.targetResultPercentage}} %</span>
 										</td>
 
 										<!-- gradding system is in percentage for target is greater than assign target -->
-										<td *ngIf="target.targetResultPercentage >= -10 && target.targetResultPercentage < 0" class="off_point point_plus_10"><span>+{{target.targetResultPercentage}} %</span>
+									<!-- 	<td *ngIf="target.targetResultPercentage >= -10 && target.targetResultPercentage < 0" class="off_point point_plus_10"><span>+{{target.targetResultPercentage}} %</span>
+										</td> -->
+
+										<td *ngIf="target.targetResultPercentage < 0 && target.targetResultPercentage >= -10" class="off_point point_minus_10"><span>{{target.targetResultPercentage}} %</span>
 										</td>
 
-										<td *ngIf="target.targetResultPercentage < -10 && target.targetResultPercentage >= -20" class="off_point point_plus_20"><span>+{{target.targetResultPercentage}} %</span>
+										<td *ngIf="target.targetResultPercentage < -10 && target.targetResultPercentage >= -20" class="off_point point_minus_20"><span>{{target.targetResultPercentage}} %</span>
+										</td>
+
+										<td *ngIf="target.targetResultPercentage < -20" class="off_point point_minus_30"><span>{{target.targetResultPercentage}} %</span>
+										</td>
+
+										<!-- <td *ngIf="target.targetResultPercentage < -10 && target.targetResultPercentage >= -20" class="off_point point_plus_20"><span>+{{target.targetResultPercentage}} %</span>
 										</td>
 
 										<td *ngIf="target.targetResultPercentage < -20" class="off_point point_plus_30"><span>+{{target.targetResultPercentage}} %</span>
-										</td>
+										</td> -->
 										
-										<td>{{target.total * target.point}}</td>
+										<td>
+											<span *ngIf="(target.total * target.point)/target.users_target < target.point ">{{(target.total * target.point)/target.users_target | number: '1.0-2'}}
+											</span>
+											<span *ngIf="(target.total * target.point)/target.users_target >= target.point">{{target.point}}
+											</span>
+										</td>
 										
 									</tr>
 									<!-- <tr>
@@ -180,8 +194,282 @@
 								</table>
 							</div>
 						</div>
-					</div>
+
+
+
+						  <!--  <hr class="my-hr">
+                                <div class="Badge_warp_bag">
+                                    <div class="row">
+                                 <div class="col-md-12">
+                                    <h3>Your Badges</h3>
+                                    </div>
+                                    </div>
+                                </div> -->
+								
+                                
+								<!-- <div class="Badge_warp_bag" >
+									<div class="row">
+										<div class="award_img_select_warp">                                            
+											<div class="col-md-4 text-center" *ngIf="this.rockStarLevel">
+												<img class="img-fluid badge_level_icon" src="../assets/images/sticker/badges/rock-star.png">
+
+												<p class="badge_level">{{ this.rockStarLevel }}</p>
+												<h4 class="badge_title">Rock Star</h4>
+											</div>
+
+											<div class="col-md-4 text-center" *ngIf="this.teamWorkLevel">
+												<img class="img-fluid badge_level_icon" src="../assets/images/sticker/badges/team-player.png">
+
+												<p class="badge_level">{{ this.teamWorkLevel }}</p>
+												<h4 class="badge_title">Team Player</h4>
+											</div>
+
+											<div class="col-md-4 text-center" *ngIf="this.playerLevel">
+												<img class="img-fluid badge_level_icon" src="../assets/images/sticker/badges/most-valuable-player.png">
+												<p class="badge_level">{{ this.playerLevel }}</p>
+												<h4 class="badge_title">Most Valuable Player</h4>
+											</div>
+
+										</div>
+									</div>
+								</div> -->
+
+                    
+                <hr class="my-hr">
+
+                <div class="form-warp road_trophy">
+
+                  <!--===================Section ===================-->
+
+                  <div class="row">
+
+                    <div class="col-md-12">
+
+                      <h3>Your Badges</h3> </div> 
+
+                  </div>
+
+                  <!--===================Most Valueable Player=========================-->
+
+                  <div class="row" *ngIf="this.playerLevel >=1">
+
+                    <div class="col-md-12">
+
+                      <div class="badges__title_wrap text-center"> <img src="../assets/images/sticker/badges/most-valuable-player.png">
+
+                        <h4>Most Valuable Player</h4> </div>
+
+                      <div class="badges_points_level most__valuable">
+
+                        <ol>
+
+                          <li [ngClass]="{'current': this.playerLevel >= 1 && this.playerLevel < 2, 
+                 'opacity_0': this.playerLevel < 1 || this.playerLevel >= 2}">
+
+                            <div class="badges_points">400</div>
+
+                            <div class="badges_step">Level 1</div>
+
+                          </li>
+
+                          <li [ngClass]="{'current': this.playerLevel >= 2 && this.playerLevel < 3, 
+                 'opacity_0': this.playerLevel < 2 || this.playerLevel >= 3}">
+                            <div class="badges_points">800</div>
+                            <div class="badges_step">Level 2</div>
+                          </li>
+
+                          <li [ngClass]="{'current': this.playerLevel >= 3 && this.playerLevel < 4, 
+                 'opacity_0': this.playerLevel < 3 || this.playerLevel >= 4}" >
+
+                            <div class="badges_points">1200</div>
+
+                            <div class="badges_step">Level 3</div>
+
+                          </li>
+
+                          <li [ngClass]="{'current': this.playerLevel >= 4 && this.playerLevel < 5, 
+                 'opacity_0': this.playerLevel < 4 || this.playerLevel >= 5}">
+
+                            <div class="badges_points">1600</div>
+
+                            <div class="badges_step">Level 4</div>
+
+                          </li>
+
+                          <li [ngClass]="{'current': this.playerLevel >= 5, 
+                 'opacity_0': this.playerLevel < 5}">
+
+                            <div class="badges_points">2000</div>
+
+                            <div class="badges_step">Level 5</div>
+
+                          </li>
+
+                        </ol>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <hr class="my-hr-2">
+
+                  <!--===================Rock Star=========================-->
+
+                  <div class="row" *ngIf="this.rockStarLevel >=1">
+
+                    <div class="col-md-12">
+
+                      <div class="badges__title_wrap text-center"> <img src="../assets/images/sticker/badges/rock-star.png">
+
+                        <h4>Rockstar</h4> </div>
+
+                      <div class="badges_points_level rock__star">
+
+                        <ol>
+
+                          <li [ngClass]="{'current': this.rockStarLevel >= 1 && this.rockStarLevel < 2, 
+                 'opacity_0': this.rockStarLevel < 1 || this.rockStarLevel >= 2}">
+
+                            <div class="badges_points">400</div>
+
+                            <div class="badges_step">Level 1</div>
+
+                          </li>
+
+                          <li [ngClass]="{'current': this.rockStarLevel >= 2 && this.rockStarLevel < 3, 
+                 'opacity_0': this.rockStarLevel < 2 || this.rockStarLevel >= 3}"
+                          	>
+
+                            <div class="badges_points">800</div>
+
+                            <div class="badges_step">Level 2</div>
+
+                          </li>
+
+                          <li [ngClass]="{'current': this.rockStarLevel >= 3 && this.rockStarLevel < 4, 
+                 'opacity_0': this.rockStarLevel < 3 || this.rockStarLevel >= 4}">
+
+                            <div class="badges_points">1200</div>
+
+                            <div class="badges_step">Level 3</div>
+
+                          </li>
+
+                          <li [ngClass]="{'current': this.rockStarLevel >= 4 && this.rockStarLevel < 5, 
+                 'opacity_0': this.rockStarLevel < 4 || this.rockStarLevel >= 5}">
+
+                            <div class="badges_points">1600</div>
+
+                            <div class="badges_step">Level 4</div>
+
+                          </li>
+
+                          <li [ngClass]="{'current': this.rockStarLevel >= 5, 
+                 'opacity_0': this.rockStarLevel < 5 }">
+
+                            <div class="badges_points">2000</div>
+
+                            <div class="badges_step">Level 5</div>
+
+                          </li>
+
+                        </ol>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                    <hr class="my-hr-2">
+
+                  <!--===================Team Playerr=========================-->
+
+                  <div class="row" *ngIf="this.teamWorkLevel >=1">
+
+                    <div class="col-md-12">
+
+                      <div class="badges__title_wrap text-center"> <img src="../assets/images/sticker/badges/team-player.png">
+
+                        <h4>Team Player</h4> </div>
+
+                      <div class="badges_points_level team__player">
+
+                        <ol>
+
+                          <li [ngClass]="{'current': this.teamWorkLevel >= 1 && this.teamWorkLevel < 2, 
+                 'opacity_0': this.teamWorkLevel < 1 || this.teamWorkLevel >= 2}">
+
+                            <div class="badges_points">200</div>
+
+                            <div class="badges_step">Level 1</div>
+
+                          </li>
+
+                          <li [ngClass]="{'current': this.teamWorkLevel >= 2 && this.teamWorkLevel < 3, 
+                 'opacity_0': this.teamWorkLevel < 2 || this.teamWorkLevel >= 3}">
+
+                            <div class="badges_points">400</div>
+
+                            <div class="badges_step">Level 2</div>
+
+                          </li>
+
+                          <li [ngClass]="{'current': this.teamWorkLevel >= 3 && this.teamWorkLevel < 4, 
+                 'opacity_0': this.teamWorkLevel < 3 || this.teamWorkLevel >= 4}">
+
+                            <div class="badges_points">600</div>
+
+                            <div class="badges_step">Level 3</div>
+
+                          </li>
+
+                          <li [ngClass]="{'current': this.teamWorkLevel >= 4 && this.teamWorkLevel < 5, 
+                 'opacity_0': this.teamWorkLevel < 4 || this.teamWorkLevel >= 5}">
+
+                            <div class="badges_points">800</div>
+
+                            <div class="badges_step">Level 4</div>
+
+                          </li>
+
+                          <li [ngClass]="{'current': this.teamWorkLevel >= 5, 
+                 'opacity_0': this.teamWorkLevel < 5 }">
+
+                            <div class="badges_points">1000</div>
+
+                            <div class="badges_step">Level 5</div>
+
+                          </li>
+
+                        </ol>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+
+
+					
+
+					  </div>
+
+					
 				</div>
 			</div>
 		</section>
 	</div>
+               <ng-template #loadingImg>
+				  <section class="looding-wrap">
+		            <div class="loader">
+		              <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+		            </div>
+		          </section>
+				</ng-template>

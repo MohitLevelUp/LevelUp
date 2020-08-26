@@ -1,0 +1,217 @@
+<div class="main-wrap" *ngIf="usersJoining; else loadingImg"> 
+    <!--=====================STATS HEADER=====================-->
+       <div class="stats_main_wrap bg-gradient-info">
+       <div class="container">
+          <div class="row">
+           <div class="col-md-12">
+              <div class="stats_title">
+               <h1>Most Starts/Month</h1>
+               </div>
+              </div>
+           </div>
+          </div>
+      </div>  
+   
+    <div class=" stats_wrap">
+      <div class="container-fluid padding_lft_0">
+        <div class="row">
+          <div class="col-md-12">           
+            <div class="title_wrap d-flex justify-content-left">
+             <h4 class="widget__title">Leaders</h4>
+              </div>
+              
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 marg-bo-30">
+            <app-stats-sidebar></app-stats-sidebar>
+          </div>
+          <div class="col-md-9 marg-bo-30">
+              <div class="row">
+              <div class="col-md-4">
+                  <div class="title_wrap d-flex justify-content-left">
+             <h4 class="table__title">Most Starts/Month</h4>
+              </div>
+                  </div>
+              <div class="col-md-4">
+                <select class="stats_select" name="selectedTeam"  #teamSelect (change)='onTeamSelect(teamSelect.value)'>
+                <option value="">All Teams</option>
+                <ng-container *ngFor="let team of teamsList; let i = index">             
+                 <option class="drop-down__item" value="{{team.id}}">{{team.name}}</option>
+                </ng-container>
+               </select>
+
+              </div>
+              <div class="col-md-4">
+                  <div class="drop-down player_filter">
+         <div id="filter_by_player" class="drop-down__button filter_nav3">
+           <span class="drop-down__name ">All Players <span class="pull-right"><i class="las la-angle-down"></i></span> </span>
+         </div>         
+         <div class="drop-down__menu-box">
+           <ul class="drop-down__menu">             
+                  <li class="drop-down__item"><a href="">All Players</a> </li>                  
+                  <li class="drop-down__item"><a href="">Indian</a> </li>
+                  <li class="drop-down__item"><a href="">Overseas</a> </li>
+           </ul>
+         </div>
+       </div>
+                  </div>
+              </div>
+              
+            <div class="che_description-wrap most_player">
+              <div class="table-responsive">
+                <table class="table table-">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Name</th>
+                      <th>Team</th>
+                      <th>Month</th>
+                      <th>client interview</th>
+                      <th>Starts</th>                      
+                       <th>Strike Rate</th>
+                      <th>                         
+                        <div class="performance_wrap">
+                             <span>performance</span>
+                            <span class="performance_title">last five weeks</span>
+                            
+                          </div>
+                        </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  <ng-container *ngFor="let starts of usersDetails; let i = index">
+
+                    <tr *ngIf="i==0" class="top__player bg_desk_dem">
+                      <td><span class="team_rank">{{i+1}}</span> </td>
+                      <td> 
+                      	<span class="stats_team_image">
+                      	 <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ starts.profile_image_name }}">
+                        </span> 
+                      	<span class="stats_team_name"> {{starts.display_name | titlecase}}</span> 
+                      </td>
+                      <td>{{starts.team_name}}</td>
+                      <td>{{starts.months}}</td>
+                      <td>{{starts.total_interviews}}</td>
+                      <td class="is__active">{{starts.total_joining}}</td>
+                     
+                        <td>
+                          <span *ngIf='starts.total_job_posting'>
+                           {{(starts.total_joining*100)/starts.total_job_posting | number: '1.0-0'}}
+                          </span>
+                           <span *ngIf='starts.total_submission'>
+                           {{(starts.total_joining*100)/starts.total_submission | number: '1.0-0'}}
+                          </span>
+                      </td>
+                      <td>
+                          <ng-container *ngFor="let weeksStarts of week6; index as j">
+
+                            <span *ngIf="starts.id == weeksStarts.id">
+
+                             <!-- fifth week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksStarts.fifthWeekJoinings) >= (+weeksStarts.sixWeekJoinings)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksStarts.fifthWeekJoinings) < (+weeksStarts.sixWeekJoinings)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- fourth week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksStarts.fourthWeekJoinings) >= (+weeksStarts.fifthWeekJoinings)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksStarts.fourthWeekJoinings) < (+weeksStarts.fifthWeekJoinings)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- third week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksStarts.thirdWeekJoinings) >= (+weeksStarts.fourthWeekJoinings)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksStarts.thirdWeekJoinings) < (+weeksStarts.fourthWeekJoinings)"><i class="las la-arrow-down"></i></span>
+                            
+                            <!-- second week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksStarts.secondWeekJoinings) >= (+weeksStarts.thirdWeekJoinings)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksStarts.secondWeekJoinings) < (+weeksStarts.thirdWeekJoinings)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- last week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksStarts.firstWeekJoinings) >= (+weeksStarts.secondWeekJoinings)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksStarts.firstWeekJoinings) < (+weeksStarts.secondWeekJoinings)"><i class="las la-arrow-down"></i></span>
+
+                           </span>
+
+                          </ng-container>
+                    </td>
+                    </tr>
+
+
+					  <tr *ngIf="i!=0">
+                      <td><span class="team_rank">{{i+1}}</span> </td>
+                      <td> 
+                      	<span class="stats_team_image">
+                      	 <img class="img-fluid" src="{{ iconUrl }}profile_images/{{ starts.profile_image_name }}">
+                        </span> 
+                      	<span class="stats_team_name"> {{starts.display_name | titlecase}}</span> 
+                      </td>
+                      <td>{{starts.team_name}}</td>
+                      <td>{{starts.months}}</td>
+                      <td>{{starts.total_interviews}}</td>
+                      <td class="is__active">{{starts.total_joining}}</td>
+                     
+                        <td><span *ngIf='starts.total_job_posting'>
+                           {{(starts.total_joining*100)/starts.total_job_posting | number: '1.0-0'}}
+                          </span>
+                          <span *ngIf='starts.total_submission'>
+                           {{(starts.total_joining*100)/starts.total_submission | number: '1.0-0'}}
+                          </span>
+                        </td>
+                      <td>
+                           <ng-container *ngFor="let weeksStarts of week6; index as j">
+
+                            <span *ngIf="starts.id == weeksStarts.id">
+
+                             <!-- fifth week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksStarts.fifthWeekJoinings) >= (+weeksStarts.sixWeekJoinings)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksStarts.fifthWeekJoinings) < (+weeksStarts.sixWeekJoinings)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- fourth week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksStarts.fourthWeekJoinings) >= (+weeksStarts.fifthWeekJoinings)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksStarts.fourthWeekJoinings) < (+weeksStarts.fifthWeekJoinings)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- third week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksStarts.thirdWeekJoinings) >= (+weeksStarts.fourthWeekJoinings)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksStarts.thirdWeekJoinings) < (+weeksStarts.fourthWeekJoinings)"><i class="las la-arrow-down"></i></span>
+                            
+                            <!-- second week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksStarts.secondWeekJoinings) >= (+weeksStarts.thirdWeekJoinings)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksStarts.secondWeekJoinings) < (+weeksStarts.thirdWeekJoinings)"><i class="las la-arrow-down"></i></span>
+                             
+                             <!-- last week arrow -->
+                             <span class="team_performance_aero high_performance" *ngIf="(+weeksStarts.firstWeekJoinings) >= (+weeksStarts.secondWeekJoinings)"><i class="las la-arrow-up"></i></span>
+
+                             <span class="team_performance_aero low_performance" *ngIf="(+weeksStarts.firstWeekJoinings) < (+weeksStarts.secondWeekJoinings)"><i class="las la-arrow-down"></i></span>
+
+                           </span>
+
+                          </ng-container>
+                    </td>
+                    </tr>
+                    </ng-container>
+
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<ng-template #loadingImg>
+  <section class="looding-wrap">
+     <div class="loader">
+      <img src="./assets/images/loader.gif" style="margin-left:50%; margin-top:20%; margin-bottom: 100px;" />
+     </div>
+   </section>
+</ng-template>

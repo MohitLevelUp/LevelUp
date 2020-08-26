@@ -7,21 +7,28 @@ import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { NotifierService } from "angular-notifier";
 
+import { CorevaluefilterPipe } from 'src/app/_pipe/corevaluefilter.pipe';
 
-
-
+declare var $: any;
 @Component({
   selector: 'app-core-value',
   templateUrl: './core-value.component.html', 
-  styleUrls: ['./core-value.component.css']
+  styleUrls: ['./core-value.component.css'],
+  providers: [ CorevaluefilterPipe ],
+
 })
+
 export class CoreValueComponent implements OnInit {
   iconUrl        = environment.uploadUrl;
   userProfile    = JSON.parse(localStorage.getItem('user'));
 
+  coreValmodel: any = {};
+  kudosModel: any = {};
+
   private readonly notifier: NotifierService;
   selectedcoreValueId = '';
   selectedgivenTo = '';
+  selectedgivenToKudos = '';
 
   earnedcvPoint:number;
   
@@ -35,9 +42,13 @@ export class CoreValueComponent implements OnInit {
   successMessage: any;
   errorMessage: any;
 
-  constructor(private http: Http, private coreValueService: CoreValueService,
+  remainingCoreValueList: any;
+  remainingCoreValueUserList: any;
+  selected_Id:any;
+  constructor(private http: Http, private corevaluefilterPipe: CorevaluefilterPipe, private coreValueService: CoreValueService,
     private userService: UserService,notifierService: NotifierService) { 
     this.notifier = notifierService;
+
   }
 
   
@@ -46,6 +57,7 @@ export class CoreValueComponent implements OnInit {
 
     this.coreValueService.giveCoreValue(form.value).subscribe(
       (resp) => {
+
         if(resp['status_code'] == 200){
           this.getCoreValueList();
           this.successMessage = resp.message;
@@ -67,14 +79,16 @@ export class CoreValueComponent implements OnInit {
 
     );
     form.resetForm();
+    this.selectedgivenTo = '';
   }
 
-  giveKudos(form: NgForm) {
-    console.log(form.value);
-
-    this.coreValueService.giveKudos(form.value).subscribe(
+  giveKudos(kudosform: NgForm) {
+    
+    this.coreValueService.giveKudos(kudosform.value).subscribe(
       (resp) => {
+      
         if(resp['status_code'] == 200){
+          this.getUserGivenKudosList();
           this.successMessage = resp.message;
            this.notifier.show({
               type: "success",
@@ -93,15 +107,51 @@ export class CoreValueComponent implements OnInit {
       }
 
     );
-    form.resetForm();
+    kudosform.resetForm();
+    this.selectedgivenToKudos = '';
   }
 
   // getting all core Value's list
   getCoreValueList(){
     this.coreValueService.corevalueList().subscribe(
       resp => {
-        this.coreValuesList = resp['data'];   
-     
+        this.coreValuesList = resp['data'];  
+
+
+         this.coreValueService.getUserGivenCoreValues().subscribe(
+          resp => {
+           
+            if(resp['status_code'] == 200){
+               this.givenCoreValue = resp['data'];
+
+           this.remainingCoreValueList = this.coreValuesList.filter(o => !this.givenCoreValue.find(o2 => o.id === o2.core_value_id))     
+
+            }else{
+              this.givenCoreValue = "";
+              this.remainingCoreValueList = this.coreValuesList;
+            }
+          },
+          
+          error => this.errorMessage = <any>error
+        );
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+  }
+
+   //get user's given core value
+  getUserGivenCoreValuesList(){
+
+    this.coreValueService.getUserGivenCoreValues().subscribe(
+      resp => {
+       
+        if(resp['status_code'] == 200){
+           this.givenCoreValue = resp['data'];
+
+        }else{
+          this.givenCoreValue = "";
+        }
       },
       
       error => this.errorMessage = <any>error
@@ -114,6 +164,27 @@ export class CoreValueComponent implements OnInit {
     this.userService.userList().subscribe(
       resp => {
         this.usersInfo = resp['data']; 
+
+        //call given core value list
+        this.coreValueService.getUserGivenCoreValues().subscribe(
+          resp => {
+           
+            if(resp['status_code'] == 200){
+              this.givenCoreValue = resp['data'];
+
+              this.remainingCoreValueUserList = this.usersInfo.filter(o => !this.givenCoreValue.find(o2 => o.id === o2.given_to))     
+
+            }else{
+              this.givenCoreValue = "";
+              this.remainingCoreValueUserList = this.usersInfo;
+
+            }
+
+
+          },
+          
+          error => this.errorMessage = <any>error
+        );
        
       },
       
@@ -121,22 +192,7 @@ export class CoreValueComponent implements OnInit {
     );
   }
 
-  //get user's given core value
-  getUserGivenCoreValuesList(){
-
-    this.coreValueService.getUserGivenCoreValues().subscribe(
-      resp => {
-       
-        if(resp['status_code'] == 200){
-           this.givenCoreValue = resp['data'];
-        }else{
-          this.givenCoreValue = "";
-        }
-      },
-      
-      error => this.errorMessage = <any>error
-    );
-  }
+ 
 
   //get user receive core value
   getUserReceiveCoreValuesList(){
@@ -161,7 +217,6 @@ export class CoreValueComponent implements OnInit {
 
     this.coreValueService.getUserGivenKudos().subscribe(
       resp => {
-       console.log('giku',resp);
         if(resp['status_code'] == 200){
            this.givenKudos = resp['data'];
         }else{
@@ -216,7 +271,6 @@ export class CoreValueComponent implements OnInit {
        
         if(resp['status_code'] == 200){
            this.stickerList = resp['data'];
-           console.log('sti',this.stickerList);
         }
       },
       
@@ -226,5 +280,56 @@ export class CoreValueComponent implements OnInit {
 
   
   }
+
+onKeydown(event) {
+  if (event.key === "@") {
+    $("#newstxt").attr("list", "userlist");
+  }else if(event.keyCode === 32){
+    $("#newstxt").removeAttr( "list" )
+  }
+
+  $('input[name=breaking_news]').on('input',function() {
+    var selectedOption  = $('option[value="'+$(this).val()+'"]');
+    var selectedUserId  = selectedOption.length ? selectedOption.attr('id') : '';
+    if(selectedUserId != ''){
+      $("#newstxt").attr("rel", selectedUserId);
+    //   $("#newsform_userId").val(function() {
+    //     return  selectedUserId;
+    // });
+    }
+  });
+
+     var target = event.target || event.srcElement || event.currentTarget;
+     var idAttr = target.attributes.rel;
+     this.selected_Id  = idAttr.nodeValue; 
+  
+}
+
+ addNews(newsform: NgForm) {
+    this.coreValueService.addNews(newsform.value).subscribe(
+      (resp) => {
+        if(resp['status_code'] == 200){
+          this.successMessage = resp.message;
+           this.notifier.show({
+              type: "success",
+              message: this.successMessage,
+           });
+        }else{
+           this.errorMessage = resp.message;
+           this.notifier.show({
+              type: "error",
+              message: this.errorMessage,
+           });
+        }
+      },
+      error => {
+         this.errorMessage = <any>error
+      }
+
+    );
+    newsform.resetForm();
+  }
+
+
 
 }

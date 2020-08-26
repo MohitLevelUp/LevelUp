@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { KpiService } from 'src/app/_services/kpi.service';
 import { TargetService } from 'src/app/_services/target.service';
-import { UserService } from 'src/app/_services/user.service';
-import { Router, NavigationStart } from '@angular/router';
+import { UserService } from 'src/app/_services/user.service'; 
+import { ActivatedRoute, Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-edit-target',
@@ -11,8 +11,6 @@ import { Router, NavigationStart } from '@angular/router';
   styleUrls: ['./edit-target.component.css']
 })
 export class EditTargetComponent implements OnInit {
-  private usersTarget:string = "";
-  private teamsTarget:string = "";
 
   kpiList:any;
   errorMessage: any;
@@ -23,10 +21,77 @@ export class EditTargetComponent implements OnInit {
   allTeamListSettings = {};
   allUserListSettings = {};
 
-  constructor(private targetService: TargetService, private kpiService: KpiService, private userService: UserService,
+  targetDetails: any;
+  targetId: any;
+  selectedKpi: any;
+  teams_target: any;
+  users_target: any;
+  target_period: any;
+
+  constructor(private targetService: TargetService,private route: ActivatedRoute,
+   private kpiService: KpiService, private userService: UserService,
     private router: Router) { }
 
+
+  // update target
+  updateTarget(form: NgForm) {
+    console.log(form.value);
+
+    this.targetService.updateTarget(form.value).subscribe(
+      res => {
+       if(res['status_code'] == 200){
+         this.router.navigate(['/goals']);
+        }
+         
+      },
+      error => this.errorMessage = <any>error
+    );
+  }
+
+  
+  getTargetDetails(targetId){
+    this.targetService.getTargetDetails(targetId).subscribe(
+      res => {
+        console.log(res);
+        if(res.status_code == '200'){
+         this.targetDetails    = res['data'];
+         this.selectedKpi      = this.targetDetails['kpi_id'];
+         this.targetId         = this.targetDetails['id'];
+         console.log(this.targetId);
+         this.teams_target     = this.targetDetails['teams_target']; 
+         this.users_target     = this.targetDetails['users_target'];
+         this.target_period    = this.targetDetails['target_period'];
+
+         if(this.targetDetails['user_id'] !=null && this.targetDetails['user_id'] !=''){
+           this.selectedUsers = [
+          { id: this.targetDetails['user_id'], display_name: this.targetDetails['display_name'] },
+          ];
+         }
+         
+
+        if(this.targetDetails['team_id'] != null && this.targetDetails['team_id'] != ''){
+          this.selectedTeams = [
+          { id: this.targetDetails['team_id'], display_name: this.targetDetails['team_name'] },
+         ];
+
+        }
+
+        
+
+       }
+          
+      },
+      
+      error => this.errorMessage = <any>error
+    );
+  }
+
+
+  
+
   ngOnInit() {
+    let targetId = +this.route.snapshot.paramMap.get('id');
+
   	//for drop down
     this.allTeamListSettings = {
       singleSelection: false,
@@ -50,7 +115,7 @@ export class EditTargetComponent implements OnInit {
     };
 
 
-  	this.kpiService.getKpiList().subscribe(
+  	this.kpiService.createdKpiList().subscribe(
       resp => {
         this.kpiList = resp['data'];
        
@@ -81,13 +146,17 @@ export class EditTargetComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
 
+    this.getTargetDetails(targetId);
+
   }
 
+   
+
   onItemSelect(item: any) {
-    console.log(item);
+    
   }
   onSelectAll(items: any) {
-    console.log(items);
+    
   }
 
 }

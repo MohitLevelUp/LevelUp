@@ -4,10 +4,11 @@ import { NgForm } from '@angular/forms';
 import { CoreValueService } from 'src/app/_services/core-value.service';
 import { Subject } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { NotifierService } from "angular-notifier";
 
 @Component({
   selector: 'app-corevalues',
-  templateUrl: './corevalues.component.html',
+  templateUrl: './corevalues.component.html', 
   styleUrls: ['./corevalues.component.css']
 })
 export class CorevaluesComponent implements OnInit {
@@ -15,17 +16,20 @@ export class CorevaluesComponent implements OnInit {
   iconUrl        = environment.uploadUrl;
 
   coreValuesList: any;
-  private corevaluename:String = ""; 
 
-  private base64textString:String="";
+  private readonly notifier: NotifierService;
+  corevaluename: any = ""; 
 
+  base64textString: any ="";
+  successMessage: any;
   errorMessage: any;
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
-  constructor(private http: Http, private coreValueService: CoreValueService) { 
-    
+  constructor(private http: Http, private coreValueService: CoreValueService,
+    notifierService: NotifierService) { 
+    this.notifier = notifierService;
   }
 
   //get file and conver it in base64 encode
@@ -52,7 +56,18 @@ export class CorevaluesComponent implements OnInit {
     this.coreValueService.addcoreValue(form.value).subscribe(
       (resp) => {
         if(resp['status_code'] == 200){
+           this.successMessage = resp.message;
+           this.notifier.show({
+              type: "success",
+              message: this.successMessage,
+           });
           this.getCoreValueList();
+        }else{
+           this.errorMessage = resp.message;
+           this.notifier.show({
+              type: "error",
+              message: this.errorMessage,
+           });
         }
       },
       error => {

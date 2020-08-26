@@ -12,12 +12,9 @@ import { JwtHelperService  }  from '@auth0/angular-jwt';
 export class CoreValueService {
   baseUrl        = environment.apiUrl;
 
-  helper         = new JwtHelperService();
-  authToken      = localStorage.getItem('authToken');
-  decodedToken   = this.helper.decodeToken(this.authToken);
-  userID         = this.decodedToken['user_id'];
+  constructor(private http: HttpClient, private router: Router) {
 
-  constructor(private http: HttpClient, private router: Router) { }
+   }
   
   filterUser(corevalue: any) {
     return corevalue.id == 10
@@ -25,7 +22,7 @@ export class CoreValueService {
  //add core value
   addcoreValue(data: any) {
 
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/corevalue/' , JSON.stringify(data), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/corevalue/' , JSON.stringify(data), {
     })
       .pipe(
       tap(data => console.log('authToken' + JSON.stringify(data))),
@@ -39,7 +36,7 @@ export class CoreValueService {
   corevalueList(): Observable<any> {
 
 
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/')
+    return this.http.get<any>(this.baseUrl + 'api/v1/corevalue/')
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -51,17 +48,21 @@ export class CoreValueService {
 
   //Give core value
   giveCoreValue(data: any) {
+  var helper         = new JwtHelperService();
+  var authToken      = localStorage.getItem('authToken');
+  var decodedToken   = helper.decodeToken(authToken);
+  var userID         = decodedToken['user_id'];
 
   var coreValueData = {
-      given_by: this.userID,
+      given_by: userID,
       given_to: data.givenTo,
       core_value_id:data.coreValueId,
       why_given:data.whyGiven
     };
 
-    console.log(coreValueData);
+    // console.log(coreValueData);
 
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/corevalue/givenCoreValue' , JSON.stringify(coreValueData), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/corevalue/givenCoreValue' , JSON.stringify(coreValueData), {
     })
       .pipe(
       tap(data => console.log('authToken' + JSON.stringify(data))),
@@ -75,9 +76,14 @@ export class CoreValueService {
   //get user given Core values
 
   getUserGivenCoreValues(): Observable<any> {
-    var userId = this.userID;
+    var helper         = new JwtHelperService();
+    var authToken      = localStorage.getItem('authToken');
+    var decodedToken   = helper.decodeToken(authToken);
+    var userID         = decodedToken['user_id'];
 
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/getUserGivenCoreValues/' + userId)
+    var userId = userID;
+
+    return this.http.get<any>(this.baseUrl + 'api/v1/corevalue/getUserGivenCoreValues/' + userId)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -87,20 +93,38 @@ export class CoreValueService {
   //get user receive Core values
 
   getUserReceiveCoreValues(): Observable<any> {
-    var userId = this.userID;
+    var helper         = new JwtHelperService();
+    var authToken      = localStorage.getItem('authToken');
+    var decodedToken   = helper.decodeToken(authToken);
+    var userID         = decodedToken['user_id'];
 
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/getUserReceiveCoreValues/' + userId)
+    var userId = userID;
+
+    return this.http.get<any>(this.baseUrl + 'api/v1/corevalue/getUserReceiveCoreValues/' + userId)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
     )
   }
 
+
+   //get user's team work total stickers
+  
+  getTeamWorkTotalReceived(userId:any): Observable<any> {
+
+    return this.http.get<any>(this.baseUrl + 'api/v1/corevalue/getTeamWorkTotal?userId=' + userId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+
   //get kudos stickers list
   
   getKudosStickerList(): Observable<any> {
 
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/getKudosStickersList/')
+    return this.http.get<any>(this.baseUrl + 'api/v1/corevalue/getKudosStickersList/')
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -111,15 +135,19 @@ export class CoreValueService {
 
    //Give Kudos
   giveKudos(data: any) {
+  var helper         = new JwtHelperService();
+  var authToken      = localStorage.getItem('authToken');
+  var decodedToken   = helper.decodeToken(authToken);
+  var userID         = decodedToken['user_id'];
 
   var kudosData = {
-      given_by: this.userID,
-      given_to: data.givenTo,
+      given_by: userID,
+      given_to: data.givenToKudos,
       kudos_id:data.kudosId,
-      why_given:data.whyGiven
+      why_given:data.whyGivenKudos
     };
 
-  return this.http.post<any>(this.baseUrl + 'levelup/api/v1/corevalue/giveKudos' , JSON.stringify(kudosData), {
+  return this.http.post<any>(this.baseUrl + 'api/v1/corevalue/giveKudos' , JSON.stringify(kudosData), {
     })
       .pipe(
       tap(data => console.log('authToken' + JSON.stringify(data))),
@@ -131,9 +159,13 @@ export class CoreValueService {
   //get user given kudos
 
   getUserGivenKudos(): Observable<any> {
-    var userId = this.userID;
+    var helper         = new JwtHelperService();
+    var authToken      = localStorage.getItem('authToken');
+    var decodedToken   = helper.decodeToken(authToken);
+    var userID         = decodedToken['user_id'];
+    var userId = userID;
 
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/getUserGivenKudos/' + userId)
+    return this.http.get<any>(this.baseUrl + 'api/v1/corevalue/getUserGivenKudos/' + userId)
     .pipe(
       retry(1),
      catchError(this.errorHandl)
@@ -143,9 +175,90 @@ export class CoreValueService {
   //get user receive Kudos
   
   getUserReceiveKudos(): Observable<any> {
-    var userId = this.userID;
+    var helper         = new JwtHelperService();
+    var authToken      = localStorage.getItem('authToken');
+    var decodedToken   = helper.decodeToken(authToken);
+    var userID         = decodedToken['user_id'];
+    var userId = userID;
 
-    return this.http.get<any>(this.baseUrl + 'levelup/api/v1/corevalue/getUserReceiveKudos/' + userId)
+    return this.http.get<any>(this.baseUrl + 'api/v1/corevalue/getUserReceiveKudos/' + userId)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+// news section start 
+
+  //add core value
+  addNews(data: any) {
+  var helper         = new JwtHelperService();
+  var authToken      = localStorage.getItem('authToken');
+  var decodedToken   = helper.decodeToken(authToken);
+  var userID         = decodedToken['user_id'];
+  var newsData = {
+      written_by: userID,
+      user_id:data.userId,
+      news:data.breaking_news
+    };
+  return this.http.post<any>(this.baseUrl + 'api/v1/corevalue/addNews' , JSON.stringify(newsData), {
+    })
+      .pipe(
+      tap(data => console.log('authToken' + JSON.stringify(data))),
+      //tap(),// 
+
+        catchError(this.errorHandl));
+  }
+
+  //get user receive Kudos
+  
+  getNews(): Observable<any> {
+
+    return this.http.get<any>(this.baseUrl + 'api/v1/corevalue/getNews/')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+
+  //get corevalue topers
+  
+  getCoreValueTopers(startDate:any,endDate:any,): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'api/v1/corevalue/topers/' + startDate + '/' + endDate)
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+
+  getToppersList(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'api/v1/corevalue/toppersDetails')
+    .pipe(
+      retry(1),
+     catchError(this.errorHandl)
+    )
+  }
+
+
+  // high five 
+
+  sendHighFive(data: any) {
+  
+  return this.http.post<any>(this.baseUrl + 'api/v1/corevalue/sendHighFive' , JSON.stringify(data), {
+    })
+      .pipe(
+      // tap(data => console.log('authToken' + JSON.stringify(data))),
+      tap(),// 
+
+      catchError(this.errorHandl));
+  }
+
+  // getting sent high five total
+
+  highFiveTotal(): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'api/v1/corevalue/highFiveTotal')
     .pipe(
       retry(1),
      catchError(this.errorHandl)
