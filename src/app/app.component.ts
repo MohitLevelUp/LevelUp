@@ -7,6 +7,7 @@ import { UserService } from 'src/app/_services/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'levelUp';
   errorMessage: any;
